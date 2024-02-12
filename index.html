@@ -9,47 +9,68 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="resources/js/main.js"></script>
 </head>
 <body>
     <header>
-        <span class="material-symbols-outlined">
+        <span class="material-symbols-outlined menu">
             menu
         </span>
     </header>
     <div class="container">
         <nav>
             <ul class="icons">
-                <li>
-                    <p>Home</p>
-                    <span class="material-symbols-outlined">home</span>
+                <a href="#">
+                    <li class="category">
+                        <span class="material-symbols-outlined">home</span>
+                        <p>Home</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="category">
+                        <span class="material-symbols-outlined">trending_up</span>
+                        <p>Popular</p>
+                    </li>
+                </a>
+                <li class="div">
+
                 </li>
-                <li>
-                    <p>Popular</p>
-                    <span class="material-symbols-outlined">trending_up</span>
-                </li>
-                <li>
+                <li class="category" id="categories">
                     <p>CATEGORIES</p>
-                    <ul>
-                        <li>
-                            <p>Climate Action</p>
-                        </li>
-                        <li>
-                            <p>Social Media</p>
-                        </li>
+                    <ul class="subcategories">
+                        <a href="">
+                            <li class="subcategory">
+                                <p>Climate Action</p>
+                            </li>
+                        </a>
+                        <a href="#">
+                            <li class="subcategory">
+                                <p>Social Media</p>
+                            </li>
+                        </a>
                     </ul>
                 </li>
-                <li>
-                    <p>Help</p>
-                    <span class="material-symbols-outlined">help</span>
+                <li class="div">
+
                 </li>
-                <li>
-                    <p>About us</p>
-                    <span class="material-symbols-outlined">group</span>
-                </li>
-                <li>
-                    <p>Questions</p>
-                    <span class="material-symbols-outlined">question_mark</span>
-                </li>
+                <a href="#">
+                    <li class="category">
+                        <span class="material-symbols-outlined">help</span>
+                        <p>Help</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="category">
+                        <span class="material-symbols-outlined">group</span>
+                        <p>About us</p>
+                    </li>
+                </a>
+                <a href="#">
+                    <li class="category">
+                        <span class="material-symbols-outlined">question_mark</span>
+                        <p>Questions</p>
+                    </li>
+                </a>
             </ul>
         </nav>
         

@@ -1,33 +1,92 @@
-nav{
-    width: 15%;
-    height: 100%;
-    background-color: #262525;
-    display: flex;
-    font-size: 20px;
-}
 nav {
-    width: 15%;
+    position: fixed;
+    width: 11%;
     height: 100%;
+    min-width: 120px; 
     background-color: #262525;
+    .div
+        {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc; 
+        }
     .icons {
         display: flex;
         flex-direction: column;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+      
+        .category {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 8px;
+            cursor: pointer;
+            font-size: 20px; 
+            transition: background-color 0.3s, color 0.3s; 
+
+            &:hover {
+                background-color: white; 
+                color: green; 
+                
+            }
+        }
+        a {
+            text-decoration: none; 
+            color: inherit; 
+        }
+
+        span {
+            margin-right: 10px;
+        }
     }
-    .icons li {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px;
-        cursor: pointer;
+    @media (max-width: 1250px) {
+        .icons {
+            .category {
+                font-size: 0.8em; 
+            }
+        }
+    }
+    @media (max-width: 800px) {
+        .icons {
+                display: none; 
+        }
     }
 
-    .icons li span {
-        margin-left: 8px;
-    }
+}
+.subcategories {
+    display: none;
+    position: absolute;
+    width: 200px; 
+    top: 0; 
+    left: 100%; 
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: #262525;
+    flex-direction: column;
+    z-index: 1; 
 }
 
+.subcategories .subcategory {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
 
-.material-symbols-outlined {
-    font-family: "Material Icons Outlined";
-    font-size: 20px;
+.subcategories .subcategory:hover {
+    background-color: white;
+    color: green;
+}
+
+.subcategories a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.subcategories span {
+    margin-right: 10px;
 }
