@@ -1,0 +1,23 @@
+@use'header';
+@use'nav';
+$fondo: #262525;
+
+body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #1B1717;
+    font-family: 'Almarai', sans-serif;
+    color: #fff;
+}
+.container{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 100% 1fr 1fr;
+
+    .chats{
+        background-color: #262525;
+        height: 100%;
+    }
+}
