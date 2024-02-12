@@ -1,15 +1,15 @@
 @use'header';
 @use'nav';
-$fondo: #262525;
+@import 'config'; //paleta de colores
 
 body{
     padding: 0;
     margin: 0;
     height: 100%;
     width: 100%;
-    background-color: #1B1717;
+    background-color: $fondo;
     font-family: 'Almarai', sans-serif;
-    color: #fff;
+    color: white;
 }
 .container{
     height: 100%;

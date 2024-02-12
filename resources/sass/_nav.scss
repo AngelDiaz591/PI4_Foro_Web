@@ -1,9 +1,12 @@
+@import 'config'; //paleta de colores
+
+
 nav {
     position: fixed;
-    width: 11%;
+    width: 15%;
     height: 100%;
     min-width: 120px; 
-    background-color: #262525;
+    background-color: $color_menu;
     .div
         {
             display: flex;
@@ -24,18 +27,23 @@ nav {
             align-items: center;
             padding: 8px;
             cursor: pointer;
-            font-size: 20px; 
+            font-size: 15px; 
             transition: background-color 0.3s, color 0.3s; 
 
             &:hover {
-                background-color: white; 
-                color: green; 
+                background-color: $font; 
+                color: $theme_hover; 
                 
             }
         }
-        a {
-            text-decoration: none; 
-            color: inherit; 
+        a{
+            text-decoration: none;
+            color: inherit;
+
+            li {
+                border: solid 1px $font;
+                border-radius: 15%;
+            }
         }
 
         span {

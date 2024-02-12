@@ -1,5 +1,5 @@
 header {
-  height: 70px;
+  height: 60px;
   background-color: #262525;
   color: #fff;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -10,13 +10,13 @@ header {
 }
 
 .menu {
-  font-size: 60px !important;
+  font-size: 30px !important;
   margin-left: 20px;
 }
 
 nav {
   position: fixed;
-  width: 11%;
+  width: 15%;
   height: 100%;
   min-width: 120px;
   background-color: #262525;
@@ -40,16 +40,20 @@ nav .icons .category {
   align-items: center;
   padding: 8px;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 15px;
   transition: background-color 0.3s, color 0.3s;
 }
 nav .icons .category:hover {
   background-color: white;
-  color: green;
+  color: #000;
 }
 nav .icons a {
   text-decoration: none;
   color: inherit;
+}
+nav .icons a li {
+  border: solid 1px white;
+  border-radius: 15%;
 }
 nav .icons span {
   margin-right: 10px;
@@ -105,9 +109,9 @@ body {
   margin: 0;
   height: 100%;
   width: 100%;
-  background-color: #1B1717;
+  background-color: #000;
   font-family: "Almarai", sans-serif;
-  color: #fff;
+  color: white;
 }
 
 .container {
@@ -118,5 +122,3 @@ body {
   background-color: #262525;
   height: 100%;
 }
-
-/*# sourceMappingURL=main.css.map */
