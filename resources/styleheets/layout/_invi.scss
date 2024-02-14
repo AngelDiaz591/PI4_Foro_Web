@@ -1,0 +1,37 @@
+
+main {
+    margin-top: $p6;
+    flex: 57%;
+    margin-left: 13%;
+    text-align: $ali_center;
+
+    @media (max-width: 800px) {
+        .centered-box {
+            max-width: 90%; 
+        }
+
+        flex: 1;
+        margin-left: 0;
+
+
+    }
+    
+}
+
+
+
+//part of chats
+.chats {
+    margin-top: $p6;
+    flex: 20%;
+    text-align: $ali_center;
+    color: $font_w1;
+    @media (max-width: 800px) {
+        .centered-box {
+            max-width: 90%; 
+        }
+        flex: 1;
+        margin-left: 0;
+
+    }
+}
