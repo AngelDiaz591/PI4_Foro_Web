@@ -1,70 +1,79 @@
 
 .box {
-    padding: px(4);
-    border-radius: px(5); 
-    border: $bor_card; 
-    max-width: 80%;
-    color: $font_w;
-    text-align: center;
-    margin: auto;
+  padding: px(4);
+  border-radius: px(5); 
+  border: $bor_card; 
+  max-width: 80%;
+  color: $font_w;
+  text-align: center;
+  margin: auto;
 }
+
 .user {
-    display: flex;
-    align-items: center;
-    font-size: px(4) ;
-    .profile{
-        cursor: pointer;
-        transition: $tr; 
-        &:hover {
-            color: $theme_bl;       
-        }
+  display: flex;
+  align-items: center;
+  font-size: px(4) ;
+
+  .profile{
+    cursor: pointer;
+    transition: $tr;
+
+    &:hover {
+      color: $theme_bl;       
     }
+  }
 }
+
 .date {
-    font-size: px(5);
-    margin-left: px(2);
-    color: $font_w1;
+  font-size: px(3);
+  margin-left: px(2);
+  color: $font_w1;
 }
+
 .line {
-    @include line($border);
+  @include line($border);
 }
+
 .text {
-    text-align: left;
-    p{
-        font-size: 18px ;
-    }
+  text-align: left;
+  p{
+    font-size: 18px ;
+  }
 }
+
 @include breakpoint_tb {
-    .hidden {
-        display: none;
-    }
-}
-@include breakpoint_tb-min {
-    .hidden_ {
-        //doesn't work without the !important
-        display: none !important;
-    }
-}
-.read-less-btn {
+  .hidden {
     display: none;
+  }
 }
+
+@include breakpoint_tb-min {
+  .text .read-more-btn.hidden_ {
+    display: none;
+  }
+}
+
+.read-less-btn {
+  display: none;
+}
+
 .image img {
-    max-width: 100%; 
-    height: auto;
-    border-radius: px(5); 
-
+  max-width: 100%; 
+  height: auto;
+  border-radius: px(5); 
 }
-.actions {
-    display: flex;
-    align-items: center;
-    font-size: px(4);
-    p {
-        margin-right: px(3); 
-        cursor: point;
-        transition: $tr; 
 
-        &:hover {
-            color: $theme_bl;       
-        }
-    }
+.actions {
+  display: flex;
+  align-items: center;
+  font-size: px(4);
+  p {
+      margin-right: px(3); 
+      cursor: point;
+      transition: $tr;
+
+      &:hover {
+        color: $theme_bl;       
+      }
+  }
 }

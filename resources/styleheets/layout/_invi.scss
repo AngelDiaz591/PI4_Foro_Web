@@ -1,29 +1,31 @@
 
 @include breakpoint_tb {
-    .container {
-        margin-left: 0;
-        flex-direction: column-reverse;
-    }
+  .container {
+    margin-left: 0;
+    flex-direction: column-reverse;
+  }
 }
-main {
-    margin-top: px(12);
-    flex: 57%;
-    margin-left: 13%;
-    text-align: center;
 
-    @include breakpoint_tb {
-        flex: 1;
-        margin-left: 0;
-    } 
+main {
+  margin-top: px(12);
+  flex: 57%;
+  margin-left: 13%;
+  text-align: center; 
+
+  @include breakpoint_tb {
+      flex: 1;
+      margin-left: 0;
+  } 
 }
 //part of chats
 .chats {
-    margin-top: px(12);
-    flex: 20%;
-    text-align: center;
-    color: $font_w1;
-    @include breakpoint_tb {
-        flex: 1;
-        margin-left: 0;
-    }
+  margin-top: px(12);
+  flex: 20%;
+  text-align: center;
+  color: $font_w1;
+  
+  @include breakpoint_tb {
+    flex: 1;
+    margin-left: 0;
+  }
 }
