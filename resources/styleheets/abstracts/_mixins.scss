@@ -2,20 +2,14 @@ $breakpoint_xl: 1250px;
 $breakpoint_tb: 800px;
 
 
-@mixin breakpoint_xl {
+@mixin tablet {
   @media only screen and (max-width: $breakpoint_xl) {
     @content;
   }
 }
 
-@mixin breakpoint_tb {
+@mixin mobile {
   @media only screen and (max-width: $breakpoint_tb) {
-    @content;
-  }
-}
-
-@mixin breakpoint_tb-min {
-  @media only screen and (min-width: $breakpoint_tb) {
     @content;
   }
 }

@@ -32,32 +32,33 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 document.addEventListener('DOMContentLoaded', toggleNavVisibility);
 
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.read-more-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            if (window.innerWidth <= 800) { // Verifica el ancho de la pantalla
+            if (window.innerWidth <= 800) { 
                 var hiddenParagraphs = this.parentNode.querySelectorAll('.text p.hidden');
                 hiddenParagraphs.forEach(function(p) {
                     p.classList.remove('hidden');
                 });
-                this.style.display = 'none'; // Oculta el botón "Ver más"
-                this.parentNode.querySelector('.read-less-btn').style.display = 'inline-block'; // Muestra el botón "Ver menos"
-            } 
+                this.style.display = 'none'; 
+                this.parentNode.querySelector('.read-less-btn').style.display = 'inline-block'; 
+            }
         });
     });
 
     document.querySelectorAll('.read-less-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
-            if (window.innerWidth <= 800) { // Verifica el ancho de la pantalla
+            if (window.innerWidth <= 800) { 
                 var hiddenParagraphs = this.parentNode.querySelectorAll('.text p:not(:first-child)');
                 hiddenParagraphs.forEach(function(p) {
                     p.classList.add('hidden');
                 });
-                this.style.display = 'none'; // Oculta el botón "Ver menos"
-                this.parentNode.querySelector('.read-more-btn').style.display = 'inline-block'; // Muestra el botón "Ver más"
-            } 
+                this.style.display = 'none';
+                this.parentNode.querySelector('.read-more-btn').style.display = 'inline-block';
+            }
         });
     });
 });

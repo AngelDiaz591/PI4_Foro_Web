@@ -75,7 +75,7 @@ main {
   max-width: 80%;
   color: white;
   text-align: center;
-  margin: auto;
+  margin: 20px auto;
 }
 
 .user {
@@ -92,7 +92,7 @@ main {
 }
 
 .date {
-  font-size: 15px;
+  font-size: 25px;
   margin-left: 10px;
   color: #ccc;
 }
@@ -116,15 +116,15 @@ main {
     display: none;
   }
 }
-@media only screen and (min-width: 800px) {
-  .text .read-more-btn.hidden_ {
-    display: none;
-  }
-}
-.read-less-btn {
+.box .text p.read-less-btn {
   display: none;
 }
 
+@media (min-width: 800px) {
+  .text p.hidden_ {
+    display: none;
+  }
+}
 .image img {
   max-width: 100%;
   height: auto;
@@ -138,7 +138,7 @@ main {
 }
 .actions p {
   margin-right: 15px;
-  cursor: point;
+  cursor: pointer;
   transition: background-color 0.3s, color 0.3s;
 }
 .actions p:hover {
@@ -151,7 +151,6 @@ nav {
   position: fixed;
   width: 13%;
   height: 100%;
-  min-width: 120px;
   background-color: #262525;
   color: #ccc;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -229,15 +228,29 @@ nav .icons .categories:hover {
     padding: 6px;
     border-top: 1px solid #ccc;
   }
-  .line {
-    display: flex;
-    align-items: center;
-    padding: 6px;
-    border-top: 1px solid #ccc;
-  }
 }
 .hide-nav {
+  width: 5%;
+}
+.hide-nav span {
+  font-size: 30px;
+  margin: 10px auto;
+}
+.hide-nav p {
   display: none;
+}
+.hide-nav .line {
+  display: none;
+}
+@media only screen and (max-width: 1250px) {
+  .hide-nav span {
+    font-size: 25px;
+  }
+}
+@media only screen and (max-width: 800px) {
+  .hide-nav {
+    display: none;
+  }
 }
 
 .subcategories {
