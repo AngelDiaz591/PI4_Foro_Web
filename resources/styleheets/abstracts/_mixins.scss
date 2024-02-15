@@ -1,0 +1,35 @@
+$breakpoint_xl: 1250px;
+$breakpoint_tb: 800px;
+
+
+@mixin breakpoint_xl {
+    @media only screen and (max-width: $breakpoint_xl) {
+      @content;
+    }
+}
+
+@mixin breakpoint_tb {
+    @media only screen and (max-width: $breakpoint_tb) {
+      @content;
+    }
+}
+
+@mixin breakpoint_tb-min {
+  @media only screen and (min-width: $breakpoint_tb) {
+    @content;
+  }
+}
+
+@mixin line($border) {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-top: $border;
+}
+
+@mixin redu-line($border) {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-top: $border;
+}

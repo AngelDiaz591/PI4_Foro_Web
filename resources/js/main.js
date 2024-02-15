@@ -8,9 +8,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-//funcion del ocultamiento del menu
-// Función para mostrar u ocultar el menú según el ancho de la pantalla
 function toggleNavVisibility() {
     var nav = document.querySelector('nav');
     if (window.innerWidth <= 800) {
@@ -19,30 +16,23 @@ function toggleNavVisibility() {
         nav.classList.remove('hide-nav');
     }
 }
-
-// Escucha el evento de redimensionamiento para ajustar el menú
 window.addEventListener('resize', toggleNavVisibility);
 
-// Función para mostrar u ocultar el menú al hacer clic en el icono
 document.addEventListener('DOMContentLoaded', function() {
     var menuIcon = document.getElementById('menu-icon');
     var mainNav = document.getElementById('main-nav');
     menuIcon.addEventListener('click', function() {
         mainNav.classList.toggle('hide-nav');
-        // Guarda el estado del menú en el almacenamiento local
         localStorage.setItem('menuVisible', mainNav.classList.contains('hide-nav') ? 'hidden' : 'visible');
     });
 
-    // Restaura el estado del menú al cargar la página
     var menuState = localStorage.getItem('menuVisible');
     if (menuState === 'hidden') {
         mainNav.classList.add('hide-nav');
     }
 });
 
-// Llama a toggleNavVisibility al cargar la página para ajustar el menú inicialmente
 document.addEventListener('DOMContentLoaded', toggleNavVisibility);
-//ver mas texto/menos texto
 
 document.addEventListener("DOMContentLoaded", function() {
     document.querySelectorAll('.read-more-btn').forEach(function(btn) {

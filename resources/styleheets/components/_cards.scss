@@ -1,78 +1,70 @@
 
 .box {
-    padding: 20px;
-    border-radius: 25px; 
-    border: 2px solid rgba(255, 255, 255, 0.5); 
+    padding: px(4);
+    border-radius: px(5); 
+    border: $bor_card; 
     max-width: 80%;
     color: $font_w;
-    text-align: $ali_center;
+    text-align: center;
     margin: auto;
 }
-
-.div{
-    display: $fila;
-    align-items: $ali_center;
-    padding: $p1;
-    border-top: 1px $sol $font_w1; 
-}
-.user{
-    display: $fila;
-    align-items: $ali_center;
-    font-size: $p2 ;
+.user {
+    display: flex;
+    align-items: center;
+    font-size: px(4) ;
     .profile{
-        cursor: $poit;
-        transition: background-color 0.3s, color 0.3s; 
+        cursor: pointer;
+        transition: $tr; 
         &:hover {
-            color: $theme_blue;       
+            color: $theme_bl;       
         }
     }
 }
-
-.date{
-    font-size: $p1_5;
-    margin-left: $p1;
+.date {
+    font-size: px(5);
+    margin-left: px(2);
     color: $font_w1;
 }
-.text{
-    text-align: $ali_left;
+.line {
+    @include line($border);
+}
+.text {
+    text-align: left;
     p{
         font-size: 18px ;
     }
 }
-.hidden-important {
-    display: $no !important;
-}
-@media (max-width: 800px) {
+@include breakpoint_tb {
     .hidden {
-        display: $no;
+        display: none;
     }
 }
-@media (min-width: 800px){
-    .hidden_{
-        display: $no !important;
+@include breakpoint_tb-min {
+    .hidden_ {
+        //doesn't work without the !important
+        display: none !important;
     }
 }
-.read-less-btn{
-    display: $no;
+.read-less-btn {
+    display: none;
 }
 .image img {
     max-width: 100%; 
-    height: $ali_auto;
-    border-radius: $p2_5; 
+    height: auto;
+    border-radius: px(5); 
 
 }
-
 .actions {
-    display: $fila;
-    align-items: $ali_center;
-    font-size: $p2 !important;
+    display: flex;
+    align-items: center;
+    font-size: px(4);
     p {
-        margin-right: $p1_5; 
-        cursor: $poit;
-        transition: background-color 0.3s, color 0.3s; 
+        margin-right: px(3); 
+        cursor: point;
+        transition: $tr; 
 
         &:hover {
-            color: $theme_blue;       
+            color: $theme_bl;       
         }
     }
 }

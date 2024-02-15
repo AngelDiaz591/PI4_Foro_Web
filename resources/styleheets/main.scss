@@ -1,9 +1,13 @@
 
 //Abstracts 
-@import 'abstracts/variables'; 
+@import 
+    'abstracts/variables',
+    'abstracts/mixins',
+    'abstracts/fuctions'; 
 
 //base
-@import 'base/base';
+@import 
+    'base/base';
 
 //layout
 @import
@@ -12,7 +16,6 @@
 
 //components
 @import
-'components/cards',
-'components/card-chats',
-'components/nav';
-
+    'components/cards',
+    'components/card-chats',
+    'components/nav';
