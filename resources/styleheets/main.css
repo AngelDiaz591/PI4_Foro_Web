@@ -92,7 +92,7 @@ main {
 }
 
 .date {
-  font-size: 25px;
+  font-size: 15px;
   margin-left: 10px;
   color: #ccc;
 }
@@ -230,22 +230,16 @@ nav .icons .categories:hover {
   }
 }
 .hide-nav {
-  width: 5%;
+  width: 4%;
 }
-.hide-nav span {
-  font-size: 30px;
-  margin: 10px auto;
+.hide-nav .icons .category {
+  padding-top: 10px;
 }
-.hide-nav p {
+.hide-nav .icons .material-symbols-outlined {
+  font-size: 40px;
+}
+.hide-nav .icons p, .hide-nav .icons .line, .hide-nav .icons .categories {
   display: none;
-}
-.hide-nav .line {
-  display: none;
-}
-@media only screen and (max-width: 1250px) {
-  .hide-nav span {
-    font-size: 25px;
-  }
 }
 @media only screen and (max-width: 800px) {
   .hide-nav {

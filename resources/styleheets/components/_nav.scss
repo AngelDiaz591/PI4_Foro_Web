@@ -15,7 +15,6 @@ nav {
   .line {
     @include line($border);
   }
-
   .icons {
     color: $font_w1;
     display: flex;
@@ -27,6 +26,7 @@ nav {
     a {
       color: $font_w1;
       text-decoration: none;
+
       .category {
         position: relative;
         display: flex;
@@ -35,10 +35,12 @@ nav {
         cursor: pointer;
         transition: $tr; 
         color: $font_w1; 
+
         &:hover {
             background-color: $font_w; 
             color: $font_b;      
-        }      
+        }
+              
       }
 
       span {
@@ -53,7 +55,7 @@ nav {
       padding: 8px;
       cursor: pointer;
       transition: $tr; 
-      color: $font_w1;
+      color: $font_w1; 
 
       &:hover {
         background-color: $font_w; 
@@ -62,13 +64,11 @@ nav {
     }
   }
 }
-
 @include tablet {
   nav {
     font-size: 13px;
   }
 }
-
 @include mobile {
   nav {
     width: 100%;
@@ -92,28 +92,21 @@ nav {
   }
 }
 
+//works with the js nav
 .hide-nav {
-  width: 5%;
-
-  span {
-    font-size: 30px;
-    margin: 10px auto;
-  }
-
-  p {
-    display: none;
-  }
-
-  .line {
-    display: none;
-  }
-
-  @include tablet {
-    span{
-      font-size: 25px;
+  width: 4%;
+  .icons {
+    .category{
+      padding-top: 10px;
+    }
+    .material-symbols-outlined{
+      font-size: 40px;
+    }
+    p, .line, .categories{
+      display: none;
     }
   }
-  
+
   @include mobile {
     display: none;
   }

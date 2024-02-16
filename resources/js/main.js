@@ -32,10 +32,22 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
 document.addEventListener('DOMContentLoaded', toggleNavVisibility);
 
 document.addEventListener("DOMContentLoaded", function() {
+    document.querySelectorAll('.read-less-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            if (window.innerWidth <= 800) { 
+                var hiddenParagraphs = this.parentNode.querySelectorAll('.text p:not(:first-child)');
+                hiddenParagraphs.forEach(function(p) {
+                    p.classList.add('hidden');
+                });
+                this.style.display = 'none'; 
+                this.parentNode.querySelector('.read-more-btn').style.display = 'inline-block'; 
+            } 
+        });
+    });
+
     document.querySelectorAll('.read-more-btn').forEach(function(btn) {
         btn.addEventListener('click', function() {
             if (window.innerWidth <= 800) { 
@@ -44,21 +56,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     p.classList.remove('hidden');
                 });
                 this.style.display = 'none'; 
-                this.parentNode.querySelector('.read-less-btn').style.display = 'inline-block'; 
-            }
-        });
-    });
-
-    document.querySelectorAll('.read-less-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-            if (window.innerWidth <= 800) { 
-                var hiddenParagraphs = this.parentNode.querySelectorAll('.text p:not(:first-child)');
-                hiddenParagraphs.forEach(function(p) {
-                    p.classList.add('hidden');
-                });
-                this.style.display = 'none';
-                this.parentNode.querySelector('.read-more-btn').style.display = 'inline-block';
-            }
+                this.parentNode.querySelector('.read-less-btn').style.display = 'inline-block';
+            } 
         });
     });
 });
