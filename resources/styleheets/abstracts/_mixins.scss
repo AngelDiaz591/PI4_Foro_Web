@@ -1,0 +1,22 @@
+$breakpoint_xl: 1250px;
+$breakpoint_tb: 800px;
+
+
+@mixin tablet {
+  @media only screen and (max-width: $breakpoint_xl) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: $breakpoint_tb) {
+    @content;
+  }
+}
+
+@mixin line($border) {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: $border;
+}
