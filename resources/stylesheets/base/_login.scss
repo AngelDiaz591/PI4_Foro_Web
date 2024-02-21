@@ -1,0 +1,213 @@
+body {
+    /* background: linear-gradient(to right, $background1, $background2); */
+    background-image: url(./../../resources/img/login_fondo.svg);
+    background-size: cover;
+    font-family: monospace;
+    @include flex-center;
+}
+
+.content2 {
+    margin: 2.5rem;
+    height: 87vh;
+    width: 78%;
+    @include flex-center;
+    border-radius: 1rem;
+    color: $font_w;
+    border: 0.05rem solid $fill2;
+    box-shadow: $boxshadow2;
+    background-color: $primary-color;
+}
+
+
+.present {
+    height: 18rem;
+    order: 1;
+}        
+
+.left {
+    flex: 0.7;
+    padding: 2rem;
+    @include flex-grid;
+}
+
+.right {
+    flex: 0.5;
+    border-radius: 2rem;
+    @include flex-grid;
+
+    .box2 {
+        font-size: 2em;
+        @include flex-grid;
+    }
+
+    .logo {
+        @include flex-center;
+        font-size: 0.9em;
+        color: $font_w;
+        order: 3;
+    }
+}
+
+img {
+    height: 4.2rem;
+}
+
+.new {
+    color: $background1;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        color: $font_w;
+    }
+}
+
+.option {
+    @include flex-center;
+}
+
+.box-small{
+    display: grid;
+    justify-content: right;
+    margin: 0 0 2rem 0;
+
+    .forgot {
+        text-decoration: none;
+        color: $font_w2;
+        font-size: 0.6em;
+        cursor: pointer;
+
+        &:hover {
+            color: $background1;
+        }
+    }
+}
+
+.btn-sign {
+    @include flex-center;
+    width: 16rem;
+    height: 2.8rem;
+    border-radius: 0.3rem;
+    font-size: 0.5em;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: $background1;
+    color: $font_b;
+    font-weight: 600;
+    border: none;
+    
+    &:hover {
+        background-color: $font_w;
+    }
+}
+
+.register {
+    @include flex-center;
+    color: $font_w2;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.greeting {
+    margin: 2rem;
+    @include flex-center;
+}
+
+.slogan {
+    font-size: 1.5rem;
+    @include flex-center;
+    order: 0;
+    color: $font_w;
+}
+
+.label {
+    color: $font_w2;
+    background: none;
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.login_sp {
+    order: 3;
+}
+
+.principal {
+    @include flex-center;
+}
+
+
+
+/* Responsive */
+@include tablet {
+    .content2 {
+        display: grid;
+        height: 75vh;
+        flex-direction: column;
+    }
+
+    body {
+        @include flex-center;
+        height: 98vh;
+    }
+
+    .present {
+        height: 10rem;
+        display: flex;
+        order: 1;
+    }
+
+    .slogan {
+        order: 0;
+        display: flex;
+    }
+    
+    .left {
+        display: none;
+    }
+
+    .box2 {
+        transform: scale(1);
+    }
+}
+
+@include mobile {
+    
+    .content {
+        display: grid;
+        height: 60vh;
+        transform: scale(1.2);
+        flex-direction: column;
+    }
+
+    body {
+        @include flex-center;
+        height: 98vh;
+    }
+
+    .present {
+        height: 10rem;
+        display: flex;
+    }
+
+    .slogan {
+        order: 0;
+    }
+
+    .present {
+        order: 1;
+    }
+    
+    .left {
+        display: none;
+        padding: 0;
+    }
+
+    .box {
+        transform: scale(0.7);
+    }
+
+    .register {
+        font-size: 0.9rem;
+    }
+}

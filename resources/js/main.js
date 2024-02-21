@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
 function toggleNavVisibility() {
     var nav = document.querySelector('nav');
     if (window.innerWidth <= 800) {

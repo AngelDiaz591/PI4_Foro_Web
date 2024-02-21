@@ -15,4 +15,3 @@
   </form>
   <a href="<?= redirect_to('posts', 'index'); ?>">Back</a>
 </div>
-

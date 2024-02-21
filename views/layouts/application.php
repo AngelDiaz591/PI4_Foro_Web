@@ -33,9 +33,9 @@ $data = $_POST ? $_POST : $_GET;
   <div class="container">
     <?php render_layout('sidebar_main'); ?>
 
-    <main>
-      <?= render($action, $controller, $data); ?>
-    </main>
+    <!-- <main>
+      
+    </main> -->
 
     <?php render_layout('sidebar_chats'); ?>
   </div>
