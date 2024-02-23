@@ -1,3 +1,5 @@
+<?php require_once "../controllUser/controllerUserData.php"; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,9 +34,24 @@
                     <div class="greeting">
                         <h2>Welcome back!</h2>
                     </div>
-                    <label for="" class="label">Username or Email</label>
+                    <?php
+                    # Show the errors, save the error in array the error in archive controlluserdata.php
+                    if(count($errors) > 0){
+                        ?>
+                        <div id="error-alert" class="alert alert-danger text-center">
+                            <?php
+                            foreach($errors as $showerror){
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                <form action="login.php" method="post"> 
+                    <label for="" class="label">Email</label>
                     <div class="user-input">
-                        <input type="text" name="user" id="user-input" placeholder="j4m0ncito@example.com">
+                        <input  type="email" name="email" id="user-input" placeholder="j4m0ncito@example.com">
                         <span class="icon material-symbols-outlined" id="user-input">person</span>
                     </div>
                     <label for="" class="label">Password</label>
@@ -46,11 +63,12 @@
                         <a href="#" class="forgot">Forgot my password?</a>
                     </div>
                     <div class="option">
-                        <button class="btn-sign">Login</button>
+                        <button class="btn-sign" name= "login">Login</button>
                     </div>
+                </form>
                     <div class="register">
                         <p>Do not you have an account yet?</p>
-                        <a href="#" class="new">Sign up</a>
+                        <a href="../RegistroUsers/registro.php" class="new">Sign up</a>
                     </div>
                 </div>
             </div>

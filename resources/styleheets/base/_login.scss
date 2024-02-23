@@ -1,0 +1,214 @@
+body.login{
+    /* background: linear-gradient(to right, $background1, $background2); */
+    font-family: monospace;
+    background-image: url(resources/img/login_fondo.svg);
+    background-size: cover;
+    @include flex-center;
+}
+
+.contenido{
+    margin: 2.5rem;
+    height: 87vh;
+    width: 78%;
+    @include flex-center;
+    border-radius: 1rem;
+    color: $font;
+    border: 0.05rem solid $fondo_input;
+    box-shadow: $boxshadow2;
+    background-color: $primary-color;
+}
+
+.present{
+    height: 18rem;
+    order: 1;
+}        
+
+.left{
+    flex: 0.7;
+    padding: 2rem;
+    @include flex-grid;
+}
+
+.right{
+    flex: 0.5;
+    border-radius: 2rem;
+    @include flex-grid;
+
+    .inicio{
+        font-size: 2em;
+        @include flex-grid;
+    }
+
+    .logo{
+        @include flex-center;
+        font-size: 0.9em;
+        color: $font;
+        order: 3;
+    }
+
+}
+
+img{
+    height: 4.2rem;
+}
+
+.new{
+    color: $background1;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover{
+        color: $font;
+    }
+}
+
+.option{
+    @include flex-center;
+}
+
+.forgot{
+    display: flex;
+    justify-content: right;
+    margin: 0 0 2rem 0;
+    text-decoration: none;
+    color: $fondo_input;
+    font-size: 0.6em;
+    cursor: pointer;
+
+    &:hover{
+        color: $background1;
+    }
+}
+
+.btn-sign{
+    @include flex-center;
+    width: 16rem;
+    height: 2.8rem;
+    border-radius: 0.3rem;
+    font-size: 0.5em;
+    cursor: pointer;
+    font-weight: 500;
+    background-color: $background1;
+    color: $fuente;
+    font-weight: 600;
+    border: none;
+    
+
+    &:hover{
+        background-color: $font;
+    }
+}
+
+.register{
+    @include flex-center;
+    color: $fondo_input;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.greeting{
+    margin: 2rem;
+    @include flex-center;
+}
+
+.slogan{
+    font-size: 1.5rem;
+    @include flex-center;
+    order: 0;
+}
+
+.label{
+    color: $fondo_input;
+    background: none;
+    margin: 0;
+    font-size: 0.7em;
+}
+
+.login_sp{
+    order: 3;
+}
+
+.prinsvg{
+    @include flex-center;
+}
+
+
+/* Puedes definir estilos comunes aquí */
+/* Estilos específicos para tablets (por ejemplo, iPad) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .contenido{
+        display: grid;
+        height: 75vh;
+        flex-direction: column; /* Cambia la dirección del flexbox a columna para dispositivos pequeños */
+    }
+
+    body{
+        @include flex-center;
+        height: 98vh;
+    }
+
+    .present{
+        height: 10rem;
+        display: flex;
+    }
+
+    .slogan{
+        order: 0;
+        display: flex;
+    }
+
+    .present{
+        order: 1;
+    }
+    
+    .left{
+        display: none;
+    }
+
+    .inicio{
+        transform: scale(1.6);
+    }
+}
+
+/* Estilos específicos para teléfonos */
+@media screen and (max-width: 767px) {
+    
+    .contenido{
+        display: grid;
+        height: 60vh;
+        transform: scale(1.2);
+        flex-direction: column;
+    }
+
+    body{
+        @include flex-center;
+        height: 98vh;
+    }
+
+    .present{
+        height: 10rem;
+        display: flex;
+    }
+
+    .slogan{
+        order: 0;
+    }
+
+    .present{
+        order: 1;
+    }
+    
+    .left{
+        display: none;
+        padding: 0;
+    }
+
+    .inicio{
+        transform: scale(0.7);
+    }
+
+    .register{
+        font-size: 0.9rem;
+    }
+}

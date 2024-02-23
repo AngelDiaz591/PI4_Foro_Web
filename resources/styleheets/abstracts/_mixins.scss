@@ -1,0 +1,47 @@
+$breakpoint_xl: 1250px;
+$breakpoint_tb: 800px;
+
+
+@mixin tablet {
+  @media only screen and (max-width: $breakpoint_xl) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media only screen and (max-width: $breakpoint_tb) {
+    @content;
+  }
+}
+
+@mixin line($border) {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: $border;
+}
+
+/* MIXIN TO LOGIN */
+@mixin posicion-absolute($top, $left, $translate) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: translateY($translate);
+}
+
+@mixin posicion-relative($top, $right, $bottom, $left) {
+  position: relative;
+  margin: $top $right $bottom $left;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-grid(){
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
