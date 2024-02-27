@@ -4,10 +4,9 @@ input {
     height: 1.5rem;
     padding: 0.6rem 1rem 0.6rem 2.6rem; 
     background-color: $input2;
-    /* background-color: transparent; */
     border: none;
     font-size: 0.5em;
-    outline: none; /* Elimina el borde de resaltado al seleccionar */ 
+    outline: none; /* Remove highlight border on selection */ 
     font-weight: 600;
     border-radius: 0.3rem;
 }

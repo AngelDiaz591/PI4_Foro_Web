@@ -6,12 +6,12 @@ session_start();
 $con = mysqli_connect('localhost', 'root', '', 'foroUnesco');
 
 // Verificar la conexión
-if (!$con) {
+/* if (!$con) {
     die("La conexión a la base de datos ha fallado: " . mysqli_connect_error());
 } else {
     echo "La conexión a la base de datos fue exitosa!";
 }
-
+ */
 
 $email = "";
 $name = "";
