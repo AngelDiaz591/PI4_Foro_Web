@@ -96,7 +96,9 @@ if(isset($_POST['signup'])){
     $email = mysqli_real_escape_string($con, $_POST['email']);
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
-    if ($password != $cpassword || mysqli_num_rows($res) > 0) {
+    $check_email = "SELECT * FROM usertable WHERE email = '$email'";
+    $res = mysqli_query($con, $check_email);
+    if ($password != $cpassword && mysqli_num_rows($res) > 0) {
         $errors['DatesIncorrect'] = "The dates are incorrects";
     } elseif ($password !== $cpassword) {
         $errors['password'] = "Passwords do not match!";
