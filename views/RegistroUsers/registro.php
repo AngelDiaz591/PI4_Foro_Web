@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registro</title>
+    <title>Sign up: Register New User</title>
     <!--     <link rel="stylesheet" href="style.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,78 +16,80 @@
         <a class="back">
             <span class="material-symbols-outlined">arrow_back</span>
         </a>
-        <div class="left">
+        <div class="left2">
             <div class="slogan2">
-                <h2>¡Welcome!</h2>
-                <h4>Thank you for joining this community</h4>
+                <h1>Welcome!</h1>
+                <h2>Thank you for joining this community</h2>
             </div>
             <div class="principal2">
                 <img src="./../../resources/img/prueba5.svg" class="present2">
             </div>
         </div>
-        <div class="right">
-            <form action="registro.php" method="POST" autocomplete="">
-                <div class="instruc">
-                    <div>
-                        <h2>REGISTER</h2>
-                        <h5>Start your account with us</h5>
-                    </div>
+        <div class="right2">
+            <div class="principal5">
+                <form action="registro.php" method="POST" autocomplete="">
+                <div class="slogan3">
+                    <h1>Register</h1>
+                    <p>Start your account with us</p>
+                    <!-- <p>Enter your information</p> -->
                 </div>
-                <?php
-                if(count($errors) == 1){
-                    ?>
-                    <div class="alert alert-danger text-center">
-                        <?php
-                        foreach($errors as $showerror){
-                            echo $showerror;
-                        }
-                        ?>
-                    </div>
                     <?php
-                }elseif(count($errors) > 1){
-                    ?>
-                    <div class="alert alert-danger">
-                        <?php
-                        foreach($errors as $showerror){
-                            ?>
-                            <li><?php echo $showerror; ?></li>
+                    if(count($errors) == 1){
+                        ?>
+                        <div class="alert">
+                        <span class="icon-alert material-symbols-outlined">info</span>
                             <?php
-                        }
+                            foreach($errors as $showerror){
+                                echo $showerror;
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }elseif(count($errors) > 1){
                         ?>
+                        <div class="alert">
+                            <?php
+                            foreach($errors as $showerror){
+                                ?>
+                                <li><?php echo $showerror; ?></li>
+                                <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                    }
+                    ?>
+                    <label for="" class="label2">Username</label>
+                    <div class="user-input">
+                        <input id="user-input" class="input" type="text" name="name" placeholder="Username" required value="<?php echo $name ?>">    
+                        <span class="icon material-symbols-outlined" id="user-input">person</span>
                     </div>
-                    <?php
-                }
-                ?>
-                <label for="" class="label">Nombre completo</label>
-                <div class="user-input">
-                    <input id="user-input" type="text" name="name" placeholder="Nombre Completo" required value="<?php echo $name ?>">
-                    <span class="icon material-symbols-outlined" id="user-input">person</span>
-                </div>
-                <label for="" class="label">Correo electronico</label>
-                <div class="user-input">
-                    <input id="user-input" type="email" name="email" placeholder="Correo Electronico" required value="<?php echo $email ?>">
-                    <span class="icon material-symbols-outlined" id="user-input">mail</span>
-                </div>
-                <label for="" class="label">Contraseña</label>
-                <div class="password">
-                    <input type="password" name="password" placeholder="Contraseña" id="password" required>
-                    <span class="icon material-symbols-outlined" id="password">lock</span>
-                </div>
-                <label for="" class="label">Confirmar contraseña</label>
-                <div class="password">
-                    <input type="password" name="cpassword" placeholder="Confirmar Contraseña" id="password" required>
-                    <span class="icon material-symbols-outlined" id="user-input">private_connectivity</span>
-                </div>
-                <div class="option">
-                    <div class="registrate">
-                        <input class="sign in" type="submit" name="signup" value="Registrate">
+                    <label for="" class="label2">Email</label>
+                    <div class="user-input">
+                        <input id="user-input" class="input <?php echo (isset($errors['email'])) ? 'error' : ''; ?>" type="email" name="email" placeholder="Email" required value="<?php echo $email ?>">
+                        <span class="icon material-symbols-outlined" id="user-input">mail</span>
                     </div>
-                </div>
-                <div class="register">
-                    <p>Already have an account?</p>
-                    <a href="../RegistroUsers/registro.php" class="new">Sign In</a>
-                </div>
-            </form>
+                    <label for="" class="label2">Password</label>
+                    <div class="user-input">
+                        <input type="password" class="input <?php echo (isset($errors['password'])) ? 'error' : ''; ?>" name="password" placeholder="Password" id="user-input" required>
+                        <span class="icon material-symbols-outlined" id="user-input">lock</span>
+                    </div>
+                    <label for="" class="label2">Confirm Password</label>
+                    <div class="user-input">
+                        <input type="password" class="input <?php echo (isset($errors['password'])) ? 'error' : ''; ?>" name="cpassword" placeholder="Confirm password" id="user-input" required>
+                        <span class="icon material-symbols-outlined" id="user-input">private_connectivity</span>
+                    </div>
+                    <div class="option2">
+                        <div class="button3">
+                            <input class="signup" type="submit" name="signup" value="SIGN UP">
+                        </div>
+                    </div>
+                    <div class="register">
+                        <p>Already have an account?</p>
+                        <a href="../login/login.php" class="new">Sign In</a>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     
