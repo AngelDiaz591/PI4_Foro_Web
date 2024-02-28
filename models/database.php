@@ -3,7 +3,7 @@ class Database {
   private $host = "localhost";
   private $dbname = "foroweb";
   private $dbuser = "root";
-  private $dbpass = "1234";
+  private $dbpass = '';
 
   public $conn;
 
@@ -11,8 +11,9 @@ class Database {
     $this->conn = null;
 
     try {
-      $this->conn = new PDO("pgsql:host=" . $this->host . ";dbname=" . $this->dbname, $this->dbuser, $this->dbpass);
-    } catch(PDOException $e) {
+      // $this->conn = new PDO("pgsql:host=" . $this->host . ";dbname=" . $this->dbname, $this->dbuser, $this->dbpass); // For PostgreSQL
+      $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->dbuser, $this->dbpass); // For MySQL
+    } catch(PDOException | Exception $e) {
       throw new Exception('Connection error: ' . $e->getMessage());
     }
 
