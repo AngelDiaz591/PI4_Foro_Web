@@ -63,7 +63,7 @@
                         <span class="icon material-symbols-outlined" id="user-input">lock</span>
                     </div>
                     <div class="box-small">
-                        <a href="#" class="forgot">Forgot my password?</a>
+                        <a href="../forgot_password/_password.php" class="forgot">Forgot my password?</a>
                     </div>
                     <div class="option">
                         <button class="btn-sign" name= "login">SIGN IN</button>
@@ -77,5 +77,10 @@
             </div>
         </div>
     </div>
+    <script>
+        setTimeout(function(){
+            document.getElementById("error-alert").style.display = "none";
+        }, 3000); // 3000 milisegundos = 3 segundos
+    </script>
 </body>
 </html>

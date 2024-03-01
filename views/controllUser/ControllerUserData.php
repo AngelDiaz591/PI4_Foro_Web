@@ -132,4 +132,76 @@ if(isset($_POST['signup'])){
         }
     }
 }
+
+//Si el usuario hace clic en el botón Continuar en el formulario Olvidé mi contraseña
+if(isset($_POST['check-email'])){
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $check_email = "SELECT * FROM usertable WHERE email='$email'";
+    $run_sql = mysqli_query($con, $check_email);
+    if(mysqli_num_rows($run_sql) > 0){
+        $code = rand(999999, 111111); 
+        $insert_code = "UPDATE usertable SET code = $code WHERE email = '$email'";
+        $run_query =  mysqli_query($con, $insert_code);
+        if($run_query){
+            $subject = "Codigo para cambiar contraseña";
+            $message = "Tu codigo para cambiar tu contraseña es este: $code";
+            $sender = "From: proyectos0903@gmail.com";
+            if(mail($email, $subject, $message, $sender)){
+                $info = "Hemos enviado un codigo a tu correo electronico para el cambio de contraseña - $email";
+                $_SESSION['info'] = $info;
+                $_SESSION['email'] = $email;
+                header('location: ../forgot_password/reset-code.php');
+                exit();
+            }else{
+                $errors['otp-error'] = "¡Error al enviar el codigo!";
+            }
+        }else{
+            $errors['db-error'] = "¡Algo salio mal!";
+        }
+    }else{
+        $errors['email'] = "¡Esta dirección de correo electrónico no existe!";
+    }
+}
+
+//Si el usuario, hace clic en el botón Restablecer OTP
+if(isset($_POST['check-reset-otp'])){
+    $_SESSION['info'] = "";
+    $otp_code = mysqli_real_escape_string($con, $_POST['otp']);
+    $check_code = "SELECT * FROM usertable WHERE code = $otp_code";
+    $code_res = mysqli_query($con, $check_code);
+    if(mysqli_num_rows($code_res) > 0){
+        $fetch_data = mysqli_fetch_assoc($code_res);
+        $email = $fetch_data['email'];
+        $_SESSION['email'] = $email;
+        $info = "Crea una nueva contraseña que no utilice en ningún otro sitio.";
+        $_SESSION['info'] = $info;
+        header('location: ../forgot_password/new-password.php');
+        exit();
+    }else{
+        $errors['otp-error'] = "¡Has introducido un codigo incorrecto!";
+    }
+}
+
+//Si clic en el boton de cmabio de contraseña
+if(isset($_POST['change-password'])){
+    $_SESSION['info'] = "";
+    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
+    if($password !== $cpassword){
+        $errors['password'] = "¡La contraseña no coincide, vuelve a verificarlo!";
+    }else{
+        $code = 0;
+        $email = $_SESSION['email']; 
+        $encpass = password_hash($password, PASSWORD_BCRYPT);
+        $update_pass = "UPDATE usertable SET code = $code, password = '$encpass' WHERE email = '$email'";
+        $run_query = mysqli_query($con, $update_pass);
+        if($run_query){
+            $info = " Tu contraseña a cambiado. Ingresa ahora con tu nueva contraseña.";
+            $_SESSION['info'] = $info;
+            header('Location: ../login/login.php');
+        }else{
+            $errors['db-error'] = "No se pudo cambiar tu contraseña";
+        }
+    }
+}
 ?>

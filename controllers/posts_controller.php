@@ -23,6 +23,7 @@ get_model('post');
  */
 class PostsController extends Post {
   private $params;
+  
 
   public function __construct($params) {
     try {
