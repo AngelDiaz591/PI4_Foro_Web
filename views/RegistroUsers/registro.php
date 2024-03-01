@@ -12,11 +12,11 @@
 <link rel="icon" href="./../../resources/img/logo.png" type="image/x-icon">
 </head>
 <body>
-    <div class="fondo">
-        <a class="back">
+    <div class="content2">
+        <!-- <a class="back">
             <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-        <div class="left2">
+        </a> -->
+        <div class="left">
             <div class="slogan2">
                 <h1>Welcome!</h1>
                 <h2>Thank you for joining this community</h2>
@@ -25,8 +25,8 @@
                 <img src="./../../resources/img/prueba5.svg" class="present2">
             </div>
         </div>
-        <div class="right2">
-            <div class="principal5">
+        <div class="right">
+            <div class="principal">
                 <form action="registro.php" method="POST" autocomplete="">
                 <div class="slogan3">
                     <h1>Register</h1>
@@ -92,6 +92,6 @@
             </div>
         </div>
     </div>
-    
+
 </body>
 </html>

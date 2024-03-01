@@ -16,14 +16,14 @@
 </head>
 <body>
     <div class="content2">
-        <a class="back">
+        <!-- <a class="back">
             <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-        <div class="left2">
-        <div class="logo">
-                    <img src="./../../resources/img/logo.png">
-                    <h3>CulturEdge</h3>
-                </div>
+        </a> -->
+        <div class="left">
+            <!-- <div class="logo">
+                <img src="./../../resources/img/logo.png">
+                <h1>CulturEdge</h1>
+            </div> -->
             <div class="slogan2">
                 <h2>"Let's Chat Sustainability and Spark Action!"</h2>
             </div>
@@ -31,7 +31,7 @@
                 <img src="./../../resources/img/login.svg" class="present">
             </div>
         </div>
-        <div class="right2">
+        <div class="right">
             <div class="principal">
                 <form action="login.php" method="post">
                     <div class="slogan3">

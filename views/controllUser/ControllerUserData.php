@@ -118,7 +118,7 @@ if(isset($_POST['signup'])){
             $message = "Your verification code is: $code";
             $sender = "From: proyectos0903@gmail.com";
             if(mail($email, $subject, $message, $sender)){
-                $info = "We have sent a verification code to your email - $email";
+                $info = "We've sent a verification code to your email - $email";
                 $_SESSION['info'] = $info;
                 $_SESSION['email'] = $email;
                 $_SESSION['password'] = $password;
