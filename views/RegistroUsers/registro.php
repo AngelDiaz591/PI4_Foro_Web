@@ -1,4 +1,16 @@
 <?php require_once "../controllUser/controllerUserData.php"; ?>
+<?php 
+include './../../controllers/application_controller.php';
+
+if (empty($_GET['controller']) || empty($_GET['action'])) {
+  redirect_to_error('404');
+}
+
+$controller = $_GET['controller'];
+$action = $_GET['action'];
+
+$data = $_POST ? $_POST : $_GET;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,32 +39,22 @@
         </div>
         <div class="right">
             <div class="principal">
-                <form action="registro.php" method="POST" autocomplete="">
+                <form action="user-otp.php" method="POST" autocomplete="">
+                <form action="<?= redirect_to('users', 'createUsers'); ?>" method="POST" autocomplete="">
                 <div class="slogan3">
                     <h1>Register</h1>
                     <p>Start your account with us</p>
                     <!-- <p>Enter your information</p> -->
                 </div>
-                    <?php
-                    if(count($errors) == 1){
+                <?php
+                    # Show the errors, save the error in array the error in archive controlluserdata.php
+                    if(count($errors) > 0){
                         ?>
-                        <div class="alert">
+                        <div id="error-alert" class="alert2">
                         <span class="icon-alert material-symbols-outlined">info</span>
                             <?php
                             foreach($errors as $showerror){
                                 echo $showerror;
-                            }
-                            ?>
-                        </div>
-                        <?php
-                    }elseif(count($errors) > 1){
-                        ?>
-                        <div class="alert">
-                            <?php
-                            foreach($errors as $showerror){
-                                ?>
-                                <li><?php echo $showerror; ?></li>
-                                <?php
                             }
                             ?>
                         </div>
@@ -92,10 +94,6 @@
             </div>
         </div>
     </div>
-    <script>
-        setTimeout(function(){
-            document.getElementById("error-alert").style.display = "none";
-        }, 3000); // 3000 milisegundos = 3 segundos
-    </script>
+  
 </body>
 </html>

@@ -82,5 +82,7 @@
             document.getElementById("error-alert").style.display = "none";
         }, 3000); // 3000 milisegundos = 3 segundos
     </script>
+    <div id="errorMessages"></div>
+    <script src="validacion.js"></script>
 </body>
 </html>
