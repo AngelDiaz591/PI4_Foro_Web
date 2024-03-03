@@ -1,98 +1,224 @@
 <?php 
-require_once "database.php";
+require_once "base.php";
 
 /*
- * This class is used to connect to the database and execute the post procedures
+ * This class inherits from the base class and contains the calls to the posts procedures
  * 
- * @return associative array
- * array( "status" => boolean, "data" => associative array, "message" => string )
- * 
- * The model do not have to be called in other file than the controller
- * Check the controllers/posts_controller.php file to see how to use the model and more details
+ * The model do not have to be called in other file than the posts_controller
  * Info: The model file name must be in singular and be in snake case, the class name must be
- * in camel case with the first letter in uppercase and extends the database
+ *       in camel case with the first letter in uppercase and inherits the base class
  */
-class Post extends Database {
+class Post extends Base {
+
+/**
+ * The constructor is used to connect to the database
+ * 
+ * @param void
+ * @throws Exception if it fails to connect to the database
+ * @return void
+ */
   public function __construct() {
     try {
       $this->conn = $this->db_connection();
-    } catch (Exception $e) {
+      $this->check_connection();
+    } catch (PDOException | Exception $e) {
       throw new Exception("Failed to connect to the database: " . $e->getMessage());
     }
   }
 
-  public function get_all() {
+/**
+ * Get all the posts in the database and each image by post
+ * 
+ * @param void
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to get all posts
+ * @return array
+ */
+  public function all() {
     try {
-      $this->check_connection();
-      $stmt = $this->conn->prepare("SELECT * FROM get_all() ORDER BY created_at DESC");
+      $stmt = $this->conn->prepare("CALL get_all_posts()");
       $stmt->execute();
       $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-      return [ "status" => true, "data" => $result ];
-    } catch (PDOException $e) {
+      foreach($result as &$post) {
+        $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
+        $stmt->bindParam(":id", $post["id"], PDO::PARAM_INT);
+        $stmt->execute();
+        $post["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+      }
+
+      return $this->response(status: true, data: $result, message: "Posts retrieved successfully.");
+    } catch (PDOException | Exception $e) {
       throw new Exception("Failed to get all posts: " . $e->getMessage());
     }
   }
 
-  public function get_by_id($id) {
+/**
+ * Get a post by id and each image
+ * 
+ * @param int $id
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to get the post
+ * @return array
+ */
+  public function find_by_id($id) {
     try {
-      $this->check_connection();
-      $stmt = $this->conn->prepare("SELECT * FROM get_by_id(:id)");
+      $stmt = $this->conn->prepare("CALL get_post_by_id(:id)");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
       $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-      return [ "status" => true, "data" => $result ];
-    } catch (PDOException $e) {
+      $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $result["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      return $this->response(status: true, data: $result);
+    } catch (PDOException | Exception $e) {
       throw new Exception("Failed to get the post: " . $e->getMessage());
     }
   }
 
+/**
+ * Save a post and each image
+ *  1. upload the images to the server and get the names
+ *  2. initialize a transaction to save the post and each image to the database
+ *  3. save the post and get the id
+ *  4. save each image with the post id
+ *  5. if not fails commit the transaction
+ *  6. if fails rollback the transaction and get rid of each image from the server
+ * 
+ * @param array $data
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to save the post, it fails to save the image or it fails to upload the image
+ * @return array
+ */
   public function save($data) {
     try {
-      $this->check_connection();
-      $stmt = $this->conn->prepare("CALL _save(:title, :description)");
+
+      $uploadedImages = [];
+      foreach($data['images'] as $image) {
+        $response = $this->upload_image($image);
+        $uploadedImages[] = $response['data'];
+      }
+
+      $this->conn->beginTransaction();
+
+      $stmt = $this->conn->prepare("CALL save_post(:title, :description, @inserted_id)");
       $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
       $stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
       $stmt->execute();
+      $stmt = $this->conn->prepare("SELECT @inserted_id");
+      $stmt->execute();
+      $post_id = $stmt->fetch(PDO::FETCH_ASSOC)['@inserted_id'];
 
-      return [ "status" => true, "message" => "Post created successfully." ];
-    } catch (PDOException $e) {
+      foreach($uploadedImages as $image) {
+        $this->save_image('post', $post_id, $image);
+      }
+
+      $this->conn->commit();
+
+      return $this->response(status: true, message: "Post saved successfully.");
+    } catch (PDOException | Exception $e) {
+      $this->conn->rollBack();
+
+      foreach($uploadedImages as $image) {
+        $this->rid_image($image);
+      }
+
       throw new Exception("Failed to save the post: " . $e->getMessage());
     }
   }
 
+/**
+ * Update a post or add new images to the post
+ *  1. upload the images to the server and get the names
+ *  2. initialize a transaction
+ *  3. update the post
+ *  4. save each image with the post id
+ *  5. if not fails commit the transaction
+ *  6. if fails rollback the transaction and get rid of each image from the server
+ * 
+ * @param array $data
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to update the post, it fails to upload the image or it fails to save the image
+ * @return array
+ */
   public function update($data) {
     try {
-      $this->check_connection();
-      $stmt = $this->conn->prepare("CALL _update(:id, :title, :description)");
+
+      $uploadedImages = [];
+      foreach($data['images'] as $image) {
+        $response = $this->upload_image($image);
+        $uploadedImages[] = $response['data'];
+      }
+
+      $this->conn->beginTransaction();
+
+      $stmt = $this->conn->prepare("CALL update_post(:id, :title, :description)");
       $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
       $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
       $stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
       $stmt->execute();
 
-      return [ "status" => true, "message" => "Post updated successfully." ];
-    } catch (PDOException $e) {
+      foreach($uploadedImages as $image) {
+        $this->save_image('post', $data["id"], $image);
+      }
+
+      $this->conn->commit();
+
+      return $this->response(status: true, message: "Post updated successfully.");
+    } catch (PDOException | Exception $e) {
+      $this->conn->rollBack();
+
+      foreach($uploadedImages as $image) {
+        $this->rid_image($image);
+      }
+
       throw new Exception("Failed to update the post: " . $e->getMessage());
     }
   }
 
+/**
+ * Delete a post and each image
+ *  1. initialize a transaction
+ *  2. get the images by post id
+ *  3. delete the post
+ *  4. get rid of each image from the server
+ *  5. if not fails commit the transaction
+ *  6. if fails rollback the transaction
+ * 
+ * @param int $id
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to delete the post or it fails to get rid of each image
+ * @return array
+ */
   public function destroy($id) {
     try {
-      $this->check_connection();
-      $stmt = $this->conn->prepare("CALL _delete(:id)");
+
+      $this->conn->beginTransaction();
+      
+      $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $images = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      $stmt = $this->conn->prepare("CALL delete_post(:id)");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
 
-      return [ "status" => true, "message" => "Post deleted successfully." ];
-    } catch (PDOException $e) {
-      throw new Exception("Failed to delete the post: " . $e->getMessage());
-    }
-  }
 
-  private function check_connection() {
-    if ($this->conn === null) {
-      throw new Exception("Failed to connect to the database.");
+      foreach($images as $image) {
+        $this->rid_image($image["image"]);
+      }
+
+      $this->conn->commit();
+
+      return $this->response(status: true, message: "Post deleted successfully.");
+    } catch (PDOException | Exception $e) {
+      $this->conn->rollBack();
+
+      throw new Exception("Failed to delete the post: " . $e->getMessage());
     }
   }
 }
