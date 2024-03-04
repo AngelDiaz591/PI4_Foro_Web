@@ -1,15 +1,8 @@
-<?php require_once "../controllUser/controllerUserData.php"; ?>
 <?php 
 include './../../controllers/application_controller.php';
-
-if (empty($_GET['controller']) || empty($_GET['action'])) {
-  redirect_to_error('404');
-}
-
-$controller = $_GET['controller'];
-$action = $_GET['action'];
-
-$data = $_POST ? $_POST : $_GET;
+$email = "";
+$name = "";
+$errors = array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +32,6 @@ $data = $_POST ? $_POST : $_GET;
         </div>
         <div class="right">
             <div class="principal">
-                <form action="user-otp.php" method="POST" autocomplete="">
                 <form action="<?= redirect_to('users', 'createUsers'); ?>" method="POST" autocomplete="">
                 <div class="slogan3">
                     <h1>Register</h1>
@@ -48,7 +40,7 @@ $data = $_POST ? $_POST : $_GET;
                 </div>
                 <?php
                     # Show the errors, save the error in array the error in archive controlluserdata.php
-                    if(count($errors) > 0){
+                    if(count($errors) > 0 && isset($errors)){
                         ?>
                         <div id="error-alert" class="alert2">
                         <span class="icon-alert material-symbols-outlined">info</span>
