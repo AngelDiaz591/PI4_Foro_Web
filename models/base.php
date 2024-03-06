@@ -146,6 +146,82 @@ Class Base extends Database {
   }
 
 /**
+ * Check the images and return an array with the images data such as name and tmp_name
+ * 
+ * @param array $images, $_FILES['images']
+ * @return array
+ */
+  public function check_images($images) {
+    try {
+      $images_array = [];
+      
+      foreach ($images["name"] as $key => $name) {
+        $image_error = $images["error"][$key];
+
+        if ($image_error === 4) {
+          continue;
+        }
+
+        $image_name = $this->rename_image($name);
+        $image_tmp_name = $images["tmp_name"][$key];
+        $image_size = $images["size"][$key];
+        $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        $image_allowed_extensions = ["jpg", "jpeg", "png", "gif"];
+
+        if ($image_error !== 0) {
+          throw new Exception("The image " . $image_name . ", has an error. Error code: " . $image_error);
+        }
+
+        if ($image_size > 2000000) {
+          throw new Exception("The image " . $image_name . ", exceeds the maximum size allowed of 1MB.");
+        }
+
+        if (!in_array($image_extension, $image_allowed_extensions)) {
+          throw new Exception("The image " . $image_name . ", has an invalid extension, only jpg, jpeg, png and gif are allowed.");
+        }
+
+        $images_array[] = [ "name" => $image_name, "tmp_name" => $image_tmp_name];
+      }
+
+      return [ "status" => true, "data" => $images_array ];
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      throw new Exception("Failed to check the images: " . $e->getMessage());
+    }
+  }
+
+/**
+ * Rename the image
+ *  1. Add a random 8 characters token to the name
+ *  2. Resize the name to 30 characters
+ *  3. Lowercase the name
+ *  4. Replace the invalid characters with an underscore, use a regex
+ *  5. Remove underscores or hyphens from the end of the name
+ *  6. Add the date and time to the name
+ * 
+ * @param string $image
+ * @return string
+ */
+  public function rename_image($image) {
+    $pattern = "/[^a-zA-Z0-9\_\-\.]/";
+    $replacement = '_';
+
+    $chars = str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*');
+    $token = implode('', array_rand(array_flip($chars), 8));
+
+    $extension = pathinfo($image, PATHINFO_EXTENSION);
+    $name = $token . pathinfo($image, PATHINFO_FILENAME);
+
+    $name_resize = substr($name, 0, 30);
+    $name_lower = strtolower($name_resize);
+    $name_filtered = preg_replace($pattern, $replacement, $name_lower);
+    $new_name = rtrim($name_filtered, "_-");
+
+
+    return date("Y-m-d_H-i-s") . "_" . $new_name . "." . $extension;
+  }
+
+/**
  * redirect to an error page. method to be used in the controllers to handle the catched exceptions
  * 
  * @param Exception $e
