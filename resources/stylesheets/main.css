@@ -22,6 +22,10 @@ body {
   /* background: linear-gradient(to right, $background1, $background2); */
   /* background-image: url(./../../resources/img/login_fondo.svg);
   background-size: cover; */
+  /* background-image: url(./../../resources/img/fondo5.svg);
+  background-size: cover; */
+  background-image: url(./../../resources/img/fondo6.svg);
+  background-size: cover;
   background-color: rgb(18, 18, 18);
   font-family: monospace;
   display: flex;
@@ -32,14 +36,18 @@ body {
 }
 
 .content2 {
+  -webkit-backdrop-filter: blur(15px);
+          backdrop-filter: blur(15px);
   margin: 2.5rem;
   height: 89vh;
   width: 82%;
   display: grid;
   border-radius: 1rem;
   color: white;
-  border: 0.05rem solid rgb(129, 129, 129);
+  /* border: 0.05rem solid rgb(129, 129, 129); */
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  /* background-image: url(./../../resources/img/fondo4.svg);
+  background-size: cover; */
   background-color: transparent;
   gap: 0;
   grid-template-columns: 3fr 2fr;
@@ -56,14 +64,15 @@ body {
   display: grid;
   align-items: center;
   justify-content: center;
-  border-radius: 1rem 0 0 1rem;
-  background-image: url(./../../resources/img/login_fondo.svg);
-  background-size: cover;
+  border-radius: 0 1rem 1rem 0;
+  /* background-image: url(./../../resources/img/login_fondo.svg);
+  background-size: cover; */
+  background: transparent;
 }
 
 .right {
   /*     flex: 0.5; */
-  border-radius: 0 1.2rem 1.2rem 0;
+  /*     border-radius: 0 1.2rem 1.2rem 0; */
   display: grid;
   align-items: center;
   justify-content: center;
@@ -127,7 +136,7 @@ img {
   font-size: 1em;
   cursor: pointer;
   font-weight: 500;
-  background-color: #93F9B9;
+  background-color: #00be8e;
   color: black;
   font-weight: 600;
   border: none;
@@ -331,7 +340,7 @@ img {
 }
 
 .label2 {
-  color: rgb(177, 157, 157);
+  color: rgb(255, 255, 255);
   background: none;
   margin: 0 0 0 0.8rem;
   font-size: 1.2em;
@@ -369,7 +378,7 @@ img {
   width: 14rem;
   cursor: pointer;
   font-weight: 600;
-  background-color: #93F9B9;
+  background-color: #00e8ab;
   color: black;
 }
 .signup:hover {
@@ -712,12 +721,12 @@ nav .icons .categories:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: calc(100% - 4rem);
+  width: calc(100% - 1rem);
   height: 1.5rem;
   padding: 0.6rem 1rem 0.6rem 2.6rem;
   /* background-color: $input; */
   background: transparent;
-  border: 0.15rem solid rgb(70, 68, 68);
+  border: 0.15rem solid rgb(255, 255, 255);
   font-size: 0.9em;
   outline: none; /* Remove highlight border on selection */
   font-weight: 600;
@@ -742,6 +751,16 @@ nav .icons .categories:hover {
   left: 0.2rem;
   transform: translateY(-50%);
   color: rgb(129, 129, 129);
+}
+
+.input::-moz-placeholder {
+  color: #bc9ccd;
+  /* color:rgb(109, 78, 126); */
+}
+
+.input::placeholder {
+  color: #bc9ccd;
+  /* color:rgb(109, 78, 126); */
 }
 
 .icon {

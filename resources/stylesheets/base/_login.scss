@@ -2,6 +2,10 @@ body {
     /* background: linear-gradient(to right, $background1, $background2); */
     /* background-image: url(./../../resources/img/login_fondo.svg);
     background-size: cover; */
+    /* background-image: url(./../../resources/img/fondo5.svg);
+    background-size: cover; */
+    background-image: url(./../../resources/img/fondo6.svg);
+    background-size: cover;
     background-color: rgb(18, 18, 18);
     font-family: monospace;
     @include flex-center;
@@ -10,14 +14,17 @@ body {
 }
 
 .content2 {
+    backdrop-filter: blur(15px);
     margin: 2.5rem;
     height: 89vh;
     width: 82%;
     display: grid;
     border-radius: 1rem;
     color: white;
-    border: 0.05rem solid rgb(129, 129, 129);
+    /* border: 0.05rem solid rgb(129, 129, 129); */
     box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+    /* background-image: url(./../../resources/img/fondo4.svg);
+    background-size: cover; */
     background-color: transparent;
     gap: 0;
     grid-template-columns: 3fr 2fr;
@@ -33,14 +40,15 @@ body {
 /*     flex: 0.7; */
     padding: 2rem;
     @include flex-grid;
-    border-radius: 1rem 0 0 1rem;
-    background-image: url(./../../resources/img/login_fondo.svg);
-    background-size: cover;
+    border-radius: 0 1rem 1rem 0;
+    /* background-image: url(./../../resources/img/login_fondo.svg);
+    background-size: cover; */
+    background: transparent;
 }
 
 .right {
 /*     flex: 0.5; */
-    border-radius: 0 1.2rem 1.2rem 0;
+/*     border-radius: 0 1.2rem 1.2rem 0; */
     @include flex-grid;
     /* background-color: $primary-color; */
 
@@ -100,7 +108,7 @@ img {
     font-size: 1em;
     cursor: pointer;
     font-weight: 500;
-    background-color: $background1;
+    background-color: #00be8e;
     color: $font_b;
     font-weight: 600;
     border: none;

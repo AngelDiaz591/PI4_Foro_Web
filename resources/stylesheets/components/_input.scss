@@ -1,11 +1,11 @@
 .input {
     @include flex-center;
-    width: calc(100% - 4rem);
+    width: calc(100% - 1rem);
     height: 1.5rem;
     padding: 0.6rem 1rem 0.6rem 2.6rem; 
     /* background-color: $input; */
     background: transparent;
-    border: 0.15rem solid $fill;
+    border: 0.15rem solid rgb(255, 255, 255);
     font-size: 0.9em;
     outline: none; /* Remove highlight border on selection */
     font-weight: 600;
@@ -26,6 +26,10 @@
 #user-input{
     @include posicion-absolute(1rem, 0.2rem, -50%);
     color: $fill2;
+}
+.input::placeholder{
+    color: #bc9ccd;
+    /* color:rgb(109, 78, 126); */
 }
 
 .icon {

@@ -76,7 +76,7 @@
 }
 
 .label2 {
-    color: $font_w2;
+    color: rgb(255, 255, 255);
     background: none;
     margin: 0 0 0 0.8rem;
     font-size: 1.2em;
@@ -108,7 +108,7 @@
     width: 14rem;
     cursor: pointer;
     font-weight: 600;
-    background-color: $background1;
+    background-color: #00e8ab;
     color: $font_b;
     
     &:hover {

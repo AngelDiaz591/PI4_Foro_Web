@@ -21,15 +21,7 @@ $errors = array();
         <!-- <a class="back">
             <span class="material-symbols-outlined">arrow_back</span>
         </a> -->
-        <div class="left">
-            <div class="slogan2">
-                <h1>Welcome!</h1>
-                <h2>Thank you for joining this community</h2>
-            </div>
-            <div class="principal2">
-                <img src="./../../resources/img/prueba5.svg" class="present2">
-            </div>
-        </div>
+        
         <div class="right">
             <div class="principal">
                 <form action="<?= redirect_to('users', 'createUsers'); ?>" method="POST" autocomplete="">
@@ -83,6 +75,15 @@ $errors = array();
                         <a href="../login/login.php" class="new">Sign In</a>
                     </div>
                 </form>
+            </div>
+        </div>
+        <div class="left">
+            <div class="slogan2">
+                <h1>Welcome!</h1>
+                <h2>Thank you for joining this community</h2>
+            </div>
+            <div class="principal2">
+                <img src="./../../resources/img/prueba5.svg" class="present2">
             </div>
         </div>
     </div>
