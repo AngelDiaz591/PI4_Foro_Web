@@ -8,7 +8,10 @@ if (empty($_GET['controller']) || empty($_GET['action'])) {
 $controller = $_GET['controller'];
 $action = $_GET['action'];
 
-$data = $_POST ? $_POST : $_GET;
+$data = array(
+  "method" => $_POST ? $_POST : $_GET,
+  "files" => $_FILES,
+);
 ?>
 
 <!DOCTYPE html>

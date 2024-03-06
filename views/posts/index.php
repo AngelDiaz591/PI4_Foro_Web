@@ -15,8 +15,10 @@
         <p class="read-more-btn hidden_">Ver más...</p>
         <p class="read-less-btn hidden_">Ver menos...</p>
       </div>
-      <div class="image">
-        <img src="resources/img/example.png" alt="">
+      <div class="images">
+        <?php foreach ($d["images"] as $image): ?>
+          <img src="<?= get_home_url() . "assets/imgs/" . $image["image"] ?>" alt='Image from "<?= $d["title"] ?>"'>
+        <?php endforeach; ?>
       </div>
       <div>
         <div class="actions">
