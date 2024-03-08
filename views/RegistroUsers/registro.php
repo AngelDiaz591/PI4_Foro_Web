@@ -51,7 +51,6 @@ session_start(); // Inicia la sesión para poder acceder a las variables de sesi
                 <?php
                 }
             ?>
-                    
                     <div class="user-inputp">
                         <!-- <label for="" class="label2">Username</label> -->
                         <input  class="input" type="text" name="name" placeholder="Username" required >    
@@ -89,10 +88,10 @@ session_start(); // Inicia la sesión para poder acceder a las variables de sesi
         </div>
     </div>
     <script src="../../resources/js/form.js"></script>
-   // <script>
-   //     setTimeout(function(){
-   //         document.getElementById("error-alert").style.display = "none";
-   //     }, 3000); // 3000 milisegundos = 3 segundos
-   // </script>
+   <script>
+        setTimeout(function(){
+            document.getElementById("error-alert").style.display = "none";
+        }, 3000); // 3000 milisegundos = 3 segundos
+    </script>
 </body>
 </html>
