@@ -11,7 +11,6 @@ $action = $_GET['action'];
 $data = array(
   "method" => $_POST ? $_POST : $_GET,
   "files" => $_FILES,
-  "email" => isset($_GET['email']) ? $_GET['email'] : null,
 );
 ?>
 

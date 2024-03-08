@@ -22,16 +22,15 @@ class SessionsController extends Session  {
           if ($user !== null) {
               $email = $user['email']; // Obtener el email del usuario desde los datos devueltos por la función login
               // Redirigir al usuario a una página de éxito o a donde sea necesario
-              header("Location:" . redirect_to('posts', 'index') . "&email=" . urlencode($email));
+              header("Location:" . redirect_to('posts', 'index'));
               exit();
           } else {
               throw new Exception("Failed login");
           }
       } catch (Exception $e) {
-          // Manejar la excepción
-          error_log($e->getMessage());
-          // Redirigir al usuario a registro.php con un mensaje de error
-          header("Location: ../login/login.php?error=" . urlencode("User login failed. Please try again."));
+          session_start();
+          $_SESSION['error'] = $e->getMessage();
+          header("Location: ../login/login.php?error=");
           exit();
       }
   }

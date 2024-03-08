@@ -45,16 +45,21 @@ public function save($data) {
             throw new Exception("Failed to save user: Database error");
         }
         return true;
-    } catch (PDOException $e) {
+    } // En tu modelo
+    catch (PDOException $e) {
+        session_start();
         $errorMessage = $e->getCode() == 23000 && strpos($e->getMessage(), '1062') !== false
             ? (strpos($e->getMessage(), 'name') !== false
                 ? "Username already exists."
                 : "Email already exists.")
             : $e->getMessage();
-        header("Location: ../RegistroUsers/registro.php?error=" . urlencode($errorMessage));
+        $_SESSION['error'] = $errorMessage;
+        header("Location: ../RegistroUsers/registro.php");
         exit();
     } catch (Exception $e) {
-        header("Location: ../RegistroUsers/registro.php?error=" . urlencode($e->getMessage()));
+        session_start();
+        $_SESSION['error'] = $e->getMessage();
+        header("Location: ../RegistroUsers/registro.php");
         exit();
     }
 }

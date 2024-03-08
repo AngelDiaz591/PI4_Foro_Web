@@ -1,11 +1,8 @@
-
-
-
-
-
 <div class="main">
-<?php if (isset($_GET['email'])): ?>
-    <?php $email = $_GET['email']; ?>
+<?php 
+session_start();
+if (isset($_SESSION['email'])): ?>
+    <?php $email = $_SESSION['email']; ?>
     <p>Welcome, <?= htmlspecialchars($email) ?>!</p>
 <?php endif; ?>
   <h1>All Posts</h1>

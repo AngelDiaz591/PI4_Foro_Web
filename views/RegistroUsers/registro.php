@@ -1,10 +1,9 @@
 <?php 
 include './../../controllers/application_controller.php';
-$action = isset($_GET['action']) ? $_GET['action'] : ''; // Verificar si la clave 'action' está definida antes de acceder a ella
-
-// Inicializa $errors como un array vacío si no está definido
+$action = isset($_GET['action']) ? $_GET['action'] : ''; 
 $errors = isset($errors) ? $errors : array();
-?>
+session_start(); // Inicia la sesión para poder acceder a las variables de sesión
+?>  
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,18 +38,19 @@ $errors = isset($errors) ? $errors : array();
                     <p>Start your account with us</p>
                     <!-- <p>Enter your information</p> -->
                 </div>
-                <?php
-                    # Show the errors, save the error in array the error in archive controlluserdata.php
-                    if (isset($_GET['error'])) {
-                        $error_message = urldecode($_GET['error']);
-                    ?>
-                        <div id="error-alert" class="alert2">
-                        <span class="icon-alert material-symbols-outlined">info</span>
-                            <p>Error: <?php echo $error_message; ?></p>
-                        </div>
-                    <?php
-                    }
+            <?php
+                if (isset($_SESSION['error'])) {
+                    $error_message = $_SESSION['error'];
+                    // Una vez que has recuperado el mensaje de error, puedes eliminarlo de la sesión
+                    unset($_SESSION['error']);
                 ?>
+                <div id="error-alert" class="alert2">
+                <span class="icon-alert material-symbols-outlined">info</span>
+                <p>Error: <?php echo $error_message; ?></p>
+                </div>
+                <?php
+                }
+            ?>
                     
                     <div class="user-inputp">
                         <!-- <label for="" class="label2">Username</label> -->

@@ -1,7 +1,6 @@
 <?php
 ob_start();
 get_model('user');
-
 class UsersController extends User  {
     private $params;
     
@@ -25,19 +24,12 @@ class UsersController extends User  {
           } else {
               throw new Exception("Failed to create user: " . $response);
           }
-      } catch (Exception $e) {
-          // Manejar la excepción
-          error_log($e->getMessage());
-          // Redirigir al usuario a registro.php con un mensaje de error
-          header("Location: ../views/RegistroUsers/registro.php?error=" . urlencode("User registration failed. Please try again."));
-          exit();
-      }
+      }catch (Exception $e) {
+        session_start();
+        $_SESSION['error'] = $e->getMessage();
+        header("Location: ../views/RegistroUsers/registro.php");
+        exit();
+    }
   }
-  
-    
-
-
 }
-
-
 ?>
