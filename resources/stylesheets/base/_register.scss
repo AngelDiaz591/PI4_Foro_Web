@@ -3,24 +3,13 @@
     margin: 0;
 }
 
-.fondo{
-    margin: 2.5rem;
-    height: 87vh;
-    width: 85%;
-    display:flex;
-    border-radius: 1rem;
-    color: $font_w;
-    border: 0.05rem solid $fill2;
-    box-shadow: $boxshadow2;
-    background-color: $primary-color;
-}
-
 .back2{
-    padding: 2rem 0 0 2rem;
     font-size: 2em;
     cursor: pointer;
     position: absolute;
-    color: white;
+    top: 1.5rem;
+    left: 1.5rem;
+    color: $font_w;
 
     &:hover{
         color: $background1;
@@ -44,54 +33,48 @@
 }
 
 .slogan2{
-    font-size: 1.5em;
+    font-size: 1.2em;
     order: 0;
-    color: #fcfcfcd0;
+    justify-content: end;
+    display: flex;
+    justify-content: left;
+    color: $brow2;
+    font-weight: 600;
+    padding: 1rem;
+/*     border-bottom: 0.2rem solid#b4791a24; */
 }
 
 .slogan3{
     font-size: 1.5em;
     order: 0;
-    color: #fcfcfcd0;
+    color: $brow1;
     @include flex-grid;
     text-align: center;
-    margin: 0 0 1.8rem 0; 
+    margin: 0 0 1.8rem 0;
+    font-weight: 600;
 }
 
 .new {
-    color: white;
+    color: $font_w;
     margin-left: 0.5rem;
     cursor: pointer;
     text-decoration: none;
-    padding: 0.5rem 0.7rem;
-    background-color: #5b0ea2;
-    border-radius: 1.5rem;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: $brow3;
 
     &:hover {
-        color: #3c076e;
-        background-color: white;
+        background-color: transparent;
+        color: $brow3;
+        border: 0.1rem solid $brow3;
     }
 }
 
 .register {
     @include flex-center;
-    color: $font_w2;
+    color: $brow1;
     font-size: 1rem;
     margin: 0.5rem 0;
-}
-
-.label2 {
-    color: rgb(255, 255, 255);
-    background: none;
-    margin: 0 0 0 0.8rem;
-    font-size: 1.4em;
-}
-
-.principal5 {
-    @include flex-grid;
-    background-color: rgb(19, 19, 19);
-    padding: 1.5rem 3rem;
-    border-radius: 2rem;
 }
 
 .present2 {
@@ -114,38 +97,18 @@
     max-width: 90%;
     cursor: pointer;
     font-weight: 600;
-    background-color: #333cde;
+    background-color: $brow3;
     color: $font_w;
     
     &:hover {
-        color: #480769d0;
-        background-color: $font_w;
-    }
-}
-
-.verifity {
-    border: none;
-    @include flex-center;
-    height: 2.8rem;
-    border-radius: 0.5rem;
-    font-size: 1em;
-    width: 14rem;
-    cursor: pointer;
-    font-weight: 600;
-    background-color: rgb(69, 129, 243);
-    color: $font_b;
-    
-    &:hover {
-        background-color: $font_w;
+        color: $font_w;
+        background-color: $brow4;
     }
 }
 
 .button3{
     @include flex-center;
 }
-
-
-
 
 .container{
     background-color: #000000;
@@ -160,7 +123,7 @@
 }
 
 .text{
-    color:white;
+    color:$font_w;
     margin: 1rem;
     text-align: center;
 }
@@ -193,7 +156,7 @@
 #message{
     position: absolute;
     bottom: -20px;
-    color:#fff;
+    color:$font_w;
     font-size: 15px;
     display: none;
     font-weight: 800;
@@ -202,18 +165,17 @@
 #nomessage{
     position: absolute;
     bottom: -20px;
-    color:#fff;
+    color:$font_w;
     font-size: 15px;
     font-weight: 800;
     display: none;
 }
 
-/* #emailmsg{
+#emailmsg{
     position: absolute;
     bottom: -20px;
-    color:#fff;
+    color:$font_w;
     font-size: 15px;
     font-weight: 800;
     display: none;
-} */
-
+}

@@ -9,15 +9,25 @@ $font_b1: #1B1717;
 $font_b2: #262525;
 $font_b3: #000;
 
-$col_red: red;
-$theme_bl: #06138a;
-$font_g: green;
-
-
 //border
 $bor_fond: 0px 2px 4px rgba(0, 0, 0, 0.5);
 $border: 1px solid #ccc;
 $bor_card:2px solid rgba(255, 255, 255, 0.5);
 
-//transitions
-$tr:background-color 0.3s, color 0.3s;
+//page
+$primary-color: #080808;
+$prin_color: rgb(18, 18, 18);
+
+//box
+$box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+//input
+$backinput: #dddddd4b;
+
+//pallette_login
+$brow0: rgba(245, 236, 183, 0.96);
+$brow1: #905818;
+$brow2: #b4791a;
+$brow3: #78461b;
+$brow4: #3b1e0d;
+$brow5: #673b1c;

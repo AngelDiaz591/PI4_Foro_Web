@@ -19,19 +19,18 @@ session_start();
     <link rel="icon" href="./../../resources/img/logo.png" type="image/x-icon">
 </head>
 <body>
+    <a class="back2">
+        <span class="material-symbols-outlined">arrow_back</span>
+    </a>
     <div class="content2">
-        
         <div class="left">
-            <div class="slogan2">
-                <h2>"Let's Chat Sustainability and Spark Action!"</h2>
-            </div>
             <div class="principal2">
-                <img src="./../../resources/img/login.svg" class="present">
+                <img src="./../../resources/img/fondo25.jpg" class="img">
             </div>
         </div>
         <div class="right">
             <div class="principal">
-                <<form action="<?= redirect_to('sessions', 'create'); ?>"method="POST" autocomplete="">
+                <form action="<?= redirect_to('sessions', 'create'); ?>"method="POST" autocomplete="">
                     <div class="slogan3">
                         <h2>WELCOME BACK!</h2>
                     </div>
@@ -48,12 +47,11 @@ session_start();
                     <?php   
                     }
                     ?>
-                    <label for="" class="label2">Email or username</label>
                     <div class="user-input">
                         <input class="input" type="email" name="email" id="user-input" placeholder="Email or username">
                         <span class="icon material-symbols-outlined" id="user-input">person</span>
                     </div>
-                    <label for="" class="label2">Password</label>
+                    
                     <div class="user-input">
                         <input class="input" type="password" name="password" id="user-input" placeholder="Password">
                         <span class="icon material-symbols-outlined" id="user-input">lock</span>
