@@ -30,20 +30,19 @@ session_start();
         </div>
         <div class="right">
             <div class="principal">
-                <form action="<?= redirect_to('sessions', 'create'); ?>"method="POST" autocomplete="">
+                <form action="<?= redirect_to('sessions', 'create'); ?>" method="POST" autocomplete="">
                     <div class="slogan3">
                         <h2>WELCOME BACK!</h2>
                     </div>
                     <?php
                     if (isset($_SESSION['error'])) {
                         $error_message = $_SESSION['error'];
-                    // Una vez que has recuperado el mensaje de error, puedes eliminarlo de la sesión
-                    unset($_SESSION['error']);
+                        unset($_SESSION['error']);
                     ?>
-                        <div id="error-alert" class="alert2">
+                    <div id="error-alert" class="alert2">
                         <span class="icon-alert material-symbols-outlined">info</span>
                         <p>Error: <?php echo $error_message; ?></p>
-                        </div>
+                    </div>
                     <?php   
                     }
                     ?>
@@ -60,18 +59,22 @@ session_start();
                         <a href="../forgot_password/_password.php" class="forgot">Forgot my password?</a>
                     </div>
                     <div class="option">
-                        <button class="btn-sign" name= "login">SIGN IN</button>
+                        <button class="btn-sign" name="login">SIGN IN</button>
                     </div>
                 </form>
-                    <div class="register">
-                        <p>Do not you have an account yet?</p>
-                        <a href="../RegistroUsers/registro.php" class="new">Sign up</a>
-                    </div>
+                <div class="register">
+                    <p>Do not you have an account yet?</p>
+                    <a href="../RegistroUsers/registro.php" class="new">Sign up</a>
                 </div>
             </div>
         </div>
     </div>
     <div id="errorMessages"></div>
     <script src="validacion.js"></script>
+    <script>
+        setTimeout(function(){
+            document.getElementById("error-alert").style.display = "none";
+        }, 3000); // 3000 milliseconds = 3 seconds
+    </script>
 </body>
 </html>
