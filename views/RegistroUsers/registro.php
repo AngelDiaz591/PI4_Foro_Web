@@ -2,14 +2,8 @@
 include './../../controllers/application_controller.php';
 $action = isset($_GET['action']) ? $_GET['action'] : ''; // Verificar si la clave 'action' está definida antes de acceder a ella
 
-
-$data = array(
-  "method" => $_POST ? $_POST : $_GET,
-  "files" => $_FILES,
-);
-$email = "";
-$name = "";
-$errors = array();
+// Inicializa $errors como un array vacío si no está definido
+$errors = isset($errors) ? $errors : array();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,60 +19,9 @@ $errors = array();
 </head>
 <body>
     <div class="content2">
-        <!-- <a class="back">
+        <a class="back2">
             <span class="material-symbols-outlined">arrow_back</span>
-        </a> -->
-        
-        <div class="right">
-            <div class="principal">
-                <form action="<?= redirect_a('users', 'createUsers'); ?>" method="post" enctype="multipart/form-data">
-                <div class="slogan3">
-                    <h1>Register</h1>
-                    <p>Start your account with us</p>
-                    <!-- <p>Enter your information</p> -->
-                </div>
-                <?php
-                    # Show the errors, save the error in array the error in archive controlluserdata.php
-                    if(count($errors) > 0 && isset($errors)){
-                        ?>
-                        <div id="error-alert" class="alert2">
-                        <span class="icon-alert material-symbols-outlined">info</span>
-                            <?php
-                            foreach($errors as $showerror){
-                                echo $showerror;
-                            }
-                            ?>
-                        </div>
-                        <?php
-                    }
-                    ?>
-                    <label for="" class="label2">Username</label>
-                    <div class="user-input">
-                        <input id="user-input" class="input" type="text" name="name" placeholder="Username" required>    
-                        <span class="icon material-symbols-outlined" id="user-input">person</span>
-                    </div>
-                    <label for="" class="label2">Email</label>
-                    <div class="user-input">
-                        <input id="user-input" class="input" type="email" name="email" placeholder="Email" required>
-                        <span class="icon material-symbols-outlined" id="user-input">mail</span>
-                    </div>
-                    <label for="" class="label2">Password</label>
-                    <div class="user-input">
-                        <input type="password" class="input" name="password" placeholder="Password" id="user-input" required>
-                        <span class="icon material-symbols-outlined" id="user-input">lock</span>
-                    </div>
-                    <div class="option2">
-                        <div class="button3">
-                            <input class="signup" type="submit">
-                        </div>
-                    </div>
-                    <div class="register">
-                        <p>Already have an account?</p>
-                        <a href="../login/login.php" class="new">Sign In</a>
-                    </div>
-                </form>
-            </div>
-        </div>
+        </a>
         <div class="left">
             <div class="slogan2">
                 <h1>Welcome!</h1>
@@ -88,7 +31,68 @@ $errors = array();
                 <img src="./../../resources/img/prueba5.svg" class="present2">
             </div>
         </div>
+        <div class="right">
+            <div class="principal">
+                <form action="<?= redirect_to('users', 'create'); ?>"method="POST" autocomplete="">
+                <div class="slogan3">
+                    <h1>Create an account</h1>
+                    <p>Start your account with us</p>
+                    <!-- <p>Enter your information</p> -->
+                </div>
+                <?php
+                    # Show the errors, save the error in array the error in archive controlluserdata.php
+                    if (isset($_GET['error'])) {
+                        $error_message = urldecode($_GET['error']);
+                    ?>
+                        <div id="error-alert" class="alert2">
+                        <span class="icon-alert material-symbols-outlined">info</span>
+                            <p>Error: <?php echo $error_message; ?></p>
+                        </div>
+                    <?php
+                    }
+                ?>
+                    
+                    <div class="user-inputp">
+                        <!-- <label for="" class="label2">Username</label> -->
+                        <input  class="input" type="text" name="name" placeholder="Username" required >    
+                        <span class="icon2 material-symbols-outlined" >person</span>
+                    </div>
+                    <div class="user-inputp">
+                        <!-- <label for="" class="label2">Email</label> -->
+                        <input class="input" type="email" name="email" placeholder="Email" id="email" required>
+                        <span class="icon2 material-symbols-outlined" >mail</span>
+                        <p id="emailmsg"><span id="emailstrenght"></span></p>
+                    </div>
+                    <div class="user-inputp">
+                        <!-- <label for="" class="label2">Password</label> -->
+                        <input type="password" class="input" name="password" placeholder="Password" id="password" required>
+                        <span class="icon2 material-symbols-outlined">lock</span>
+                        <p id="message">Password is <span id="strenght"></span></p>
+                    </div>
+                    <div class="user-inputp">
+                        <!-- <label for="" class="label2">Confirm Password</label> -->
+                        <input type="password" class="input" name="cpassword" placeholder="Confirm password" id="cpassword" required>
+                        <span class="icon2 material-symbols-outlined">lock</span>
+                        <p id="nomessage">Password <span id="constrength"></span></p>
+                    </div>
+                    <div class="option2">
+                        <div class="button3">
+                            <input class="signup" type="submit" name="signup" value="Create an account">
+                        </div>
+                    </div>
+                    <div class="register">
+                        <p>Already have an account?</p>
+                        <a href="../login/login.php" class="new">Sign In</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-  
+    <script src="../../resources/js/form.js"></script>
+    <script>
+        setTimeout(function(){
+            document.getElementById("error-alert").style.display = "none";
+        }, 3000); // 3000 milisegundos = 3 segundos
+    </script>
 </body>
 </html>

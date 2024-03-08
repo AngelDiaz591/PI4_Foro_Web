@@ -1,4 +1,10 @@
-<!-- <?php require_once "../controllUser/ControllerUserData.php"; ?> -->
+<?php #$require_once "../controllUser/ControllerUserData.php"; 
+include './../../controllers/application_controller.php';
+$action = isset($_GET['action']) ? $_GET['action'] : ''; // Verificar si la clave 'action' está definida antes de acceder a ella
+
+// Inicializa $errors como un array vacío si no está definido
+$errors = isset($errors) ? $errors : array();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,7 +27,7 @@
         </a> -->
         <div class="left">
             <!-- <div class="logo">
-                <img src="./../../resources/img/logo.png">
+                <img src="./../../resources/img/logo.png">monitorsmonitors
                 <h1>CulturEdge</h1>
             </div> -->
             <div class="slogan2">
@@ -33,33 +39,30 @@
         </div>
         <div class="right">
             <div class="principal">
-                <form action="login.php" method="post">
+                <<form action="<?= redirect_to('sessions', 'create'); ?>"method="POST" autocomplete="">
                     <div class="slogan3">
                         <h2>WELCOME BACK!</h2>
                     </div>
                     <?php
                     # Show the errors, save the error in array the error in archive controlluserdata.php
-                    if(count($errors) > 0){
-                        ?>
+                    if (isset($_GET['error'])) {
+                        $error_message = urldecode($_GET['error']);
+                    ?>
                         <div id="error-alert" class="alert2">
                         <span class="icon-alert material-symbols-outlined">info</span>
-                            <?php
-                            foreach($errors as $showerror){
-                                echo $showerror;
-                            }
-                            ?>
+                            <p>Error: <?php echo $error_message; ?></p>
                         </div>
-                        <?php
+                    <?php
                     }
                     ?>
                     <label for="" class="label2">Email or username</label>
                     <div class="user-input">
-                        <input class="input <?php echo (isset($errors['email'])) ? 'error' : ''; ?>" type="email" name="email" id="user-input" placeholder="Email or username">
+                        <input class="input" type="email" name="email" id="user-input" placeholder="Email or username">
                         <span class="icon material-symbols-outlined" id="user-input">person</span>
                     </div>
                     <label for="" class="label2">Password</label>
                     <div class="user-input">
-                        <input class="input <?php echo (isset($errors['password'])) ? 'error' : ''; ?>" type="password" name="password" id="user-input" placeholder="Password">
+                        <input class="input" type="password" name="password" id="user-input" placeholder="Password">
                         <span class="icon material-symbols-outlined" id="user-input">lock</span>
                     </div>
                     <div class="box-small">

@@ -105,9 +105,6 @@ function redirect_to_error($error) {
 function redirect_to($controller, $action) {
   return get_home_url() . "views/layouts/application.php?controller=$controller&action=$action";
 }
-function redirect_a($controller, $action){
-  return get_home_url() . "views/RegistroUsers/registro.php?controller=$controller&action=$action";
-}
 
 /**
  * This function is used to render a controller and action

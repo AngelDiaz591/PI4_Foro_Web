@@ -1,0 +1,49 @@
+.user-inputp {
+    width: 19rem;
+    max-width: 90%;
+    position: relative;
+    margin: 0 0 2.2rem 0;
+
+    input{
+        width: 100%;
+        height: 50px;
+        padding: 0 1rem 0 3rem;
+        /* border: transparent; */
+        border: 0.12rem solid #4040409e;
+        outline: none;
+        color: #fff;
+        /* background: transparent; */
+        background-color: #3535354b;
+        border-radius: 1rem;
+        font-size: 1rem;
+
+        /* &:focus{
+            
+            
+        } */
+    }
+
+    ::placeholder{
+        font-size: 1rem;
+        color: #a7a7a7;
+        font-weight: 500;
+        
+    }
+
+    ::-ms-reveal {
+        filter: invert(100%);
+        
+    }
+}
+
+.icon2{
+    border: 0;
+    outline: none;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem;
+    color: #a7a7a7;
+
+}
+
