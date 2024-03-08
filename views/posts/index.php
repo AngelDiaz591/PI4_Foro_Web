@@ -1,4 +1,13 @@
+
+
+
+
+
 <div class="main">
+<?php if (isset($_GET['email'])): ?>
+    <?php $email = $_GET['email']; ?>
+    <p>Welcome, <?= htmlspecialchars($email) ?>!</p>
+<?php endif; ?>
   <h1>All Posts</h1>
   <a href="<?= redirect_to('posts', 'new'); ?>">New</a>
   <?php foreach ($data as $d): ?>

@@ -8,7 +8,7 @@ require_once "base.php";
  * Info: The model file name must be in singular and be in snake case, the class name must be
  *       in camel case with the first letter in uppercase and inherits the base class
  */
-class Post extends Base {
+class Session extends Base {
 
 /**
  * The constructor is used to connect to the database
@@ -37,7 +37,7 @@ class Post extends Base {
 public function login($data) {
     try {
         // Preparar la consulta para buscar al usuario por su correo electrónico
-        $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = :email");
+        $stmt = $this->conn->prepare("SELECT * FROM usertable WHERE email = :email");
         $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -47,7 +47,7 @@ public function login($data) {
             // Verificar si la contraseña proporcionada coincide con la contraseña almacenada
             if (password_verify($data["password"], $user["password"])) {
                 // La contraseña coincide, iniciar sesión correctamente
-                return true;
+                return $user; // Devuelve toda la información del usuario encontrado
             } else {
                 // La contraseña no coincide, redirigir con un mensaje de error
                 throw new Exception("Incorrect password");
@@ -62,5 +62,7 @@ public function login($data) {
         exit();
     }
 }
+
+
 
 }

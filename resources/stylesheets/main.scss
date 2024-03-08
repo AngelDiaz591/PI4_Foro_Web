@@ -6,9 +6,7 @@
 
 //base
 @import 
-    'base/base',
-    'base/login',
-    'base/register';
+    'base/base';
 
 //layout
 @import
@@ -18,6 +16,4 @@
 //components
 @import
     'components/cards',
-    'components/nav',
-    'components/input',
-    'components/alert';
+    'components/nav';

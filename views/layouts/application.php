@@ -11,6 +11,7 @@ $action = $_GET['action'];
 $data = array(
   "method" => $_POST ? $_POST : $_GET,
   "files" => $_FILES,
+  "email" => isset($_GET['email']) ? $_GET['email'] : null,
 );
 ?>
 
@@ -39,15 +40,7 @@ $data = array(
     <main>
       <?= render($action, $controller, $data); ?>
     </main>
-    <?php
-    // Verificar si se ha pasado el parámetro 'username' en la URL
-    if(isset($_GET['username'])) {
-        $username = $_GET['username'];
-        echo "<p>Bienvenido, $username</p>";
-    } else {
-        echo "<p>Bienvenido</p>";
-    }
-    ?>
+
     <?php render_layout('sidebar_chats'); ?>
   </div>
 </body>
