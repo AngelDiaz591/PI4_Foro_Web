@@ -21,10 +21,8 @@ class SessionsController extends Session  {
           $user = $this->login($this->params);
           if ($user !== null) {
               $email = $user['email']; // Obtener el email del usuario desde los datos devueltos por la función login
-  
               // Redirigir al usuario a una página de éxito o a donde sea necesario
               header("Location:" . redirect_to('posts', 'index') . "&email=" . urlencode($email));
-
               exit();
           } else {
               throw new Exception("Failed login");

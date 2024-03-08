@@ -89,10 +89,10 @@ $errors = isset($errors) ? $errors : array();
         </div>
     </div>
     <script src="../../resources/js/form.js"></script>
-    <script>
-        setTimeout(function(){
-            document.getElementById("error-alert").style.display = "none";
-        }, 3000); // 3000 milisegundos = 3 segundos
-    </script>
+   // <script>
+   //     setTimeout(function(){
+   //         document.getElementById("error-alert").style.display = "none";
+   //     }, 3000); // 3000 milisegundos = 3 segundos
+   // </script>
 </body>
 </html>

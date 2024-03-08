@@ -23,7 +23,6 @@ class User extends Base {
             throw new Exception("Failed to connect to the database: " . $e->getMessage());
         }
     }
-
 /**
  * Get all the posts in the database and each image by post
  * 
@@ -34,35 +33,30 @@ class User extends Base {
  */
 public function save($data) {
     try {
-        // Verificar si las contraseñas coinciden
         if ($data['password'] !== $data['cpassword']) {
             throw new Exception("Passwords do not match");
         }
-
-        // Encriptar la contraseña
         $encryptedPassword = password_hash($data["password"], PASSWORD_DEFAULT);
-        
-        // Preparar la consulta para guardar el usuario
         $stmt = $this->conn->prepare("CALL save_user(:name, :email, :password)");
         $stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
         $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
         $stmt->bindParam(":password", $encryptedPassword, PDO::PARAM_STR);
-        
-        // Ejecutar la consulta
-        if ($stmt->execute()) {
-            // La consulta se ejecutó correctamente
-            return true;
-        } else {
-            // La consulta falló
+        if (!$stmt->execute()) {
             throw new Exception("Failed to save user: Database error");
         }
+        return true;
+    } catch (PDOException $e) {
+        $errorMessage = $e->getCode() == 23000 && strpos($e->getMessage(), '1062') !== false
+            ? (strpos($e->getMessage(), 'name') !== false
+                ? "Username already exists."
+                : "Email already exists.")
+            : $e->getMessage();
+        header("Location: ../RegistroUsers/registro.php?error=" . urlencode($errorMessage));
+        exit();
     } catch (Exception $e) {
-        // Redirigir al usuario a registro.php con el mensaje de error como parámetro GET
         header("Location: ../RegistroUsers/registro.php?error=" . urlencode($e->getMessage()));
         exit();
     }
 }
-
-
 }
 ?>

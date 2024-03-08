@@ -36,28 +36,23 @@ class Session extends Base {
  */
 public function login($data) {
     try {
-        // Preparar la consulta para buscar al usuario por su correo electrónico
+        // Prepare the query to find the user by their email
         $stmt = $this->conn->prepare("SELECT * FROM usertable WHERE email = :email");
         $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
         $stmt->execute();
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        // Verificar si se encontró un usuario con el correo electrónico dado
-        if ($user) {
-            // Verificar si la contraseña proporcionada coincide con la contraseña almacenada
-            if (password_verify($data["password"], $user["password"])) {
-                // La contraseña coincide, iniciar sesión correctamente
-                return $user; // Devuelve toda la información del usuario encontrado
-            } else {
-                // La contraseña no coincide, redirigir con un mensaje de error
-                throw new Exception("Incorrect password");
-            }
-        } else {
-            // No se encontró ningún usuario con el correo electrónico dado, redirigir con un mensaje de error
+        // Check if a user was found with the given email
+        if (!$user) {
             throw new Exception("User not found");
         }
+        // Check if the provided password matches the stored password
+        if (!password_verify($data["password"], $user["password"])) {
+            throw new Exception("Incorrect password");
+        }
+        // Password matches, successfully log in
+        return $user; // Return all the information of the found user
     } catch (Exception $e) {
-        // Redirigir al usuario a la página de inicio de sesión con el mensaje de error como parámetro GET
+        // Redirect the user to the login page with the error message as a GET parameter
         header("Location: ../login/login.php?error=" . urlencode($e->getMessage()));
         exit();
     }

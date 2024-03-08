@@ -20,9 +20,7 @@ class UsersController extends User  {
       try {
           $response = $this->save($this->params);
           if ($response === true) {
-              // Redirigir al usuario a una página de éxito o a donde sea necesario
-              #header("Location: registro_exitoso.php");
-              #exit();
+            exit();
           } else {
               throw new Exception("Failed to create user: " . $response);
           }
