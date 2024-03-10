@@ -8,3 +8,6 @@ CREATE TABLE usertable (
     status VARCHAR(255),
     user_type INT(1)
 );
+-- APART --- 
+-- Agregar la columna created_at a la tabla usertable
+ALTER TABLE usertable ADD created_at DATETIME DEFAULT CURRENT_TIMESTAMP;

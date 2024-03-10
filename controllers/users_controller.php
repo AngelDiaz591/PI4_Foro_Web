@@ -23,7 +23,7 @@ class UsersController extends User  {
         try {
             $response = $this->save($this->params);
             if ($response === true) {
-                header("Location" . redirect_to('posts', 'index'));
+                header("Location: ../Verify/user-otp.php");
                 exit();
             } else {
                 throw new Exception("Failed to create user: " . $response);

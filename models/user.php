@@ -1,6 +1,6 @@
 <?php 
 require_once "base.php";
-
+require_once "../../class/users/class_php.php";
 /*
  * This class inherits from the base class and contains the calls to the posts procedures
  * 
@@ -17,9 +17,10 @@ class User extends Base {
      * @throws Exception if it fails to connect to the database
      * @return void
      */
-    public function __construct() {
+public function __construct() {
         try {
             $this->conn = $this->db_connection();
+            $this->classPHP = new ClassPHP();
         } catch (Exception $e) {
             throw new Exception("Failed to connect to the database: " . $e->getMessage());
         }
@@ -34,16 +35,23 @@ class User extends Base {
      * @return array
      */
 
+
     public function save($data) {
+        $classPHP = new ClassPHP();
         try {
             if ($data['password'] !== $data['cpassword']) {
                 throw new Exception("Passwords do not match");
             }
             $encryptedPassword = password_hash($data["password"], PASSWORD_DEFAULT);
-            $stmt = $this->conn->prepare("CALL save_user(:name, :email, :password)");
+            $coderandom = $classPHP->generarCodigo(6);
+            $data["code"] = $coderandom;
+            $stmt = $this->conn->prepare("CALL save_user(:name, :email, :password, :code)");
             $stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
             $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+            $stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
             $stmt->bindParam(":password", $encryptedPassword, PDO::PARAM_STR);
+            $email = $data["email"]; // Suponiendo que $data es un array con información necesaria
+            $success = $classPHP->send_code($email, $coderandom);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to save user: Database error");
             }
@@ -66,5 +74,8 @@ class User extends Base {
             exit();
         }
     }
+
+    
+    
 }
 ?>
