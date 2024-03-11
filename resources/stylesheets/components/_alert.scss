@@ -1,11 +1,11 @@
 .alert{
-    background-color: $red_dark;
+    /* background-color: $red_dark; */
     height: 2.5rem;
     @include flex-left;
     /* border-left: 0.5rem solid rgb(119, 9, 9); */
-    border: 0.1rem solid $col_red;
+    /* border: 0.1rem solid $col_red; */
     /* color: rgb(211, 12, 12); */
-    color: $col_red;
+    /* color: $col_red; */
     border-radius: 1rem;
     margin: 0 0 0.9rem 0;
     padding: 0 0 0 0.5rem;
@@ -32,12 +32,12 @@
 }
 
 .alert2{
-    background-color: $red_dark;
+    /* background-color: $red_dark; */
     height: 2.5rem;
     @include flex-left;
     /* border-left: 0.5rem solid rgb(119, 9, 9); */
-    border: 0.1rem solid $col_red;
-    color: $col_red;
+    /* border: 0.1rem solid $col_red; */
+    /* color: $col_red; */
     border-radius: 1rem;
     margin: 0 0 1.5rem 0;
     padding: 0 0 0 0.5rem;

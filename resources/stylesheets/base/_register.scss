@@ -3,7 +3,7 @@
     margin: 0;
 }
 
-.back2{
+.back{
     font-size: 2em;
     cursor: pointer;
     position: absolute;
@@ -12,39 +12,11 @@
     color: $font_w;
 
     &:hover{
-        color: $background1;
+        color: $font_w;
     }
 }
 
-.left2 {
-    flex: 0.7;
-    padding: 2rem;
-    @include flex-grid;
-    border-radius: 1rem 0 0 1rem;
-}
-
-.right2 {
-    flex: 0.5;
-    border-radius: 2rem;
-    display: grid;
-    justify-content: center;
-    /* padding: 1rem 0 0 0; */
-    align-content: space-around;
-}
-
-.slogan2{
-    font-size: 1.2em;
-    order: 0;
-    justify-content: end;
-    display: flex;
-    justify-content: left;
-    color: $brow2;
-    font-weight: 600;
-    padding: 1rem;
-/*     border-bottom: 0.2rem solid#b4791a24; */
-}
-
-.slogan3{
+.slogan{
     font-size: 1.5em;
     order: 0;
     color: $brow1;
@@ -77,11 +49,6 @@
     margin: 0.5rem 0;
 }
 
-.present2 {
-    height: 32rem;
-    order: 1;
-}
-
 .option2 {
     @include flex-center;
     margin: 2rem 0 1rem 0;
@@ -106,51 +73,8 @@
     }
 }
 
-.button3{
+.btn-create{
     @include flex-center;
-}
-
-.container{
-    background-color: #000000;
-    height: 27rem;
-    width: 30rem;
-    display: grid;
-    justify-content: center;
-    align-items: stretch;
-    padding: 2.5rem;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    border-radius: 2rem;
-}
-
-.text{
-    color:$font_w;
-    margin: 1rem;
-    text-align: center;
-}
-
-.instruction{
-    color:rgb(190, 190, 190);
-    margin: 1rem;
-    text-align: center;
-    font-size: 1.5em;
-}
-
-.text2{
-    color:rgb(81, 81, 81);
-    margin-bottom: 0.4rem;
-    text-align: center;
-}
-
-.abarcar{
-/*     justify-content: center; */
-    align-items: center;
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-}
-
-.codever{
-    height: 6rem;
 }
 
 #message{

@@ -16,22 +16,22 @@ session_start();
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./../../resources/stylesheets/main.css" />
     <script src="./../../resources/js/main.js"></script>
-    <link rel="icon" href="./../../resources/img/logo.png" type="image/x-icon">
+    <link rel="icon" href="./../../resources/img/fav.png" type="image/x-icon">
 </head>
 <body>
-    <a class="back2">
+    <a class="back">
         <span class="material-symbols-outlined">arrow_back</span>
     </a>
-    <div class="content2">
+    <div class="container">
         <div class="left">
             <div class="principal2">
-                <img src="./../../resources/img/fondo25.jpg" class="img">
+                <img src="./../../resources/img/login.jpg" class="img">
             </div>
         </div>
         <div class="right">
             <div class="principal">
                 <form action="<?= redirect_to('sessions', 'create'); ?>" method="POST" autocomplete="">
-                    <div class="slogan3">
+                    <div class="slogan">
                         <h2>WELCOME BACK!</h2>
                     </div>
                     <?php

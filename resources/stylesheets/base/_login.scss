@@ -1,5 +1,5 @@
 body {
-    background-image: url(./../../resources/img/fondo26.svg);
+    background-image: url(./../../resources/img/background_prin.svg);
     background-size: cover;
     background-color: $theme_bl;
     font-family: monospace;
@@ -8,28 +8,27 @@ body {
     height: 100vh;
 }
 
-.content2 {
+.container {
     margin: 2.5rem;
     height: 89vh;
     width: 80%;
     display: grid;
     border-radius: 1rem;
-    border: 0.2rem solid #fcf9ea;
+    border: 0.2rem solid $font_w3;
     box-shadow: $box-shadow;
     gap: 0;
     grid-template-columns: 3fr 2fr;
-    background-color: rgba(245, 236, 183, 0.96);
-}
-
-
-.present {
-    height: 18rem;
-}        
+    background-color: $brow0;
+}      
 
 .left {
     padding: 1rem;
     @include flex-grid;
-    
+}
+
+.right {
+    border-radius: 0 0.9rem 0.9rem 0;
+    @include flex-grid;
 }
 
 .img{
@@ -38,24 +37,8 @@ body {
     border-radius: 0.5rem;
 }
 
-.right {
-    border-radius: 0 0.9rem 0.9rem 0;
-    @include flex-grid;
-    
-    .box2 {
-        font-size: 2em;
-        @include flex-center;
-    }
-}
-
-.logo {
-    color: $font_w;
-    display: flex;
-    align-items: center;
-}
-
 .new {
-    color: $background1;
+    color: $font_w;
     margin-left: 0.5rem;
     cursor: pointer;
     text-decoration: none;
@@ -116,18 +99,6 @@ body {
     color: $font_w2;
     font-size: 1rem;
     margin: 0.5rem 0;
-}
-
-.greeting {
-    margin: 2rem;
-    @include flex-center;
-}
-
-.slogan {
-    font-size: 1.5rem;
-    @include flex-center;
-    order: 0;
-    color: $font_w;
 }
 
 .principal {
