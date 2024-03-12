@@ -1,9 +1,8 @@
-<?php 
+<?php
 include './../../controllers/application_controller.php';
-$action = isset($_GET['action']) ? $_GET['action'] : ''; 
+session_start();
 $errors = isset($errors) ? $errors : array();
-session_start(); 
-?>  
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,17 +21,20 @@ session_start();
     <section class="code_verify">
         <img src="./../../resources/img/confirm.svg" class="codever">
         <div class="title">Email Verification</div>
-        <p>We have sent code to you email</p>
-        <form action="user-otp.php" method="POST" autocomplete="off">
+        <p>We have sent code to your email <?php echo $_SESSION['email']; ?></p>
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="error"><?php echo $_SESSION['error']; unset($_SESSION['error']); ?></div>
+        <?php endif; ?>
+        <form action="<?= redirect_to('codes', 'update'); ?>" method="POST" autocomplete="off">
             <div>
-                <input type="hidden" id="otp" name="otp">
+                <input type="hidden" id="code" name="code">
                 <div id="inputs">
-                    <input class="inputs" id="input1" type="text" placeholder="0" maxLength="1" requiered/>
-                    <input class="inputs" id="input2" type="text" placeholder="0" maxLength="1" requiered/>
-                    <input class="inputs" id="input3" type="text" placeholder="0" maxLength="1" requiered/>
-                    <input class="inputs" id="input4" type="text" placeholder="0" maxLength="1" requiered/>
-                    <input class="inputs" id="input5" type="text" placeholder="0" maxLength="1" requiered/>
-                    <input class="inputs" id="input6" type="text" placeholder="0" maxLength="1" requiered/>
+                    <input class="inputs" id="input1" type="text" placeholder="0" maxLength="1" required/>
+                    <input class="inputs" id="input2" type="text" placeholder="0" maxLength="1" required/>
+                    <input class="inputs" id="input3" type="text" placeholder="0" maxLength="1" required/>
+                    <input class="inputs" id="input4" type="text" placeholder="0" maxLength="1" required/>
+                    <input class="inputs" id="input5" type="text" placeholder="0" maxLength="1" required/>
+                    <input class="inputs" id="input6" type="text" placeholder="0" maxLength="1" required/>
                 </div>
                 <div class="resend_code">
                     <p>Didn't receive code?</p>
@@ -41,10 +43,9 @@ session_start();
                 <div class="confirm">
                     <input type="submit" class="verify" name="check" value="Confirm">
                 </div>
-                <!-- <button type="submit" name="check" class="verify">Confirm</button> -->
             </div>
         </form> 
-            <p class="warning">Verification Code is valid only for 5 min</p>
+        <p class="warning">Verification Code is valid only for 5 minutes</p>
     </section>
     <script src="../../resources/js/veri_code.js"></script>
 </body>

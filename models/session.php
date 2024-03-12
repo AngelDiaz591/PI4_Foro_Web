@@ -48,7 +48,16 @@ class Session extends Base {
             if (!password_verify($data["password"], $user["password"])) {
                 throw new Exception("Incorrect password");
             }
-            // Password matches, successfully log in
+            // Check the status of the user
+            if ($user['status'] === 'notverified') {
+                // If the user is not verified, store the email in the session and redirect to the verification page
+                session_start();
+                $_SESSION['error'] = "Please verify your email address to proceed.";
+                $_SESSION['email'] = $user['email']; // Almacena el email en la sesión
+                header("Location: ../Verify/code.php");
+                exit();
+            }
+            // Password matches and user is verified, successfully log in
             // Start the session and store the user's email in a session variable
             session_start();
             $_SESSION['email'] = $user['email'];
@@ -61,5 +70,6 @@ class Session extends Base {
             exit();
         }
     }
+    
 }
 ?>

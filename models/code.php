@@ -8,7 +8,7 @@ require_once "base.php";
  * Info: The model file name must be in singular and be in snake case, the class name must be
  *       in camel case with the first letter in uppercase and inherits the base class
  */
-class Session extends Base {
+class Code extends Base {
     /** 
      * The constructor is used to connect to the database
      * 
@@ -33,17 +33,23 @@ class Session extends Base {
      * @throws Exception if it fails to get all posts
      * @return array
      */
-    public function Verify($data) {
+    public function verifyCode($email, $code) {
         try {
-        
-           
-        } catch (Exception $e) {
+            $stmt = $this->conn->prepare("CALL verifyUserCode(:email, :code)");
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':code', $code, PDO::PARAM_STR);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $result['message'];
+        }catch (Exception $e) {
             session_start();
             $_SESSION['error'] = $e->getMessage();
-            // Redirect the user to the login page with the error message as a GET parameter
-            header("Location: ../login/login.php");
+            header("Location: ../Verify/code.php");
             exit();
         }
     }
+    
+    
+
 }
 ?>

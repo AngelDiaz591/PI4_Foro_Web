@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const inputsContainer = document.getElementById('inputs');
-    const otpCombinedInput = document.getElementById('otp');
+    const codeCombinedInput = document.getElementById('code');
     const inputs = inputsContainer.querySelectorAll('.inputs');
     const inputn = ["input1", "input2", "input3", "input4", "input5", "input6"];
 
@@ -10,11 +10,11 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     inputsContainer.addEventListener('input', function() {
-        let otpCombined = '';
+        let codeCombined = '';
         inputs.forEach(function(input) {
-            otpCombined += input.value.trim();
+            codeCombined += input.value.trim();
         });
-        otpCombinedInput.value = otpCombined;
+        codeCombinedInput.value = codeCombined;
     });
 
     function addListener(input) {

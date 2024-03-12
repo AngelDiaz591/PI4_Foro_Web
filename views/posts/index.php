@@ -2,7 +2,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['email'])): ?>
-    <?php $email = $_SESSION['email']; ?>
+    <?php $email = $_SESSION['email']; unset($_SESSION['email']);?>
     <p>Welcome, <?= htmlspecialchars($email) ?>!</p>
 <?php endif; ?>
   <h1>All Posts</h1>

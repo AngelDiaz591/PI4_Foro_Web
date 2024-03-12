@@ -9,7 +9,7 @@ class ClassPHP {
     public function send_code($email, $code) {
         $to = $email;
         $subject = "Verificación de tu cuenta";
-        $logoPath = "../../resources/img/logo.png"; // Ruta relativa a la imagen del logo
+        $logoPath = "../../resources/img/fav.png"; // Ruta relativa a la imagen del logo
     
         // Leer el archivo de la imagen
         $fileContent = file_get_contents($logoPath);

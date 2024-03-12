@@ -1,14 +1,13 @@
 <?php
 ob_start();
-get_model('user');
+get_model('code');
 /*
  * This class inherits from the base class and contains the calls to the posts procedures
  */
-class UsersController extends User  {
+class CodesController extends Code   {
     private $params;
     
     public function __construct($params) {
-        var_dump($params);
         try {
             parent::__construct();
             $this->params = $params['method'];
@@ -17,23 +16,27 @@ class UsersController extends User  {
             redirect_to_error('500');
         }
     }
-
-    public function create() {
+    public function update() {
+        session_start();
         try {
-            $response = $this->save($this->params);
-            if ($response === true) {
+            $code = $_POST['code'];
+            $email = $_SESSION['email'];
+            $response = $this->verifyCode($email, $code);
+            if ($response === 'Verificación exitosa') {
+                unset($_SESSION['email']);
+                header("Location: " . redirect_to('posts', 'index'));
+                exit();
+            } else {
+                $_SESSION['error'] = $response;
                 header("Location: ../Verify/code.php");
                 exit();
-                return true;
-            } else {
-                throw new Exception("Failed to create user: " . $response);
             }
         } catch (Exception $e) {
-            session_start();
             $_SESSION['error'] = $e->getMessage();
-            header("Location: ../views/RegistroUsers/registro.php");
+            header("Location: ../Verify/code.php");
             exit();
         }
     }
+    
 }
 ?>

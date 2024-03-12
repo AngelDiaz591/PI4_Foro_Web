@@ -36,7 +36,7 @@ public function __construct() {
      */
 
 
-    public function save($data) {
+     public function save($data) {
         $classPHP = new ClassPHP();
         try {
             if ($data['password'] !== $data['cpassword']) {
@@ -50,14 +50,17 @@ public function __construct() {
             $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
             $stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
             $stmt->bindParam(":password", $encryptedPassword, PDO::PARAM_STR);
-            $email = $data["email"]; // Suponiendo que $data es un array con información necesaria
+            $email = $data["email"];
             $success = $classPHP->send_code($email, $coderandom);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to save user: Database error");
             }
-            return true;
-        }
-        catch (PDOException $e) {
+            session_start();
+            $_SESSION['email'] = $email; // Almacenamos el email en la sesión después del registro
+            $_SESSION['success'] = "Usuario registrado exitosamente. Por favor, verifica tu correo electrónico para activar tu cuenta."; // Mensaje de bienvenida
+            header("Location: ../Verify/code.php");
+            exit();
+        } catch (PDOException $e) {
             session_start();
             $errorMessage = $e->getCode() == 23000 && strpos($e->getMessage(), '1062') !== false
                 ? (strpos($e->getMessage(), 'name') !== false
@@ -74,7 +77,6 @@ public function __construct() {
             exit();
         }
     }
-
     
     
 }
