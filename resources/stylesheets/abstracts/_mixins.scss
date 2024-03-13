@@ -79,3 +79,33 @@ $breakpoint_tb: 800px;
     font-size: px(3);
   }
 }
+
+@mixin posicion-absolute($top, $left, $translate) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: translateY($translate);
+}
+
+@mixin posicion-relative($top, $right, $bottom, $left) {
+  position: relative;
+  margin: $top $right $bottom $left;
+}
+
+@mixin flex-center() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-grid() {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-left() {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}

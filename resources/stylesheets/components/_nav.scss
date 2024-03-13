@@ -25,26 +25,40 @@ nav {
       color: $font_b;
       text-decoration: none;
 
-      >.category {
-        @include nav();
-        i {
-          margin-right: 10px;
+      .category {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        cursor: pointer;
+        /* transition: $tr;  */
+        color: $font_w1; 
+
+        &:hover {
+            background-color: $font_w; 
+            color: $font_b;      
         }
-        p{
-          margin: 0;
-        }
-      } 
+              
+      }
+
+      span {
+        margin-right: 15px;
+      }
     }
 
     .categories {
-      color: $font_b;
-      @include nav();
-      padding: 0;
-      margin: 10px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      cursor: pointer;
+      /* transition: $tr; */ 
+      color: $font_w1; 
 
-      p{
-        margin: 0;
-      }
+      &:hover {
+        background-color: $font_w; 
+        color: $font_b;   
+      } 
     }
   }
 }
@@ -155,29 +169,26 @@ nav {
   color: $font_w1;
   display: none;
   flex-direction: column;
-  margin: 0;
-  transition: transform 0.3s ease;
-
-  a {
-    color: $font_w1;
-    text-decoration: none;
-    color: $font_w1; 
-
-    > span {
-      margin-right: 15px;
-    }
-  }
-
-  .subcategory {
-    @include nav();
-
-    > p {
-      margin: 0;
-    }
-  }
+  z-index: 1; 
 }
 
-.show_cat {
-  display: flex;
-  padding: 0;
+.subcategories .subcategory {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  /* transition: $tr; */
+}
+
+.subcategories .subcategory:hover {
+  background-color: $font_w;
+  /* color: $font_g; */
+}
+
+.subcategories a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.subcategories span {
+  margin-right: px(2);
 }

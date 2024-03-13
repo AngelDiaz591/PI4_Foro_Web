@@ -29,7 +29,7 @@ a {
 
   .profile {
     cursor: pointer;
-    transition: $tr;   
+    /* transition: $tr;  */  
     &:hover {
       color: $theme_bl;
     }

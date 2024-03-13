@@ -81,23 +81,35 @@ $bor_fond: 0px 2px 4px rgba(0, 0, 0, 0.5);
 $border: 1px solid $font_b;
 $bor_card:2px solid rgba(255, 255, 255, 0.5);
 
-//transitions
-$tr:background-color 0.3s, color 0.3s;
+//page
+$primary-color: #080808;
+$prin_color: rgb(18, 18, 18);
 
-$font_w4: #ffffff;
-$font_w5: rgb(248, 248, 248);
-$font_bl1: #41e9bfd8;
-$font_bl2: #060c3d;
+//box
+$box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 
-//theme light
-$font_light: #7380ec;
-$font_light2: #ff7782;
-$font_light3: #41f1b6;
-$font_light4: #ffbb55;
-$font_light5: #fff;
-$font_light6: #7d8da1;
-$font_light7: #dce1eb;
-$font_light8: #363949;
-$font_light9: rgba(132,139,200, 0.18); 
-$font_light10: #111e88;
-$font_light11: #f6f6f9;
+//input
+$backinput: #dddddd4b;
+
+//pallette_1
+$brow0: rgba(245, 236, 183, 0.96);
+$brow1: #905818;
+$brow2: #b4791a;
+$brow3: #78461b;
+$brow4: #3b1e0d;
+$brow5: #673b1c;
+
+//pallete_code_veri
+$green1: #0cb16134;
+$green2: #0cb162;
+$green3: #076336;
+$border1: #d2d2d2;
+$input_back: #00000013;
+$placeholder_1: rgba(0, 0, 0, 0.156);
+
+//alert_danger
+$col_red: #2c0202;
+$col_red2: rgb(139, 0, 0);
+
+//alert_sucess
+
