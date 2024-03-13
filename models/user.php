@@ -56,9 +56,8 @@ public function __construct() {
                 throw new Exception("Failed to save user: Database error");
             }
             session_start();
-            $_SESSION['email'] = $email; // Almacenamos el email en la sesión después del registro
-            $_SESSION['success'] = "Usuario registrado exitosamente. Por favor, verifica tu correo electrónico para activar tu cuenta."; // Mensaje de bienvenida
-            header("Location: ../Verify/code.php");
+             $_SESSION['email'] = $email;
+             header("Location: ../Verify/code.php");
             exit();
         } catch (PDOException $e) {
             session_start();

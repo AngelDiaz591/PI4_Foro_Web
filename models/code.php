@@ -41,9 +41,11 @@ class Code extends Base {
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
             return $result['message'];
-        }catch (Exception $e) {
+        } catch (Exception $e) {
             session_start();
             $_SESSION['error'] = $e->getMessage();
+            $_SESSION['redirect_to_code'] = true; // Establecer la bandera
+            $_SESSION['page_status'] = 'error'; // Agregar esta línea
             header("Location: ../Verify/code.php");
             exit();
         }
