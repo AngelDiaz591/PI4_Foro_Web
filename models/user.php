@@ -20,7 +20,7 @@ class User extends Base {
 public function __construct() {
         try {
             $this->conn = $this->db_connection();
-            $this->classPHP = new ClassPHP();
+            $this->Code_and_email = new Code_and_email();
         } catch (Exception $e) {
             throw new Exception("Failed to connect to the database: " . $e->getMessage());
         }
@@ -37,13 +37,13 @@ public function __construct() {
 
 
      public function save($data) {
-        $classPHP = new ClassPHP();
+        $Code_and_email= new Code_and_email();
         try {
             if ($data['password'] !== $data['cpassword']) {
                 throw new Exception("Passwords do not match");
             }
             $encryptedPassword = password_hash($data["password"], PASSWORD_DEFAULT);
-            $coderandom = $classPHP->generarCodigo(6);
+            $coderandom = $Code_and_email->Generate_Code(6);
             $data["code"] = $coderandom;
             $stmt = $this->conn->prepare("CALL save_user(:name, :email, :password, :code)");
             $stmt->bindParam(":name", $data["name"], PDO::PARAM_STR);
@@ -51,7 +51,7 @@ public function __construct() {
             $stmt->bindParam(":code", $data["code"], PDO::PARAM_STR);
             $stmt->bindParam(":password", $encryptedPassword, PDO::PARAM_STR);
             $email = $data["email"];
-            $success = $classPHP->send_code($email, $coderandom);
+            $success = $Code_and_email->send_code($email, $coderandom);
             if (!$stmt->execute()) {
                 throw new Exception("Failed to save user: Database error");
             }

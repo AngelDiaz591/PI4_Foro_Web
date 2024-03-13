@@ -16,14 +16,14 @@ BEGIN
             SET status = 'verified', code = '0'
             WHERE email = p_email;
 
-            SET message = 'Verificación exitosa';
+            SET message = 'Verification successful';
         ELSE
-            SET message = 'Código de verificación incorrecto';
+            SET message = 'Incorrect verification code';
         END IF;
     ELSEIF user_status = 'verified' THEN
-        SET message = 'Usuario ya verificado';
+        SET message = 'User already verified';
     ELSE
-        SET message = 'Usuario no encontrado';
+        SET message = 'User not found';
     END IF;
 
     SELECT message;

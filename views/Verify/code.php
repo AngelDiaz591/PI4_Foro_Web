@@ -3,7 +3,25 @@ include './../../controllers/application_controller.php';
 session_start();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
 ?>
-
+<script>
+// Function to redirect to login page and close sessions
+function redirectToLoginAndCloseSessions() {
+    // Redirect to the login page
+    window.location.href = "../login/login.php";
+    
+    // Destroy all sessions
+    <?php session_start(); session_destroy(); ?>
+}
+// Check if there is an email in the session parameter
+window.addEventListener('DOMContentLoaded', function() {
+    var email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
+    if (email === '') {
+        // Show the warning message and redirect after a few seconds
+        alert("Your verification has expired. Please log in to try again.\nYou will be redirected to login.");
+        setTimeout(redirectToLoginAndCloseSessions, 2000); // Redirect after 2 seconds
+    }
+});
+</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +65,9 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     <script src="../../resources/js/veri_code.js"></script>
     <script>
         window.addEventListener('beforeunload', function(event) {
-            // Verificar si se está saliendo de la página y no hay errores
+            // Check if the user is leaving the page and there are no errors
             if (sessionStorage.getItem('page_status') !== 'error') {
-                // Enviar una solicitud al servidor para eliminar el correo electrónico
+                // Send a request to the server to delete the email
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'borrar_email.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

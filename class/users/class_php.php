@@ -1,14 +1,13 @@
 <?php
 
-class ClassPHP {
-    public function generarCodigo($longitud = 10) {
+class Code_and_email {
+    public function Generate_Code($longitud = 10) {
         $bytes = random_bytes($longitud);
         return substr(str_replace(['/', '+', '='], '', base64_encode($bytes)), 0, $longitud);
     }
-
     public function send_code($email, $code) {
         $to = $email;
-        $subject = "Verificación de tu cuenta";
+        $subject = "Verifying your account";
         $logoPath = "../../resources/img/fav.png"; // Ruta relativa a la imagen del logo
     
         // Leer el archivo de la imagen
@@ -31,7 +30,8 @@ class ClassPHP {
                 </style>
             </head>
             <body>
-                <p>¡Gracias por registrarte! Tu código de verificación es: <span class='code'>$code</span></p>
+                <p>¡Thank you for registering! your code is:</p>
+                <center><h1 class='code'>$code<h1></center>
                 <center><img src='cid:$fileName' class='logo' alt='Logo'></center>
             </body>
             </html>
@@ -52,7 +52,7 @@ class ClassPHP {
     
         // Definir los encabezados
         $headers = "MIME-Version: 1.0\r\n";
-        $headers .= "From: Tu Nombre <tu@email.com>\r\n"; // Ajusta el remitente según tus necesidades
+        $headers .= "From:<tu@email.com>\r\n"; // Ajusta el remitente según tus necesidades
         $headers .= "Content-Type: multipart/related; boundary=\"$boundary\"\r\n";
     
         // Enviar el correo electrónico
@@ -62,10 +62,6 @@ class ClassPHP {
             return false;
         }
     }
-
-
-
-
 }
 
 ?>
