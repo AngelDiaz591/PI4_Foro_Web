@@ -4,7 +4,11 @@
     position: relative;
     margin: 0 0 2.2rem 0;
 
+<<<<<<< HEAD
+    .input {
+=======
     .input{
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
         width: 100%;
         height: 50px;
         padding: 0 1rem 0 3rem;
@@ -17,7 +21,11 @@
         font-weight: 600;
     }
 
+<<<<<<< HEAD
+    ::placeholder {
+=======
     ::placeholder{
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
         font-size: 1rem;
         color: $brow2;
         font-weight: 600;
@@ -57,4 +65,8 @@
     &::placeholder{
         color: $placeholder_1;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f

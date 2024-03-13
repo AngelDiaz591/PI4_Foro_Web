@@ -1,5 +1,9 @@
 body {
+<<<<<<< HEAD
+    background-image: $back_img;
+=======
     background-image: url(./../../resources/img/background_prin.svg);
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
     background-size: cover;
     background-color: $theme_bl;
     font-family: monospace;
@@ -31,7 +35,11 @@ body {
     @include flex-grid;
 }
 
+<<<<<<< HEAD
+.img {
+=======
 .img{
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
     width: 98%;
     height: 100%;
     border-radius: 0.5rem;
@@ -53,7 +61,11 @@ body {
     @include flex-center;
 }
 
+<<<<<<< HEAD
+.box-small {
+=======
 .box-small{
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
     position: relative;
     display: grid;
     justify-content: right;
@@ -105,4 +117,8 @@ body {
     @include flex-grid;
     padding: 1.5rem 3rem;
     border-radius: 2rem;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 601ef77768eb6cabd6c681cc03ee64578b30d86f
