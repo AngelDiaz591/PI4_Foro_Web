@@ -1,27 +1,10 @@
 <?php
 include './../../controllers/application_controller.php';
+$errors = isset($errors) ? $errors : array();
 session_start();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
 ?>
-<script>
-// Function to redirect to login page and close sessions
-function redirectToLoginAndCloseSessions() {
-    // Redirect to the login page
-    window.location.href = "../login/login.php";
-    
-    // Destroy all sessions
-    <?php session_start(); session_destroy(); ?>
-}
-// Check if there is an email in the session parameter
-window.addEventListener('DOMContentLoaded', function() {
-    var email = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>";
-    if (email === '') {
-        // Show the warning message and redirect after a few seconds
-        alert("Your verification has expired. Please log in to try again.\nYou will be redirected to login.");
-        setTimeout(redirectToLoginAndCloseSessions, 2000); // Redirect after 2 seconds
-    }
-});
-</script>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,9 +20,18 @@ window.addEventListener('DOMContentLoaded', function() {
         <img src="./../../resources/img/confirm.svg" class="codever">
         <div class="title">Email Verification</div>
         <p>We have sent code to your email <?php echo $_SESSION['email'];?></p>
-        <?php if (!empty($errors)): ?>
-            <div class="error"><?php echo end($errors); ?></div>
-        <?php endif; ?>
+        <?php
+                    if (isset($_SESSION['error'])) {
+                        $error_message = $_SESSION['error'];
+                        unset($_SESSION['error']);
+                    ?>
+                    <div id="error-alert" class="alert2">
+                        <span class="icon-alert material-symbols-outlined">info</span>
+                        <p>Error: <?php echo $error_message; ?></p>
+                    </div>
+                    <?php
+                    }
+                    ?>
         <form action="<?= redirect_to('codes', 'update'); ?>" method="POST" autocomplete="off">
             <div>
                 <input type="hidden" id="code" name="code">
@@ -65,9 +57,9 @@ window.addEventListener('DOMContentLoaded', function() {
     <script src="../../resources/js/veri_code.js"></script>
     <script>
         window.addEventListener('beforeunload', function(event) {
-            // Check if the user is leaving the page and there are no errors
+            // Verificar si se está saliendo de la página y no hay errores
             if (sessionStorage.getItem('page_status') !== 'error') {
-                // Send a request to the server to delete the email
+                // Enviar una solicitud al servidor para eliminar el correo electrónico
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', 'borrar_email.php', true);
                 xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');

@@ -23,7 +23,7 @@ BEGIN
     ELSEIF user_status = 'verified' THEN
         SET message = 'User already verified';
     ELSE
-        SET message = 'User not found';
+        SET message = 'user_not_found';
     END IF;
 
     SELECT message;

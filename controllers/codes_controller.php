@@ -22,12 +22,13 @@ class CodesController extends Code   {
             $code = $_POST['code'];
             $email = $_SESSION['email'];
             $response = $this->verifyCode($email, $code);
-            if ($response === 'Verificación exitosa') {
+            if ($response === 'Verification successful') {
                 unset($_SESSION['error']); // Eliminar el último error
-                unset($_SESSION['page_status']); // Agregar esta línea
-                header("Location: " . redirect_to('posts', 'index'));
+                unset($_SESSION['page_status']); // Eliminar la bandera de estado de la página
+                unset($_SESSION['code_verification_errors']); // Eliminar los errores de verificación de código
+                header("Location: " . redirect_to('posts', 'index')); // Redirigir al índice
                 exit();
-            } else {
+            }  else {
                 $_SESSION['error'] = $response; // Almacenar el último error
                 $_SESSION['page_status'] = 'error'; // Agregar esta línea
                 header("Location: ../Verify/code.php");
