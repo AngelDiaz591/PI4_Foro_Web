@@ -1,9 +1,4 @@
-*{
-    padding: 0;
-    margin: 0;
-}
-
-.back{
+.back {
     font-size: 2em;
     cursor: pointer;
     position: absolute;
@@ -16,7 +11,7 @@
     }
 }
 
-.slogan{
+.slogan {
     font-size: 1.5em;
     order: 0;
     color: $brow1;
@@ -54,7 +49,7 @@
     margin: 2rem 0 1rem 0;
 }
 
-.signup{
+.signup {
     border: none;
     @include flex-center;
     height: 2.8rem;
@@ -73,11 +68,11 @@
     }
 }
 
-.btn-create{
+.btn-create {
     @include flex-center;
 }
 
-#message{
+#message {
     position: absolute;
     bottom: -20px;
     color:$font_w;
@@ -86,7 +81,7 @@
     font-weight: 800;
 }
 
-#nomessage{
+#nomessage {
     position: absolute;
     bottom: -20px;
     color:$font_w;
@@ -95,7 +90,7 @@
     display: none;
 }
 
-#emailmsg{
+#emailmsg {
     position: absolute;
     bottom: -20px;
     color:$font_w;
