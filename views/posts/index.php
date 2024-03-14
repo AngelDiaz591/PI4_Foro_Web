@@ -1,10 +1,4 @@
 <div class="main">
-<?php 
-session_start();
-if (isset($_SESSION['email'])): ?>
-    <?php $email = $_SESSION['email']; unset($_SESSION['email']);?>
-    <p>Welcome, <?= htmlspecialchars($email) ?>!</p>
-<?php endif; ?>
   <h1>All Posts</h1>
   <a href="<?= redirect_to('posts', 'new'); ?>">New</a>
   <?php foreach ($data as $d): ?>

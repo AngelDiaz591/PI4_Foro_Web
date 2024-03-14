@@ -18,10 +18,11 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     <section class="code_verify">
         <img src="./../../resources/img/confirm.svg" class="codever">
         <div class="title">Email Verification</div>
-        <p>We have sent code to your email <?php echo $_SESSION['email']; ?></p>
+        <p>We have sent code to your email </p>
         <?php
                     if (isset($_SESSION['error'])) {
                         $error_message = $_SESSION['error'];
+                        unset($_SESSION['error']);
                         
                     ?>
                     <div id="error-alert" class="alert2">
@@ -54,6 +55,14 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <p class="warning">Verification Code is valid only for 5 minutes</p>
     </section>
     <script src="../../resources/js/veri_code.js"></script>
+    <script>
+        setTimeout(function(){
+            var errorAlert = document.getElementById("error-alert");
+            if (errorAlert) {
+                errorAlert.style.display = "none";
+            }
+        }, 3000);
+    </script>
     <?php if (isset($_SESSION['error_message'])): ?>
         <script>
             var errorMessage = "<?php echo $_SESSION['error_message']; ?>";

@@ -37,7 +37,15 @@ class CodesController extends Code   {
             $_SESSION['form_submitted'] = true; // Establecer la bandera de formulario enviado
             header("Location: " . redirect_to('posts', 'index')); // Redirigir al índice
             exit();
-        } else {
+        }elseif($response === "changepassword"){
+            unset($_SESSION['error']); // Eliminar el último error
+            unset($_SESSION['page_status']); // Eliminar la bandera de estado de la página
+            unset($_SESSION['code_verification_errors']); // Eliminar los errores de verificación de código
+            $_SESSION['form_submitted'] = true; // Establecer la bandera de formulario enviado
+            header("Location: ../ForgotPassword/changepassword.php"); // Redirigir al índice
+            exit();
+        }
+        else {
             $_SESSION['error'] = $response; // Almacenar el último error
             $_SESSION['page_status'] = 'error'; // Agregar esta línea
             header("Location: ../Verify/code.php"); // Redirigir a code.php sin eliminar el email

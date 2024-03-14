@@ -1,5 +1,6 @@
 DROP PROCEDURE IF EXISTS verifyUserCode;
 DELIMITER $$
+
 CREATE PROCEDURE verifyUserCode(IN p_email VARCHAR(255), IN p_code CHAR(6))
 BEGIN
     DECLARE user_status VARCHAR(20);
@@ -20,12 +21,16 @@ BEGIN
         ELSE
             SET message = 'Incorrect verification code';
         END IF;
-    ELSEIF user_status = 'verified' THEN
-        SET message = 'User already verified';
+    ELSEIF user_status = 'verified'  THEN
+        SET message = 'changepassword';
+        UPDATE usertable
+        SET code = '0'
+        WHERE email = p_email;
     ELSE
-        SET message = 'user not found';
+        SET message = 'User not found';
     END IF;
 
     SELECT message;
 END$$
+
 DELIMITER ;
