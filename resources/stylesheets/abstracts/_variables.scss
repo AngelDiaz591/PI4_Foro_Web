@@ -1,7 +1,17 @@
-//whites
+//back_image
+$back_img: url(./../../resources/img/background_prin.svg);
+
+//whitesb(119, 9, 9)
 $font_w: white;
 $font_w1: #ccc;
 $font_w2:rgb(177, 157, 157);
+$font_w3: #fcf9ea;
+
+//grays
+$gray_1: #929292;
+
+//theme
+$theme_bl: #1f381c;
 
 //blacks:
 $font_b: black;
@@ -9,15 +19,40 @@ $font_b1: #1B1717;
 $font_b2: #262525;
 $font_b3: #000;
 
-$col_red: red;
-$theme_bl: #06138a;
-$font_g: green;
-
-
 //border
 $bor_fond: 0px 2px 4px rgba(0, 0, 0, 0.5);
 $border: 1px solid #ccc;
 $bor_card:2px solid rgba(255, 255, 255, 0.5);
 
-//transitions
-$tr:background-color 0.3s, color 0.3s;
+//page
+$primary-color: #080808;
+$prin_color: rgb(18, 18, 18);
+
+//box
+$box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+
+//input
+$backinput: #dddddd4b;
+
+//pallette_1
+$brow0: rgba(245, 236, 183, 0.96);
+$brow1: #905818;
+$brow2: #b4791a;
+$brow3: #78461b;
+$brow4: #3b1e0d;
+$brow5: #673b1c;
+
+//pallete_code_veri
+$green1: #0cb16134;
+$green2: #0cb162;
+$green3: #076336;
+$border1: #d2d2d2;
+$input_back: #00000013;
+$placeholder_1: rgba(0, 0, 0, 0.156);
+
+//alert_danger
+$col_red: #2c0202;
+$col_red2: rgb(139, 0, 0);
+
+//alert_sucess
+

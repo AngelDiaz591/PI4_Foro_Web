@@ -16,7 +16,7 @@
 
   .profile {
     cursor: pointer;
-    transition: $tr;   
+    /* transition: $tr;  */  
     &:hover {
       color: $theme_bl;       
     }
@@ -72,7 +72,7 @@
   p {
     margin-right: px(3); 
     cursor: pointer;
-    transition: $tr;   
+    /* transition: $tr; */   
     
     &:hover {
       color: $theme_bl;       

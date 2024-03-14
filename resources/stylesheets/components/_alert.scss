@@ -1,0 +1,48 @@
+.alert{
+    background-color: $col_red;
+    height: 2.5rem;
+    @include flex-left;
+    border: 0.1rem solid $col_red2; 
+    color:$font_w1;
+    border-radius: 1rem;
+    margin: 0 0 0.9rem 0;
+    padding: 0 0 0 0.5rem;
+    font-weight: 700;
+    font-size: 1.1em;
+    width: 16.5rem;
+}
+
+.alert-success{
+    height: 2rem;
+    @include flex-left;
+    color: $font_w1;
+    border-radius: 0.5rem;
+    margin: 0 0 2rem 0;
+    padding: 0.9rem;
+    font-weight: 700;
+    font-size: 1.3em;
+    width: 24rem;
+    border: 0.5rem solid $green3;
+    background-color: $green1;
+}
+
+.alert2{
+    background-color: $red_dark;
+    height: 2.5rem;
+    @include flex-left;
+    border-left: 0.5rem solid $col_red2;
+    border: 0.1rem solid $col_red;
+    color: $font_w1;
+    /* color: rgb(211, 12, 12); */
+    border-radius: 1rem;
+    margin: 0 0 1.5rem 0;
+    padding: 0 0 0 0.5rem;
+    font-weight: 700;
+    font-size: 1.1em;
+    width: 20.5rem;
+}
+
+.icon-alert{
+    margin: 0 1rem 0 0;
+    color: 0.5rem solid $green2;
+}

@@ -1,0 +1,98 @@
+.container {
+    margin: 2.5rem;
+    height: 89vh;
+    width: 80%;
+    display: grid;
+    border-radius: 1rem;
+    border: 0.2rem solid $font_w3;
+    box-shadow: $box-shadow;
+    gap: 0;
+    grid-template-columns: 3fr 2fr;
+    background-color: $brow0;
+}      
+
+.left {
+    padding: 1rem;
+    @include flex-grid;
+}
+
+.right {
+    border-radius: 0 0.9rem 0.9rem 0;
+    @include flex-grid;
+}
+
+.img {
+    width: 98%;
+    height: 100%;
+    border-radius: 0.5rem;
+}
+
+.new {
+    color: $font_w;
+    margin-left: 0.5rem;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 800;
+
+    &:hover {
+        color: $font_w;
+    }
+}
+
+.option {
+    @include flex-center;
+}
+
+.box-small {
+    position: relative;
+    display: grid;
+    justify-content: right;
+    margin: 0 0 1rem 0;
+    top: -1.5rem;
+
+    .forgot {
+        text-decoration: none;
+        color: $brow5;
+        font-size: 1.2em;
+        cursor: pointer;
+        font-weight: 400;
+
+        &:hover {
+            color: $brow4;
+            text-decoration: 0.1rem solid underline;
+            font-weight: 600;
+        }
+    }
+}
+
+.btn-sign {
+    @include flex-center;
+    width: 16rem;
+    height: 2.8rem;
+    border-radius: 0.3rem;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: 600;
+    background-color: $brow3;
+    color: $font_w;
+    border: none;
+    margin: 0 0 1.5rem 0;
+    
+    &:hover {
+        color: $font_w;
+        background-color: $brow4;
+    }
+}
+
+.register {
+    @include flex-center;
+    color: $font_w2;
+    font-size: 1rem;
+    margin: 0.5rem 0;
+}
+
+.principal {
+    @include flex-grid;
+    padding: 1.5rem 3rem;
+    border-radius: 2rem;
+}

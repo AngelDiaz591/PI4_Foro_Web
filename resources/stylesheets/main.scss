@@ -5,8 +5,14 @@
     'abstracts/fuctions'; 
 
 //base
+@import
+    'base/structur';
+
+//page
 @import 
-    'base/base';
+    'page/login',
+    'page/register',
+    'page/verify';
 
 //layout
 @import
@@ -16,4 +22,6 @@
 //components
 @import
     'components/cards',
-    'components/nav';
+    'components/nav',
+    'components/input',
+    'components/alert';

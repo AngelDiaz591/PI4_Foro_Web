@@ -33,7 +33,6 @@ nav {
         align-items: center;
         padding: 8px;
         cursor: pointer;
-        transition: $tr; 
         color: $font_w1; 
 
         &:hover {
@@ -54,7 +53,6 @@ nav {
       align-items: center;
       padding: 8px;
       cursor: pointer;
-      transition: $tr; 
       color: $font_w1; 
 
       &:hover {
@@ -64,6 +62,7 @@ nav {
     }
   }
 }
+
 @include tablet {
   nav {
     font-size: 13px;
@@ -130,12 +129,10 @@ nav {
   padding: 10px;
   cursor: pointer;
   font-size: 16px;
-  transition: $tr;
 }
 
 .subcategories .subcategory:hover {
   background-color: $font_w;
-  color: $font_g;
 }
 
 .subcategories a {
