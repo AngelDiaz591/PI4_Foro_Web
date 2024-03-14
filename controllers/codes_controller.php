@@ -16,31 +16,40 @@ class CodesController extends Code   {
             redirect_to_error('500');
         }
     }
-    public function update() {
-        session_start();
-        try {
-            $code = $_POST['code'];
-            $email = $_SESSION['email'];
-            $response = $this->verifyCode($email, $code);
-            if ($response === 'Verification successful') {
-                unset($_SESSION['error']); // Eliminar el último error
-                unset($_SESSION['page_status']); // Eliminar la bandera de estado de la página
-                unset($_SESSION['code_verification_errors']); // Eliminar los errores de verificación de código
-                header("Location: " . redirect_to('posts', 'index')); // Redirigir al índice
-                exit();
-            }  else {
-                $_SESSION['error'] = $response; // Almacenar el último error
-                $_SESSION['page_status'] = 'error'; // Agregar esta línea
-                header("Location: ../Verify/code.php");
-                exit();
-            }
-        } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage(); // Almacenar el último error
-            $_SESSION['page_status'] = 'error'; // Agregar esta línea
+    public function update()
+{
+    session_start();
+    try {
+        $code = $_POST['code'];
+        $email = $_SESSION['email'];
+
+        // Verificar si el parámetro $email está vacío
+        if (empty($email)) {
+            $_SESSION['error_message'] = "Sorry, your verification has expired. Please press OK to redirect to the login page.";
             header("Location: ../Verify/code.php");
             exit();
         }
+        $response = $this->verifyCode($email, $code);
+        if ($response === 'Verification successful') {
+            unset($_SESSION['error']); // Eliminar el último error
+            unset($_SESSION['page_status']); // Eliminar la bandera de estado de la página
+            unset($_SESSION['code_verification_errors']); // Eliminar los errores de verificación de código
+            $_SESSION['form_submitted'] = true; // Establecer la bandera de formulario enviado
+            header("Location: " . redirect_to('posts', 'index')); // Redirigir al índice
+            exit();
+        } else {
+            $_SESSION['error'] = $response; // Almacenar el último error
+            $_SESSION['page_status'] = 'error'; // Agregar esta línea
+            header("Location: ../Verify/code.php"); // Redirigir a code.php sin eliminar el email
+            exit();
+        }
+    } catch (Exception $e) {
+        $_SESSION['error'] = $e->getMessage(); // Almacenar el último error
+        $_SESSION['page_status'] = 'error'; // Agregar esta línea
+        header("Location: ../Verify/code.php"); // Redirigir a code.php sin eliminar el email
+        exit();
     }
+}
     
     
 }

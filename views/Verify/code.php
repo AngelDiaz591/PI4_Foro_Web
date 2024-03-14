@@ -4,7 +4,6 @@ $errors = isset($errors) ? $errors : array();
 session_start();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,11 +18,11 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     <section class="code_verify">
         <img src="./../../resources/img/confirm.svg" class="codever">
         <div class="title">Email Verification</div>
-        <p>We have sent code to your email <?php echo $_SESSION['email'];?></p>
+        <p>We have sent code to your email <?php echo $_SESSION['email']; ?></p>
         <?php
                     if (isset($_SESSION['error'])) {
                         $error_message = $_SESSION['error'];
-                        unset($_SESSION['error']);
+                        
                     ?>
                     <div id="error-alert" class="alert2">
                         <span class="icon-alert material-symbols-outlined">info</span>
@@ -51,21 +50,27 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
                     <input type="submit" class="verify" name="check" value="Confirm">
                 </div>
             </div>
-        </form> 
+        </form>
         <p class="warning">Verification Code is valid only for 5 minutes</p>
     </section>
     <script src="../../resources/js/veri_code.js"></script>
-    <script>
-        window.addEventListener('beforeunload', function(event) {
-            // Verificar si se está saliendo de la página y no hay errores
-            if (sessionStorage.getItem('page_status') !== 'error') {
-                // Enviar una solicitud al servidor para eliminar el correo electrónico
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', 'borrar_email.php', true);
-                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-                xhr.send('action=borrar_email_on_exit');
+    <?php if (isset($_SESSION['error_message'])): ?>
+        <script>
+            var errorMessage = "<?php echo $_SESSION['error_message']; ?>";
+            if (errorMessage) {
+                var confirmed = confirm(errorMessage);
+                if (confirmed) {
+                    // Borrar las sesiones relevantes
+                    <?php
+                    unset($_SESSION['error_message']);
+                    unset($_SESSION['email']);
+                    // Aquí puedes agregar más sesiones que necesites eliminar
+                    ?>
+                    // Redirigir al inicio de sesión
+                    window.location.href = '../login/login.php';
+                }
             }
-        });
-    </script>
+        </script>
+    <?php endif; ?>
 </body>
 </html>
