@@ -18,6 +18,20 @@ class PasswordsController extends password  {
 
     public function update() {
         try {
+            $response = $this->changepasswordcode($this->params);
+            if ($response === true) {
+                header("Location: ../Verify/code.php");
+            } 
+        } catch (Exception $e) {
+            session_start();
+            $_SESSION['error'] = $e->getMessage();
+            header("Location: ../ForgotPassword/email.php");
+            exit();
+        }
+       
+    }
+    public function create() {
+        try {
             $user = $this->changepassword($this->params);
             if ($user !== null) {
                 $email = $user['email']; // Get the user's email from the data returned by the login function

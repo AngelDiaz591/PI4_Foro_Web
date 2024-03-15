@@ -1,4 +1,25 @@
+<?php
+include './../../controllers/application_controller.php';
+$action = isset($_GET['action']) ? $_GET['action'] : ''; 
+$errors = isset($errors) ? $errors : array();
+session_start(); 
 
+// Verifica si NO existe la sesión 'forgot_password'
+#if(!isset($_SESSION['forgot_password'])) {
+    // Muestra un mensaje emergente en inglés
+  #  echo '<script>alert("Password reset has expired. Please try again.");</script>';
+    
+    // Redirige al usuario a la página de inicio de sesión
+    #echo '<script>window.location.href = "../login/login.php";</script>';
+    #exit(); // Termina el script después de redirigir
+#}
+
+if (isset($_SESSION['error'])) {
+    echo "<script>alert('" . $_SESSION['error'] . "');</script>";
+    unset($_SESSION['error']);
+}
+$email = isset($_SESSION['forgot_password']['email']) ? $_SESSION['forgot_password']['email'] : '';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,11 +28,26 @@
     <title>Email</title>
 </head>
 <body>
-    <center><h2>Enter your email for send code for change password </h2>
-    <input type= "email"name= "email" id= "email" placeholder= "Email" required></input>
-    <div class="option">
-                        <button class="btn-sign" name="login">SIGN IN</button>
-                    </div></center>
+    <center>
+        <h2>Enter your new password and confirm password</h2>
+        <?php
+        if (isset($_SESSION['user_email'])) {
+            $user_email = $_SESSION['user_email'];
+            echo "<h2>Welcome back, $user_email!</h2>";
+        }
+        ?>
+        <form action="<?= redirect_to('passwords', 'create'); ?>" method="POST" autocomplete="">
+        <div class="user-input">
+            <input type="password" class="input" name="newpassword" placeholder="newPassword" id="newpassword" required>
+        </div>
+        <div class="user-input">
+            <input type="password" class="input" name="cpassword" placeholder="Confirm password" id="cpassword" required>
+        </div>
+        <div class="confirm">
+            <input type="submit" class="change" name="check" value="Confirm">
+        </div>
+        </form>
+    </center>
     <script>
         setTimeout(function(){
             var errorAlert = document.getElementById("error-alert");

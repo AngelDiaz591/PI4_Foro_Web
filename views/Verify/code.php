@@ -1,8 +1,9 @@
 <?php
 include './../../controllers/application_controller.php';
-$errors = isset($errors) ? $errors : array();
 session_start();
+$errors = isset($errors) ? $errors : array();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
+$email = $_SESSION['email'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     <section class="code_verify">
         <img src="./../../resources/img/confirm.svg" class="codever">
         <div class="title">Email Verification</div>
-        <p>We have sent code to your email </p>
+        <p>We have sent code to <?php echo $email; ?> </p> 
         <?php
                     if (isset($_SESSION['error'])) {
                         $error_message = $_SESSION['error'];
@@ -55,14 +56,6 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <p class="warning">Verification Code is valid only for 5 minutes</p>
     </section>
     <script src="../../resources/js/veri_code.js"></script>
-    <script>
-        setTimeout(function(){
-            var errorAlert = document.getElementById("error-alert");
-            if (errorAlert) {
-                errorAlert.style.display = "none";
-            }
-        }, 3000);
-    </script>
     <?php if (isset($_SESSION['error_message'])): ?>
         <script>
             var errorMessage = "<?php echo $_SESSION['error_message']; ?>";

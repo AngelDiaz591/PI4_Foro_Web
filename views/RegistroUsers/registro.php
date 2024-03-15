@@ -1,10 +1,9 @@
 <?php 
 include './../../controllers/application_controller.php';
-session_start(); 
-unset($_SESSION['email']);
 $action = isset($_GET['action']) ? $_GET['action'] : ''; 
 $errors = isset($errors) ? $errors : array();
-session_start();
+session_start(); 
+unset($_SESSION['email']);
 ?>  
 <!DOCTYPE html>
 <html lang="en">

@@ -4,7 +4,6 @@ session_start();
 unset($_SESSION['email']);
 $action = isset($_GET['action']) ? $_GET['action'] : ''; 
 $errors = isset($errors) ? $errors : array();
-session_start(); 
 ?>  
 <!DOCTYPE html>
 <html lang="en">
@@ -58,7 +57,7 @@ session_start();
                         <span class="icon material-symbols-outlined" id="user-input">lock</span>
                     </div>
                     <div class="box-small">
-                        <a href="../forgot_password/_password.php" class="forgot">Forgot my password?</a>
+                        <a href="../ForgotPassword/email.php" class="forgot">Forgot my password?</a>
                     </div>
                     <div class="option">
                         <button class="btn-sign" name="login">SIGN IN</button>
@@ -71,6 +70,14 @@ session_start();
             </div>
         </div>
     </div>
+    <?php
+    // Verificar si hay un mensaje de éxito en la sesión
+    if (isset($_SESSION['success'])) {
+        echo '<div class="success-message">' . $_SESSION['success'] . '</div>';
+        // Eliminar el mensaje de éxito de la sesión para que no se muestre nuevamente
+        unset($_SESSION['success']);
+    }
+    ?>
     <div id="errorMessages"></div>
     <script src="validacion.js"></script>
     <script>
