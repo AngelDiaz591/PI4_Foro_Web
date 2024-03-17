@@ -1,53 +1,87 @@
 <?php
 ob_start();
-get_model('password');
+get_model('user');
 
-class PasswordsController extends password  {
-    private $params;
+class PasswordsController extends User {
+  private $params;
+  
+  public function __construct($params) {
+    try {
+      parent::__construct();
+      $this->params = $params['method'];
+    } catch (Exception $e) {
+      error_log($e->getMessage());
+      redirect_to_error('500');
+    }
+  }
+
+  public function new() {
+    return $this->render('new', $this->params);
+  }
+
+  public function create() {
+    try {
+      $response = $this->send_reset_password_instructions($this->params);
+      if ($response["status"]) {
+        header("Location:" . redirect_to('passwords', 'new'));
+      } else {
+        throw new Exception("Failed to resend code: " . $response["message"]);
+      }
+    } catch (Exception $e) {
+      $_SESSION['error'] = $e->getMessage();
+      error_log($e->getMessage());
+      header("Location:" . redirect_to('passwords', 'new'));
+    }
+  }
+
+  public function edit() {
+    return $this->render('edit', $this->params);
+  }
+
+  public function update() {
+    try {
+      $response = $this->authenticate();
+
+      if ($response["status"]) {
+        header("Location:" . redirect_to('sessions', 'new'));
+      } else {
+        throw new Exception("Failed to update password: " . $response["message"]);
+      }
+    } catch (Exception $e) {
+      $_SESSION['error'] = $e->getMessage();
+      error_log($e->getMessage());
+      header("Location:" . redirect_to('passwords', 'edit') . "&reset_password_token=" . $this->params["token"]);
+    }
+  }
+
+  private function authenticate() {
+    try {
+      if ($this->params['newpassword'] !== $this->params['cpassword']) {
+        throw new Exception("Passwords do not match");
+      }
+
+      $user = $this->get_user_by_reset_password_token($this->params['token']);
+      $user_data = $user["data"];
+
+      if (password_verify($this->params['newpassword'], $user_data['password'])) {
+        throw new Exception("Password cannot be the same as the current password");
+      }
+
+      $this->params = array_merge($this->params, $user_data);
+      $this->params['newpassword'] = password_hash($this->params['newpassword'], PASSWORD_DEFAULT);
+
+      return $this->update_password($this->params);
+    } catch (Exception $e) {
+      throw new Exception("Failed to authenticate user: " . $e->getMessage());
+    }
+  }
     
-    public function __construct($params) {
-        // var_dump($params);
-        try {
-            parent::__construct();
-            $this->params = $params['method'];
-        } catch (Exception $e) {
-            error_log($e->getMessage());
-            redirect_to_error('500');
-        }
-    }
+  protected function render($view, $data = []) {
+    $params = $data;
 
-    public function update() {
-        try {
-            $response = $this->changepasswordcode($this->params);
-            if ($response === true) {
-                header("Location: ../Verify/code.php");
-            } 
-        } catch (Exception $e) {
-            session_start();
-            $_SESSION['error'] = $e->getMessage();
-            header("Location: ../ForgotPassword/email.php");
-            exit();
-        }
-       
-    }
-    public function create() {
-        try {
-            $user = $this->changepassword($this->params);
-            if ($user !== null) {
-                $email = $user['email']; // Get the user's email from the data returned by the login function
-                // Redirect the user to a success page or wherever necessary
-                header("Location: ../Verify/code.php");
-                unset($_SESSION['error']);
-                exit();
-            } else {
-                throw new Exception("Failed login");
-            }
-        } catch (Exception $e) {
-            session_start();
-            $_SESSION['error'] = $e->getMessage();
-            header("Location: ../ForgotPassword/email.php?error=");
-            exit();
-        }
-    }
+    include ROOT_DIR . 'views/users/passwords/' . $view . '.php';
+
+    return ob_get_clean();
+  }
 }
 ?>
