@@ -1,84 +1,105 @@
-
 nav {
   z-index: 1;
-  margin-top: px(12);
+  margin-top: px(15);
   position: fixed;
-  width: 13%;
-  height: 100%;
-  background-color: $font_b2;
-  color: $font_w1;
-  box-shadow: $bor_fond;
+  width: 14%;
+  height: 93%;
   overflow-y: auto; 
-  transition: transform 0.3s ease-in-out;
-  font-size: 20px; 
-  
+  font-size: 25px; 
+  box-shadow: 0 0 5px $font_w2; 
+  background-color: $font_w4;
+  transition: width 0.3s ease;
+  font-family: "Poppins", sans-serif;
+
   .line {
     @include line($border);
   }
+  
   .icons {
-    color: $font_w1;
     display: flex;
     flex-direction: column;
     padding: 0;
     margin: 0;
-    list-style: none;
 
     a {
-      color: $font_w1;
+      color: $font_b;
       text-decoration: none;
 
-      .category {
-        position: relative;
-        display: flex;
-        align-items: center;
-        padding: 8px;
-        cursor: pointer;
-        /* transition: $tr;  */
-        color: $font_w1; 
-
-        &:hover {
-            background-color: $font_w; 
-            color: $font_b;      
+      >.category {
+        @include nav();
+        i {
+          margin-right: 10px;
         }
-              
-      }
-
-      span {
-        margin-right: 15px;
-      }
+        p{
+          margin: 0;
+        }
+      } 
     }
 
     .categories {
-      position: relative;
-      display: flex;
-      align-items: center;
-      padding: 8px;
-      cursor: pointer;
-      /* transition: $tr; */ 
-      color: $font_w1; 
+      color: $font_b;
+      @include nav();
+      padding: 0;
+      margin: 10px;
 
-      &:hover {
-        background-color: $font_w; 
-        color: $font_b;   
-      } 
+      p{
+        margin: 0;
+      }
     }
   }
 }
+
+.list:hover {
+  transition: background-color 0.3s ease;
+  background-color: $font_b; 
+  color: $font_w;
+} 
+
 @include tablet {
   nav {
     font-size: 13px;
+
+    .subcategory > p {
+      font-size: 13px;
+    }
+
+    ul.icons .category .categori {
+      margin-top: 4px;
+    }
+  }
+
+  
+  
+}
+
+.category{
+  display: flex;
+  padding: 0;
+  margin-left: 20px;
+
+  p {
+    margin: 0;
+  }
+  .categori {
+    margin-top: 7px;
+    padding-left: 5%;
   }
 }
+
+
 @include mobile {
   nav {
     width: 100%;
     height: 35%;
     position: fixed; 
     top: 0;
+    li.category span.cate {
+      margin: 0;
+    }
   }
 
   .category {
-    p {
+    > p {
       margin: 0;
       font-size: 20px;
     }
@@ -94,15 +115,33 @@ nav {
 
 //works with the js nav
 .hide-nav {
-  width: 4%;
+  width: 80px;
   .icons {
-    .category{
-      padding-top: 10px;
+
+    .list {
+      border-radius: 0;
     }
-    .material-symbols-outlined{
+
+    i {
+      width: 100%;
       font-size: 40px;
     }
-    p, .line, .categories{
+
+    p, .line{
+      display: none;
+    }
+  }
+
+  .categories {
+    border-radius: 0;
+    margin: 0;
+
+    i {
+      width: 100%;
+      font-size: 40px;
+    }
+
+    p {
       display: none;
     }
   }
@@ -113,36 +152,32 @@ nav {
 }
 
 .subcategories {
+  color: $font_w1;
   display: none;
-  position: absolute;
-  width: 200px; 
-  top: 0; 
-  left: 100%; 
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background-color: $font_b2;
   flex-direction: column;
-  z-index: 1; 
+  margin: 0;
+  transition: transform 0.3s ease;
+
+  a {
+    color: $font_w1;
+    text-decoration: none;
+    color: $font_w1; 
+
+    > span {
+      margin-right: 15px;
+    }
+  }
+
+  .subcategory {
+    @include nav();
+
+    > p {
+      margin: 0;
+    }
+  }
 }
 
-.subcategories .subcategory {
-  padding: 10px;
-  cursor: pointer;
-  font-size: 16px;
-  /* transition: $tr; */
-}
-
-.subcategories .subcategory:hover {
-  background-color: $font_w;
-  /* color: $font_g; */
-}
-
-.subcategories a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.subcategories span {
-  margin-right: px(2);
+.show_cat {
+  display: flex;
+  padding: 0;
 }

@@ -1,23 +1,26 @@
 //Abstracts 
 @import 
-    'abstracts/variables',
-    'abstracts/mixins',
-    'abstracts/fuctions'; 
+  'abstracts/variables',
+  'abstracts/mixins',
+  'abstracts/fuctions',
+  'abstracts/animations'; 
 
-//base
+@import
+  'base/base';
+
 @import 
-    'base/login',
-    'base/register',
-    'base/verify';
+  'page/login',
+  'page/register',
+  'page/verify';
 
-//layout
 @import
-    'layout/header',
-    'layout/invi';
+  'layout/header',
+  'layout/invi';
 
-//components
 @import
-    'components/cards',
-    'components/nav',
-    'components/input',
-    'components/alert';
+  'components/nav',
+  'components/cards',
+  'components/chats',
+  'components/comments',
+  'components/input',
+  'components/alerts';

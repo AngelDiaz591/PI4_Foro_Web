@@ -3,8 +3,8 @@
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
-    width: 30rem;
-    height: 25rem;
+    width: 50%;
+    height: 50%;
     background-color: $brow0;
     border: 0.2rem solid $font_w3;
     border-radius: 0.9rem;
@@ -14,7 +14,7 @@
 .verify {
     width: 16rem;
     letter-spacing: 0.1rem;
-    margin: 0.3rem 0 0 0;
+    margin: 0.3rem 0 1rem;
     padding: 0.8rem 0.5rem;
     border-radius: 8px;
     border: none;
@@ -45,10 +45,15 @@
 .resend {
     text-decoration: none;
     color: $green2;
-    font-weight: 600;
-    padding-left: 0.2rem;
+    font-weight: 900;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: monospace;
+  padding-left: 0.2rem;
+  font-size: 1.2rem;
 
-    &:hover{
+    &:hover {
         color: $green3;
     }
 }

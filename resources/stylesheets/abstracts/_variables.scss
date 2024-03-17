@@ -1,4 +1,7 @@
-//whites
+//back_image
+$back_img: url(./../../resources/img/background_prin.svg);
+
+//whitesb(119, 9, 9)
 $font_w: white;
 $font_w1: #ccc;
 $font_w2:rgb(177, 157, 157);
@@ -46,3 +49,55 @@ $green3: #076336;
 $border1: #d2d2d2;
 $input_back: #00000013;
 $placeholder_1: rgba(0, 0, 0, 0.156);
+
+//alert_danger
+$col_red: #2c0202;
+$col_red2: rgb(139, 0, 0);
+
+//alert_sucess
+
+
+
+//whites
+$font_w: white;
+$font_w1: #ccc;
+$font_w2:rgb(177, 165, 165);
+$font_w3: #d8dfd9;
+
+//blacks:
+$font_b: black;
+$font_b1: #161414;
+$font_b2: #262525;
+$font_b3: #000;
+$font_b4: #0c0a0a;
+
+$col_red: red;
+$theme_bl: #7380ec;
+$font_g: green;
+
+
+//border
+$bor_fond: 0px 2px 4px rgba(0, 0, 0, 0.5);
+$border: 1px solid $font_b;
+$bor_card:2px solid rgba(255, 255, 255, 0.5);
+
+//transitions
+$tr:background-color 0.3s, color 0.3s;
+
+$font_w4: #ffffff;
+$font_w5: rgb(248, 248, 248);
+$font_bl1: #41e9bfd8;
+$font_bl2: #060c3d;
+
+//theme light
+$font_light: #7380ec;
+$font_light2: #ff7782;
+$font_light3: #41f1b6;
+$font_light4: #ffbb55;
+$font_light5: #fff;
+$font_light6: #7d8da1;
+$font_light7: #dce1eb;
+$font_light8: #363949;
+$font_light9: rgba(132,139,200, 0.18); 
+$font_light10: #111e88;
+$font_light11: #f6f6f9;

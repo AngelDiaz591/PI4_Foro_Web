@@ -1,18 +1,120 @@
 header {
-  height: px(12);
-  background-color: $font_b2;
+  height: px(15);
+  background-color: $font_b;
   color: $font_w;
   box-shadow:  $bor_fond;
-  z-index: 1;
+  z-index: 2;
   position: fixed; 
   width: 100%; 
   transition: top 0.3s; 
   display: flex;
   align-items: center;
+
+  img {
+    width: px(10);
+    height:px(10);
+  }
+}
+
+h2 {
+  color: $font_w;
 }
 
 .menu {
-  font-size: px(7);
+  font-size: px(10);
   margin-left: px(4);
   cursor: pointer;
+  padding-right: px(8);
+}
+
+.seeker {
+  display: flex;
+  align-items: center;
+  border-radius: px(5); 
+  @include card ();
+  margin: auto auto auto 15%;
+  width: 30%;
+
+  > button {
+    background-color: $font_b4;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    > i{
+      text-align: center;
+      font-size: 25px;
+      color: $font_w;
+    }
+  }
+
+  input.cont[type="search"] {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    outline: none;
+    border-radius: px(5); 
+    color: $font_w1;
+    background-color: $font_b4;
+    border: 1px solid $font_b4;
+    margin: 5px 5px 5px 0;
+    font-size: 20px;
+  }
+}
+
+header .seeker .search {
+  margin: 5px 0 0 7px;
+  font-size: 25px;
+}
+
+@include mobile {
+
+  .menu {
+    padding-right: 0;
+  }
+
+  .seeker {
+    margin: auto;
+  }
+}
+
+@media (max-width:500px) {
+  h2 {
+    display: none;
+  }
+}
+
+
+
+.login {
+  @include card();
+  border-radius: 20px;
+  margin-right: 20px;
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  a, input {
+    color: $font_w;
+    font-size: 25px;
+    margin: 10px;
+    text-decoration: none;
+  }
+
+  input {
+    margin: 0 10px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  &:hover {
+    background-color: $font_w;
+    animation: shake 0.5s ease-in-out infinite;
+    
+    & > a, input {
+      color: $font_b;
+    }
+  }
 }
