@@ -47,8 +47,6 @@
       cursor: pointer;
       &:hover {
           color: $theme_bl; 
-          background-color: $font_light7;       
-          
       }
     }
   }
@@ -100,7 +98,6 @@
 
   button {
     cursor: pointer;
-    background-color: $font_w5;
     border: none;
     margin-left: auto;
     padding-right: px(2);

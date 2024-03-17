@@ -29,7 +29,6 @@ a {
 
   .profile {
     cursor: pointer;
-    /* transition: $tr;  */  
     &:hover {
       color: $theme_bl;
     }
@@ -123,12 +122,9 @@ a {
   p {
     margin: 0; 
     cursor: pointer;
-    transition: $tr;   
     font-weight: bold;
     &:hover {
       color: $theme_bl; 
-      background-color: $font_light7;       
-      
     }
   }
 }
@@ -197,7 +193,6 @@ a {
 
   > p {
     margin-right: px(3); 
-    transition: $tr;   
   }
 }
 
