@@ -206,8 +206,7 @@ Class Base extends Database {
     $pattern = "/[^a-zA-Z0-9\_\-\.]/";
     $replacement = '_';
 
-    $chars = str_split('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*');
-    $token = implode('', array_rand(array_flip($chars), 8));
+    $token = $this->generate_token(8);
 
     $extension = pathinfo($image, PATHINFO_EXTENSION);
     $name = $token . pathinfo($image, PATHINFO_FILENAME);
@@ -219,6 +218,20 @@ Class Base extends Database {
 
 
     return date("Y-m-d_H-i-s") . "_" . $new_name . "." . $extension;
+  }
+
+
+/**
+ * Generate a random token
+ * 
+ * @param int $longitud
+ * @return string
+ * 
+ * By Ismael March 12th, 2024 9:19 PM
+ * Modified by Alejandro March 16th, 2024 00:38 AM
+ */
+  public function generate_token($longitud = 16) {
+    return bin2hex(random_bytes($longitud));
   }
 
 /**

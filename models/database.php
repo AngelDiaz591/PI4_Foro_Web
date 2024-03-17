@@ -6,8 +6,8 @@
 class Database {
   private $host = "localhost";
   private $dbname = "foroweb";
-  private $dbuser = "isma";
-  private $dbpass = '123';
+  private $dbuser = "root";
+  private $dbpass = '';
 
   public $conn;
 
@@ -23,6 +23,8 @@ class Database {
 
     try {
       $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->dbname, $this->dbuser, $this->dbpass);
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      $this->conn->exec("SET time_zone = '+00:00'");
     } catch(PDOException | Exception $e) {
       throw new Exception('Connection error: ' . $e->getMessage());
     }

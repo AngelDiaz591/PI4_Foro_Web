@@ -132,8 +132,8 @@ function render($action, $controller, $data = []) {
  * @param string $href
  * @return string link tag
  */
-function link_tag($rel, $href) {
-  return "<link rel='$rel' href='" . get_home_url() . "resources/stylesheets/$href.css'";
+function link_tag($rel, $href, $type = 'text/css') {
+  return "<link rel='$rel' href='" . get_home_url() . "resources/$href' type='$type'>";
 }
 
 /**
@@ -144,5 +144,17 @@ function link_tag($rel, $href) {
  */
 function script_tag($src) {
   return "<script src='" . get_home_url() . "resources/js/$src.js'></script>";
+}
+
+/**
+ * This function is used to render a img tag from resources/img directory
+ * 
+ * @param string $src
+ * @param string $alt
+ * 
+ * @return string img tag
+ */
+function img_tag($src, $alt, $class = '', $id = '', $style = '') {
+  return "<img src='" . get_home_url() . "resources/img/$src' alt='$alt' class='$class' id='$id' style='$style'>";
 }
 ?>
