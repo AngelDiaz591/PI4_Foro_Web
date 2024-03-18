@@ -15,7 +15,7 @@ BEGIN
     SIGNAL SQLSTATE '45001'
     SET MESSAGE_TEXT = 'User is already confirmed';
   END IF;
-  IF NEW.confirmed_at == OLD.confirmed_at THEN
+  IF NEW.confirmed_at = OLD.confirmed_at THEN
     SET NEW.updated_at = NOW();
   END IF;
 END $$
