@@ -15,8 +15,9 @@ $data = array(
   "files" => $_FILES,
 );
 
-if ($action === 'create' || $action === 'update' || $action === 'destroy') {
-  if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($action === 'create' || $action === 'update' || $action === 'delete' || 
+      $action === 'purge_image' || $action === 'patch' || $action === 'destroy') {
+  if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
     redirect_to_error('405');
   }
 
@@ -56,11 +57,11 @@ if ($action === 'create' || $action === 'update' || $action === 'destroy') {
       <?= render($action, $controller, $data); ?>
     </div>
   <?php else: ?>
-    <?php render_layout('header'); ?>
+    <?= render_layout('header'); ?>
     
     <div class="container">
       <nav id="main-nav">
-        <?php render_layout('sidebar_main'); ?>
+        <?= render_layout('sidebar_main'); ?>
       </nav>
 
       <main>
@@ -75,7 +76,7 @@ if ($action === 'create' || $action === 'update' || $action === 'destroy') {
         <span class="close-modal" onclick="closeModal()">&times;</span>
       </div>
 
-      <?php render_layout('sidebar_chats'); ?>
+      <?= render_layout('sidebar_chats'); ?>
     </div>
   <?php endif; ?>
 </body>
