@@ -11,7 +11,8 @@
 @import 
   'page/login',
   'page/register',
-  'page/verify';
+  'page/verify',
+  'page/profile';
 
 @import
   'layout/header',
@@ -22,5 +23,6 @@
   'components/cards',
   'components/chats',
   'components/comments',
+  'components/form_posts',
   'components/input',
   'components/alerts';
