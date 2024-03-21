@@ -19,7 +19,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS unesco;
 
 CREATE TABLE users (
-    id INT(20) AUTO_INCREMENT,
+    id INT(20) AUTO_INCREMENT, 
     username VARCHAR(255) NOT NULL UNIQUE,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
@@ -137,3 +137,4 @@ CREATE TABLE images (
     CONSTRAINT `fk_images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
     CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`) ON DELETE CASCADE
 );
+

@@ -1,5 +1,5 @@
 <ul class="icons">
-  <a href="<?= redirect_to('admin', 'main_admin') ?>" class="list">
+  <a href="main_admin.php" class="list">
     <li class="category">
       <i class='bx bxs-dashboard'></i>
       <p>Dashboard</p>
@@ -47,12 +47,14 @@
       <p>Settings</p>
     </li>
   </a>
-  <br><br><br>
+  <br> 
   <li class="line"></li>
   <a href="#" class="list">
     <li class="category">
       <i class='bx bx-log-out' ></i>
-      <p>Log Out</p>
+      <form action="<?= redirect_to('sessions', 'destroy'); ?>" method="post">
+          <input type="submit" name="logout" value="Log out">
+      </form>
     </li>
   </a>
 </ul>

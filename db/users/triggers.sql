@@ -20,3 +20,16 @@ BEGIN
   END IF;
 END $$
 DELIMITER ;
+
+
+DROP TRIGGER IF EXISTS create_admin;
+DELIMITER $$
+CREATE TRIGGER create_admin
+BEFORE INSERT ON users
+FOR EACH ROW
+BEGIN
+  IF NEW.email = 'imontiel@ucol.mx' THEN
+    SET NEW.rol = 1;
+  END IF;
+END;
+DELIMITER ;

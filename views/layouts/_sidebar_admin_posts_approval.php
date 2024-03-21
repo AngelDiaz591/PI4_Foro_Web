@@ -33,10 +33,10 @@
   </div>
   <style>
         .posts-table{
-          background-color: white;
+          background-color: rgba(245, 236, 183, 0.96);
           box-shadow: 0 0 5px rgb(177, 165, 165);
           border-radius: 15px;
-          margin: 10px;
+          margin: 0px 20px 10px -40px;
         }
         table {
             width: 100%;
@@ -58,8 +58,8 @@
           font-size: 24px;
         }
         .subtitle{
-          color: white;
-          background-color: #C3C3C3;
+          color: black;
+          cursor: pointer;
         }
         .check{
           border: 3px solid grey;
@@ -70,8 +70,8 @@
           cursor: pointer;
         }
     </style>
-  <h5 class="title">Posts Awaiting Approval</h5>
   <div class="posts-table">
+  <h5 class="title">Posts Awaiting Approval</h5>
   <table>
     <thead>
         <tr>
@@ -102,8 +102,7 @@
         </tr>
     </tbody>
 </table>
+<h4 class="subtitle">Show All Posts</h4>
 <br>
-<button class="check">Show All Publications</button>
-<br><br>
 </div>
 </div>

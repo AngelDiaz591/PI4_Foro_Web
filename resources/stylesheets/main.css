@@ -824,6 +824,11 @@ nav .icons a > .category i {
 nav .icons a > .category p {
   margin: 0;
 }
+nav .icons a > .category input[type=submit] {
+  background-color: transparent;
+  font-size: 20px;
+  border: none;
+}
 nav .icons .categories {
   color: black;
   display: flex;

@@ -40,7 +40,7 @@ session_start();
           display: flex;
           flex-wrap: wrap;
           justify-content: space-between;
-          margin: 40px 40px;
+          margin: 40px 50px;
         }
 
         .boxed-data {
@@ -65,7 +65,9 @@ session_start();
         </style>
 
       <main class="dashboard_admin_content">
+      <div class="chart-container" style="background-color: rgba(245, 236, 183, 0.96); padding: 20px; margin: 10px 50px 10px 50px;">
       <canvas id="myChart"></canvas>
+      </div>
         <script>
             var ctx = document.getElementById('myChart').getContext('2d');
             var myChart = new Chart(ctx, {

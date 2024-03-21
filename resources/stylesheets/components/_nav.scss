@@ -33,6 +33,12 @@ nav {
         p{
           margin: 0;
         }
+
+        input[type="submit"] {
+          background-color: transparent;
+          font-size: px(4);
+          border: none;
+        }
       } 
     }
 
