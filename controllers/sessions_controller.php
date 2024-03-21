@@ -14,6 +14,10 @@ class SessionsController extends User  {
     }
   }
 
+  public function show() {
+    return $this->render('show', $this->params);
+  }
+
   public function new() {
     return $this->render('new', $this->params);
   }

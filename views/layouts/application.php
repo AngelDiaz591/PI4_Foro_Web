@@ -76,7 +76,9 @@ if ($action === 'create' || $action === 'update' || $action === 'delete' ||
         <span class="close-modal" onclick="closeModal()">&times;</span>
       </div>
 
-      <?= render_layout('sidebar_chats'); ?>
+      <?php if($controller ==! 'sessions' && $action ==! 'show'): ?>
+        <?= render_layout('sidebar_chats'); ?>
+      <?php endif; ?>
     </div>
   <?php endif; ?>
 </body>

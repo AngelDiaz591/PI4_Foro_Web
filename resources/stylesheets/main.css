@@ -179,6 +179,9 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 0 1.8rem 0;
   font-weight: 600;
 }
+.slogan h2 {
+  color: #905818;
+}
 
 .new {
   color: white;
@@ -269,7 +272,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
-  width: 50%;
+  width: 35%;
   height: 50%;
   background-color: rgba(245, 236, 183, 0.96);
   border: 0.2rem solid #d8dfd9;
@@ -338,6 +341,186 @@ h1, h2, h3, h4, h5, h6 {
 
 .codever {
   height: 6rem;
+}
+
+.first-main {
+  margin-left: 17rem;
+}
+
+.state {
+  display: grid;
+  height: auto; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+}
+.state .cover-profile {
+  display: flex;
+  width: 80rem;
+  height: 20rem;
+  background: url(./../../resources/img/cover_profile.jpg);
+  background-size: cover;
+  border-radius: 1rem;
+}
+
+.state2 {
+  display: grid;
+  height: auto; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+  top: -4rem;
+  position: relative;
+}
+.state2 .info-user {
+  display: grid;
+  height: 12.5rem;
+  width: 70rem;
+  position: relative;
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  padding: 1.5rem 1.5rem 0.2rem 1.5rem;
+  border-radius: 2rem;
+}
+.state2 .photo {
+  border-radius: 50%;
+  width: 10rem;
+}
+.state2 .data-user {
+  color: black;
+  display: grid;
+  margin: 0 0 0 1rem;
+  text-align: left;
+}
+.state2 .count {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+.state2 .submenu {
+  display: flex;
+  justify-content: center;
+}
+.state2 .submenu .option {
+  padding: 0.2rem 1rem;
+  margin: 0 1rem 0 0;
+}
+.state2 .submenu .option:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+.state2 .submenu .option:active {
+  border: none;
+  border-bottom: 0.2rem solid black;
+  color: black;
+}
+.state2 .position {
+  display: flex;
+  padding: 0 0 1rem 0;
+  align-items: center;
+}
+.state2 .position .edit-btn {
+  justify-content: right;
+  display: flex;
+  width: 100%;
+}
+.state2 .btn-conf {
+  padding: 0.6rem 1.3rem;
+  background-color: white;
+  border-radius: 1rem;
+  border: 0.15rem solid rgb(128, 128, 128);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #777777;
+}
+.state2 .btn-conf:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.state2 {
+  display: grid;
+  /* grid-template-rows: auto auto; /* Esto dividirá el contenedor en dos filas de tamaño automático * */
+  /* gap: -5rem; /* Espacio entre las filas * */
+  height: 10rem; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Esto dividirá el contenedor en dos columnas de tamaño automático */
+  gap: 2rem; /* Espacio entre las columnas */
+  width: 60rem; /* Anchura del contenedor */
+  margin: 2rem 0 0 0;
+  height: auto;
+  justify-content: center;
+}
+.profile .hobbies {
+  height: auto;
+}
+.profile .hobbies .info {
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+.profile .hobbies .info .datas {
+  margin: 1.5rem 0 0 0;
+  color: rgb(150, 150, 150);
+  display: grid;
+}
+.profile .hobbies .info .datas .sh {
+  margin: 0 0 1rem 0;
+}
+.profile .hobbies .info .datas .sh .sh-icon {
+  margin: 0 0.5rem 0 0;
+}
+
+.post-container {
+  display: none;
+}
+
+.nopost-container {
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  border-left: 0.5rem solid #78461b;
+  height: 10rem;
+  padding: 2rem;
+}
+
+.add-photo {
+  width: 7rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.enun {
+  color: rgb(177, 165, 165);
+}
+
+.link {
+  padding: 0.5rem;
+  color: rgb(150, 150, 150);
+  font-weight: 700;
+}
+.link:hover {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: rgb(87, 87, 87);
+  color: white;
+}
+
+.ig {
+  color: rgb(150, 150, 150);
+}
+
+.caract {
+  margin: 0 3rem 0 0;
+}
+
+.active {
+  border-bottom: 2px solid blue; /* Estilo activo */
 }
 
 header {
@@ -683,9 +866,48 @@ a {
 .box h2 {
   color: black;
 }
+.box h3 {
+  padding-bottom: 1rem;
+}
 .box a {
   text-decoration: none;
   color: black;
+}
+.box__images {
+  margin: 1rem;
+}
+.box__images img {
+  border-radius: 10px;
+  border: 1px solid #0c0a0a;
+  cursor: pointer;
+  height: auto;
+  max-width: 100%;
+}
+.box .box__images.post-index {
+  display: flex;
+  flex-wrap: nowrap;
+  margin: 1rem;
+  overflow: hidden;
+}
+.box .box__images.post-index img:nth-child(3n) {
+  filter: brightness(0.4);
+}
+.box .box__images.post-index img:nth-child(4n) {
+  filter: brightness(0.3);
+}
+.box .box__images.post-index img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+  max-width: 30%;
+}
+.box .box__images.post-index .image-num {
+  color: white;
+  font-size: 4rem;
+  left: 52%;
+  padding-top: 4%;
+  position: fixed;
+  z-index: 1;
 }
 
 .user {
@@ -889,6 +1111,23 @@ a {
   font-size: 15px;
   padding: 10px;
   outline: none;
+}
+
+.return {
+  background-color: rgba(196, 196, 196, 0.2941176471);
+  border-radius: 10px;
+  left: 20%;
+  padding: 1rem;
+  position: absolute;
+  top: 13%;
+}
+@media only screen and (max-width: 1250px) {
+  .return {
+    left: 12%;
+  }
+}
+.return:hover {
+  background-color: rgba(145, 145, 145, 0.2941176471);
 }
 
 .chat {
@@ -1151,6 +1390,121 @@ a {
   margin-left: auto;
 }
 
+form .box {
+  margin: 1rem 0;
+  max-width: none;
+}
+
+.box .user {
+  justify-content: space-between;
+  padding: 1rem;
+}
+.box .user__avatar {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+.box .user__avatar h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding-left: 1rem;
+}
+.box .user__avatar i {
+  font-size: 2rem;
+}
+.box .user__date p {
+  font-size: 1rem;
+}
+
+.text .field {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.text .field .attach-file {
+  color: #929292;
+  cursor: pointer;
+  font-size: 1.5rem;
+  padding: 14px;
+  position: absolute;
+}
+.text .field .attach-file:hover {
+  color: #797979;
+}
+.text .field input, .text .field textarea {
+  background: rgba(221, 221, 221, 0.2941176471);
+  border-radius: 5px;
+  border: none;
+  color: #0c0a0a;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 1rem;
+  margin: 0 0 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+form .images {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  padding-bottom: 1rem;
+}
+form .images input[type=file] {
+  display: none;
+}
+form .images .image {
+  display: flex;
+  margin: 0 4px 4px 0;
+  cursor: pointer;
+}
+form .images .image img {
+  border-radius: 10px;
+  height: 5rem;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  border: #929292 solid 2px;
+  width: 5rem;
+}
+form .images .image .remove-image {
+  color: red;
+  display: none;
+  font-size: 22px;
+  position: absolute;
+  transform: translateX(68px);
+}
+form .images .image:hover img {
+  border: red solid 2px;
+}
+form .images .image:hover .remove-image {
+  display: block;
+}
+form .images > p.extra-files {
+  color: #929292;
+  font-size: 1rem;
+  font-weight: 600;
+  margin: auto auto auto 8px;
+}
+
+.btn-container {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.btn-container .btn {
+  background-color: rgba(196, 196, 196, 0.2941176471);
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  transition: background-color 100ms ease-in-out;
+}
+.btn-container .btn:hover {
+  background-color: rgba(145, 145, 145, 0.2941176471);
+}
+
 .user-input {
   width: 19rem;
   max-width: 90%;
@@ -1253,7 +1607,7 @@ a {
   border-left: 0.5rem solid rgb(139, 0, 0);
   border: 0.1rem solid red;
   color: #ccc;
-  /* color: rgb(211, 12, 12); */
+  background-color: rgb(211, 12, 12);
   border-radius: 1rem;
   margin: 0 0 1.5rem 0;
   padding: 0 0 0 0.5rem;
