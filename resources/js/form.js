@@ -18,16 +18,16 @@
         }
         if(pass.value.length < 4){
             str.innerHTML = "weak";
-            pass.style.borderColor = "#f61f00";
-            msg.style.color = "#f61f00";
+            pass.style.borderColor = "#b22323";
+            msg.style.color = "#b22323";
         } else if(pass.value.length >= 4 && pass.value.length < 8){
             str.innerHTML = "medium";
-            pass.style.borderColor = "yellow";
-            msg.style.color = "yellow";
+            pass.style.borderColor = "#bc5806";
+            msg.style.color = "#bc5806";
         } else if(pass.value.length >= 8){
             str.innerHTML = "strong";
-            pass.style.borderColor = "#26d730";
-            msg.style.color = "#26d730";
+            pass.style.borderColor = "#356212";
+            msg.style.color = "#356212";
         }
         checkPasswordConfirmation();
     });
@@ -49,25 +49,25 @@
         }
         if(copass.value === pass.value ){
             nostr.innerHTML = "matches";
-            copass.style.borderColor = "#26d730";
-            nmsg.style.color = "#26d730";
+            copass.style.borderColor = "#356212";
+            nmsg.style.color = "#356212";
         }else{
             nostr.innerHTML = "does not match";
-            copass.style.borderColor = "#ff5925";
-            nmsg.style.color = "#ff5925";
+            copass.style.borderColor = "#b22323";
+            nmsg.style.color = "#b22323";
         }
     };
 
     function validateEmail() {
         if (!email.value.match(/^[A-Za-z0-9\._\-]*[@][A-Za-z0-9\.]*[a-z0-9]{2,4}$/)) {
             estr.innerHTML = "Invalid email structure";
-            email.style.borderColor = "#ff5925";
-            emsg.style.color = "#ff5925";
+            email.style.borderColor = "#bc0606";
+            emsg.style.color = "#bc0606";
             return false;
         } else {
             estr.innerHTML = "Valid email";
-            email.style.borderColor = "#26d730";
-            emsg.style.color = "#26d730";
+            email.style.borderColor = "#356212";
+            emsg.style.color = "#356212";
             return true;
         }
     }

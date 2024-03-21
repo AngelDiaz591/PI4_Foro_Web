@@ -30,9 +30,9 @@
           <input class="input" type="password" name="password" id="user-input" placeholder="Password">
           <i class="bi bi-lock icon" id="user-input"></i>
         </div>
-        <div class="box-small">
-          <a href="<?= redirect_to('passwords', 'new'); ?>" class="forgot">Forgot your password?</a>
-        </div>
+        <!--<div class="box-small">
+          <a href="<?//= redirect_to('passwords', 'new'); ?>" class="forgot">Forgot your password?</a>
+        </div>-->
         <div class="option">
           <button class="btn-sign" name="login">SIGN IN</button>
         </div>

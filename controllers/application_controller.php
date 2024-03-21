@@ -81,7 +81,7 @@ function render_layout($template_name) {
 
   $template_content = ob_get_clean();
 
-  echo $template_content;
+  return $template_content;
 }
 
 /**
