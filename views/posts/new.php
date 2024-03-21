@@ -33,7 +33,7 @@
     </div>
   </form>
 </div>
-<a href="<?= redirect_to('posts', 'index'); ?>" class="return">
-  <i class="bi bi-arrow-left"></i>
-</a>
+<div class="back">
+  <a href="<?= redirect_to('posts', 'index'); ?>"><i class='bx bx-arrow-back' ></i></a>
+</div>
 <?= script_tag('post') ?>

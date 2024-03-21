@@ -55,16 +55,20 @@
             </div>
         </div>
         <div>
-        <div id="section-post" class="posting">
-            <div class="post-container hidden">
-                <!-- post -->
-            </div>
-            <div class="nopost-container">
-                <img src="./../../resources/img/add-photo.svg" class="add-photo" alt="">
-                <h3>Hello! Are you still there?</h3>
-                <p class="enun">Share what you want and spark the conversation</p>
-            </div>
-        </div>
+        <?php if(isset($_SESSION['user'])): ?> 
+            <a href="<?= redirect_to('posts', 'new'); ?>">
+                <div id="section-post" class="posting">
+                    <div class="post-container hidden">
+                        <!-- post -->
+                    </div>
+                    <div class="nopost-container">
+                        <img src="./../../resources/img/add-photo.svg" class="add-photo" alt="">
+                        <h3>Hello! Are you still there?</h3>
+                        <p class="enun">Share what you want and spark the conversation</p>
+                    </div>
+                </div>
+            </a> 
+        <?php endif; ?>
         </div>
     </div>
 </main>
