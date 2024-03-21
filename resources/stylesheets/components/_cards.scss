@@ -2,14 +2,13 @@ a {
   text-decoration: none ;
   color: $font_b4;
 }
-
 .box {
   padding: px(4);
   border-radius: px(2); 
   max-width: 80%;
   box-shadow: 0 0 5px $font_w2; 
   color: $font_b4;
-  background-color: $font_w4;
+  background-color: $brow0;
   text-align: center;
   margin: 20px auto;
   
@@ -17,64 +16,24 @@ a {
     color: $font_b;
   }
 
-  h3 {
-    padding-bottom: 1rem;
-  }
-
   a {
     text-decoration: none ;
     color: $font_b;
   }
-
-  &__images {
-    margin: 1rem;
-
-    img {
-      border-radius: 10px; 
-      border: 1px solid $font_b4;
-      cursor: pointer;
-      height: auto;
-      max-width: 100%;
-    }
-  }
-
-  .box__images.post-index {
-    display: flex;
-    flex-wrap: nowrap;
-    margin: 1rem;
-    overflow: hidden;
-
-    img:nth-child(3n) {
-      filter: brightness(0.4);
-    }
-
-    img:nth-child(4n) {
-      filter: brightness(0.3);
-    }
-
-    img {
-      object-fit: cover;
-      height: 100%;
-      max-width: 30%;
-    }
-
-    .image-num {
-      color: $font_w;
-      font-size: 4rem;
-      left: 52%;
-      padding-top: 4%;
-      position: fixed;
-      z-index: 1;
-    }
-  }
 }
 
-.user {
+.user_card {
   display: flex;
   align-items: center;
   font-size: px(4) ;  
+  
+  .user-card-img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
 
-  .profile {
+  .profile-card {
     cursor: pointer;
     &:hover {
       color: $theme_bl;
@@ -94,8 +53,8 @@ a {
 
 .text {
   text-align: left;
-  
-  & > p {
+  padding-bottom: 10px;
+  > p {
     font-size: 18px ;
   }
 }
@@ -262,22 +221,5 @@ a {
     font-size: px(3);
     padding: 10px;
     outline: none;
-  }
-}
-
-.return {
-  background-color: darken($backinput, 10%);
-  border-radius: 10px;
-  left: 20%;
-  padding: 1rem;
-  position: absolute;
-  top: 13%;
-
-  @include tablet {
-    left: 12%;
-  }
-
-  &:hover {
-    background-color: darken($backinput, 30%);
   }
 }

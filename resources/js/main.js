@@ -33,31 +33,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
-const main = {
-    verFotos: function(rutaImagen) {
-        const fotoModal = document.getElementById("foto");
-        fotoModal.src = rutaImagen;
-        main.modalFoto.style.display = "block";
-    }
-};
-
 document.addEventListener("DOMContentLoaded", function() {
-    main.modalFoto = document.querySelector("#modal-foto");
-    main.foto = document.querySelector("#foto");
-
-    window.onload = function() {
-        document.querySelector("#close-modal").addEventListener("click", () => {
-            main.modalFoto.style.display = "none";
-        });
-    };
-
-    window.onclick = event => {
-        if(event.target == main.modalFoto) {
-            main.modalFoto.style.display = "none";
-        }
-    };
+    document.getElementById("btn-user").addEventListener("click", function() {
+        var menu = document.getElementById("menu-user");
+        menu.classList.toggle("show-user");
+    });
 });
 
 class CommentsHandler {
@@ -124,3 +104,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     });
 });
+
+function toggleExtraImages() {
+    const extraImages = document.querySelectorAll('.image img:nth-child(n+4)');
+    extraImages.forEach(image => {
+        image.style.display = image.style.display === 'none' ? 'block' : 'none';
+    });
+}
+
+function toggleModal() {
+    var modal = document.getElementById("myModal");
+    modal.style.display = modal.style.display === "block" ? "none" : "block";
+}

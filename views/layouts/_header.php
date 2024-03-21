@@ -10,14 +10,39 @@
   </div>
   
   <div class="register">
-    <div class="login">
-      <?php if(isset($_SESSION['user'])): ?>
+    <?php if(isset($_SESSION['user'])): ?>
+      <i class='notifications bx bx-bell'></i>
+      <button id="btn-user" class="user-menu">
+        <img src="../../resources/img/user.png" alt="">
+      </button>
+    <?php else: ?>
+      <div class="login">
+        <a href="<?= redirect_to('sessions', 'new'); ?>">Log in</a>
+      </div>
+    <?php endif; ?>
+
+  </div>
+</header>
+<?php if(isset($_SESSION['user'])): ?>
+  <div id="menu-user" class="menu-user">
+    <ul class="list-user">
+      <div class="profile-menu">
+        <img src="../../resources/img/user.png" alt="" class="user-img">
+        <div class="user-information">
+          <p>Majorixch</p>
+          <p>@Majorixch</p>
+        </div>
+      </div>
+      <div class="line"></div>
+      <a href="http://localhost/foroweb/views/layouts/application.php?controller=sessions&action=show#section-post"><li>View Profile</li></a>
+      <a href="#"><li>Settings</li></a>
+      <a href="#"><li>Languaje</li> </a>
+      <a href="#"><li>Help</li></a>
+      <li>
         <form action="<?= redirect_to('sessions', 'destroy'); ?>" method="post">
           <input type="submit" name="logout" value="Log out">
         </form>
-      <?php else: ?>
-        <a href="<?= redirect_to('sessions', 'new'); ?>">Log in</a>
-      <?php endif; ?>
-    </div>
+      </li>
+    </ul>
   </div>
-</header>
+<?php endif; ?>

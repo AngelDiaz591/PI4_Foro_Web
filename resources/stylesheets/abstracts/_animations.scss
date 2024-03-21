@@ -19,3 +19,19 @@
     transform: translateX(-5px) rotate(-5deg);
   }
 }
+
+@keyframes moveBackground {
+  from { background-position: 0 0; } /* Posición inicial */
+  to { background-position: 100% 100%; } /* Posición final */
+}
+
+@keyframes aparecer {
+  0% {
+    opacity: 0; // Empieza completamente transparente
+    transform: scale(0.5); // Empieza más pequeño
+  }
+  100% {
+    opacity: 1; // Termina completamente opaco
+    transform: scale(1); // Termina al tamaño original
+  }
+}
