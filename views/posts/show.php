@@ -50,9 +50,13 @@
         <p>gael.jorgit@gmail.com</p>
       </div>
     </div>
+    <?php
+    ?>
+    <form action="<?= redirect_to('posts', 'create_comment_father'); ?>" method="post">
     <div class="comment-user">
-      <textarea name="" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
-
+    <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
+    <input type="hidden" name="post_id" value="<?= $params["id"]; ?>">
+    <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
       <?php if(isset($_SESSION['user'])): ?>
       <button type="submit">
       <?php else: ?>
@@ -61,5 +65,20 @@
         <i class='bx bxs-paper-plane'></i>
       </button>
     </div>
+    </form>
+    <div class="all_comments">
+    <?php foreach ($params["comments"] as $comment): ?>
+        <div class="comment">
+            <div class="user_card">
+                <i class='bx bxs-user-voice'></i>
+                <div class="data">
+                    <p><?= $comment["username"] ?></p>
+                </div>
+            </div>
+            <h1><?= $comment["comment"] ?></h1>
+            <p class="date-create"><?= $comment["created_at"] ?></p>
+        </div>
+    <?php endforeach; ?>
+</div>
   </div>
 </div>

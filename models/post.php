@@ -62,7 +62,7 @@ class Post extends Base {
  * @return array
  */
   public function find_by_id($id) {
-    try {
+        try {
       $stmt = $this->conn->prepare("CALL get_post_by_id(:id)");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
@@ -72,6 +72,11 @@ class Post extends Base {
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
       $result["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+      $stmt = $this->conn->prepare("CALL get_comments_by_post_id(:id)");
+      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+      $stmt->execute();
+      $result["comments"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       return $this->response(status: true, data: $result);
     } catch (PDOException | Exception $e) {
@@ -221,6 +226,25 @@ class Post extends Base {
       throw new Exception("Failed to delete the post: " . $e->getMessage());
     }
   }
+  /**
+ * Create comment father for the post
+ * @param array $data
+ * @throws PDOException if it fails to execute the query
+ * @throws Exception if it fails to delete the post or it fails to get rid of each image
+ * @return array
+ * :user_id, :post_id
+ */
+  public function comment_father($data){
+    #error_log(json_encode($data));
+    try{
+      $stmt = $this->conn->prepare("CALL create_comment(:user_id, :post_id, :comment)");
+      $stmt->bindparam(":user_id", $data["user_id"], PDO::PARAM_INT);      
+      $stmt->bindparam(":post_id", $data["post_id"], PDO::PARAM_INT);  
+      $stmt->bindparam(":comment", $data["comment"], PDO::PARAM_STR);  
+      $stmt->execute();
+    }catch (PDOException | Exception $e) {
+      throw new Exception("Failed to save the comment " . $e->getMessage());
+    }
+  }
 }
-
 ?>

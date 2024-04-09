@@ -195,6 +195,15 @@ class PostsController extends Post {
     }
   }
 
+public function create_comment_father() {
+  try{
+    $this->comment_father($this->params);
+    header("Location:" . redirect_to('posts', 'show')  . '&id=' . $this->params['post_id']);
+  }catch(Exception $e){
+    $this->handle_exception_redirect_error($e, '404');
+  }
+}
+
 /**
  * Render a view
  * 
@@ -209,5 +218,9 @@ class PostsController extends Post {
 
     return ob_get_clean();
   }
+
+  
+
+
 }
 ?>
