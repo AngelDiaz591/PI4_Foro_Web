@@ -32,7 +32,7 @@
           <?php
          echo $_SESSION['user']['username']. "<br>";
          echo $_SESSION['user']['email'];?>         
-        </div>
+        </div>se borrara esto
       </div>
       <div class="line"></div>
       <a href="http://localhost/foroweb/views/layouts/application.php?controller=sessions&action=show#section-post"><li>View Profile</li></a>
