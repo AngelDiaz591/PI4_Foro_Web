@@ -29,8 +29,9 @@
       <div class="profile-menu">
         <img src="../../resources/img/user.png" alt="" class="user-img">
         <div class="user-information">
-          <p>Majorixch</p>
-          <p>@Majorixch</p>
+        <?php
+         echo $_SESSION['user']['username']. "<br>";
+         echo $_SESSION['user']['email']; ?>
         </div>
       </div>
       <div class="line"></div>
