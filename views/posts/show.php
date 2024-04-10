@@ -6,8 +6,8 @@
     <div class="user_card">
       <i class='bx bxs-user-voice'></i>
       <div class="data">
-        <p class="#">Majorixch </p>
-        <p>gael.jorgit@gmail.com</p>
+        <p class="#"><?= $params["username"] ?></p>
+        <p><?= $params["email"] ?></p>
       </div>
       <button><i class='bx bx-dots-horizontal-rounded' ></i></button>
     </div>
@@ -46,8 +46,7 @@
     <div class="user_card">
       <i class='bx bxs-user-voice'></i>
       <div class="data">
-        <p>Majorixch </p>
-        <p>gael.jorgit@gmail.com</p>
+        <H3>Comments </H3>
       </div>
     </div>
     <?php
@@ -75,7 +74,7 @@
                     <p><?= $comment["username"] ?></p>
                 </div>
             </div>
-            <h1><?= $comment["comment"] ?></h1>
+            <p><?= $comment["comment"] ?></p>
             <p class="date-create"><?= $comment["created_at"] ?></p>
         </div>
     <?php endforeach; ?>

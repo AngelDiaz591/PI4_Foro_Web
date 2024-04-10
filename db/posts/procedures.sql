@@ -2,13 +2,14 @@
 DROP PROCEDURE IF EXISTS save_post;
 DELIMITER $$
 CREATE PROCEDURE save_post(
+  p_user_id INT,
   p_title TEXT,
   p_description TEXT,
   OUT inserted_id INT
 )
 BEGIN
-  INSERT INTO posts (title, description)
-  VALUES (p_title, p_description);
+  INSERT INTO posts (title, description, user_id)
+  VALUES (p_title, p_description, p_user_id);
   SET inserted_id = LAST_INSERT_ID();
 END $$
 DELIMITER ;
@@ -40,15 +41,20 @@ BEGIN
 END $$
 DELIMITER ;
 -- call as: CALL delete_post(1);
-
 DROP PROCEDURE IF EXISTS get_all_posts;
 DELIMITER $$
 CREATE PROCEDURE get_all_posts()
 BEGIN
-  SELECT * FROM posts;
+  SELECT 
+    posts.*,
+    users.username AS username,
+    users.email AS email
+  FROM posts
+  INNER JOIN users ON posts.user_id = users.id;
 END
 $$
 DELIMITER ;
+
 -- call as: CALL get_all_posts();
 
 DROP PROCEDURE IF EXISTS get_post_by_id;
@@ -57,11 +63,17 @@ CREATE PROCEDURE get_post_by_id(
   p_id INT
 )
 BEGIN
-  SELECT * FROM posts
+  SELECT 
+    posts.*,
+    users.username AS username
+    users.email AS email
+  FROM posts
+  INNER JOIN users ON posts.user_id = users.id
   WHERE posts.id = p_id;
 END
 $$
 DELIMITER ;
+
 -- call as: CALL get_post_by_id(1);
 
 DROP PROCEDURE IF EXISTS get_images_by_post_id;
@@ -107,3 +119,4 @@ BEGIN
     ORDER BY comments.created_at DESC;
 END $$
 DELIMITER ;
+--call as: CALL get_comments_by_post_id;

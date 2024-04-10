@@ -62,7 +62,7 @@ class Post extends Base {
  * @return array
  */
   public function find_by_id($id) {
-        try {
+    try {
       $stmt = $this->conn->prepare("CALL get_post_by_id(:id)");
       $stmt->bindParam(":id", $id, PDO::PARAM_INT);
       $stmt->execute();
@@ -109,7 +109,8 @@ class Post extends Base {
 
       $this->conn->beginTransaction();
 
-      $stmt = $this->conn->prepare("CALL save_post(:title, :description, @inserted_id)");
+      $stmt = $this->conn->prepare("CALL save_post(:user_id, :title, :description, @inserted_id)");
+      $stmt->bindparam(":user_id", $data["user_id"], PDO::PARAM_INT);   
       $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
       $stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
       $stmt->execute();

@@ -21,6 +21,9 @@
           <textarea name="description" id="description" cols="30" rows="10"
             placeholder="Your thoughts go here..."></textarea>
         </div>
+        <div class="field">
+          <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
+        </div>
       </div>
       <div class="images">
         <input type="file" name="images[]" id="images" accept="image/jpg, image/jpeg, image/png, image/gif" multiple>
