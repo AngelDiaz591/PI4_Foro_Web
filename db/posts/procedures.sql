@@ -36,10 +36,14 @@ CREATE PROCEDURE delete_post(
   p_id INT
 )
 BEGIN
+  DELETE FROM comments
+  WHERE post_id = p_id;
+  
   DELETE FROM posts
-  WHERE posts.id = p_id;
+  WHERE id = p_id;
 END $$
 DELIMITER ;
+
 -- call as: CALL delete_post(1);
 DROP PROCEDURE IF EXISTS get_all_posts;
 DELIMITER $$
@@ -102,7 +106,6 @@ BEGIN
 END $$
 DELIMITER $$
  --call as: CALL create_comment('comment');
-
 
 DROP PROCEDURE IF EXISTS get_comments_by_post_id;
 DELIMITER $$
