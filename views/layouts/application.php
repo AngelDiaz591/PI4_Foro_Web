@@ -16,7 +16,8 @@ $data = array(
 );
 
 if ($action === 'create' || $action === 'update' || $action === 'delete' || 
-      $action === 'purge_image' || $action === 'patch' || $action === 'destroy') {
+      $action === 'purge_image' || $action === 'patch' || $action === 'destroy' ||
+      $action === 'create_comment_father') {
   if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
     redirect_to_error('405');
   }

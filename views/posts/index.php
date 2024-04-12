@@ -6,7 +6,7 @@
   <div class="box">
     <div class="user_card">
     <img src="../../resources/img/user.png" alt="" class="user-card-img">
-      <p class="profile-card">Majorixch .</p>
+      <p class="profile-card"><p><?= $d["username"] ?></p> .</p>
       <p class="date"><?= date('Y/m/d', strtotime($d["created_at"])) ?></p>
     </div>
 
@@ -69,12 +69,9 @@
           Comment
         </p>
       </div>
-      
       <div class="comments comments-none" id="comments-<?= $d["id"]; ?>">
         <div class="line"></div>
-
         <h4>Comments</h4>
-
         <div class="users">
           <img src="/resources/img/logo.png" alt="">
           <p>
@@ -83,7 +80,6 @@
             La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
           </p>
         </div>
-
         <div class="comment-show">
           <p>
             <small>User</small>
@@ -121,16 +117,12 @@
         </div>
       </div>
     </div>
-    
-
       <a href="<?= redirect_to('posts', 'show') . '&id=' . $d["id"]; ?>">Show</a>
       <a href="<?= redirect_to('posts', 'edit') . '&id=' . $d["id"]; ?>">Edit</a>
       <a href="<?= redirect_to('posts', 'delete') . '&id=' . $d["id"]; ?>">Delete</a>
-    
   </div>
   <?php endforeach; ?>
 </div>
-
 <div id="modal" class="modal-container">
   <div class="modal-header">
     <i class='bx bx-error'></i>

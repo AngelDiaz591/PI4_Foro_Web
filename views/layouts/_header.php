@@ -29,9 +29,9 @@
       <div class="profile-menu">
         <img src="../../resources/img/user.png" alt="" class="user-img">
         <div class="user-information">
-        <?php
+          <?php
          echo $_SESSION['user']['username']. "<br>";
-         echo $_SESSION['user']['email']; ?>
+         echo $_SESSION['user']['email'];?>         
         </div>
       </div>
       <div class="line"></div>
