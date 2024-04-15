@@ -1,8 +1,9 @@
 <?php 
-namespace culturedge\classes;
+namespace app\classes;
 
-use culturedge\controllers\HomeController;
-use culturedge\controllers\ErrorController;
+use app\controllers\HomeController;
+use app\controllers\ErrorController;
+use app\controllers\PostController;
 
 /**
  * Router class
@@ -30,17 +31,17 @@ class Router {
 
     switch($controller) {
       case 'HomeController':
-        // $controller = new HomeController();
-        $controller = 'HomeController';
+        $controller = new HomeController();
+        break;
+      case 'PostController':
+        $controller = new PostController();
         break;
       default:
-        // $controller = new ErrorController();
-        $controller = 'ErrorController';
-        $action = '404';
+        $controller = new ErrorController();
+        $action = 'err404';
         break;
     }
-    // $controller->$action($params);
-    print_r($controller . '->' . $action . '->' . json_encode($params));
+    $controller->$action($params);
 
     return;
   }
@@ -58,7 +59,7 @@ class Router {
       $this->uri = rtrim($this->uri, '/');
       $this->uri = filter_var($this->uri, FILTER_SANITIZE_URL);
       $this->uri = explode('/', ucfirst(strtolower($this->uri)));
-
+      
       return;
     }
   }

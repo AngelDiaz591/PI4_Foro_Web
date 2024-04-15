@@ -1,8 +1,8 @@
 <?php 
-namespace culturedge;
+namespace app;
 
-use culturedge\classes\autoloader;
-use culturedge\classes\Router;
+use app\classes\Autoloader;
+use app\classes\Router;
 
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -12,7 +12,7 @@ ini_set('display_errors', 1);
  * 
  * This class is the entry point of the application
  */
-class Culturedge {
+class App {
   /**
    * Constructor initializes the application
    * 
@@ -78,11 +78,11 @@ class Culturedge {
    * @return void
    */
   private function load_autoloader() {
-    if (!file_exists(CLASSES . 'autoloader.php')) {
+    if (!file_exists(CLASSES . 'Autoloader.php')) {
       die('Autoloader file not found');
     }
 
-    require_once CLASSES . 'autoloader.php';
+    require_once CLASSES . 'Autoloader.php';
     Autoloader::register();
     return;
   }
@@ -93,11 +93,11 @@ class Culturedge {
    * @return void
    */
   private function load_routes() {
-    if (!file_exists(CLASSES . 'router.php')) {
+    if (!file_exists(CLASSES . 'Router.php')) {
       die('Router file not found');
     }
 
-    require_once CLASSES . 'router.php';
+    require_once CLASSES . 'Router.php';
     $router = new Router();
     $router->dispatch();
   }

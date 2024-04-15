@@ -1,5 +1,5 @@
 <?php 
-namespace culturedge\classes;
+namespace app\classes;
 
 /**
  * Autoloader class
@@ -27,7 +27,7 @@ class Autoloader {
    * @return void
    */
   public static function autoload($class) {
-    $classname = ROOT_DIR . str_replace('\\', DS, $class) . '.php';
+    $classname = PARENT_ROOT . str_replace('\\', DS, $class) . '.php';
 
     if (file_exists($classname)) {
       require_once $classname;
