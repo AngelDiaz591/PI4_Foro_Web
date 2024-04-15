@@ -1,5 +1,5 @@
 -- TABLES IN MYSQL
-USE foroweb;
+-- USE foroweb;
 
 -- Set timezone to UTC
 -- Note: This is a global setting, it will affect your mysql server
@@ -65,7 +65,7 @@ CREATE TABLE posts (
   id INT(20) AUTO_INCREMENT,
   user_id INT(20),
   title VARCHAR(255),
-  description TEXT,
+  body TEXT,
   theme INT(20),
   eliminated TINYINT(1) DEFAULT 0,
   permission TINYINT(1) DEFAULT 0,
