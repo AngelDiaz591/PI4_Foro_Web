@@ -12,17 +12,11 @@
 }
 
 .slogan {
-    font-size: 1.5em;
-    order: 0;
+    font-size: 33px;
     color: $brow1;
-    @include flex-grid;
-    text-align: center;
-    margin: 0 0 1.8rem 0;
+    margin: 40px 0 60px 0;
     font-weight: 600;
-
-    h2 {
-        color: $brow1;
-    }
+    color: $font_w;
 }
 
 .new {
@@ -35,9 +29,9 @@
     background-color: $brow3;
 
     &:hover {
-        background-color: transparent;
-        color: $brow3;
-        border: 0.1rem solid $brow3;
+        color: $font_w;
+        background-color: $brow4;
+
     }
 }
 
@@ -45,7 +39,6 @@
     @include flex-center;
     color: $brow1;
     font-size: 1rem;
-    margin: 0.5rem 0;
 }
 
 .option2 {
