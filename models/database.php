@@ -6,8 +6,8 @@
 class Database {
   private $host = "localhost";
   private $dbname = "foroweb";
-  private $dbuser = "isma";
-  private $dbpass = '123';
+  private $dbuser = "root";
+  private $dbpass = '';
 
   public $conn;
 

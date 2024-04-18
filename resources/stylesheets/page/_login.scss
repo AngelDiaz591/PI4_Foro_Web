@@ -1,74 +1,79 @@
 .user-view-wrapper {
-  background-image: $back_img;
-  background-size: cover;
-  background-color: $green3;
+  background-image: $back_img4;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover; 
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   font-family: monospace;
   @include flex-center;
-  height: 100%;
+  min-height: auto;
+  padding: 0 1.3rem;
 }
 
 .user-view-container {
-  margin: 2.5rem;
-  height: 89vh;
-  width: 80%;
-  display: grid;
-  border-radius: 1rem;
-  border: 0.2rem solid $font_w3;
+  height: 58em;
+  width: 100em;
+  display: flex; 
   box-shadow: $box-shadow;
-  gap: 0;
-  grid-template-columns: 3fr 2fr;
-  background-color: $brow0;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-radius: 30px;
+  backdrop-filter: blur(20px);
 }      
 
 .left {
-  padding: 1rem;
-  @include flex-grid;
+  @include flex-center;
+  flex-direction: column;
+  width: 55%;
+  background: rgba(255,255,255,0.3);
+  backdrop-filter: blur(30px);
+  border-radius: 0 30% 20% 0;
+  transition: border-radius .3s;
+}
+
+.featured-words {
+  text-align: center;
+  color:$font_w;
+  width: 480px;
+  font-size: 20px;
+}
+
+.featured-words {
+    span {
+      font-weight: 600;
+      color: #21264D;
+    }
 }
 
 .right {
   border-radius: 0 0.9rem 0.9rem 0;
-  @include flex-grid;
+  position: relative;
+  width: 45%;
+  padding: 20px;
+  overflow: hidden;
 }
 
 .img {
-  width: 98%;
+  width: 100%;
   height: 100%;
   border-radius: 0.5rem;
 }
 
-.new {
-  color: $font_w;
-  margin-left: 0.5rem;
-  cursor: pointer;
-  text-decoration: none;
-  font-weight: 800;
-
-  &:hover {
-    color: $font_w;
-  }
-}
-
-.option {
-  @include flex-center;
-}
-
 .box-small {
-  position: relative;
-  display: grid;
+  display: flex;
   justify-content: right;
-  margin: 0 0 1rem 0;
-  top: -1.5rem;
+  gap: 5px;
 
   .forgot {
     text-decoration: none;
-    color: $brow5;
-    font-size: 1.2em;
+    color: $font_w;
+    font-size: 15px;
     cursor: pointer;
     font-weight: 400;
 
     &:hover {
-      color: $brow4;
-      text-decoration: 0.1rem solid underline;
       font-weight: 600;
     }
   }
@@ -76,8 +81,10 @@
 
 .btn-sign {
   @include flex-center;
-  width: 16rem;
-  height: 2.8rem;
+  gap: 10px;
+  width:100%;
+  height: 55px;
+  padding: 0 15px;
   border-radius: 0.3rem;
   font-size: 1em;
   cursor: pointer;
@@ -85,23 +92,52 @@
   background-color: $brow3;
   color: $font_w;
   border: none;
-  margin: 0 0 1.5rem 0;
+  margin: 30px 0;
+  transition: .3s;
 
   &:hover {
     color: $font_w;
     background-color: $brow4;
+    gap: 15px;
   }
 }
 
-.register {
+.register2 {
+  gap: 10px;
+  color: $font_w;
+  font-size: 1.2rem;
+  margin-top: 50px;
   @include flex-center;
-  color: $font_w2;
-  font-size: 1rem;
-  margin: 0.5rem 0;
+  font-weight: 600;
 }
 
 .principal {
-  @include flex-grid;
-  padding: 1.5rem 3rem;
+  padding: 0 5vw; 
   border-radius: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transition: .3s;
+}
+
+.form-inputs {
+  Width: 100%;
+}
+
+@include mobile {
+  .user-view-container {
+    width: 400px;
+  }
+
+  .left {
+      display: none;
+  }
+
+  .right {
+      width: 100%;
+  }
 }
