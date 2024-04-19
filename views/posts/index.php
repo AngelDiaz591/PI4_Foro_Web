@@ -72,53 +72,6 @@
             </p>
           </a>
         </div>
-        <div class="comments comments-none" id="comments-<?= $d["id"]; ?>">
-          <div class="line"></div>
-          <h4>Comments</h4>
-          <div class="users">
-            <img src="/resources/img/logo.png" alt="">
-            <p>
-              <small>User</small>
-              <br>
-              La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
-            </p>
-          </div>
-          <div class="comment-show">
-            <p>
-              <small>User</small>
-              <br>
-              La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
-            </p>
-            <img src="/resources/img/logo.png" alt="">
-          </div>
-
-          <div class="users">
-            <img src="/resources/img/logo.png" alt="">
-            <p>
-              <small>User</small>
-              <br>
-              La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
-            </p>
-          </div>
-
-          <div class="users">
-            <img src="/resources/img/logo.png" alt="">
-            <p>
-              <small>User</small>
-              <br>
-              La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
-            </p>
-          </div>
-
-          <div class="users">
-            <img src="/resources/img/logo.png" alt="">
-            <p>
-              <small>User</small>
-              <br>
-              La Verdad esta bien culero los posts y no me gusta nada del diseño todo cuelerojdfkajsdbfljasbdf
-            </p>
-          </div>
-        </div>
       </div>
         <a href="<?= redirect_to('posts', 'show') . '&id=' . $d["id"]; ?>">Show</a>
         <a href="<?= redirect_to('posts', 'edit') . '&id=' . $d["id"]; ?>">Edit</a>
