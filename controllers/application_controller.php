@@ -16,7 +16,7 @@ function get_home_dir() {
  * @return string
  */
 function get_home_url() {
-  return 'http://localhost/foroweb/';
+  return 'http://localhos/foroweb/';
 }
 
 /**
