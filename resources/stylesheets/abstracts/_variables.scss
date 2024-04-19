@@ -97,7 +97,7 @@ $font_g: green;
 //border
 $bor_fond: 0px 2px 4px rgba(0, 0, 0, 0.5);
 $border: 1px solid $font_b;
-$bor_card:2px solid rgba(255, 255, 255, 0.5);
+$bor_card:2px solid $font_b2;
 
 //transitions
 $tr:background-color 0.3s, color 0.3s;
@@ -107,10 +107,17 @@ $font_w5: rgb(248, 248, 248);
 $font_bl1: #41e9bfd8;
 $font_bl2: #060c3d;
 
+//Bordes
+$body-font: #F3F3F3;
+$section-font: #FCF6F4;
+$font-text: #696564;
+$font-hover: #BEF4FE;
+$font-txhover: #005242;
+
 //theme light
 $font_light: #7380ec;
 $font_light2: #ff7782;
-$font_light3: #41f1b6;
+$font_light3: #09c3c3;
 $font_light4: #ffbb55;
 $font_light5: #fff;
 $font_light6: #7d8da1;

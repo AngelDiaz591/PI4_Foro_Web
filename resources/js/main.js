@@ -18,20 +18,54 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
 document.addEventListener('DOMContentLoaded', function() {
     var menuIcon = document.getElementById('menu-icon');
     var mainNav = document.getElementById('main-nav');
+    var mainSection = document.querySelector('main');
+    
+    // Función para ajustar el margen según el tamaño de la pantalla
+    function adjustMargin() {
+        if (window.innerWidth < 800) {
+            mainSection.style.margin = '0'; // Si la pantalla es menor a 800px, establece el margen a 0
+        } else {
+            mainSection.style.margin = '78px 25% 0 12%'; // Si la pantalla es mayor o igual a 800px, establece el margen original
+        }
+    }
+
     menuIcon.addEventListener('click', function() {
         mainNav.classList.toggle('hide-nav');
-        localStorage.setItem('menuVisible', mainNav.classList.contains('hide-nav') ? 'hidden' : 'visible');
+        if (window.innerWidth >= 800) { // Solo ajusta el margen si la pantalla es mayor o igual a 800px
+            if (mainNav.classList.contains('hide-nav')) {
+                mainSection.style.margin = '78px 25% 0 2%'; // Si se oculta el menú, cambia el margen izquierdo del <main> a 0
+            } else {
+                mainSection.style.margin = '78px 25% 0 12%'; // Si se muestra el menú, establece el margen izquierdo original del <main>
+            }
+            // Almacena el estado del menú en el localStorage
+            localStorage.setItem('menuVisible', mainNav.classList.contains('hide-nav') ? 'hidden' : 'visible');
+        }
     });
 
+    // Recupera el estado del menú del almacenamiento local y ajusta el margen en consecuencia
     var menuState = localStorage.getItem('menuVisible');
     if (menuState === 'hidden') {
         mainNav.classList.add('hide-nav');
+        if (window.innerWidth >= 800) { // Solo ajusta el margen si la pantalla es mayor o igual a 800px
+            mainSection.style.margin = '78px 25% 0 0%'; // Si se oculta el menú, establece el margen izquierdo del <main> a 0
+        }
+    } else if (menuState === 'visible') {
+        mainNav.classList.remove('hide-nav');
+        if (window.innerWidth >= 800) { // Solo ajusta el margen si la pantalla es mayor o igual a 800px
+            mainSection.style.margin = '78px 25% 0 12%'; // Si se muestra el menú, establece el margen izquierdo original del <main>
+        }
     }
+
+    // Añade un event listener para ajustar el margen cuando cambia el tamaño de la ventana
+    window.addEventListener('resize', adjustMargin);
+
 });
+
+
+
 
 document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("btn-user").addEventListener("click", function() {

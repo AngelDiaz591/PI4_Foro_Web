@@ -1,7 +1,7 @@
 header {
   height: px(15);
-  background-color: $font_b;
-  color: $font_w;
+  background-color: $section-font;
+  color: $font-text;
   box-shadow:  $bor_fond;
   z-index: 2;
   position: fixed; 
@@ -17,7 +17,7 @@ header {
 }
 
 h2 {
-  color: $font_w;
+  color: $font-text;
 }
 
 .menu {
@@ -36,7 +36,7 @@ h2 {
   width: 30%;
 
   > button {
-    background-color: $font_b4;
+    background-color: $section-font;
     border: none;
     border-radius: 50%;
     cursor: pointer;
@@ -44,7 +44,8 @@ h2 {
     > i{
       text-align: center;
       font-size: 25px;
-      color: $font_w;
+      color: $font-text;
+      
     }
   }
 
@@ -54,9 +55,9 @@ h2 {
     position: relative;
     outline: none;
     border-radius: px(5); 
-    color: $font_w1;
-    background-color: $font_b4;
-    border: 1px solid $font_b4;
+    color: $font_b2;
+    background-color: $section-font;
+    border: 1px solid $section-font;
     margin: 5px 5px 5px 0;
     font-size: 20px;
   }
@@ -96,7 +97,7 @@ header .seeker .search {
   cursor: pointer;
 
   a, input {
-    color: $font_w;
+    color: $font-text;
     font-size: 25px;
     margin: 10px;
     text-decoration: none;
@@ -110,33 +111,33 @@ header .seeker .search {
   }
 
   &:hover {
-    background-color: $font_w;
+    background-color: $font_b;
     animation: shake 0.5s ease-in-out infinite;
     
     & > a, input {
-      color: $font_b;
+      color: $font_w;
     }
   }
 }
 .notifications{
   font-size: 40px;
-  color: $font_w;
+  color: $font_b2;
   cursor: pointer;
 }
 
 .user-menu {
   border-radius: 50%;
-  background-color: $font_b;
+  background-color: $section-font;
   margin: 10px 30px;
-  border: 2px solid $font_w;
+  border: 2px solid $font-text;
   cursor: pointer;
 }
 
 .menu-user {
-  margin: 75px 0px 10px 87%;
+  margin: 75px 0px 10px 80%;
   font-size: px(4);
   position: absolute;
-  background-color: $brow0;
+  background-color: $section-font;
   border: 0.5px solid #ccc;
   box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 3;
@@ -170,7 +171,7 @@ header .seeker .search {
       padding: 5px;
     }
     :hover {
-      background-color: $brow2;
+      background-color: $font-hover;
       border-radius: px(1);
     }
   }
@@ -179,7 +180,7 @@ header .seeker .search {
     pad: 5px;
 
     :hover {
-      background-color: $brow2;
+      background-color: $font-hover;
       border-radius: px(1);
     }
   }
@@ -191,7 +192,7 @@ header .seeker .search {
     cursor: pointer;
 
     :hover {
-      background-color: $brow2;
+      background-color: $font-hover;
       border-radius: px(1);
     }
   }

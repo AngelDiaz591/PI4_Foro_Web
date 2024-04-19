@@ -35,7 +35,7 @@ text-align: left;
   max-width: 80%;
   box-shadow: 0 0 5px $font_w2;
   color: $font_b4;
-  background-color: $brow0;
+  background-color: $section-font;
   margin: 20px auto;
   opacity: 0; 
   transform: scale(0.5); 
@@ -61,7 +61,7 @@ text-align: left;
 
   .user_card button {
     cursor: pointer;
-    background-color: $brow0;
+    background-color: $section-font;
     border: none;
     font-size: px(6);
     margin-left: auto; 
@@ -127,7 +127,7 @@ text-align: left;
 
 .all_comments {
   text-align: left;
-  background-color: $brow0;
+  background-color: $section-font;
   box-shadow: 0 0 5px $font_w2; 
   border-radius: 10px;
   padding: 20px 0 20px 30px;

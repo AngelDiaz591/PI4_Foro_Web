@@ -8,9 +8,8 @@
     width: 100vw;
     height: 100vh;
     font-family: 'Almarai', sans-serif;
-    background-image: $back_img;
     background-size: cover;
-    background-color: $green3;
+    background-color: $body-font;
     background-attachment: fixed;
     animation: moveBackground 50s infinite linear;
   }
@@ -19,6 +18,8 @@
     height: 100%;
     display: flex;
     color: $font_b4;
+    overflow-y: scroll; /* Esto agrega una barra de desplazamiento vertical */
+
   }
   
   h1,h2,h3,h4,h5,h6 {

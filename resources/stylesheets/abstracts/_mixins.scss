@@ -61,7 +61,7 @@ $breakpoint_tb: 800px;
 @mixin card() {
   border: $bor_card; 
   color: $font_w1;
-  background-color: $font_b4;
+  background-color: $section-font;
 }
 
 @mixin comments() {
