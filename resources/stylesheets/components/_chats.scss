@@ -28,55 +28,11 @@
     border-radius: px(3);
     font-size: px(4);
     margin: auto;
-    padding: 0 px(5) 0 px(5);
+    padding: 0 10% 0 10%;
     font-weight: bold;
 
     >p {
       margin: 0;
-    }
-  }
-}
-  
-.box h4.action {
-  cursor: pointer;
-}
-  
-.register-box{
-  background-color: $font_b;
-  border-radius: px(2);
-  margin: 20px 20px;
-  padding: 20px;
-  > p {
-    font-size: px(4);
-  } 
-
-  .button {
-    background-color: $font_w3;
-    border-radius: px(2);
-    padding: px(3);
-    font-size: px(6);
-    cursor: pointer;
-    margin: auto 50px; 
-
-    > a {
-      color: $font_b1;
-      text-decoration: none;
-      
-      @include tablet {
-        display: none;
-      }
-      @include mobile {
-        display: block;
-      }
-    }
-
-    i {
-      display: none;
-
-      @include tablet {
-        display: block;
-        color: $font_b; 
-      }
     }
   }
 }

@@ -7,7 +7,7 @@ nav {
   overflow-y: auto; 
   font-size: 25px; 
   box-shadow: 0 0 5px $font_w2; 
-  background-color: $brow0;
+  background-color: $section-font;
   transition: width 0.3s ease;
   font-family: "Poppins", sans-serif;
 
@@ -22,8 +22,16 @@ nav {
     margin: 0;
 
     a {
-      color: $font_b;
+      color: $font-text;
       text-decoration: none;
+      display: flex;
+      .cubo {
+        width: 5%;
+        height: auto;
+        background-color: $font_light3;
+        display: none
+
+      }
 
       >.category {
         @include nav();
@@ -32,12 +40,13 @@ nav {
         }
         p{
           margin: 0;
+          color: $font-text;
         }
       } 
     }
 
     .categories {
-      color: $font_b;
+      color: $font-text;
       @include nav();
       padding: 0;
       margin: 10px;
@@ -54,8 +63,17 @@ nav {
 
 .list:hover {
   transition: background-color 0.3s ease;
-  background-color: $font_b; 
-  color: $font_w;
+  background-color: $font-hover; 
+  color: $font-txhover;
+  
+   li.category p {
+    color: $font-txhover;
+  }
+
+  .cubo {
+    display: block;
+    transition: background-color 0.5s ease;
+  }
 } 
 
 @include tablet {
