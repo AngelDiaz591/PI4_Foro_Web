@@ -3,9 +3,6 @@
     alert("Your account will be deleted if not verified within 10 minutes. Proceed with caution.");
   }
 </script>
-<!-- <a href="<?= get_last_url(); ?>" class="back">
-  <i class="bi bi-arrow-left"></i>
-</a> -->
 <div class="user-view-container">
   <div class="left">
       <div class="principal2">
