@@ -34,7 +34,6 @@
             <input class="input" type="email" name="email" id="user-input" placeholder=" ">
             <label class="form_label">Email</label>
             <i class="bi bi-person icon" id="user-input"></i>
-            
           </div> 
           <div class="user-input">
             <input class="input" type="password" name="password" id="user-input" placeholder=" ">

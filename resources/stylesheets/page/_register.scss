@@ -11,10 +11,10 @@
     }
 }
 
-.slogan {
+.slogan-reg {
     font-size: 33px;
     color: $brow1;
-    margin: 40px 0 60px 0;
+    margin: 20px 0 60px 0;
     font-weight: 600;
     color: $font_w;
 }
@@ -35,10 +35,13 @@
     }
 }
 
-.register {
+.datasign {
+    gap: 10px;
+    color: $font_w;
+    font-size: 1.2rem;
+    margin-top: 20px;
     @include flex-center;
-    color: $brow1;
-    font-size: 1rem;
+    font-weight: 600;
 }
 
 .option2 {
@@ -72,7 +75,7 @@
 #message {
     position: absolute;
     bottom: -20px;
-    color:$font_w;
+    color: $font_w;
     font-size: 15px;
     display: none;
     font-weight: 800;
@@ -81,7 +84,7 @@
 #nomessage {
     position: absolute;
     bottom: -20px;
-    color:$font_w;
+    color: $font_w;
     font-size: 15px;
     font-weight: 800;
     display: none;
@@ -90,7 +93,7 @@
 #emailmsg {
     position: absolute;
     bottom: -20px;
-    color:$font_w;
+    color: $font_w;
     font-size: 15px;
     font-weight: 800;
     display: none;
