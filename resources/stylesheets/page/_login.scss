@@ -21,7 +21,9 @@
   border: 3px solid rgba(255,255,255,0.3);
   border-radius: 30px;
   backdrop-filter: blur(20px);
-}      
+	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
 
 .left {
   @include flex-center;
@@ -37,13 +39,12 @@
   text-align: center;
   color:$font_w;
   width: 480px;
-  font-size: 20px;
+  font-size: 22px;
 }
 
 .featured-words {
     span {
-      font-weight: 600;
-      color: #21264D;
+      font-weight: 800;
     }
 }
 
@@ -122,6 +123,14 @@
   align-items: center;
   width: 100%;
   transition: .3s;
+}
+
+.slogan {
+  font-size: 33px;
+  color: $brow1;
+  margin: 40px 0 50px 0;
+  font-weight: 600;
+  color: $font_w;
 }
 
 .form-inputs {
