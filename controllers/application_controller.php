@@ -1,23 +1,15 @@
 <?php 
 define('ROOT_DIR', __DIR__ . '/../');
+define('IMAGES', ROOT_DIR . 'assets/imgs/');
+define('RESOURCES', ROOT_DIR . 'resources/');
+// ======= CONSTANTS CONFIGURABLES =======
+define('HOST_DB', 'localhost');
+define('NAME_DB', 'foroweb');
+define('USER_DB', 'root');
+define('PASS_DB', '');
 
-/**
- * This function is used to get the home DIRECTORY of the project
- * 
- * @return string
- */
-function get_home_dir() {
-  return ROOT_DIR;
-}
-
-/**
- * This function is used to get the home URL of the project
- * 
- * @return string
- */
-function get_home_url() {
-  return 'http://localhost/foroweb/';
-}
+define('URL', 'localhost/foroweb/');
+// =======================================
 
 /**
  * This function is used to get the current URL of the project
@@ -41,7 +33,7 @@ function get_last_url() {
     return $_SERVER['HTTP_REFERER'];
   }
   
-  return get_home_url();
+  return URL;
 }
 
 /**
@@ -77,84 +69,12 @@ function get_model($model_name) {
 function render_layout($template_name) {
   ob_start();
 
-  include ROOT_DIR . 'views/layouts/_' . $template_name . '.php';
+  $layout_path = ROOT_DIR . 'views/layouts/_' . $template_name . '.php';
+
+  file_exists($layout_path) ? require_once $layout_path : die('Layout not found');
 
   $template_content = ob_get_clean();
 
   return $template_content;
-}
-
-/**
- * This function is used to redirect to an error view
- * 
- * @param string $error, a number of the error
- * @return void
- */
-function redirect_to_error($error) {
-  header("Location:" . get_home_url() . "views/errors/$error.php");
-  exit;
-}
-
-/**
- * This function is used to redirect to a controller and action
- * 
- * @param string $controller, in plural
- * @param string $action, the method from the controller
- * @return string
- */
-function redirect_to($controller, $action) {
-  return get_home_url() . "views/layouts/application.php?controller=$controller&action=$action";
-}
-
-/**
- * This function is used to render a controller and action
- * It creates a new instance of the controller and calls the action method
- * 
- * @param string $action, the method from the controller
- * @param string $controller, in plural
- * @param array $data
- * @return Class::method it calls the method from the controller
- */
-function render($action, $controller, $data = []) {
-  ob_start();
-
-  get_controller("$controller");
-  $controller_name = ucfirst($controller) . 'Controller';
-  $controller = new $controller_name($data);
-  
-  return $controller->$action();
-}
-
-/**
- * This function is used to render a link tag
- * 
- * @param string $rel
- * @param string $href
- * @return string link tag
- */
-function link_tag($rel, $href, $type = 'text/css') {
-  return "<link rel='$rel' href='" . get_home_url() . "resources/$href' type='$type'>";
-}
-
-/**
- * This function is used to render a script tag
- * 
- * @param string $src
- * @return string script tag
- */
-function script_tag($src) {
-  return "<script src='" . get_home_url() . "resources/js/$src.js'></script>";
-}
-
-/**
- * This function is used to render a img tag from resources/img directory
- * 
- * @param string $src
- * @param string $alt
- * 
- * @return string img tag
- */
-function img_tag($src, $alt, $class = '', $id = '', $style = '') {
-  return "<img src='" . get_home_url() . "resources/img/$src' alt='$alt' class='$class' id='$id' style='$style'>";
 }
 ?>

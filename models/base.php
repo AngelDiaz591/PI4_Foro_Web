@@ -235,42 +235,15 @@ Class Base extends Database {
   }
 
 /**
- * redirect to an error page. method to be used in the controllers to handle the catched exceptions
+ * Render a error view
  * 
- * @param Exception $e
- * @param string $error
- * @return void
- * 
- * @example
- * handle_exception_redirect_error($e, '404');
+ * @param string $view
+ * @return html
  */
-  public function handle_exception_redirect_error($e, $error) {
-    error_log($e->getMessage());
-    redirect_to_error($error);
-  }
+  protected function error($view) {
+    include ROOT_DIR . 'views/errors/' . $view . '.php';
 
-/**
- * redirect to a controller and action. method to be used in the controllers to handle the catched exceptions
- * 
- * @param Exception $e
- * @param string $controller
- * @param string $action
- * @param array $params
- * @return void
- * 
- * @example
- * handle_exception_redirect_to($e, 'posts', 'new');
- * handle_exception_redirect_to($e, 'posts', 'edit', ['id' => 1]);
- */
-  public function handle_exception_redirect_to($e, $controller, $action, $params = []) {
-    error_log($e->getMessage());
-    $redirection = redirect_to($controller, $action);
-
-    if (!empty($params)) {
-      $redirection .= "&" . http_build_query($params);
-    }
-
-    header("Location:" . $redirection);
+    return ob_get_clean();
   }
 }
 ?>

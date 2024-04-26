@@ -10,8 +10,7 @@ class PasswordsController extends User {
       parent::__construct();
       $this->params = $params['method'];
     } catch (Exception $e) {
-      error_log($e->getMessage());
-      redirect_to_error('500');
+      $this->error('500');
     }
   }
 
@@ -23,14 +22,13 @@ class PasswordsController extends User {
     try {
       $response = $this->send_reset_password_instructions($this->params);
       if ($response["status"]) {
-        header("Location:" . redirect_to('passwords', 'new'));
+        header('Location: /passwords/new');
       } else {
         throw new Exception("Failed to resend code: " . $response["message"]);
       }
     } catch (Exception $e) {
       $_SESSION['error'] = $e->getMessage();
-      error_log($e->getMessage());
-      header("Location:" . redirect_to('passwords', 'new'));
+      header('Location: /passwords/new');
     }
   }
 
@@ -43,14 +41,14 @@ class PasswordsController extends User {
       $response = $this->authenticate();
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('sessions', 'new'));
+        header('Location: /sessions/new');
       } else {
         throw new Exception("Failed to update password: " . $response["message"]);
       }
     } catch (Exception $e) {
       $_SESSION['error'] = $e->getMessage();
       error_log($e->getMessage());
-      header("Location:" . redirect_to('passwords', 'edit') . "&reset_password_token=" . $this->params["token"]);
+      header('Location: /passwords/edit/reset_password_token:' . $this->params["token"]);
     }
   }
 

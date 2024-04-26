@@ -65,7 +65,7 @@ CREATE TABLE posts (
   id INT(20) AUTO_INCREMENT,
   user_id INT(20),
   title VARCHAR(255),
-  body TEXT,
+  description TEXT,
   theme INT(20),
   eliminated TINYINT(1) DEFAULT 0,
   permission TINYINT(1) DEFAULT 0,

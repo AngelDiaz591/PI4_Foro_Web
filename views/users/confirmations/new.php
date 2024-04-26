@@ -3,7 +3,7 @@ $errors = isset($errors) ? $errors : array();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
 ?>
 <section class="code_verify">
-  <?= img_tag('confirm.svg', 'codever'); ?>
+  <img src="/resources/img/confirm.svg" alt="codever">
   <div class="title">Email Verification</div>
   <?php if (isset($_SESSION['error'])):
     $error_message = $_SESSION['error'];
@@ -13,7 +13,7 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <p>Error: <?php echo $error_message; ?></p>
     </div>
   <?php endif; ?>
-  <form action="<?= redirect_to('confirmations', 'create'); ?>" method="POST" autocomplete="off">
+  <form action="/confirmations/create" method="POST" autocomplete="off">
     <div>
       <input type="hidden" id="code" name="code">
       <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
@@ -32,14 +32,14 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
   </form>
   <div class="resend_code">
     <p>Didn't receive code?</p>
-    <form action="<?= redirect_to('confirmations', 'update'); ?>" method="POST" autocomplete="off">
+    <form action="/confirmations/update" method="POST" autocomplete="off">
       <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
       <input type="submit" class="resend" name="resend" value="Resend">
     </form>
   </div>
   <p class="warning">Verification Code is valid only for 10 minutes</p>
 </section>
-<?= script_tag('veri_code'); ?>
+<script src="/resources/js/veri_code.js"></script>
 <?php if (isset($_SESSION['error_message'])): ?>
   <script>
     var errorMessage = "<?php echo $_SESSION['error_message']; ?>";
@@ -49,7 +49,6 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <?php
         unset($_SESSION['error_message']);
         ?>
-        // window.location.href = '../login/login.php';
       }
     }
   </script>

@@ -4,7 +4,7 @@
       <h2>POPULAR CHAT</h2>
       <div class="line"></div>
       <div class="chat">
-        <img src="resources/img/logo.png" alt="" class="perfil">
+        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
         <div class="info">
           <p class="name">Gaelblack</p>
           <p class="followers">255 followers</p>
@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="chat">
-        <img src="../../resources/img/logo.png" alt="" class="perfil">
+        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
         <div class="info">
           <p class="name">Gaelblack</p>
           <p class="followers">255 followers</p>
@@ -24,7 +24,7 @@
         </button>
       </div>
       <div class="chat">
-        <img src="resources/img/logo.png" alt="" class="perfil">
+        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
         <div class="info">
           <p class="name">Gaelblack</p>
           <p class="followers">255 followers</p>

@@ -1,5 +1,5 @@
 <div class="return">
-  <a href="<?= redirect_to('posts', 'index'); ?>"><i class='bx bx-arrow-back' ></i></a>
+  <a href="/"><i class='bx bx-arrow-back' ></i></a>
 </div>
 <div class="showpost">
   <div class="show">
@@ -20,7 +20,7 @@
       <div class="images">
         <?php foreach ($params["images"] as $image): ?>
           <div class="image">
-            <img src="<?= get_home_url() . "assets/imgs/" . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
+            <img src="<?= IMAGES . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
           </div>
         <?php endforeach; ?>
       </div>
@@ -49,21 +49,15 @@
         <H3>Comments </H3>
       </div>
     </div>
-    <?php
-    ?>
-    <form action="<?= redirect_to('posts', 'create_comment_father'); ?>" method="post">
-    <div class="comment-user">
-    <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
-    <input type="hidden" name="post_id" value="<?= $params["id"]; ?>">
-    <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
-      <?php if(isset($_SESSION['user'])): ?>
-      <button type="submit">
-      <?php else: ?>
-      <button type="submit" class="openModal">
-      <?php endif; ?>
-        <i class='bx bxs-paper-plane'></i>
-      </button>
-    </div>
+    <form action="/posts/create_comment_father" method="post">
+      <div class="comment-user">
+        <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
+        <input type="hidden" name="post_id" value="<?= $params["id"]; ?>">
+        <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
+        <button type="submit" class=<?= isset($_SESSION['user']) ? '' : 'openModal' ?>>
+          <i class='bx bxs-paper-plane'></i>
+        </button>
+      </div>
     </form>
     <div class="all_comments">
     <?php foreach ($params["comments"] as $comment): ?>

@@ -136,13 +136,14 @@ class User extends Base {
       }
 
       $token = $this->generate_token(32);
+      $link = URL . "/passwords/edit/reset_password_token:" . $token;
 
       $stmt = $this->conn->prepare("CALL update_user_reset_password_token(:email, :token)");
       $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
       $stmt->bindParam(":token", $token, PDO::PARAM_STR);
       $stmt->execute();
 
-      $success = Email::reset_password_email($data["email"], redirect_to('passwords', 'edit') . "&reset_password_token=" . $token);
+      $success = Email::reset_password_email($data["email"], $link);
 
       if (!$success) {
         throw new Exception("Failed to send the reset password email.");

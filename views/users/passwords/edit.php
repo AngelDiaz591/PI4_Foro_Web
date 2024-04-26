@@ -9,7 +9,7 @@ if (isset($_SESSION['error'])) {
 
 <center>
   <h2>Enter your new password and confirm password</h2>
-  <form action="<?= redirect_to('passwords', 'update'); ?>" method="POST" autocomplete="">
+  <form action="/passwords/update" method="POST">
     <input type="hidden" id="token" name="token" value="<?= $data['reset_password_token']; ?>">
     <div class="user-input">
       <input type="password" class="input" name="newpassword" placeholder="newPassword" id="newpassword" required>
@@ -18,7 +18,7 @@ if (isset($_SESSION['error'])) {
       <input type="password" class="input" name="cpassword" placeholder="Confirm password" id="cpassword" required>
     </div>
     <div class="confirm">
-      <a href="<?= redirect_to('passwords', 'new'); ?>" class="new">Send code again</a>
+      <a href="/passwords/new" class="new">Send code again</a>
       <input type="submit" name="confirm" value="confirm" class="new">
     </div>
   </form>
