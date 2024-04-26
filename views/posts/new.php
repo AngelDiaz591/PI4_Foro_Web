@@ -1,6 +1,6 @@
 <div class="main">
   <h1>New Post</h1>
-  <form action="<?= redirect_to('posts', 'create'); ?>" method="post" enctype="multipart/form-data">
+  <form action="/posts/create" method="post" enctype="multipart/form-data">
     <div class="box">
       <div class="user">
         <div class="user__avatar">
@@ -37,6 +37,6 @@
   </form>
 </div>
 <div class="back">
-  <a href="<?= redirect_to('posts', 'index'); ?>"><i class='bx bx-arrow-back' ></i></a>
+  <a href="/"><i class='bx bx-arrow-back' ></i></a>
 </div>
-<?= script_tag('post') ?>
+<script src="/resources/js/post.js"></script>

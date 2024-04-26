@@ -7,7 +7,7 @@
         <div class="info-user">
             <div class="position">
                 <div>
-                    <img src="./../../resources/img/login.svg" alt="" class="photo">
+                    <img src="/resources/img/login.svg" alt="photo" class="photo">
                 </div>
                 <div class="data-user">
                     <div class="username">
@@ -56,13 +56,13 @@
         </div>
         <div>
         <?php if(isset($_SESSION['user'])): ?> 
-            <a href="<?= redirect_to('posts', 'new'); ?>">
+            <a href="/posts/new">
                 <div id="section-post" class="posting">
                     <div class="post-container hidden">
                         <!-- post -->
                     </div>
                     <div class="nopost-container">
-                        <img src="./../../resources/img/add-photo.svg" class="add-photo" alt="">
+                        <img src="/resources/img/add-photo.svg" class="add-photo" alt="">
                         <h3>Hello! Are you still there?</h3>
                         <p class="enun">Share what you want and spark the conversation</p>
                     </div>

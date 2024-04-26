@@ -1,5 +1,5 @@
 <ul class="icons">
-  <a href="<?= redirect_to('posts', 'index') ?>" class="list">
+  <a href="/" class="list">
     <div class="cubo"></div>
     <li class="category">
       <i class='bx bxs-home'></i>

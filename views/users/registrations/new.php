@@ -6,7 +6,7 @@
 <div class="user-view-container">
   <div class="left">
       <div class="principal2">
-        <?= img_tag('login.gif', 'login', 'img'); ?>
+        <img src="/resources/img/login.gif" alt="login" class="img">
       </div>
       <p class="featured-words">
         <span>Your voice</span> matters. Join the community and share your ideas.
@@ -15,20 +15,20 @@
   <div class="right">
     <div class="datasign">
       <p>Have an account?</p>
-      <a href="<?= redirect_to('sessions', 'new'); ?>" class="new">Log in</a>
+      <a href="/sessions/new" class="new">Log in</a>
     </div>
     <div class="principal">
       <div class="slogan-reg">
         <span>REGISTER NOW!</span>
       </div>
       <div class="form-inputs">
-        <form action="<?= redirect_to('registrations', 'create'); ?>" method="POST" autocomplete="">
+        <form action="/registrations/create" method="POST" autocomplete="">
           <?php if (isset($_SESSION['error'])):
               $error_message = $_SESSION['error'];
               unset($_SESSION['error']); ?>
             <div id="error-alert" class="alert2">
               <i class="bi bi-info-circle icon-alert"></i>
-              <p>Error: <?php echo $error_message; ?></p>
+              <p>Error: <?= $error_message; ?></p>
             </div>
           <?php endif; ?>
           <div class="user-input">
@@ -64,7 +64,7 @@
     </div>
   </div>
 </div>
-<?= script_tag('form'); ?>
+<script src="/resources/js/form.js"></script>
 <script>
   setTimeout(function(){
     var errorAlert = document.getElementById("error-alert");

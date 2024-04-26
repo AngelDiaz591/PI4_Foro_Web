@@ -1,3 +1,1 @@
-app/controllers/application_controller.php
-app/models/database.php
-assets/imgs/*.png
+assets/imgs/*

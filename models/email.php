@@ -47,7 +47,7 @@ class Email {
   }
 
   private function read_logo() {
-    $logoPath = get_home_dir() . "resources/img/fav.png";
+    $logoPath = RESOURCES . "img/fav.png";
     $fileContent = file_get_contents($logoPath);
     $fileContentEncoded = chunk_split(base64_encode($fileContent));
     $fileMimeType = mime_content_type($logoPath);

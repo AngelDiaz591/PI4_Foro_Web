@@ -28,7 +28,7 @@ class PostsController extends Post {
       $this->params = $params["method"];
       $this->files = $params["files"];
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '500');
+      $this->error('500');
     }
   }
 
@@ -49,7 +49,7 @@ class PostsController extends Post {
         throw new Exception("Failed to get all posts: " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '500');
+      $this->error('500');
     }
   }
 
@@ -70,7 +70,7 @@ class PostsController extends Post {
         throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '404');
+      $this->error('404');
     }
   }
 
@@ -99,12 +99,12 @@ class PostsController extends Post {
       $response = $this->save($this->params);
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('posts', 'index'));
+        header('Location: /');
       } else {
         throw new Exception("Failed to create the post: " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_to($e, 'posts', 'new');
+      header('Location: /posts/new');
     }
   }
 
@@ -125,7 +125,7 @@ class PostsController extends Post {
         throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '404');
+      $this->error('404');
     }
   }
 
@@ -144,12 +144,12 @@ class PostsController extends Post {
       $response = $this->update($this->params);
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('posts', 'show') . '&id=' . $this->params['id']);
+        header('Location: /posts/show/id:' . $this->params['id']);
       } else {
         throw new Exception("Failed to update the post with id " . $this->params['id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_to($e, 'posts', 'edit', ['id' => $this->params['id']]);
+      header('Location: /posts/edit/id:' . $this->params['id']);
     }
   }
 
@@ -165,12 +165,12 @@ class PostsController extends Post {
       $response = $this->delete_image($this->params);
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('posts', 'edit') . '&id=' . $this->params['post_id']);
+        header('Location: /posts/edit/id:' . $this->params['post_id']);
       } else {
         throw new Exception("Failed to delete the image from the post with id " . $this->params['post_id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_to($e, 'posts', 'edit', ['id' => $this->params['post_id']]);
+      header('Location: /posts/edit/id:' . $this->params['post_id']);
     }
   }
 
@@ -186,21 +186,21 @@ class PostsController extends Post {
       $response = $this->destroy($this->params['id']);
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('posts', 'index'));
+        header('Location: /');
       } else {
         throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '404');
+      $this->error('404');
     }
   }
 
 public function create_comment_father() {
   try{
     $this->comment_father($this->params);
-    header("Location:" . redirect_to('posts', 'show')  . '&id=' . $this->params['post_id']);
+    header('Location: /posts/show/id:' . $this->params['post_id']);
   }catch(Exception $e){
-    $this->handle_exception_redirect_error($e, '404');
+    $this->error('404');
   }
 }
 
@@ -218,9 +218,5 @@ public function create_comment_father() {
 
     return ob_get_clean();
   }
-
-  
-
-
 }
 ?>

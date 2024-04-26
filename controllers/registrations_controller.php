@@ -13,7 +13,7 @@ class RegistrationsController extends User {
       parent::__construct();
       $this->params = $params['method'];
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '500');
+      $this->error('500');
     }
   }
 
@@ -26,13 +26,13 @@ class RegistrationsController extends User {
       $response = $this->authenticate();
 
       if ($response["status"]) {
-        header("Location:" . redirect_to('confirmations', 'new') . "&confirm_token=" . $response["data"]["token"]);
+        header("Location: /confirmations/new/confirm_token:" . $response["data"]["token"]);
       } else {
         throw new Exception("Failed to create user: " . $response["message"]);
       }
     } catch (Exception $e) {
       $_SESSION['error'] = $e->getMessage();
-      $this->handle_exception_redirect_to($e, 'registrations', 'new');
+      header("Location: /registrations/new");
     }
   }
 

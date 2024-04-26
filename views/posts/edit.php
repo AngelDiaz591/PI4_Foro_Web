@@ -1,6 +1,6 @@
 <div class="main">
   <h1>Edit Post</h1>
-  <form action="<?= redirect_to('posts', 'patch'); ?>" method="post" enctype="multipart/form-data">
+  <form action="/posts/patch" method="post" enctype="multipart/form-data">
     <div class="box">
       <div class="user">
         <div class="user__avatar">
@@ -30,11 +30,11 @@
         <p id="extra-files"></p>
         <?php foreach ($params["images"] as $image): ?>
           <div class="image">
-            <img src="<?= get_home_url() . "assets/imgs/" . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
-            <a href="<?= redirect_to('posts', 'purge_image') . '&id=' . $image["id"] . '&image=' . $image["image"] . '&post_id=' . $params["id"]; ?>"
+            <img src="<?= IMAGES . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
+            <!-- <a href="<?//= redirect_to('posts', 'purge_image') . '&id=' . $image["id"] . '&image=' . $image["image"] . '&post_id=' . $params["id"]; ?>">
               class="remove-image">
               <span>&times;</span>
-            </a>
+            </a> -->
           </div>
         <?php endforeach; ?>
       </div>
@@ -45,8 +45,8 @@
     </div>
   </form>
 </div>
-<a href="<?= redirect_to('posts', 'index'); ?>" class="return">
+<a href="/" class="return">
   <i class="bi bi-arrow-left"></i>
 </a>
-<?= script_tag('post') ?>
+<script src="/resources/js/post.js"></script>
 

@@ -10,7 +10,7 @@ class SessionsController extends User  {
       parent::__construct();
       $this->params = $params['method'];
     } catch (Exception $e) {
-      $this->handle_exception_redirect_error($e, '500');
+      $this->error('500');
     }
   }
 
@@ -27,19 +27,20 @@ class SessionsController extends User  {
       $response = $this->verify_credentials($this->params);
       if ($response["status"]) {
         $_SESSION["user"] = $response["data"];
-        header("Location:" . redirect_to('posts', 'index'));
+        header('Location: /');
       } else {
         throw new Exception("Failed to login user: " . $response["message"]);
       }
     } catch (Exception $e) {
       $_SESSION['error'] = $e->getMessage();
-      $this->handle_exception_redirect_to($e, 'sessions', 'new');
+      error_log($e->getMessage());
+      header("Location: /sessions/new");
     }
   }
 
   public function destroy() {
     session_destroy();
-    header("Location:" . redirect_to('posts', 'index'));
+    header('Location: /');
   }
 
   protected function render($view, $data = []) {
