@@ -1,13 +1,6 @@
 -- TABLES IN MYSQL
 -- USE foroweb;
 
--- Set timezone to UTC
--- Note: This is a global setting, it will affect your mysql server
---       I set it here because in order to standardize the dates and timezones in the database
-SELECT @@global.time_zone;
--- SET GLOBAL time_zone = '+00:00'; -- Uncomment this line if you know already how to revert this change
-SELECT @@global.time_zone;
-
 DROP TABLE IF EXISTS followers;
 DROP TABLE IF EXISTS user_data;
 DROP TABLE IF EXISTS likes;
@@ -20,13 +13,17 @@ DROP TABLE IF EXISTS unesco;
 
 CREATE TABLE users (
 	id INT(20) AUTO_INCREMENT,
-	name VARCHAR(255) NOT NULL,
-	lastname VARCHAR(255) NOT NULL,
-	username VARCHAR(255) NOT NULL,
-	email VARCHAR(255) NOT NULL,
+	username VARCHAR(255) NOT NULL UNIQUE,
+	email VARCHAR(255) NOT NULL UNIQUE,
 	password VARCHAR(255) NOT NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 	updated_at TIMESTAMP,
+  confirmation_code VARCHAR(50),
+  confirmation_token VARCHAR(255),
+  confirmation_sent_at TIMESTAMP,
+  confirmed_at TIMESTAMP,
+  reset_password_token VARCHAR(255),
+  reset_password_sent_at TIMESTAMP,
   PRIMARY KEY (id)
 );
 
@@ -129,30 +126,15 @@ CREATE TABLE images (
   key `post_id` (`post_id`),
   key `comment_id` (`comment_id`),
   key `dms_id` (`dms_id`),
-  CONSTRAINT `fk_images_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  CONSTRAINT `fk_images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`),
-  CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`)
+  CONSTRAINT `fk_images_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`) ON DELETE CASCADE
 );
 
--- Alter table images delete on cascade
-ALTER TABLE images DROP FOREIGN KEY `fk_images_post_id`;
-ALTER TABLE images DROP FOREIGN KEY `fk_images_comment_id`;
-ALTER TABLE images DROP FOREIGN KEY `fk_images_dms_id`;
-
-ALTER TABLE images ADD CONSTRAINT `fk_images_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE;
-ALTER TABLE images ADD CONSTRAINT `fk_images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE;
-ALTER TABLE images ADD CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`) ON DELETE CASCADE;
-
--- Alter table users
-ALTER TABLE users MODIFY COLUMN name VARCHAR(255) NOT NULL UNIQUE;
-ALTER TABLE users MODIFY COLUMN email VARCHAR(255) NOT NULL UNIQUE;
-ALTER TABLE users DROP COLUMN lastname;
-ALTER TABLE users DROP COLUMN username;
-ALTER TABLE users MODIFY COLUMN password VARCHAR(255) NOT NULL;
-ALTER TABLE users ADD confirmation_code VARCHAR(50);
-ALTER TABLE users ADD confirmation_token VARCHAR(255);
-ALTER TABLE users ADD confirmation_sent_at TIMESTAMP;
-ALTER TABLE users ADD confirmed_at TIMESTAMP;
-ALTER TABLE users RENAME COLUMN name TO username;
-ALTER TABLE users ADD COLUMN reset_password_token VARCHAR(255);
-ALTER TABLE users ADD COLUMN reset_password_sent_at TIMESTAMP;
+INSERT INTO unesco (theme) VALUES
+  ('End of Poverty'),
+  ('Zero Hunger'),
+  ('Health and Wellness'),
+  ('Quality Education'),
+  ('Gender Equality')
+;

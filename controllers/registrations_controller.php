@@ -28,7 +28,7 @@ class RegistrationsController extends User {
       if ($response["status"]) {
         header("Location: /confirmations/new/confirm_token:" . $response["data"]["token"]);
       } else {
-        throw new Exception("Failed to create user: " . $response["message"]);
+        throw new Exception($response["message"]);
       }
     } catch (Exception $e) {
       $_SESSION['error'] = $e->getMessage();
@@ -46,7 +46,7 @@ class RegistrationsController extends User {
 
       return $this->save($this->params);
     } catch (Exception $e) {
-      throw new Exception("Failed to authenticate user: " . $e->getMessage());
+      throw new Exception("Failed to create user: " . $e->getMessage());
     }
   }
 
