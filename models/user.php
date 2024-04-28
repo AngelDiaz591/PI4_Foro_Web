@@ -28,20 +28,18 @@ class User extends Base {
       $success = Email::confirm_email($data["email"], $code);
 
       if (!$success) {
-        throw new Exception("Failed to send the confirmation email.");
+        throw new Exception("Error sending the confirmation email.");
       }
 
       return $this->response(status: true, data: ["token" => $token], message: "User saved successfully.");
-    } catch (PDOException $e) {
-      if ($e->getCode() == 23000 && strpos($e->getMessage(), '1062') !== false) {
-        $cause = strpos($e->getMessage(), 'username') !== false ? "Username" : "Email";
+    } catch (PDOException | Exception $e) {
+      if (str_contains($e->getMessage(), '1062 Duplicate entry')) {
+        $cause = str_contains($e->getMessage(), 'email') ? 'Email' : 'Username';
 
-        throw new Exception("$cause already exists." . $e->getMessage());
-      } 
+        throw new Exception("$cause already exists.");
+      }
 
-      throw new Exception("Failed to save user: " . $e->getMessage());
-    } catch (Exception $e) {
-      throw new Exception($e->getMessage());
+      throw new Exception("Unknown error");
     }
   }
 

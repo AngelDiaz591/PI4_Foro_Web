@@ -16,7 +16,8 @@ class Router extends Base {
     $this->params = $this->get_params();
 
     if ($this->post_request()) {
-      return $this->dispatch();
+      $this->dispatch();
+      exit;
     }
   }
 

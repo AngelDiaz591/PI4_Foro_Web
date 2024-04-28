@@ -24,7 +24,7 @@
               unset($_SESSION['error']); ?>
             <div id="error-alert" class="alert2">
               <i class="bi bi-info-circle icon-alert2"></i>
-              <p>Error: <?= $error_message; ?></p>
+              <p><?= $error_message; ?></p>
             </div>
           <?php endif; ?>
           <div class="user-input">
@@ -41,7 +41,7 @@
             <a href="/passwords/new" class="forgot">Forgot your password?</a>
           </div>
           <div class="user-input">
-            <input type="submit" value="SIGN IN">
+            <input type="submit" value="SIGN IN" class="btn-sign">
           </div>
         </form>
       </div>
@@ -56,8 +56,3 @@ if (isset($_SESSION['success'])) {
 ?>
 <div id="errorMessages"></div>
 <script src="/resources/js/validacion.js"></script>
-<script>
-    setTimeout(function(){
-        document.getElementById("error-alert").style.display = "none";
-    }, 3000); // 3000 milliseconds = 3 seconds
-</script>
