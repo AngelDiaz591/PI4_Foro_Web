@@ -9,9 +9,8 @@ $router = new Router();
 $controller = $router->controller;
 $action = $router->action;
 
-$special_controllers = ['sessions', 'confirmations', 'registrations', 'passwords'];
+$special_controllers_body = ['sessions', 'confirmations', 'registrations', 'passwords'];
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,20 +18,23 @@ $special_controllers = ['sessions', 'confirmations', 'registrations', 'passwords
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CulturEdge</title>
   <!-- Favicon -->
-  <?//= link_tag('icon', 'img/favicon.ico', 'image/x-icon'); ?>
   <link rel="icon" href="/resources/img/favicon.ico" type="image/x-icon">
   <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai&family=Inter&family=Lato&family=Roboto+Slab&family=Rubik&family=Poppins&display=swap">
   <!-- ICONS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
   <!-- STYLESHEETS -->
-  <?//= link_tag('stylesheet', 'stylesheets/main.css'); ?>
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
+  <!-- JAVASCRIPT -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.all.js" integrity="sha512-mDHahYvyhRtp6zBGslYxaLlAiINPDDEoHDD7nDsHoLtua4To71lDTHjDL1bCoAE/Wq/I+7ONeFMpgr62i5yUzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="/resources/js/app.js"></script>
+  <script src="/resources/js/main.js"></script>
 </head>
-<?php if (in_array($controller, $special_controllers)): ?>
+<?php if (in_array($controller, $special_controllers_body)): ?>
   <body>
     <div class="user-view-wrapper">
       <?= $router->dispatch() ?>
@@ -51,19 +53,18 @@ $special_controllers = ['sessions', 'confirmations', 'registrations', 'passwords
         <?= $router->dispatch() ?>
       </main>
       
-      <div id="modal" class="modal-container">
-        <div class="modal-header">
-          <i class='bx bx-error'></i>
-          <h2>log in to interact</h2>
-        </div>
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-      </div>
-
-      <?= render_layout('sidebar_chats'); ?>
+      <?php if ($controller == 'posts'): ?>
+        <?= render_layout('sidebar_chats'); ?>
+      <?php endif; ?>
     </div>
   </body>
 <?php endif; ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<?//= script_tag('main'); ?>
-<script src="/resources/js/main.js"></script>
+<script>
+  $(function() {
+    app.user.id = "<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : '' ?>";
+    app.user.name = "<?= isset($_SESSION['user']) ? $_SESSION['user']['username'] : '' ?>";
+    app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
+    app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
+  })
+</script>
 </html>

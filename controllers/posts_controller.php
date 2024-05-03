@@ -181,7 +181,7 @@ class PostsController extends Post {
  * @throws Exception if it fails to delete the post redirect to error 404
  * @return void
  */
-  public function delete() {
+  public function drop() {
     try {
       $response = $this->destroy($this->params['id']);
 
