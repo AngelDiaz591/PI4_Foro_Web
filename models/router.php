@@ -19,7 +19,7 @@ class Router extends Base {
       $this->dispatch();
       exit;
     }
-  }
+    }
 
   public function dispatch() {
     $controller = $this->controller;

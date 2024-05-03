@@ -59,19 +59,12 @@
         </button>
       </div>
     </form>
-    <div class="all_comments">
-    <?php foreach ($params["comments"] as $comment): ?>
-        <div class="comment">
-            <div class="user_card">
-                <i class='bx bxs-user-voice'></i>
-                <div class="data">
-                    <p><?= $comment["username"] ?></p>
-                </div>
-            </div>
-            <p><?= $comment["comment"] ?></p>
-            <p class="date-create"><?= $comment["created_at"] ?></p>
-        </div>
-    <?php endforeach; ?>
+    <p id="comments"></p>
+    <script>
+      var postId = <?= $params["id"] ?>;
+     var userId = <?= isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 'null' ?>;
+    </script>
+    <script src="/resources/js/comments.js"></script>
 </div>
   </div>
 </div>

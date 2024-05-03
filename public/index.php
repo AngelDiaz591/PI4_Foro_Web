@@ -30,6 +30,8 @@ $special_controllers = ['sessions', 'confirmations', 'registrations', 'passwords
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
   <!-- STYLESHEETS -->
   <?//= link_tag('stylesheet', 'stylesheets/main.css'); ?>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/resources/js/main.js"></script>
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
 </head>
 <?php if (in_array($controller, $special_controllers)): ?>
@@ -63,7 +65,4 @@ $special_controllers = ['sessions', 'confirmations', 'registrations', 'passwords
     </div>
   </body>
 <?php endif; ?>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<?//= script_tag('main'); ?>
-<script src="/resources/js/main.js"></script>
 </html>
