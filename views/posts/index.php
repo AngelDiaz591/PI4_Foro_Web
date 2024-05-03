@@ -5,11 +5,13 @@
     foreach (array_slice($data, 0, 5) as $d): ?>
   <div class="hoverbox">
     <div class="box" id="results-list">
-      <div class="user_card">
-        <img src="/resources/img/user.png" alt="user" class="user-card-img">
-        <p class="profile-card"><p><?= $d["username"] ?></p> .</p>
-        <p class="date"><?= date('Y/m/d', strtotime($d["created_at"])) ?></p>
-      </div>
+      <a href="/users/show/id:<?= $d["user_id"]; ?>">
+        <div class="user_card">
+          <img src="/resources/img/user.png" alt="user" class="user-card-img">
+          <p class="profile-card"><p><?= $d["username"] ?></p> .</p>
+          <p class="date"><?= date('Y/m/d', strtotime($d["created_at"])) ?></p>
+        </div>
+      </a>
 
       <div class="line"></div>
 

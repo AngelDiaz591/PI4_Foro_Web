@@ -96,6 +96,7 @@ class PostsController extends Post {
         }
     }
 
+
     public function purge_image() {
         try {
             $response = $this->delete_image($this->params);
@@ -110,19 +111,6 @@ class PostsController extends Post {
         }
     }
 
-    public function delete() {
-        try {
-            $response = $this->destroy($this->params['id']);
-
-            if ($response["status"]) {
-                header('Location: /');
-            } else {
-                throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
-            }
-        } catch (Exception $e) {
-            $this->error('404');
-        }
-    }
 
     public function create_comment_father() {
         try{
@@ -150,6 +138,27 @@ class PostsController extends Post {
             echo json_encode(['error' => 'Internal server error']);
             exit;
         }
+
+  }
+
+/**
+ * Delete a post and redirect to the index view
+ * 
+ * @param void
+ * @throws Exception if it fails to delete the post redirect to error 404
+ * @return void
+ */
+  public function drop() {
+    try {
+      $response = $this->destroy($this->params['id']);
+
+      if ($response["status"]) {
+        header('Location: /');
+      } else {
+        throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
+      }
+    } catch (Exception $e) {
+      $this->error('404');
     }
 
     public function delete_comments() {

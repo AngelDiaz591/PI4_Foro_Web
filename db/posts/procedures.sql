@@ -69,7 +69,7 @@ CREATE PROCEDURE get_post_by_id(
 BEGIN
   SELECT 
     posts.*,
-    users.username AS username
+    users.username AS username,
     users.email AS email
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
@@ -92,3 +92,5 @@ END
 $$
 DELIMITER ;
 -- call as: CALL get_images_by_post_id(1);
+
+

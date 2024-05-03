@@ -12,6 +12,83 @@ class User extends Base {
     }
   }
 
+  public function find_by_id($id) {
+    try {
+      $this->t = 'users';
+      $this->pp = ['id'];
+
+      $result = $this->select([
+        'a.id', 'a.username', 'a.email',
+        'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
+        'COUNT(DISTINCT b.user_id) as posts',
+        'COUNT(DISTINCT c.follower_id) as followers',
+        'COUNT(DISTINCT d.user_id) as following'
+      ])->join('posts as b', 'b.user_id = a.id')
+        ->left_join('followers as c', 'a.id = c.user_id')
+        ->left_join('followers as d', 'a.id = d.follower_id')
+        ->where([['a.id', '=', $id]])
+        ->first();
+
+      if (empty($result)) {
+        throw new Exception("User not found");
+      }
+
+      return $this->response(status: true, data: $result, message: "User retrieved successfully.");
+    } catch (PDOException | Exception $e) {
+      throw new Exception($e->getMessage());
+    }
+  }
+
+  public function get_followers($id) {
+    try {
+      $this->t = 'users';
+      $this->pp = ['id'];
+
+      $result = $this->select([
+        'a.id', 'a.username'
+      ])->join('followers as b', 'b.follower_id = a.id')
+        ->where([['b.user_id', '=', $id]])
+        ->get();
+
+      if (!$result > 0) {
+        throw new Exception("Followers not found");
+      }
+
+      $r = $this->response(status: true, data: $result, message: "Followers retrieved successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function get_following($id) {
+    try {
+      $this->t = 'users';
+      $this->pp = ['id'];
+
+      $result = $this->select([
+        'a.id', 'a.username'
+      ])->join('followers as b', 'b.user_id = a.id')
+        ->where([['b.follower_id', '=', $id]])
+        ->get();
+
+      if (!$result > 0) {
+        throw new Exception("Following not found");
+      }
+
+      $r = $this->response(status: true, data: $result, message: "Following retrieved successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
   public function save($data) {
     try {
       $code = $this->generate_code();
@@ -175,6 +252,51 @@ class User extends Base {
       return $this->response(status: true, data: $user, message: "User logged in successfully.");
     } catch (Exception $e) {
       throw new Exception("Failed to login: " . $e->getMessage());
+    }
+  }
+
+  public function create_follow($data) {
+    try {
+      $this->t = 'followers';
+      $this->pp = ['user_id', 'follower_id'];
+
+      $result = $this->insert(values: $data, returnId: false);
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+
+      $r = $this->response(status: true, data: $result, message: "User followed successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function destroy_follow($data) {
+    try {
+      $this->t = 'followers';
+      $this->pp = ['user_id', 'follower_id'];
+
+      $result = $this->where([
+        ['user_id', '=', $data['user_id']], 
+        ['follower_id', '=', $data['follower_id']]
+      ])->delete();
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+
+      $r = $this->response(status: true, data: $result, message: "User unfollowed successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: $e->getMessage());
+
+      throw new Exception(json_encode($r));
     }
   }
 

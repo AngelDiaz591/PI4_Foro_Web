@@ -245,5 +245,10 @@ Class Base extends Database {
 
     return ob_get_clean();
   }
+
+
+  protected function to_obj($array) {
+    return json_decode(json_encode($array));
+  }
 }
 ?>
