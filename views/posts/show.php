@@ -51,29 +51,26 @@
         <H3>Comments </H3>
       </div>
     </div>
+    <?php if (isset($_SESSION['user'])): ?>
     <form action="/posts/create_comment_father" method="post">
       <div class="comment-user">
         <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
         <input type="hidden" name="post_id" value="<?= $params["id"]; ?>">
-        <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
-        <button type="submit" class=<?= isset($_SESSION['user']) ? '' : 'openModal' ?>>
+        <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" rows="1"></textarea>
+        <button type="submit">
           <i class='bx bxs-paper-plane'></i>
         </button>
       </div>
     </form>
-    <div class="all_comments">
-    <?php foreach ($params["comments"] as $comment): ?>
-        <div class="comment">
-            <div class="user_card">
-                <i class='bx bxs-user-voice'></i>
-                <div class="data">
-                    <p><?= $comment["username"] ?></p>
-                </div>
-            </div>
-            <p><?= $comment["comment"] ?></p>
-            <p class="date-create"><?= $comment["created_at"] ?></p>
-        </div>
-    <?php endforeach; ?>
+    <?php else: ?>
+    <p>Please log in to leave a comment</p>
+    <?php endif; ?>
+    <p id="comments"></p>
+    <script>
+      var postId = <?= $params["id"] ?>;
+     var userId = <?= isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 'null' ?>;
+    </script>
+    <script src="/resources/js/comments.js"></script>
 </div>
   </div>
 </div>

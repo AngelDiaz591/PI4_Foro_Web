@@ -67,4 +67,5 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
   })
 </script>
+
 </html>

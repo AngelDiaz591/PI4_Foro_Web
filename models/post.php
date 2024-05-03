@@ -73,11 +73,6 @@ class Post extends Base {
       $stmt->execute();
       $result["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-      $stmt = $this->conn->prepare("CALL get_comments_by_post_id(:id)");
-      $stmt->bindParam(":id", $id, PDO::PARAM_INT);
-      $stmt->execute();
-      $result["comments"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
       return $this->response(status: true, data: $result);
     } catch (PDOException | Exception $e) {
       throw new Exception("Failed to get the post: " . $e->getMessage());
@@ -227,16 +222,8 @@ class Post extends Base {
       throw new Exception("Failed to delete the post: " . $e->getMessage());
     }
   }
-  /**
- * Create comment father for the post
- * @param array $data
- * @throws PDOException if it fails to execute the query
- * @throws Exception if it fails to delete the post or it fails to get rid of each image
- * @return array
- * :user_id, :post_id
- */
+
   public function comment_father($data){
-    #error_log(json_encode($data));
     try{
       $stmt = $this->conn->prepare("CALL create_comment(:user_id, :post_id, :comment)");
       $stmt->bindparam(":user_id", $data["user_id"], PDO::PARAM_INT);      
@@ -247,5 +234,58 @@ class Post extends Base {
       throw new Exception("Failed to save the comment " . $e->getMessage());
     }
   }
+
+  public function comment_son($data) {
+    try {
+        $stmt = $this->conn->prepare("CALL create_son_comment(:parentCommentId, :comment, :postId, :userId)");
+        $stmt->bindParam(":parentCommentId", $data["parentCommentId"], PDO::PARAM_INT);
+        $stmt->bindParam(":comment", $data["comment"], PDO::PARAM_STR);
+        $stmt->bindParam(":postId", $data["postId"], PDO::PARAM_INT);
+        $stmt->bindParam(":userId", $data["userId"], PDO::PARAM_INT);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        // Aquí puedes procesar los resultados si es necesario
+        return $result;
+    } catch (PDOException | Exception $e) {
+        throw new Exception("Error to comment " . $e->getMessage());
+    }
+}
+
+public function get_all_comments($data) {
+  try {
+      $stmt = $this->conn->prepare("CALL get_comments_by_post_id(:postId)");
+      $stmt->bindParam(":postId", $data["postId"], PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException | Exception $e) {
+      throw new Exception("Error to get comments: " . $e->getMessage());
+  }
+}
+public function edit_comment($data){
+  try{
+    $stmt= $this->conn->prepare("CALL update_comment_by_id(:id, :comment)");
+    $stmt->bindParam(":id",$data["id"], PDO::PARAM_INT);
+    $stmt->bindParam(":comment",$data["comment"], PDO::PARAM_STR);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+  } catch (PDOException | Exception $e){
+    throw new Exception("Error to edit comment: " . $e->getMessage());
+  }
+}
+
+  
+  public function delete_comment($data){
+    try{
+      $stmt= $this->conn->prepare("CALL delete_comment_by_id(:id)");
+      $stmt->bindParam(":id",$data["id"], PDO::PARAM_INT);
+      $stmt->execute();
+      return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    } catch (PDOException | Exception $e){
+      throw new Exception("Error to delete comments " . $e->getMessage());
+    }
+  }
+
+  
+
 }
 ?>
