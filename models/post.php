@@ -247,7 +247,7 @@ class Post extends Base {
         // Aquí puedes procesar los resultados si es necesario
         return $result;
     } catch (PDOException | Exception $e) {
-        throw new Exception("Error al comentar: " . $e->getMessage());
+        throw new Exception("Error to comment " . $e->getMessage());
     }
 }
 
@@ -258,7 +258,7 @@ public function get_all_comments($data) {
       $stmt->execute();
       return $stmt->fetchAll(PDO::FETCH_ASSOC);
   } catch (PDOException | Exception $e) {
-      throw new Exception("Error al obtener comentarios: " . $e->getMessage());
+      throw new Exception("Error to get comments: " . $e->getMessage());
   }
 }
 public function edit_comment($data){
@@ -269,7 +269,7 @@ public function edit_comment($data){
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
   } catch (PDOException | Exception $e){
-    throw new Exception("Error al editar comentario: " . $e->getMessage());
+    throw new Exception("Error to edit comment: " . $e->getMessage());
   }
 }
 
