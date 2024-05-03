@@ -35,7 +35,9 @@
         </div>
       </div>
       <div class="line"></div>
-      <a href="#"><li>view Profile</li></a>
+      <a href="/users/show/id:<?= $_SESSION['user']['id']; ?>">
+        <li>view Profile</li>
+      </a>
       <a href="#"><li>Settings</li></a>
       <a href="#"><li>Languaje</li> </a>
       <a href="#"><li>Help</li></a>

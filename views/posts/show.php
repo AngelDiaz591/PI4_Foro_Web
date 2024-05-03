@@ -3,14 +3,16 @@
 </div>
 <div class="showpost">
   <div class="show">
-    <div class="user_card">
-      <i class='bx bxs-user-voice'></i>
-      <div class="data">
-        <p class="#"><?= $params["username"] ?></p>
-        <p><?= $params["email"] ?></p>
+    <a href="/users/show/id:<?= $params["user_id"]; ?>">
+      <div class="user_card">
+        <i class='bx bxs-user-voice'></i>
+        <div class="data">
+          <p class="#"><?= $params["username"] ?></p>
+          <p><?= $params["email"] ?></p>
+        </div>
+        <button><i class='bx bx-dots-horizontal-rounded' ></i></button>
       </div>
-      <button><i class='bx bx-dots-horizontal-rounded' ></i></button>
-    </div>
+    </a>
 
     <div class="line"></div>
 
