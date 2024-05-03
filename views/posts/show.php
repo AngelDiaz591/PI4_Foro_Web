@@ -49,16 +49,20 @@
         <H3>Comments </H3>
       </div>
     </div>
+    <?php if (isset($_SESSION['user'])): ?>
     <form action="/posts/create_comment_father" method="post">
       <div class="comment-user">
         <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
         <input type="hidden" name="post_id" value="<?= $params["id"]; ?>">
-        <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" low="1"id=""></textarea>
-        <button type="submit" class=<?= isset($_SESSION['user']) ? '' : 'openModal' ?>>
+        <textarea name="comment" placeholder="Write Comment" oninput="autoSize(this)" rows="1"></textarea>
+        <button type="submit">
           <i class='bx bxs-paper-plane'></i>
         </button>
       </div>
     </form>
+    <?php else: ?>
+    <p>Please log in to leave a comment</p>
+    <?php endif; ?>
     <p id="comments"></p>
     <script>
       var postId = <?= $params["id"] ?>;
