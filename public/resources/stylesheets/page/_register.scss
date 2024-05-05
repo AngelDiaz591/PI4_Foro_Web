@@ -14,7 +14,7 @@
 .slogan-reg {
     font-size: 33px;
     color: $brow1;
-    margin: 20px 0 60px 0;
+    margin: 20px 0 20px 0;
     font-weight: 600;
     color: $font_w;
 }
@@ -74,7 +74,7 @@
 
 #message {
     position: absolute;
-    bottom: -20px;
+    bottom: -5px;
     color: $font_w;
     font-size: 15px;
     display: none;
@@ -83,7 +83,7 @@
 
 #nomessage {
     position: absolute;
-    bottom: -20px;
+    bottom: -5px;
     color: $font_w;
     font-size: 15px;
     font-weight: 800;
@@ -92,7 +92,7 @@
 
 #emailmsg {
     position: absolute;
-    bottom: -20px;
+    bottom: -5px;
     color: $font_w;
     font-size: 15px;
     font-weight: 800;

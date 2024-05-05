@@ -1,5 +1,8 @@
 <div class="user-view-container">
   <div class="left">
+  <div class="return2">
+      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
+    </div>
     <div class="principal2">
         <img src="/resources/img/login4.gif" alt="login" class="img">
     </div>
@@ -8,6 +11,9 @@
     </p>
   </div>
   <div class="right">
+    <div class="return2 not">
+      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
+    </div>
     <div class="register2">
       <p>Create an account</p>
       <a href="/registrations/new" class="new">Joined</a>

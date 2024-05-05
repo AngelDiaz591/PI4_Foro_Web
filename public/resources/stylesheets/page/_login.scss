@@ -40,12 +40,10 @@
   color:$font_w;
   width: 480px;
   font-size: 22px;
-}
 
-.featured-words {
-    span {
-      font-weight: 800;
-    }
+  span {
+    font-weight: 800;
+  }
 }
 
 .right {
@@ -113,7 +111,7 @@
 }
 
 .principal {
-  padding: 0 5vw; 
+  padding: 1vw 4vw; 
   border-radius: 2rem;
   position: absolute;
   left: 50%;
@@ -128,7 +126,7 @@
 .slogan {
   font-size: 33px;
   color: $brow1;
-  margin: 40px 0 50px 0;
+  margin: 40px 0 20px 0;
   font-weight: 600;
   color: $font_w;
 }

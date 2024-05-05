@@ -3,8 +3,10 @@ $errors = isset($errors) ? $errors : array();
 $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verification_errors'] : array();
 ?>
 <section class="code_verify">
-  <img src="/resources/img/confirm.svg" alt="codever">
-  <div class="title">Email Verification</div>
+  <img src="/resources/img/email2.svg" class="codever">
+  <div class="title">
+    <p>Check in your Email!</p>
+  </div>
   <?php if (isset($_SESSION['error'])):
     $error_message = $_SESSION['error'];
     unset($_SESSION['error']); ?>
@@ -13,11 +15,11 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <p>Error: <?php echo $error_message; ?></p>
     </div>
   <?php endif; ?>
-  <form action="/confirmations/create" method="POST" autocomplete="off">
-    <div>
+  <!-- <div class="group-inputs"> -->
+    <form action="/confirmations/create" method="POST" autocomplete="off">
       <input type="hidden" id="code" name="code">
       <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
-      <div id="inputs">
+      <div id="inputs" class="group-inputs">
         <input class="inputs" id="input1" type="text" placeholder="0" maxLength="1" required>
         <input class="inputs" id="input2" type="text" placeholder="0" maxLength="1" required>
         <input class="inputs" id="input3" type="text" placeholder="0" maxLength="1" required>
@@ -25,21 +27,30 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <input class="inputs" id="input5" type="text" placeholder="0" maxLength="1" required>
         <input class="inputs" id="input6" type="text" placeholder="0" maxLength="1" required>
       </div>
-      <div class="confirm">
-        <input type="submit" class="verify" name="check" value="Confirm">
-      </div>
-    </div>
-  </form>
+      <!-- <div class="confirm"> -->
+        <input type="submit" class="verify" name="check" value="Verify Code">
+      <!-- </div> -->
+    </form>
+  <!-- </div> -->
+  
   <div class="resend_code">
-    <p>Didn't receive code?</p>
+    <p>Haven't received it?</p>
     <form action="/confirmations/update" method="POST" autocomplete="off">
       <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
-      <input type="submit" class="resend" name="resend" value="Resend">
+      <input type="submit" class="resend" name="resend" value="Resend code">
     </form>
   </div>
-  <p class="warning">Verification Code is valid only for 10 minutes</p>
+  <p class="warning">The code will only be valid for 10 minutes</p>
 </section>
 <script src="/resources/js/veri_code.js"></script>
+<script>
+  setTimeout(function(){
+    var errorAlert = document.getElementById("error-alert");
+    if (errorAlert) {
+      errorAlert.style.display = "none";
+    }
+  }, 3000);
+</script>
 <?php if (isset($_SESSION['error_message'])): ?>
   <script>
     var errorMessage = "<?php echo $_SESSION['error_message']; ?>";
