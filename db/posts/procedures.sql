@@ -69,7 +69,7 @@ CREATE PROCEDURE get_post_by_id(
 BEGIN
   SELECT 
     posts.*,
-    users.username AS username
+    users.username AS username,
     users.email AS email
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
@@ -92,34 +92,5 @@ END
 $$
 DELIMITER ;
 -- call as: CALL get_images_by_post_id(1);
---PROCEDURE IN MYSQL FOR COMMENTS
-DROP PROCEDURE IF EXISTS create_comment;
-DELIMITER $$
-CREATE PROCEDURE create_comment(
-  p_user_id INT,
-  p_post_id INT,
-  p_comment TEXT
-)
-BEGIN
-  INSERT INTO comments (comment, post_id, user_id)
-  VALUES (p_comment, p_post_id, p_user_id );
-END $$
-DELIMITER $$
- --call as: CALL create_comment('comment');
 
-DROP PROCEDURE IF EXISTS get_comments_by_post_id;
-DELIMITER $$
-CREATE PROCEDURE get_comments_by_post_id(
-    p_id INT
-)
-BEGIN
-    SELECT 
-        comments.*,
-        users.username AS username
-    FROM comments
-    INNER JOIN users ON comments.user_id = users.id
-    WHERE comments.post_id = p_id
-    ORDER BY comments.created_at DESC;
-END $$
-DELIMITER ;
---call as: CALL get_comments_by_post_id;
+
