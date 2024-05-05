@@ -1,6 +1,11 @@
 .formUser {
+<<<<<<< HEAD
     height: 65%;
     width: 65%;
+=======
+    height: 50em;
+    width: 100em;
+>>>>>>> 421e406 (structuring and interface design)
     display: flex; 
     box-shadow: $box-shadow;
     overflow: hidden;
@@ -97,7 +102,11 @@
 .formOption {
     gap: 10px;
     color: $font_w;
+<<<<<<< HEAD
     font-size: 1.3em;
+=======
+    font-size: 1.1rem;
+>>>>>>> 421e406 (structuring and interface design)
     margin-top: 30px;
     @include flex-center;
     font-weight: 600;
@@ -137,6 +146,17 @@
     }
 }
 
+<<<<<<< HEAD
+=======
+.formOption2 {
+    gap: 10px;
+    color: $font_w;
+    font-size: 1rem;
+    margin-top: 30px;
+    @include flex-center;
+    font-weight: 400;
+}
+>>>>>>> 421e406 (structuring and interface design)
 
 .returnForm {
     position: absolute;
@@ -189,6 +209,13 @@
         display: none;
     }
 
+<<<<<<< HEAD
+=======
+    .rightForm {
+        width: 100%;
+    }
+
+>>>>>>> 421e406 (structuring and interface design)
     .primaryForm {
         text-align: center;
     }
@@ -203,6 +230,7 @@
         width: 480px;
     }
 
+<<<<<<< HEAD
     .imgNewPass {
         width: 400px;
     }
@@ -222,4 +250,9 @@
     .rightForm {
         width: 100%;
     }
+=======
+    .formOption {
+        font-size: 1rem;
+    }
+>>>>>>> 421e406 (structuring and interface design)
 }

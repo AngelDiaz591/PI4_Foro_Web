@@ -436,10 +436,14 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   align-items: center;
 <<<<<<< HEAD
+<<<<<<< HEAD
   color: #ffffff;
 =======
   color: #cccccc;
 >>>>>>> 3a25165 (user form design)
+=======
+  color: #ffffff;
+>>>>>>> 421e406 (structuring and interface design)
   font-size: 1rem;
   margin: 0.5rem 0 0.8rem 0;
 }
@@ -466,16 +470,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .warning {
 <<<<<<< HEAD
+<<<<<<< HEAD
   color: #ffffff;
 =======
   color: #cccccc;
 >>>>>>> 3a25165 (user form design)
+=======
+  color: #ffffff;
+>>>>>>> 421e406 (structuring and interface design)
 }
 
-/* .confirm {
-    margin: 0.5rem 0 0 0;
-    @include flex-center;
-} */
 .codever {
   height: 10rem;
 }
@@ -914,7 +918,7 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid blue; /* Estilo activo */
 }
 
-.emailVeri {
+.formUser {
   height: 50em;
   width: 100em;
   display: flex;
@@ -957,7 +961,7 @@ h1, h2, h3, h4, h5, h6 {
   width: 500px;
 }
 
-.titleForgot {
+.titleForm {
   font-size: 47px;
   color: #905818;
   margin: 20px 0 20px 0;
@@ -973,7 +977,6 @@ h1, h2, h3, h4, h5, h6 {
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   width: 100%;
   transition: 0.3s;
   height: 90%;
@@ -986,9 +989,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .instruction {
-  /* text-align: center; */
   color: white;
-  /* width: 480px; */
   width: 100%;
   font-size: 19px;
   margin: 0 0 20px 0;
@@ -1006,7 +1007,6 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 0.5rem;
   font-size: 1em;
   width: 100%;
-  /* max-width: 90%; */
   cursor: pointer;
   font-weight: 600;
   color: #263238;
@@ -1017,7 +1017,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #c8ff00;
 }
 
-.registeras {
+.formOption {
   gap: 10px;
   color: white;
   font-size: 1.1rem;
@@ -1028,42 +1028,37 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
 }
 
-.newas {
+.optionUser {
   margin-left: 0.5rem;
   cursor: pointer;
   text-decoration: none;
   padding: 0.5rem;
   border-radius: 0.5rem;
-  /*     color: $font_w;
-      background-color: $brow3; */
   color: #263238;
   background-color: #c8ff00;
 }
-.newas:hover {
-  /* color: $font_w;
-  background-color: $brow4; */
+.optionUser:hover {
   background-color: #263238;
   color: #c8ff00;
 }
 
-.againpassword {
+.optionResend {
   margin-left: 0.5rem;
   cursor: pointer;
   text-decoration: none;
   padding: 0.7rem 1rem;
   border-radius: 1.5rem;
-  color: #fff;
+  color: white;
   font-weight: 600;
   background-color: #263238;
 }
-.againpassword:hover {
+.optionResend:hover {
   text-decoration: none;
   font-weight: 600;
   color: #c8ff00;
-  /* background-color: #c8ff00; */
 }
 
-.registeras2 {
+.formOption2 {
   gap: 10px;
   color: white;
   font-size: 1rem;
@@ -1074,7 +1069,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 400;
 }
 
-.return2 {
+.returnForm {
   position: absolute;
   width: 50px;
   height: 50px;
@@ -1088,15 +1083,15 @@ h1, h2, h3, h4, h5, h6 {
   top: 15px;
   left: 15px;
 }
-.return2:hover {
+.returnForm:hover {
   transition: background-color 0.3s ease;
   background-color: #d8dfd9;
 }
-.return2 i {
+.returnForm i {
   padding-top: 15px;
 }
 @media only screen and (max-width: 1250px) {
-  .return2 {
+  .returnForm {
     margin: 1% 0 0 1%;
   }
 }
@@ -1114,7 +1109,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media only screen and (max-width: 800px) {
-  .emailVeri {
+  .formUser {
     width: 430px;
   }
   .leftImg {
@@ -1134,7 +1129,7 @@ h1, h2, h3, h4, h5, h6 {
   .imgPass {
     width: 480px;
   }
-  .registeras {
+  .formOption {
     font-size: 1rem;
   }
 }
@@ -2242,10 +2237,13 @@ form .images > p.extra-files {
   width: 12.8%;
   height: 56px;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   /* width: 56px;
   height: 56px; */
 >>>>>>> 3a25165 (user form design)
+=======
+>>>>>>> 421e406 (structuring and interface design)
   text-align: center;
   border: none;
   background: rgba(0, 0, 0, 0.1176470588);

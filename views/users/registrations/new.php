@@ -6,10 +6,14 @@
 <div class="user-view-container">
   <div class="left">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="returnForm">
 =======
     <div class="return2">
 >>>>>>> 3a25165 (user form design)
+=======
+    <div class="returnForm">
+>>>>>>> 421e406 (structuring and interface design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
       <div class="principal2">
@@ -21,10 +25,14 @@
   </div>
   <div class="right">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <div class="returnForm not">
 =======
     <div class="return2 not">
 >>>>>>> 3a25165 (user form design)
+=======
+    <div class="returnForm not">
+>>>>>>> 421e406 (structuring and interface design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="datasign">

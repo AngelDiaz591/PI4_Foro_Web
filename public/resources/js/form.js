@@ -154,5 +154,12 @@ function validateEmail() {
         return true;
     }
 }
+<<<<<<< HEAD
     
 >>>>>>> 3a25165 (user form design)
+=======
+<<<<<<< HEAD
+    
+=======
+>>>>>>> 913cdf9 (structuring and interface design)
+>>>>>>> 421e406 (structuring and interface design)

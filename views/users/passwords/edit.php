@@ -8,6 +8,7 @@ if (isset($_SESSION['error'])) {
 ?>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 <div class="formUser">
   <div class="leftImg">
   <div class="returnForm">
@@ -25,21 +26,28 @@ if (isset($_SESSION['error'])) {
       <div class="titleForm">
 =======
 <div class="emailVeri">
+=======
+<div class="formUser">
+>>>>>>> 421e406 (structuring and interface design)
   <div class="leftImg">
-  <div class="return2">
+  <div class="returnForm">
     <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
   </div>
     <div class="principal2">
-        <img src="/resources/img/respass2.svg" alt="login" class="imgNewPass">
+      <img src="/resources/img/respass2.svg" alt="login" class="imgNewPass">
     </div>
   </div>
   <div class="rightForm">
-    <div class="return2 not">
+    <div class="returnForm not">
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="primaryForm">
+<<<<<<< HEAD
       <div class="titleForgot">
 >>>>>>> 3a25165 (user form design)
+=======
+      <div class="titleForm">
+>>>>>>> 421e406 (structuring and interface design)
         <span>Reset Your Password</span>
       </div>
       <p class="instruction">
@@ -59,6 +67,7 @@ if (isset($_SESSION['error'])) {
             <i class="bi bi-key icon"></i>
           </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
           <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
           <div class="formOption">
             <p>Didn't recieve the code?</p>
@@ -71,6 +80,12 @@ if (isset($_SESSION['error'])) {
             <p>Didn't recieve the code?</p>
             <a href="/passwords/new" class="againpassword">Resend</a>
 >>>>>>> 3a25165 (user form design)
+=======
+          <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
+          <div class="formOption2">
+            <p>Didn't recieve the code?</p>
+            <a href="/passwords/new" class="optionResend">Resend</a>
+>>>>>>> 421e406 (structuring and interface design)
           </div>
         </form>
     </div>

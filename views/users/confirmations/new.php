@@ -16,6 +16,9 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     </div>
   <?php endif; ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 421e406 (structuring and interface design)
   <form action="/confirmations/create" method="POST" autocomplete="off">
     <input type="hidden" id="code" name="code">
     <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
@@ -29,6 +32,7 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     </div>
       <input type="submit" class="verify" name="check" value="Verify Code">
   </form>
+<<<<<<< HEAD
 =======
   <!-- <div class="group-inputs"> -->
     <form action="/confirmations/create" method="POST" autocomplete="off">
@@ -49,6 +53,8 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
   <!-- </div> -->
   
 >>>>>>> 3a25165 (user form design)
+=======
+>>>>>>> 421e406 (structuring and interface design)
   <div class="resend_code">
     <p>Haven't received it?</p>
     <form action="/confirmations/update" method="POST" autocomplete="off">
