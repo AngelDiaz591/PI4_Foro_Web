@@ -66,9 +66,17 @@
 .inputs {
     width: 12.8%;
     height: 56px;
+<<<<<<< HEAD
     text-align: center;
     border: none;
     background: $inputveri;
+=======
+    /* width: 56px;
+    height: 56px; */
+    text-align: center;
+    border: none;
+    background: #0000001e;
+>>>>>>> 3a25165 (user form design)
     margin: 0 0.35rem 1.5rem 0;
     border-radius: 0.3rem;
     font-size: 1.8em;
@@ -81,6 +89,10 @@
     }
 
     &::placeholder {
+<<<<<<< HEAD
         color: $veriHover;
+=======
+        color: rgba(0, 0, 0, 0.226);
+>>>>>>> 3a25165 (user form design)
     }
 }

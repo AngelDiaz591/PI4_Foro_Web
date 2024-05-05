@@ -311,10 +311,24 @@ h1, h2, h3, h4, h5, h6 {
 .password-strength {
   position: absolute;
   bottom: -5px;
+<<<<<<< HEAD
+=======
+  color: white;
+  font-size: 15px;
+  display: none;
+  font-weight: 800;
+}
+
+#nomessage {
+  position: absolute;
+  bottom: -5px;
+  color: white;
+>>>>>>> 3a25165 (user form design)
   font-size: 15px;
   font-weight: 800;
   display: none;
 }
+<<<<<<< HEAD
 .password-strength__pswdWeak {
   color: #b11010;
   margin: 0 0 10px 0;
@@ -364,6 +378,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 .password-strength__pswdMatch::after {
   content: "match";
+=======
+
+#emailmsg {
+  position: absolute;
+  bottom: -5px;
+  color: white;
+  font-size: 15px;
+  font-weight: 800;
+  display: none;
+>>>>>>> 3a25165 (user form design)
 }
 
 .code_verify {
@@ -411,7 +435,11 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
   color: #ffffff;
+=======
+  color: #cccccc;
+>>>>>>> 3a25165 (user form design)
   font-size: 1rem;
   margin: 0.5rem 0 0.8rem 0;
 }
@@ -437,9 +465,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .warning {
+<<<<<<< HEAD
   color: #ffffff;
+=======
+  color: #cccccc;
+>>>>>>> 3a25165 (user form design)
 }
 
+/* .confirm {
+    margin: 0.5rem 0 0 0;
+    @include flex-center;
+} */
 .codever {
   height: 10rem;
 }
@@ -454,6 +490,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
   }
 }
+<<<<<<< HEAD
 .error-page {
   display: flex;
   flex-direction: column;
@@ -695,6 +732,8 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
+=======
+>>>>>>> 3a25165 (user form design)
 .first-main {
   margin-left: 17rem;
 }
@@ -875,6 +914,230 @@ h1, h2, h3, h4, h5, h6 {
   border-bottom: 2px solid blue; /* Estilo activo */
 }
 
+.emailVeri {
+  height: 50em;
+  width: 100em;
+  display: flex;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  -webkit-backdrop-filter: blur(20px);
+          backdrop-filter: blur(20px);
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+.leftImg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+}
+
+.rightForm {
+  border-radius: 0 0.9rem 0.9rem 0;
+  position: relative;
+  width: 50%;
+  padding: 20px;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(30px);
+          backdrop-filter: blur(30px);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.imgPass {
+  width: 600px;
+}
+
+.imgNewPass {
+  width: 500px;
+}
+
+.titleForgot {
+  font-size: 47px;
+  color: #905818;
+  margin: 20px 0 20px 0;
+  font-weight: 600;
+  color: white;
+}
+
+.primaryForm {
+  padding: 1vw 4vw;
+  border-radius: 2rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+  transition: 0.3s;
+  height: 90%;
+  justify-content: center;
+  text-align: center;
+}
+
+.form-inputs {
+  Width: 100%;
+}
+
+.instruction {
+  /* text-align: center; */
+  color: white;
+  /* width: 480px; */
+  width: 100%;
+  font-size: 19px;
+  margin: 0 0 20px 0;
+}
+.instruction span {
+  font-weight: 800;
+}
+
+.confirmEmail {
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.8rem;
+  border-radius: 0.5rem;
+  font-size: 1em;
+  width: 100%;
+  /* max-width: 90%; */
+  cursor: pointer;
+  font-weight: 600;
+  color: #263238;
+  background-color: #c8ff00;
+}
+.confirmEmail:hover {
+  background-color: #263238;
+  color: #c8ff00;
+}
+
+.registeras {
+  gap: 10px;
+  color: white;
+  font-size: 1.1rem;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+}
+
+.newas {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  /*     color: $font_w;
+      background-color: $brow3; */
+  color: #263238;
+  background-color: #c8ff00;
+}
+.newas:hover {
+  /* color: $font_w;
+  background-color: $brow4; */
+  background-color: #263238;
+  color: #c8ff00;
+}
+
+.againpassword {
+  margin-left: 0.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  border-radius: 1.5rem;
+  color: #fff;
+  font-weight: 600;
+  background-color: #263238;
+}
+.againpassword:hover {
+  text-decoration: none;
+  font-weight: 600;
+  color: #c8ff00;
+  /* background-color: #c8ff00; */
+}
+
+.registeras2 {
+  gap: 10px;
+  color: white;
+  font-size: 1rem;
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 400;
+}
+
+.return2 {
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  font-size: 20px;
+  text-align: center;
+  z-index: 1;
+  opacity: 0;
+  transform: scale(0.5);
+  animation: aparecer 1s ease forwards;
+  top: 15px;
+  left: 15px;
+}
+.return2:hover {
+  transition: background-color 0.3s ease;
+  background-color: #d8dfd9;
+}
+.return2 i {
+  padding-top: 15px;
+}
+@media only screen and (max-width: 1250px) {
+  .return2 {
+    margin: 1% 0 0 1%;
+  }
+}
+
+.comeback {
+  color: white;
+  font-weight: 600;
+}
+.comeback:hover {
+  color: #263238;
+}
+
+.not {
+  display: none;
+}
+
+@media only screen and (max-width: 800px) {
+  .emailVeri {
+    width: 430px;
+  }
+  .leftImg {
+    display: none;
+  }
+  .rightForm {
+    width: 100%;
+  }
+  .primaryForm {
+    text-align: center;
+  }
+  .not {
+    display: block;
+  }
+}
+@media only screen and (max-width: 1250px) {
+  .imgPass {
+    width: 480px;
+  }
+  .registeras {
+    font-size: 1rem;
+  }
+}
 header {
   height: 75px;
   background-color: #FCF6F4;
@@ -1978,6 +2241,11 @@ form .images > p.extra-files {
 .inputs {
   width: 12.8%;
   height: 56px;
+<<<<<<< HEAD
+=======
+  /* width: 56px;
+  height: 56px; */
+>>>>>>> 3a25165 (user form design)
   text-align: center;
   border: none;
   background: rgba(0, 0, 0, 0.1176470588);

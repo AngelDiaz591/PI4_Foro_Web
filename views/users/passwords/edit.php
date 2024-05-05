@@ -7,6 +7,7 @@ if (isset($_SESSION['error'])) {
 }
 ?>
 
+<<<<<<< HEAD
 <div class="formUser">
   <div class="leftImg">
   <div class="returnForm">
@@ -22,6 +23,23 @@ if (isset($_SESSION['error'])) {
     </div>
     <div class="primaryForm">
       <div class="titleForm">
+=======
+<div class="emailVeri">
+  <div class="leftImg">
+  <div class="return2">
+    <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
+  </div>
+    <div class="principal2">
+        <img src="/resources/img/respass2.svg" alt="login" class="imgNewPass">
+    </div>
+  </div>
+  <div class="rightForm">
+    <div class="return2 not">
+      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
+    </div>
+    <div class="primaryForm">
+      <div class="titleForgot">
+>>>>>>> 3a25165 (user form design)
         <span>Reset Your Password</span>
       </div>
       <p class="instruction">
@@ -40,10 +58,19 @@ if (isset($_SESSION['error'])) {
             <label class="form_label">Confirm password</label>
             <i class="bi bi-key icon"></i>
           </div>
+<<<<<<< HEAD
           <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
           <div class="formOption">
             <p>Didn't recieve the code?</p>
             <a href="/passwords/new" class="optionResend">Resend</a>
+=======
+          <div class="option">  
+            <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
+          </div>
+          <div class="registeras2">
+            <p>Didn't recieve the code?</p>
+            <a href="/passwords/new" class="againpassword">Resend</a>
+>>>>>>> 3a25165 (user form design)
           </div>
         </form>
     </div>

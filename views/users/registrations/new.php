@@ -5,7 +5,11 @@
 </script>
 <div class="user-view-container">
   <div class="left">
+<<<<<<< HEAD
     <div class="returnForm">
+=======
+    <div class="return2">
+>>>>>>> 3a25165 (user form design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
       <div class="principal2">
@@ -16,7 +20,11 @@
       </p>
   </div>
   <div class="right">
+<<<<<<< HEAD
     <div class="returnForm not">
+=======
+    <div class="return2 not">
+>>>>>>> 3a25165 (user form design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="datasign">
@@ -57,7 +65,11 @@
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
             <label class="form_label">Confirm password</label>
             <i class="bi bi-key icon"></i>
+<<<<<<< HEAD
             <p id="confirm_message" class="password-strength">Password </p>
+=======
+            <p id="nomessage">Password <span id="constrength"></span></p>
+>>>>>>> 3a25165 (user form design)
           </div>
           <div class="option2">
             <div class="btn-create">

@@ -82,10 +82,24 @@
 .password-strength {
     position: absolute;
     bottom: -5px;
+<<<<<<< HEAD
+=======
+    color: $font_w;
+    font-size: 15px;
+    display: none;
+    font-weight: 800;
+}
+
+#nomessage {
+    position: absolute;
+    bottom: -5px;
+    color: $font_w;
+>>>>>>> 3a25165 (user form design)
     font-size: 15px;
     font-weight: 800;
     display: none;
 
+<<<<<<< HEAD
     &__pswdWeak {
         color: #b11010;
         margin: 0 0 10px 0;
@@ -143,4 +157,13 @@
             content: 'match';
         }
     }
+=======
+#emailmsg {
+    position: absolute;
+    bottom: -5px;
+    color: $font_w;
+    font-size: 15px;
+    font-weight: 800;
+    display: none;
+>>>>>>> 3a25165 (user form design)
 }
