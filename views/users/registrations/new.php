@@ -5,7 +5,7 @@
 </script>
 <div class="user-view-container">
   <div class="left">
-    <div class="return2">
+    <div class="returnForm">
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
       <div class="principal2">
@@ -16,7 +16,7 @@
       </p>
   </div>
   <div class="right">
-    <div class="return2 not">
+    <div class="returnForm not">
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="datasign">

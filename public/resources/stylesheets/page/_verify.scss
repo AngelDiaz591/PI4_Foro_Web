@@ -6,7 +6,7 @@
     border-radius: 0.9rem;
     padding: 0.8rem 2rem;
     box-shadow: $box-shadow;
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 3px solid $tone_wl;
     border-radius: 30px;
     backdrop-filter: blur(20px);
 }
@@ -17,7 +17,7 @@
     padding: 0.8rem 0.5rem;
     border-radius: 8px;
     border: none;
-    background-color: rgba(91, 236, 101, 0.479);
+    background-color: $green4;
     color: $font_w3;
     cursor: pointer;
     font-weight: 600;
@@ -32,13 +32,13 @@
 .title {
     font-size: 2em;
     font-weight: 700;
-    color: #5bec64;
+    color: $green3;
     margin: 1rem 0 0.8rem 0;
 }
 
 .resend_code {
     @include flex-center;
-    color: #cccccc;
+    color: $font_w4;
     font-size: 1rem;
     margin: 0.5rem 0 0.8rem 0;
 }
@@ -50,7 +50,7 @@
 
 .resend {
     text-decoration: none;
-    color: #5bec64;
+    color: $green3;
     font-weight: 900;
     background-color: transparent;
     border: none;
@@ -60,18 +60,13 @@
     font-size: 1.2rem;
 
     &:hover {
-        color: rgba(91, 236, 101, 0.479);
+        color: $green4;
     }
 }
 
 .warning {
-    color: #cccccc;
+    color: $font_w4;
 }
-
-/* .confirm {
-    margin: 0.5rem 0 0 0;
-    @include flex-center;
-} */
 
 .codever {
     height: 10rem;

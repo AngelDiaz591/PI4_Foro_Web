@@ -1,10 +1,10 @@
-.emailVeri {
+.formUser {
     height: 50em;
     width: 100em;
     display: flex; 
     box-shadow: $box-shadow;
     overflow: hidden;
-    border: 3px solid rgba(255,255,255,0.3);
+    border: 3px solid $tone_wl;
     border-radius: 30px;
     backdrop-filter: blur(20px);
     animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -14,7 +14,7 @@
     @include flex-center;
     flex-direction: column;
     width: 50%;
-    background: rgba(255,255,255,0.3);
+    background: $tone_wl;
     backdrop-filter: blur(30px);
 }
 
@@ -25,7 +25,7 @@
     padding: 20px;
     overflow: hidden;
     backdrop-filter: blur(30px);
-    background: rgba(255,255,255,0.3);
+    background: $tone_wl;
     
 }
 
@@ -37,7 +37,7 @@
     width: 500px;
 }
 
-.titleForgot {
+.titleForm {
     font-size: 47px;
     color: $brow1;
     margin: 20px 0 20px 0;
@@ -53,7 +53,6 @@
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     width: 100%;
     transition: .3s;
     height: 90%;
@@ -66,9 +65,7 @@
 }
 
 .instruction {
-    /* text-align: center; */
     color: $font_w;
-    /* width: 480px; */
     width: 100%;
     font-size: 19px;
     margin: 0 0 20px 0;
@@ -85,19 +82,19 @@
     border-radius: 0.5rem;
     font-size: 1em;
     width: 100%;
-    /* max-width: 90%; */
+
     cursor: pointer;
     font-weight: 600;
-    color: /* $font_w */#263238;
-    background-color: #c8ff00/* $green3 */;
+    color: $tone_gH;
+    background-color: $tone_gre;
 
     &:hover {
-        background-color: #263238;
-        color: #c8ff00/* rgba(91, 236, 101, 0.479) */;
+        background-color: $tone_gH;
+        color: $tone_gre;
     }
 }
 
-.registeras {
+.formOption {
     gap: 10px;
     color: $font_w;
     font-size: 1.1rem;
@@ -106,46 +103,41 @@
     font-weight: 600;
 }
 
-.newas {
+.optionUser {
     margin-left: 0.5rem;
     cursor: pointer;
     text-decoration: none;
     padding: 0.5rem;
     border-radius: 0.5rem;
-/*     color: $font_w;
-    background-color: $brow3; */
-    color: /* $font_w */#263238;
-    background-color: #c8ff00/* $green3 */;
+    color: $tone_gH;
+    background-color: $tone_gre;
 
     &:hover {
-        /* color: $font_w;
-        background-color: $brow4; */
-        background-color: #263238;
-        color: #c8ff00/* rgba(91, 236, 101, 0.479) */;
+        background-color: $tone_gH;
+        color: $tone_gre;
 
     }
 }
 
-.againpassword {
+.optionResend {
     margin-left: 0.5rem;
     cursor: pointer;
     text-decoration: none;
     padding: 0.7rem 1rem;
     border-radius: 1.5rem;
-    color: /* #263238 */#fff;
+    color: $font_w;
     font-weight: 600;
-    background-color: #263238;
+    background-color: $tone_gH;
     
 
     &:hover {
         text-decoration: none;
         font-weight: 600;
-        color: #c8ff00/* rgba(91, 236, 101, 0.479)*/;
-        /* background-color: #c8ff00; */
+        color: $tone_gre;
     }
 }
 
-.registeras2 {
+.formOption2 {
     gap: 10px;
     color: $font_w;
     font-size: 1rem;
@@ -154,7 +146,7 @@
     font-weight: 400;
 }
 
-.return2 {
+.returnForm {
     position: absolute;
     width: 50px;
     height: 50px;
@@ -162,13 +154,12 @@
     font-size: px(4);
     text-align: center;
     z-index: 1;
-    opacity: 0; // Empieza transparente
-    transform: scale(0.5); // Empieza más pequeño
-    animation: aparecer 1s ease forwards; // Aplica la animación 'aparecer'
+    opacity: 0;
+    transform: scale(0.5); 
+    animation: aparecer 1s ease forwards;
     top: 15px;
     left: 15px;
-    
-  
+
     &:hover {
         transition: background-color 0.3s ease;
         background-color: $font_w3;
@@ -177,28 +168,28 @@
     i {
         padding-top: px(3);
     }
-  
+
     @include tablet() {
         margin: 1% 0 0 1%;
     }
 }
 
 .comeback {
-    color: white;
+    color: $font_w;
     font-weight: 600;
 
     &:hover {
-        color:#263238;
+        color:$tone_gH;
     }
 }
 
-.not{
+.not {
     display: none;
 }
 
 
 @include mobile {
-    .emailVeri{
+    .formUser {
         width: 430px;
     }
 
@@ -224,7 +215,7 @@
         width: 480px;
     }
 
-    .registeras {
+    .formOption {
         font-size: 1rem;
     }
 }

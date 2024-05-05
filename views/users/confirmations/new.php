@@ -15,24 +15,19 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
         <p>Error: <?php echo $error_message; ?></p>
     </div>
   <?php endif; ?>
-  <!-- <div class="group-inputs"> -->
-    <form action="/confirmations/create" method="POST" autocomplete="off">
-      <input type="hidden" id="code" name="code">
-      <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
-      <div id="inputs" class="group-inputs">
-        <input class="inputs" id="input1" type="text" placeholder="0" maxLength="1" required>
-        <input class="inputs" id="input2" type="text" placeholder="0" maxLength="1" required>
-        <input class="inputs" id="input3" type="text" placeholder="0" maxLength="1" required>
-        <input class="inputs" id="input4" type="text" placeholder="0" maxLength="1" required>
-        <input class="inputs" id="input5" type="text" placeholder="0" maxLength="1" required>
-        <input class="inputs" id="input6" type="text" placeholder="0" maxLength="1" required>
-      </div>
-      <!-- <div class="confirm"> -->
-        <input type="submit" class="verify" name="check" value="Verify Code">
-      <!-- </div> -->
-    </form>
-  <!-- </div> -->
-  
+  <form action="/confirmations/create" method="POST" autocomplete="off">
+    <input type="hidden" id="code" name="code">
+    <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
+    <div id="inputs" class="group-inputs">
+      <input class="inputs" id="input1" type="text" placeholder="0" maxLength="1" required>
+      <input class="inputs" id="input2" type="text" placeholder="0" maxLength="1" required>
+      <input class="inputs" id="input3" type="text" placeholder="0" maxLength="1" required>
+      <input class="inputs" id="input4" type="text" placeholder="0" maxLength="1" required>
+      <input class="inputs" id="input5" type="text" placeholder="0" maxLength="1" required>
+      <input class="inputs" id="input6" type="text" placeholder="0" maxLength="1" required>
+    </div>
+      <input type="submit" class="verify" name="check" value="Verify Code">
+  </form>
   <div class="resend_code">
     <p>Haven't received it?</p>
     <form action="/confirmations/update" method="POST" autocomplete="off">

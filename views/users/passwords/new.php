@@ -2,9 +2,9 @@
 $action = isset($_GET['action']) ? $_GET['action'] : '';
 $errors = isset($errors) ? $errors : array();
 ?>
-<div class="emailVeri">
+<div class="formUser">
   <div class="leftImg">
-    <div class="return2">
+    <div class="returnForm">
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="principal2">
@@ -12,11 +12,11 @@ $errors = isset($errors) ? $errors : array();
     </div>
   </div>
   <div class="rightForm">
-    <div class="return2 not">
+    <div class="returnForm not">
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="primaryForm">
-      <div class="titleForgot">
+      <div class="titleForm">
         <span>Forgot Your Password?</span>
       </div>
       <p class="instruction">
@@ -36,12 +36,10 @@ $errors = isset($errors) ? $errors : array();
             <label class="form_label">Email</label>
             <i class="bi bi-envelope icon"></i>
           </div>
-          <div class="option">  
-            <input type="submit" name="send" value="Continue" class="confirmEmail">
-          </div>
-          <div class="registeras">
+          <input type="submit" name="send" value="Continue" class="confirmEmail">
+          <div class="formOption">
             <p>Already have account?</p>
-            <a href="/sessions/new" class="newas">Sign In</a>
+            <a href="/sessions/new" class="optionUser">Sign In</a>
           </div>
         </form>
       </div>
