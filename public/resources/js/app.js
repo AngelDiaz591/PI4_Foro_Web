@@ -23,13 +23,13 @@ const app = {
     let uri = window.location.pathname;
     
     if (uri === '/') {
-      return uriObj;
+      return uri;
     }
     
     uri = uri.ltrim('/').rtrim('/').split('/').slice(2);
 
     if (uri.length === 0) {
-      return uriObj;
+      return uri;
     }
 
     uri = uri.map(item => item.split(':'))

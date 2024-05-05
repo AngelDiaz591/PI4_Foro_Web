@@ -12,7 +12,7 @@ class PostsController extends Post {
             $this->params = $params["method"];
             $this->files = $params["files"];
         } catch (Exception $e) {
-            $this->error('500');
+            return $this->error('500');
         }
     }
 
@@ -26,7 +26,7 @@ class PostsController extends Post {
                 throw new Exception("Failed to get all posts: " . $response["message"]);
             }
         } catch (Exception $e) {
-            $this->error('500');
+            return $this->error('500');
         }
     }
 
@@ -40,7 +40,7 @@ class PostsController extends Post {
                 throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
             }
         } catch (Exception $e) {
-            $this->error('404');
+            return $this->error('404');
         }
     }
 
@@ -75,7 +75,7 @@ class PostsController extends Post {
                 throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
             }
         } catch (Exception $e) {
-            $this->error('404');
+            return $this->error('404');
         }
     }
 
@@ -117,7 +117,7 @@ class PostsController extends Post {
             $this->comment_father($this->params);
             header('Location: /posts/show/id:' . $this->params['post_id']);
         } catch(Exception $e) {
-            $this->error('404');
+            return $this->error('404');
         }
     }
 
@@ -158,8 +158,9 @@ class PostsController extends Post {
         throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
       }
     } catch (Exception $e) {
-      $this->error('404');
+      return $this->error('404');
     }
+  }
 
     public function delete_comments() {
         try {

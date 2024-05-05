@@ -10,7 +10,7 @@ class UsersController extends User {
       parent::__construct();
       $this->params = $params['method'];
     } catch (Exception $e) {
-      $this->error('500');
+      return $this->error('500');
     }
   }
 
@@ -32,7 +32,7 @@ class UsersController extends User {
       }
     } catch (Exception $e) {
       error_log($e->getMessage());
-      $this->error('404');
+      return $this->error('404');
     }
   }
 
@@ -99,7 +99,7 @@ class UsersController extends User {
 
   public function is_following($user, $follower) {
     try {
-      $db = new self($this->params);
+      $db = new self(['method' => $this->params]);
 
       $db->t = 'followers';
       $db->pp = ['user_id', 'follower_id'];

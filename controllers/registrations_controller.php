@@ -13,7 +13,7 @@ class RegistrationsController extends User {
       parent::__construct();
       $this->params = $params['method'];
     } catch (Exception $e) {
-      $this->error('500');
+      return $this->error('500');
     }
   }
 
