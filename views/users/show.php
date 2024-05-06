@@ -39,7 +39,7 @@
               <input type="hidden" name="follower_id" value="<?= $_SESSION['user']['id'] ?>">
               <button type="submit">Unfollow</button>
             </form>
-          <?php else: ?>
+          <?php elseif ($data->id != $_SESSION['user']['id']): ?>
             <form onsubmit="user.follow(event, this)">
               <input type="hidden" name="user_id" value="<?= $data->id ?>">
               <input type="hidden" name="follower_id" value="<?= $_SESSION['user']['id'] ?>">
