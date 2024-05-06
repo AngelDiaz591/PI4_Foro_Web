@@ -1,0 +1,72 @@
+.code_verify {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 35%;
+    height: 50%;
+    background-color: $brow0;
+    border: 0.2rem solid $font_w3;
+    border-radius: 0.9rem;
+    padding: 0.8rem;
+    box-shadow: $box-shadow;
+}
+.verify {
+    width: 16rem;
+    letter-spacing: 0.1rem;
+    margin: 0.3rem 0 1rem;
+    padding: 0.8rem 0.5rem;
+    border-radius: 8px;
+    border: none;
+    background-color: $green2;
+    color: $font_w3;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1em;
+    justify-content: center;
+
+    &:hover{
+        background-color: $green3;
+    }
+}
+
+.title {
+    font-size: 2em;
+    font-weight: 700;
+}
+
+.resend_code {
+    @include flex-center;
+    color: $gray_1;
+    font-size: 1rem;
+    margin: 0.1rem 0;
+}
+
+.resend {
+    text-decoration: none;
+    color: $green2;
+    font-weight: 900;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: monospace;
+  padding-left: 0.2rem;
+  font-size: 1.2rem;
+
+    &:hover {
+        color: $green3;
+    }
+}
+
+.warning {
+    color: $gray_1;
+}
+
+.confirm {
+    margin: 0.5rem 0 0 0;
+    @include flex-center;
+}
+
+.codever {
+    height: 6rem;
+}

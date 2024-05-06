@@ -1,0 +1,203 @@
+header {
+  height: px(15);
+  background-color: $section-font;
+  color: $font-text;
+  box-shadow:  $bor_fond;
+  z-index: 2;
+  position: fixed; 
+  width: 100%; 
+  transition: top 0.3s; 
+  display: flex;
+  align-items: center;
+
+  img {
+    width: px(10);
+    height:px(10);
+  }
+}
+
+h2 {
+  color: $font-text;
+}
+
+.menu {
+  font-size: px(10);
+  margin-left: px(4);
+  cursor: pointer;
+  padding-right: px(8);
+}
+
+.seeker {
+  display: flex;
+  align-items: center;
+  border-radius: px(5); 
+  @include card ();
+  margin: auto auto auto 15%;
+  width: 30%;
+
+  > button {
+    background-color: $section-font;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+
+    > i{
+      text-align: center;
+      font-size: 25px;
+      color: $font-text;
+      
+    }
+  }
+
+  input.cont[type="search"] {
+    width: 100%;
+    flex: 1;
+    position: relative;
+    outline: none;
+    border-radius: px(5); 
+    color: $font_b2;
+    background-color: $section-font;
+    border: 1px solid $section-font;
+    margin: 5px 5px 5px 0;
+    font-size: 20px;
+  }
+}
+
+header .seeker .search {
+  margin: 5px 0 0 7px;
+  font-size: 25px;
+}
+
+@include mobile {
+
+  .menu {
+    padding-right: 0;
+  }
+
+  .seeker {
+    margin: auto;
+  }
+}
+
+@media (max-width:500px) {
+  h2 {
+    display: none;
+  }
+}
+
+
+
+.login {
+  @include card();
+  border-radius: 20px;
+  margin-right: 20px;
+  padding: 5px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+
+  a, input {
+    color: $font-text;
+    font-size: 25px;
+    margin: 10px;
+    text-decoration: none;
+  }
+
+  input {
+    margin: 0 10px;
+    box-shadow: none;
+    border: none;
+    background-color: transparent;
+  }
+
+  &:hover {
+    background-color: $font_b;
+    animation: shake 0.5s ease-in-out infinite;
+    
+    & > a, input {
+      color: $font_w;
+    }
+  }
+}
+.notifications{
+  font-size: 40px;
+  color: $font_b2;
+  cursor: pointer;
+}
+
+.user-menu {
+  border-radius: 50%;
+  background-color: $section-font;
+  margin: 10px 30px;
+  border: 2px solid $font-text;
+  cursor: pointer;
+}
+
+.menu-user {
+  margin: 75px 0px 10px 80%;
+  font-size: px(4);
+  position: absolute;
+  background-color: $section-font;
+  border: 0.5px solid #ccc;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 3;
+  display: none;
+  border-radius: px(1);
+}
+
+.list-user {
+  list-style-type: none;
+  padding: 0;
+  padding: 15px;
+  
+  .profile-menu {
+    display: flex;
+    .user-information {
+      padding: 0px 15px ;
+      display: block;
+    }
+    .user-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+  }
+
+  a {
+    padding: 4px;
+    cursor: pointer;
+
+    li {
+      padding: 5px;
+    }
+    :hover {
+      background-color: $font-hover;
+      border-radius: px(1);
+    }
+  }
+
+  li {
+    pad: 5px;
+
+    :hover {
+      background-color: $font-hover;
+      border-radius: px(1);
+    }
+  }
+
+  input[type="submit"]{
+    border: none;
+    font-size: 20px;
+    background-color: transparent;
+    cursor: pointer;
+
+    :hover {
+      background-color: $font-hover;
+      border-radius: px(1);
+    }
+  }
+}
+
+.show-user {
+  display: block;
+}
