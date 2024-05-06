@@ -5,8 +5,13 @@ define('RESOURCES', ROOT_DIR . 'resources/');
 // ======= CONSTANTS CONFIGURABLES =======
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
+<<<<<<< HEAD
 define('USER_DB', 'root');
 define('PASS_DB', '');
+=======
+define('USER_DB', 'isma');
+define('PASS_DB', '123');
+>>>>>>> 043118b (file comment.js is optimized)
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================
