@@ -22,7 +22,7 @@
       <div class="images">
         <?php foreach ($params["images"] as $image): ?>
           <div class="image">
-            <img src="<?= IMAGES . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
+            <img src="/assets/imgs/<?= $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
           </div>
         <?php endforeach; ?>
       </div>

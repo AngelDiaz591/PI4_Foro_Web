@@ -61,4 +61,3 @@ if (isset($_SESSION['success'])) {
 }
 ?>
 <div id="errorMessages"></div>
-<script src="/resources/js/validacion.js"></script>
