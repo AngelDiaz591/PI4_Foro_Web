@@ -17,13 +17,13 @@ CREATE TABLE users (
 	email VARCHAR(255) NOT NULL UNIQUE,
 	password VARCHAR(255) NOT NULL,
 	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	updated_at TIMESTAMP,
+	updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   confirmation_code VARCHAR(50),
   confirmation_token VARCHAR(255),
-  confirmation_sent_at TIMESTAMP,
-  confirmed_at TIMESTAMP,
+  confirmation_sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  confirmed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   reset_password_token VARCHAR(255),
-  reset_password_sent_at TIMESTAMP,
+  reset_password_sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
 
@@ -44,7 +44,7 @@ CREATE TABLE user_data (
   gender VARCHAR(255),
   birthdate DATE,
   phone VARCHAR(255),
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   CONSTRAINT `fk_user-data_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
@@ -54,7 +54,7 @@ CREATE TABLE unesco (
   id INT(20) AUTO_INCREMENT,
   theme VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE posts (
   eliminated TINYINT(1) DEFAULT 0,
   permission TINYINT(1) DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   key `theme` (`theme`),
@@ -92,7 +92,7 @@ CREATE TABLE comments (
   parent_comment_id INT(20),
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   key `post_id` (`post_id`),
@@ -108,7 +108,7 @@ CREATE TABLE dms (
   receiver_id INT(20),
   message TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   key `receiver_id` (`receiver_id`),
