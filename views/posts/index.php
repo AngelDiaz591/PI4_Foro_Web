@@ -25,7 +25,7 @@
 
         <div class="image">
           <?php foreach ($d["images"] as $image): ?>
-            <img src="<?= IMAGES . $image["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="main.verFotos('<?= IMAGES . $image['image'] ?>')">
+            <img src="/assets/imgs/<?= $image["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="main.verFotos('/assets/imgs/<?= $image['image'] ?>')">
           <?php endforeach; ?>
         </div> 
       </div>
