@@ -15,23 +15,27 @@ class User extends Base {
   public function find_by_id($id) {
     try {
       $this->t = 'users';
-      $this->pp = ['id'];
 
-      $result = $this->select([
-        'a.id', 'a.username', 'a.email',
-        'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
+      $result1 = $this->select([
+        'id', 'username', 'email'
+      ])->where([['id', '=', $id]])
+      ->first();
+
+      if (empty($result1)) {
+        throw new Exception("User not found");
+      }
+
+      $result2 = $this->select([
         'COUNT(DISTINCT b.user_id) as posts',
         'COUNT(DISTINCT c.follower_id) as followers',
         'COUNT(DISTINCT d.user_id) as following'
-      ])->join('posts as b', 'b.user_id = a.id')
-        ->left_join('followers as c', 'a.id = c.user_id')
-        ->left_join('followers as d', 'a.id = d.follower_id')
-        ->where([['a.id', '=', $id]])
-        ->first();
+      ])->left_join('posts as b', 'b.user_id = a.id')
+      ->left_join('followers as c', 'a.id = c.user_id')
+      ->left_join('followers as d', 'a.id = d.follower_id')
+      ->where([['a.id', '=', $id]])
+      ->first();
 
-      if (empty($result)) {
-        throw new Exception("User not found");
-      }
+      $result = array_merge($result1, $result2);
 
       return $this->response(status: true, data: $result, message: "User retrieved successfully.");
     } catch (PDOException | Exception $e) {
