@@ -18,8 +18,16 @@ Class Base extends Database {
  * @return void
  */
   public function check_connection() {
-    if ($this->conn === null) {
-      throw new Exception("Failed to connect to the database.");
+    try {
+      $result = $this->conn->query("SELECT 1");
+
+      if (!$result) {
+        throw new Exception("Failed to connect to the database.");
+      }
+
+      return;
+    } catch (PDOException | Exception $e) {
+      throw new Exception($e->getMessage());
     }
   }
 
