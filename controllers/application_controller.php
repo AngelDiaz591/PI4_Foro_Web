@@ -4,8 +4,17 @@ define('RESOURCES', ROOT_DIR . 'public/resources/');
 // ======= CONSTANTS CONFIGURABLES =======
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
+<<<<<<< HEAD
 define('USER_DB', 'mariana');
 define('PASS_DB', 'contraseña');
+=======
+<<<<<<< HEAD
+define('USER_DB', 'root');
+=======
+define('USER_DB', 'mariana');
+>>>>>>> 7ebd08c (Correction responsive)
+define('PASS_DB', '');
+>>>>>>> c5f0511 (Correction responsive)
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================

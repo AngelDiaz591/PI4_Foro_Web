@@ -66,8 +66,13 @@
           <div class="user-input">
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
+<<<<<<< HEAD
             <i class="bi bi-lock icon default-icon"></i>
             <p id="password_message" class="password-strength">Password is </p>
+=======
+            <i class="bi bi-lock icon"></i>
+            <p id="message" class="password-strength">Password is <span id="strenght"></span></p>
+>>>>>>> c5f0511 (Correction responsive)
           </div>
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>

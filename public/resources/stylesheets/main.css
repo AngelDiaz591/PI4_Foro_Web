@@ -308,7 +308,11 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
 }
 
+<<<<<<< HEAD
 .password-strength {
+=======
+.passwd-strenght {
+>>>>>>> c5f0511 (Correction responsive)
   position: absolute;
   bottom: -5px;
 <<<<<<< HEAD
@@ -318,7 +322,35 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   font-weight: 800;
 }
+.passwd-strenght::after {
+  margin: 0 0 10px 0;
+  top: -8px;
+  content: "";
+}
+.passwd-strenght__weak::after {
+  content: "weak";
+  background-color: rgba(211, 12, 12, 0.486);
+  color: #b11010;
+}
+.passwd-strenght__medium::after {
+  content: "medium";
+  background-color: rgba(236, 240, 22, 0.486);
+  color: #f3eb51;
+}
+.passwd-strenght__strong::after {
+  content: "strong";
+  background-color: rgba(81, 182, 14, 0.651);
+  color: #5bec64;
+}
 
+/* #message {
+    position: absolute;
+    bottom: -5px;
+    color: $font_w;
+    font-size: 15px;
+    display: none;
+    font-weight: 800;
+} */
 #nomessage {
   position: absolute;
   bottom: -5px;
@@ -380,6 +412,7 @@ h1, h2, h3, h4, h5, h6 {
   content: "match";
 =======
 
+<<<<<<< HEAD
 #emailmsg {
   position: absolute;
   bottom: -5px;
@@ -390,6 +423,8 @@ h1, h2, h3, h4, h5, h6 {
 >>>>>>> 3a25165 (user form design)
 }
 
+=======
+>>>>>>> c5f0511 (Correction responsive)
 .code_verify {
   flex-direction: column;
   display: flex;
@@ -494,6 +529,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
   }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 .error-page {
   display: flex;
@@ -746,176 +782,34 @@ h1, h2, h3, h4, h5, h6 {
   display: grid;
   height: auto; /* Altura del contenedor */
   width: 100%;
+=======
+.error-page {
+  display: flex;
+  flex-direction: column;
+>>>>>>> c5f0511 (Correction responsive)
   justify-content: center;
-}
-.state .cover-profile {
-  display: flex;
-  width: 80rem;
-  height: 20rem;
-  background: url(./../../resources/img/cover_profile.jpg);
-  background-size: cover;
-  border-radius: 1rem;
-}
-
-.state2 {
-  display: grid;
-  height: auto; /* Altura del contenedor */
-  width: 100%;
-  justify-content: center;
-  top: -4rem;
-  position: relative;
-}
-.state2 .info-user {
-  display: grid;
-  height: 12.5rem;
-  width: 70rem;
-  position: relative;
-  background-color: white;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  padding: 1.5rem 1.5rem 0.2rem 1.5rem;
-  border-radius: 2rem;
-}
-.state2 .photo {
-  border-radius: 50%;
-  width: 10rem;
-}
-.state2 .data-user {
-  color: black;
-  display: grid;
-  margin: 0 0 0 1rem;
-  text-align: left;
-}
-.state2 .count {
-  display: flex;
-  justify-content: space-around;
-  margin: 2rem 0 0 0;
-  text-align: center;
-}
-.state2 .submenu {
-  display: flex;
-  justify-content: center;
-}
-.state2 .submenu .option {
-  padding: 0.2rem 1rem;
-  margin: 0 1rem 0 0;
-}
-.state2 .submenu .option:hover {
-  cursor: pointer;
-  font-weight: 600;
-}
-.state2 .submenu .option:active {
-  border: none;
-  border-bottom: 0.2rem solid black;
-  color: black;
-}
-.state2 .position {
-  display: flex;
-  padding: 0 0 1rem 0;
   align-items: center;
 }
-.state2 .position .edit-btn {
-  justify-content: right;
-  display: flex;
-  width: 100%;
+.error-page h1 {
+  font-size: 3em;
+  padding: 1rem;
 }
-.state2 .btn-conf {
-  padding: 0.6rem 1.3rem;
-  background-color: white;
-  border-radius: 1rem;
-  border: 0.15rem solid rgb(128, 128, 128);
-  font-size: 1rem;
-  font-weight: 600;
-  color: #777777;
+.error-page h2 {
+  font-size: 2em;
+  padding: 1rem;
 }
-.state2 .btn-conf:hover {
-  background-color: black;
-  color: white;
-  cursor: pointer;
+.error-page p {
+  font-size: 1.5em;
+  padding: 1rem;
 }
-
-.state2 {
-  display: grid;
-  /* grid-template-rows: auto auto; /* Esto dividirá el contenedor en dos filas de tamaño automático * */
-  /* gap: -5rem; /* Espacio entre las filas * */
-  height: 10rem; /* Altura del contenedor */
-  width: 100%;
-  justify-content: center;
+.error-page a {
+  font-size: 1em;
+  color: #111e88;
+  text-decoration: none;
+  transition: color 0.3s;
 }
-
-.profile {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* Esto dividirá el contenedor en dos columnas de tamaño automático */
-  gap: 2rem; /* Espacio entre las columnas */
-  width: 60rem; /* Anchura del contenedor */
-  margin: 2rem 0 0 0;
-  height: auto;
-  justify-content: center;
-}
-.profile .hobbies {
-  height: auto;
-}
-.profile .hobbies .info {
-  background-color: white;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  border-radius: 0.5rem;
-  padding: 1.5rem 2rem;
-  text-align: left;
-}
-.profile .hobbies .info .datas {
-  margin: 1.5rem 0 0 0;
-  color: rgb(150, 150, 150);
-  display: grid;
-}
-.profile .hobbies .info .datas .sh {
-  margin: 0 0 1rem 0;
-}
-.profile .hobbies .info .datas .sh .sh-icon {
-  margin: 0 0.5rem 0 0;
-}
-
-.post-container {
-  display: none;
-}
-
-.nopost-container {
-  background-color: white;
-  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-  border-left: 0.5rem solid #78461b;
-  height: 10rem;
-  padding: 2rem;
-}
-
-.add-photo {
-  width: 7rem;
-  margin: 0 0 0.5rem 0;
-}
-
-.enun {
-  color: rgb(177, 165, 165);
-}
-
-.link {
-  padding: 0.5rem;
-  color: rgb(150, 150, 150);
-  font-weight: 700;
-}
-.link:hover {
-  cursor: pointer;
-  border-radius: 0.5rem;
-  background-color: rgb(87, 87, 87);
-  color: white;
-}
-
-.ig {
-  color: rgb(150, 150, 150);
-}
-
-.caract {
-  margin: 0 3rem 0 0;
-}
-
-.active {
-  border-bottom: 2px solid blue; /* Estilo activo */
+.error-page a:hover {
+  color: #0b145b;
 }
 
 .formUser {
@@ -1133,6 +1027,186 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1rem;
   }
 }
+.first-main {
+  margin-left: 17rem;
+}
+
+.state {
+  display: grid;
+  height: auto; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+}
+.state .cover-profile {
+  display: flex;
+  width: 80rem;
+  height: 20rem;
+  background: url(./../../resources/img/cover_profile.jpg);
+  background-size: cover;
+  border-radius: 1rem;
+}
+
+.state2 {
+  display: grid;
+  height: auto; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+  top: -4rem;
+  position: relative;
+}
+.state2 .info-user {
+  display: grid;
+  height: 12.5rem;
+  width: 70rem;
+  position: relative;
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  padding: 1.5rem 1.5rem 0.2rem 1.5rem;
+  border-radius: 2rem;
+}
+.state2 .photo {
+  border-radius: 50%;
+  width: 10rem;
+}
+.state2 .data-user {
+  color: black;
+  display: grid;
+  margin: 0 0 0 1rem;
+  text-align: left;
+}
+.state2 .count {
+  display: flex;
+  justify-content: space-around;
+  margin: 2rem 0 0 0;
+  text-align: center;
+}
+.state2 .submenu {
+  display: flex;
+  justify-content: center;
+}
+.state2 .submenu .option {
+  padding: 0.2rem 1rem;
+  margin: 0 1rem 0 0;
+}
+.state2 .submenu .option:hover {
+  cursor: pointer;
+  font-weight: 600;
+}
+.state2 .submenu .option:active {
+  border: none;
+  border-bottom: 0.2rem solid black;
+  color: black;
+}
+.state2 .position {
+  display: flex;
+  padding: 0 0 1rem 0;
+  align-items: center;
+}
+.state2 .position .edit-btn {
+  justify-content: right;
+  display: flex;
+  width: 100%;
+}
+.state2 .btn-conf {
+  padding: 0.6rem 1.3rem;
+  background-color: white;
+  border-radius: 1rem;
+  border: 0.15rem solid rgb(128, 128, 128);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #777777;
+}
+.state2 .btn-conf:hover {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.state2 {
+  display: grid;
+  /* grid-template-rows: auto auto; /* Esto dividirá el contenedor en dos filas de tamaño automático * */
+  /* gap: -5rem; /* Espacio entre las filas * */
+  height: 10rem; /* Altura del contenedor */
+  width: 100%;
+  justify-content: center;
+}
+
+.profile {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Esto dividirá el contenedor en dos columnas de tamaño automático */
+  gap: 2rem; /* Espacio entre las columnas */
+  width: 60rem; /* Anchura del contenedor */
+  margin: 2rem 0 0 0;
+  height: auto;
+  justify-content: center;
+}
+.profile .hobbies {
+  height: auto;
+}
+.profile .hobbies .info {
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  border-radius: 0.5rem;
+  padding: 1.5rem 2rem;
+  text-align: left;
+}
+.profile .hobbies .info .datas {
+  margin: 1.5rem 0 0 0;
+  color: rgb(150, 150, 150);
+  display: grid;
+}
+.profile .hobbies .info .datas .sh {
+  margin: 0 0 1rem 0;
+}
+.profile .hobbies .info .datas .sh .sh-icon {
+  margin: 0 0.5rem 0 0;
+}
+
+.post-container {
+  display: none;
+}
+
+.nopost-container {
+  background-color: white;
+  box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+  border-left: 0.5rem solid #78461b;
+  height: 10rem;
+  padding: 2rem;
+}
+
+.add-photo {
+  width: 7rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.enun {
+  color: rgb(177, 165, 165);
+}
+
+.link {
+  padding: 0.5rem;
+  color: rgb(150, 150, 150);
+  font-weight: 700;
+}
+.link:hover {
+  cursor: pointer;
+  border-radius: 0.5rem;
+  background-color: rgb(87, 87, 87);
+  color: white;
+}
+
+.ig {
+  color: rgb(150, 150, 150);
+}
+
+.caract {
+  margin: 0 3rem 0 0;
+}
+
+.active {
+  border-bottom: 2px solid blue; /* Estilo activo */
+}
+
 header {
   height: 75px;
   background-color: #FCF6F4;
