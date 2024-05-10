@@ -28,7 +28,9 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css">
+  <link rel="stylesheet" href="resources/css/style.css">
+  <link rel="stylesheet" href="resources/css/boostrap.min.css">
+  <link rel="stylesheet" href="resources/css/font-awesome.min.css">
   <!-- JAVASCRIPT -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
@@ -67,4 +69,12 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     </div>
   </body>
 <?php endif; ?>
+<script>
+  $(function() {
+    app.user.id = "<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : '' ?>";
+    app.user.name = "<?= isset($_SESSION['user']) ? $_SESSION['user']['username'] : '' ?>";
+    app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
+    app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
+  })
+</script>
 </html>

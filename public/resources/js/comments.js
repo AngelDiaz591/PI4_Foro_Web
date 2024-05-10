@@ -1,6 +1,7 @@
 $(document).ready(function() {
+    
     const $commentsContainer = $('#comments');
-
+    
     let currentEditingCommentId = null;
 
     $commentsContainer.on('click', '.comments-delete', function(e) {
@@ -70,9 +71,10 @@ $(document).ready(function() {
                 parentCommentId: parentCommentId,
                 comment: newComment,
                 postId: postId,
-                userId: userId
+                userId: app.user.id
+                
             }, () => fetchComments(postId, userId));
-        }
+        } 
     });
 
     function fetchComments(postId) {
@@ -95,9 +97,18 @@ $(document).ready(function() {
         return html;
     }
 
-    function generateCommentHTML(comment) {
+    function generateCommentsHTML(comments) {
+        let html = '';
+        const parentComments = comments.filter(comment => comment.parent_comment_id === null);
+        parentComments.forEach(parentComment => {
+            html += generateCommentHTML(parentComment, comments);
+        });
+        return html;
+    }
+    
+    function generateCommentHTML(comment, allComments, level = 0) {
         let html = `
-            <div class="comment" style="margin-left: ${comment.level * 5}px;">
+            <div class="comment" style="margin-left: ${level * 5}px;">
                 <div class="parent-comment">
                     <div class="user-info">
                         <i class='bx bxs-user-voice'></i>
@@ -109,18 +120,23 @@ $(document).ready(function() {
                     <div class="comment-edit-container" data-comment-id="${comment.id}"></div>
                     <p>${comment.created_at}</p>
                     <div class="comment-actions">`;
-
         if (userId === comment.user_id) {
             html += `<button class="comments-edit" data-comment-id="${comment.id}">Edit</button>`;
             html += `<button class="comments-delete" data-comment-id="${comment.id}">Delete</button>`;
         }
-
+    
         if (userId !== null) {
             html += `<button class="comments-reply" data-comment-id="${comment.id}">Reply</button>`;
         }
-
+    
         html += `</div></div>`;
-
+    
+        const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
+        childComments.forEach(childComment => {
+            html += generateCommentHTML(childComment, allComments, level + 1);
+        });
+    
+        html += `</div>`;
         return html;
     }
 
