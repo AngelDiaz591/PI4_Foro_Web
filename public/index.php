@@ -28,11 +28,19 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css">
   <!-- JAVASCRIPT -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.10.8/sweetalert2.all.js" integrity="sha512-mDHahYvyhRtp6zBGslYxaLlAiINPDDEoHDD7nDsHoLtua4To71lDTHjDL1bCoAE/Wq/I+7ONeFMpgr62i5yUzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="/resources/js/app.js"></script>
   <script src="/resources/js/main.js"></script>
+  <script>
+    app.user.id = <?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : 'null' ?>;
+    app.user.username = "<?= isset($_SESSION['user']) ? $_SESSION['user']['username'] : '' ?>";
+    app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
+    app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
+  </script>
 </head>
 <?php if (in_array($controller, $special_controllers_body)): ?>
   <body>
@@ -44,7 +52,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
   <body>
     <?= render_layout('header'); ?>
     
-    <div class="container">
+    <div class="main-container">
       <nav id="main-nav">
         <?= render_layout('sidebar_main'); ?>
       </nav>
@@ -59,13 +67,4 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     </div>
   </body>
 <?php endif; ?>
-<script>
-  $(function() {
-    app.user.id = "<?= isset($_SESSION['user']) ? $_SESSION['user']['id'] : '' ?>";
-    app.user.name = "<?= isset($_SESSION['user']) ? $_SESSION['user']['username'] : '' ?>";
-    app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
-    app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
-  })
-</script>
-
 </html>

@@ -8,8 +8,7 @@ require_once "database.php";
  * This model contains the base methods to be used in the other models
  */
 Class Base extends Database {
-  private $imagesPath = __DIR__ . "/../assets/imgs/";
-
+  private $imagesPath = __DIR__ . "/../public/assets/imgs/";
 /**
  * Check if the connection is null, meaning that it failed to connect to the database
  * 

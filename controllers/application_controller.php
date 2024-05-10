@@ -1,7 +1,6 @@
 <?php 
 define('ROOT_DIR', __DIR__ . '/../');
-define('IMAGES', ROOT_DIR . 'assets/imgs/');
-define('RESOURCES', ROOT_DIR . 'resources/');
+define('RESOURCES', ROOT_DIR . 'public/resources/');
 // ======= CONSTANTS CONFIGURABLES =======
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
