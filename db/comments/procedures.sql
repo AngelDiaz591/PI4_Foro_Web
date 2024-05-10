@@ -1,4 +1,4 @@
---PROCEDURE IN MYSQL FOR COMMENTS
+-- PROCEDURE IN MYSQL FOR COMMENTS
 DROP PROCEDURE IF EXISTS create_comment;
 DELIMITER $$
 CREATE PROCEDURE create_comment(
@@ -11,27 +11,29 @@ BEGIN
   VALUES (p_comment, p_post_id, p_user_id );
 END $$
 DELIMITER $$
- --call as: CALL create_comment('comment');
+ -- call as: CALL create_comment('comment');
 
-DROP PROCEDURE IF EXISTS get_comments_by_post_id;
 DELIMITER $$
-CREATE PROCEDURE delete_comment_id(
+CREATE PROCEDURE get_comments_by_post_id(
     p_id INT
 )
 BEGIN
     SELECT 
-        users.username,
-        comments.comment,
-        comments.id,
-        comments.user_id,
-        comments.created_at,
-        comments.parent_comment_id
-    FROM comments
-    WHERE comments.post_id = p_id
-    ORDER BY comments.created_at DESC;
+        u.username,
+        c.comment,
+        c.id,
+        c.user_id,
+        c.created_at,
+        c.parent_comment_id
+    FROM comments AS c
+    INNER JOIN users AS u ON c.user_id = u.id
+    WHERE c.post_id = p_id
+    ORDER BY c.created_at DESC;
 END $$
 DELIMITER ;
---call as: CALL get_comments_by_post_id;
+
+
+-- call as: CALL get_comments_by_post_id;
 DROP PROCEDURE IF EXISTS delete_comment_by_id;
 DELIMITER $$
 CREATE PROCEDURE delete_comment_by_id(IN commentId INT)
@@ -77,13 +79,12 @@ BEGIN
     VALUES (userId, postId, parentCommentId, comment);
 
     IF ROW_COUNT() = 1 THEN
-        SELECT 'Comentario creado exitosamente' AS message;
+        SELECT 'Comment created Succesfully' AS message;
     ELSE
-        SET errorMessage = CONCAT('Error al insertar comentario: ', comment);
+        SET errorMessage = CONCAT('Errot to insert comment: ', comment);
         SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = errorMessage;
     END IF;
 END //
 DELIMITER ;
-
 
 
