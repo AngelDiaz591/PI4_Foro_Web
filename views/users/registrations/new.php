@@ -52,7 +52,7 @@
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
             <i class="bi bi-lock icon"></i>
-            <p id="message">Password is <span id="strenght"></span></p>
+            <p id="message" class="password-strength">Password is <span id="strenght"></span></p>
           </div>
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
