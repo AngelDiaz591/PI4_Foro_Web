@@ -30,7 +30,7 @@
         <p id="extra-files"></p>
         <?php foreach ($params["images"] as $image): ?>
           <div class="image">
-            <img src="<?= IMAGES . $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
+            <img src="/assets/imgs/<?= $image["image"] ?>" alt='Image from "<?= $params["title"] ?>"'>
             <!-- <a href="<?//= redirect_to('posts', 'purge_image') . '&id=' . $image["id"] . '&image=' . $image["image"] . '&post_id=' . $params["id"]; ?>">
               class="remove-image">
               <span>&times;</span>
