@@ -28,9 +28,9 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
   <!-- STYLESHEETS -->
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
-  <link rel="stylesheet" href="resources/css/style.css">
-  <link rel="stylesheet" href="resources/css/boostrap.min.css">
-  <link rel="stylesheet" href="resources/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/resources/css/style.css">
+  <link rel="stylesheet" href="/resources/css/boostrap.min.css">
+  <link rel="stylesheet" href="/resources/css/font-awesome.min.css">
   <!-- JAVASCRIPT -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>

@@ -39,29 +39,27 @@ DELIMITER ;
 -- call as: CALL UserReaction( );
 
 
-DROP PROCEDURE IF EXISTS GetUserReactions;
+
+DROP PROCEDURE IF EXISTS getReactionForUser;
+
 DELIMITER $$
 
-CREATE PROCEDURE GetUserReactions(IN user_id INT)
+CREATE PROCEDURE getReactionForUser(IN user_id INT, IN post_id INT)
 BEGIN
     SELECT
-        p.post_id,
         ur.reaction_type AS reactType
     FROM
         post_reactions ur
-    JOIN (
-        SELECT post_id
-        FROM post_reactions
-        GROUP BY post_id
-    ) p ON ur.post_id = p.post_id
     WHERE
-        ur.user_id = user_id;
+        ur.user_id = user_id
+        AND ur.post_id = post_id;
 END $$
 
 DELIMITER $$
+
 -- call as: CALL GetUserReactions();
 DROP PROCEDURE IF EXISTS DeleteReaction;
-DELIMITER //
+DELIMITER $$
 
 CREATE PROCEDURE DeleteReaction (
     IN p_userId INT,
@@ -78,7 +76,35 @@ BEGIN
     FROM post_reactions
     WHERE post_id = p_postId;
 
-END //
+END $$
 
-DELIMITER ;
+DELIMITER $$
 
+
+-- call as: CALL DeleteReaction( );
+
+
+DROP PROCEDURE IF EXISTS getReactionForUser;
+DELIMITER $$
+CREATE PROCEDURE getReactionForUser(IN user_id INT)
+BEGIN
+    SELECT
+        p.post_id,
+        ur.reaction_type AS reactType
+    FROM
+        post_reactions ur
+    JOIN (
+        SELECT post_id
+        FROM post_reactions
+        GROUP BY post_id
+    ) p ON ur.post_id = p.post_id
+    WHERE
+        ur.user_id = user_id
+    GROUP BY
+        p.post_id;
+END $$
+
+DELIMITER $$
+
+
+-- call as: CALL getReactionForUser( );

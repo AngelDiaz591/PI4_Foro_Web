@@ -82,17 +82,30 @@ class Post extends Base {
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    
             $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
             $result["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+    
+            // Retrieve user reactions for this post
+            $stmt = $this->conn->prepare("CALL getReactionForUser(:userId, :postId)");
+            $userId = $_SESSION['user']['id'];
+            $stmt->bindParam(":userId", $userId, PDO::PARAM_INT);
+            $stmt->bindParam(":postId", $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $userReaction = $stmt->fetch(PDO::FETCH_ASSOC);
+    
+            if ($userReaction) {
+                $result["user_reactions"] = $userReaction["reactType"];
+            }
+    
             return $this->response(status: true, data: $result);
         } catch (PDOException | Exception $e) {
             throw new Exception("Failed to get the post: " . $e->getMessage());
         }
     }
+    
 
     /**
      * Save a post and each image

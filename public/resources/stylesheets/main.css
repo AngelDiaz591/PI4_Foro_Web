@@ -1472,6 +1472,11 @@ a {
 .actions-show p.date-create {
   margin-left: auto;
 }
+.actions-show .likes > img {
+  width: 20px;
+  height: 20px;
+  padding-right: 5px;
+}
 
 .back {
   position: absolute;

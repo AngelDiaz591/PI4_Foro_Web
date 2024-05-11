@@ -76,16 +76,27 @@ DELIMITER ;
 DROP PROCEDURE IF EXISTS get_post_by_id;
 DELIMITER $$
 CREATE PROCEDURE get_post_by_id(
-  p_id INT
+  IN p_id INT
 )
 BEGIN
   SELECT 
     posts.*,
     users.username AS username,
-    users.email AS email
+    users.email AS email,
+    COALESCE(pr.total_reactions, 0) AS total_reactions
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
+  LEFT JOIN (
+    SELECT
+      post_id,
+      COUNT(*) AS total_reactions
+    FROM
+      post_reactions
+    GROUP BY
+      post_id
+  ) pr ON posts.id = pr.post_id
   WHERE posts.id = p_id;
+  
 END
 $$
 DELIMITER ;

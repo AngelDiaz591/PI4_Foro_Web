@@ -27,7 +27,7 @@ $(document).ready(function() {
     function insertReaction(reactType, postId) {
         $.ajax({
             type: "POST",
-            url: "posts/insert_reactions",
+            url: "/posts/insert_reactions",
             data: {
                 reactType: reactType,
                 postId: postId,
@@ -35,7 +35,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                var reactImg = "<center><img src='resources/img/" + reactType + ".png' style='width:40px; height:40px;'></center>";
+                var reactImg = "<center><img src='/resources/img/" + reactType + ".png' style='width:40px; height:40px;'></center>";
                 $("#" + postId).html(reactImg);
                 setReactionBackground(reactType, postId);
             }
@@ -46,7 +46,7 @@ $(document).ready(function() {
     function removeReaction(postId) {
         $.ajax({
             type: "POST",
-            url: "posts/delete_reactions",
+            url: "/posts/delete_reactions",
             data: {
                 postId: postId,
                 userId: app.user.id
