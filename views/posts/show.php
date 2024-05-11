@@ -29,7 +29,13 @@
 
       <div class="actions-show">
         <i class='bx bxs-like'></i>
+
+        
         <p>243K</p>
+
+
+
+
         <i class='bx bx-show'></i>
         <p>244k</p>
         <p class="date-create"><?= $params["created_at"] ?></p>

@@ -49,7 +49,7 @@ DROP PROCEDURE IF EXISTS get_all_posts;
 DELIMITER $$
 CREATE PROCEDURE get_all_posts()
 BEGIN
-  -- Consulta para obtener todos los posts con información de usuario
+
   SELECT 
     posts.*,
     users.username AS username,
@@ -58,7 +58,7 @@ BEGIN
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
   LEFT JOIN (
-    -- Subconsulta para contar las reacciones por post
+    
     SELECT
       post_id,
       COUNT(*) AS total_reactions
