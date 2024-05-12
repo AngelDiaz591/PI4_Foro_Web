@@ -315,7 +315,7 @@ class Post extends Base {
 
     public function reactions_insert($data) {
         try {
-            $stmt = $this->conn->prepare("CALL UserReaction(:userId, :postId, :reactType, @total_reactions)");
+            $stmt = $this->conn->prepare("CALL InsertUserReaction(:userId, :postId, :reactType, @total_reactions)");
             $stmt->bindParam(":userId", $data["userId"], PDO::PARAM_INT);
             $stmt->bindParam(":postId", $data["postId"], PDO::PARAM_INT);
             $stmt->bindParam(":reactType", $data["reactType"], PDO::PARAM_STR);

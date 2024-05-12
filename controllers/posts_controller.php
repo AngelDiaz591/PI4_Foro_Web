@@ -216,9 +216,7 @@ class PostsController extends Post {
             header('Content-Type: application/json');
             echo json_encode($response);
         } catch (Exception $e) {
-            header('Content-Type: application/json');
-            echo json_encode(['error' => 'Internal server error']);
-            exit;
+            return $this->error('500');
         }
     }
     

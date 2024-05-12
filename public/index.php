@@ -43,6 +43,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
     app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
   </script>
+  <?php include 'resources/js/check_session.php'; ?>
 </head>
 <?php if (in_array($controller, $special_controllers_body)): ?>
   <body>

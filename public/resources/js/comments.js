@@ -1,8 +1,14 @@
 $(document).ready(function() {
-    
     const $commentsContainer = $('#comments');
-    
     let currentEditingCommentId = null;
+
+    // Función de inicialización
+    function initComments() {
+        $('.comments-view-less').hide();
+        $('.child-comments').hide();
+    }
+
+    initComments();
 
     $commentsContainer.on('click', '.comments-delete', function(e) {
         e.preventDefault();
@@ -72,9 +78,8 @@ $(document).ready(function() {
                 comment: newComment,
                 postId: postId,
                 userId: app.user.id
-                
             }, () => fetchComments(postId, userId));
-        } 
+        }
     });
 
     function fetchComments(postId) {
@@ -85,16 +90,9 @@ $(document).ready(function() {
             success: function(response) {
                 const comments = JSON.parse(response);
                 $commentsContainer.html(generateCommentsHTML(comments));
+                initComments(); // Reiniciar la visibilidad de los botones y comentarios anidados
             }
         });
-    }
-
-    function generateCommentsHTML(comments) {
-        let html = '';
-        comments.forEach(comment => {
-            html += generateCommentHTML(comment);
-        });
-        return html;
     }
 
     function generateCommentsHTML(comments) {
@@ -105,10 +103,10 @@ $(document).ready(function() {
         });
         return html;
     }
-    
+
     function generateCommentHTML(comment, allComments, level = 0) {
         let html = `
-            <div class="comment" style="margin-left: ${level * 5}px;">
+            <div class="comment">
                 <div class="parent-comment">
                     <div class="user-info">
                         <i class='bx bxs-user-voice'></i>
@@ -124,21 +122,43 @@ $(document).ready(function() {
             html += `<button class="comments-edit" data-comment-id="${comment.id}">Edit</button>`;
             html += `<button class="comments-delete" data-comment-id="${comment.id}">Delete</button>`;
         }
-    
+
         if (userId !== null) {
             html += `<button class="comments-reply" data-comment-id="${comment.id}">Reply</button>`;
         }
-    
+
         html += `</div></div>`;
-    
+
         const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
-        childComments.forEach(childComment => {
-            html += generateCommentHTML(childComment, allComments, level + 1);
-        });
-    
+        if (childComments.length > 0) {
+            html += `<button class="comments-view-more" data-comment-id="${comment.id}">View more</button>`;
+            html += `<button class="comments-view-less" data-comment-id="${comment.id}">View less</button>`;
+            html += `<div class="child-comments" data-comment-id="${comment.id}">`;
+            childComments.forEach(childComment => {
+                html += generateCommentHTML(childComment, allComments, level + 1);
+            });
+            html += `</div>`;
+        }
+
         html += `</div>`;
         return html;
     }
+
+    $commentsContainer.on('click', '.comments-view-more', function(e) {
+        e.preventDefault();
+        const id = $(this).data('comment-id');
+        $(`.child-comments[data-comment-id="${id}"]`).show();
+        $(this).hide();
+        $(`.comments-view-less[data-comment-id="${id}"]`).show();
+    });
+
+    $commentsContainer.on('click', '.comments-view-less', function(e) {
+        e.preventDefault();
+        const id = $(this).data('comment-id');
+        $(`.child-comments[data-comment-id="${id}"]`).hide();
+        $(this).hide();
+        $(`.comments-view-more[data-comment-id="${id}"]`).show();
+    });
 
     fetchComments(postId);
 });

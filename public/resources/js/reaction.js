@@ -35,7 +35,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                var reactImg = "<center><img src='/resources/img/" + reactType + ".png' style='width:40px; height:40px;'></center>";
+                var reactImg = "<img src='/resources/img/" + reactType + ".png' class='reaction' >";
                 $("#" + postId).html(reactImg);
                 setReactionBackground(reactType, postId);
             }

@@ -1,3 +1,5 @@
+
+
 <div class="return">
   <a href="/"><i class='bx bx-arrow-back'></i></a>
 </div>
@@ -36,13 +38,14 @@
       <?php endif; ?>
       <div class="actions-show">
         <div class="react-con" align="center" id="<?php echo $data["id"];?>">
-          <?php if($data['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
-            <?php if(isset($_SESSION['user']['id']) && !empty($data['user_reactions'])): ?>
-              <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction" style="width:40px; height:40px">
+          <?php if ($data['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
+            <?php if (isset($_SESSION['user']['id']) && !empty($data['user_reactions'])): ?>
+              <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction">
+            <?php else: ?>
+              <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
             <?php endif; ?>
-          <?php endif; ?>
-          <?php if($data['total_reactions'] <= 1 || !isset($_SESSION['user']['id'])): ?>
-            <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
+          <?php else: ?>
+                <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
           <?php endif; ?>
         </div>
         <br>
@@ -91,17 +94,6 @@
       var userId = <?= isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 'null' ?>;
     </script>
     <script src="/resources/js/comments.js"></script>
-    <script>
-      function checkSession() {
-        <?php if(!isset($_SESSION['user']['id'])): ?>
-          while (true) {
-            if (confirm("You need to log in to perform this action.")) {
-              break; 
-            }
-          }
-        <?php endif; ?>
-      }
-    </script>
     <script src="/resources/js/reaction.js"></script>
   </div>
 </div>

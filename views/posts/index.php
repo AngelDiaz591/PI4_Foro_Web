@@ -1,5 +1,8 @@
+
+
+
 <div class="main">
-    <?php
+    <?php 
     array_multisort(array_column($data, 'created_at'), SORT_DESC, $data);
     foreach (array_slice($data, 0, 5) as $d): ?>
     <div class="hoverbox">
@@ -56,14 +59,15 @@
                 <div class="line"></div>
                 <div class="actions">
                     <div class="react-con" align="center" id="<?php echo $d["id"];?>">
-                        <?php if($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
-                        <?php if(isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
-                        <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction" style="width:40px; height:40px">
+                    <?php if ($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
+                        <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
+                            <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction">
+                        <?php else: ?>
+                            <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
                         <?php endif; ?>
-                        <?php endif; ?>
-                        <?php if($d['total_reactions'] <= 1 || !isset($_SESSION['user']['id'])): ?>
+                    <?php else: ?>
                         <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
-                        <?php endif; ?>
+                    <?php endif; ?>
                     </div>
                     <a href="/posts/show/id:<?= $d["id"]; ?>">
                         <p id="imagenDinamica" ><i class='bx bx-show-alt'></i> Vision</p>
@@ -89,17 +93,6 @@
 <div class="not-found" style="display: none;">
     <p>No se encontraron resultados.</p>
 </div>
-<script>
-    function checkSession() {
-        <?php if(!isset($_SESSION['user']['id'])): ?>
-        while (true) {
-            if (confirm("You need to log in to perform this action.")) {
-                break; 
-            }
-        }
-        <?php endif; ?>
-    }
-</script>
 <script>
     var postId = <?= $d["id"] ?>;
 </script>
