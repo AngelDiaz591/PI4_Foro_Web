@@ -309,6 +309,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .password-strength {
 =======
 .passwd-strenght {
@@ -318,30 +319,43 @@ h1, h2, h3, h4, h5, h6 {
 <<<<<<< HEAD
 =======
   color: white;
+=======
+.password-strength {
+  position: absolute;
+  bottom: -5px;
+>>>>>>> 315fc9a (JS correction)
   font-size: 15px;
-  display: none;
   font-weight: 800;
+  display: none;
 }
-.passwd-strenght::after {
+.password-strength__pswdWeak {
+  color: #b11010;
   margin: 0 0 10px 0;
   top: -8px;
   content: "";
+  position: relative;
 }
-.passwd-strenght__weak::after {
+.password-strength__pswdWeak::after {
   content: "weak";
-  background-color: rgba(211, 12, 12, 0.486);
-  color: #b11010;
 }
-.passwd-strenght__medium::after {
-  content: "medium";
-  background-color: rgba(236, 240, 22, 0.486);
+.password-strength__pswdMedium {
   color: #f3eb51;
+  margin: 0 0 10px 0;
+  top: -8px;
+  content: "";
+  position: relative;
 }
-.passwd-strenght__strong::after {
-  content: "strong";
-  background-color: rgba(81, 182, 14, 0.651);
+.password-strength__pswdMedium::after {
+  content: "medium";
+}
+.password-strength__pswdStrong {
   color: #5bec64;
+  margin: 0 0 10px 0;
+  top: -8px;
+  content: "";
+  position: relative;
 }
+<<<<<<< HEAD
 
 /* #message {
     position: absolute;
@@ -359,6 +373,30 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 15px;
   font-weight: 800;
   display: none;
+=======
+.password-strength__pswdStrong::after {
+  content: "strong";
+}
+.password-strength__pswdnotMatch {
+  color: #b11010;
+  margin: 0 0 10px 0;
+  top: -8px;
+  content: "";
+  position: relative;
+}
+.password-strength__pswdnotMatch::after {
+  content: "do not match";
+}
+.password-strength__pswdMatch {
+  color: #5bec64;
+  margin: 0 0 10px 0;
+  top: -8px;
+  content: "";
+  position: relative;
+}
+.password-strength__pswdMatch::after {
+  content: "match";
+>>>>>>> 315fc9a (JS correction)
 }
 <<<<<<< HEAD
 .password-strength__pswdWeak {

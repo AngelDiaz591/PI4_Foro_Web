@@ -80,6 +80,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .password-strength {
 =======
 .passwd-strenght {
@@ -89,39 +90,74 @@
 <<<<<<< HEAD
 =======
     color: $font_w;
+=======
+.password-strength {
+    position: absolute;
+    bottom: -5px;
+>>>>>>> 315fc9a (JS correction)
     font-size: 15px;
-    display: none;
     font-weight: 800;
+    display: none;
 
-    &::after {
+    &__pswdWeak {
+        color: #b11010;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';
-    }
+        position: relative;
 
-    &__weak {
         &::after {
             content: 'weak';
-            background-color: rgba(211, 12, 12, 0.486);
-            color: #b11010;
         }
     }
-    &__medium {
+    &__pswdMedium {
+        color: #f3eb51;
+        margin: 0 0 10px 0;
+        top: -8px;
+        content: '';
+        position: relative;
+
         &::after {
             content: 'medium';
-            background-color: rgba(236, 240, 22, 0.486);
-            color: #f3eb51;
         }
     }
-    &__strong {
+    &__pswdStrong {
+        color: #5bec64;
+        margin: 0 0 10px 0;
+        top: -8px;
+        content: '';
+        position: relative;
+
         &::after {
             content: 'strong';
-            background-color: rgba(81, 182, 14, 0.651);
-            color: #5bec64;
+        }
+    }
 
+    &__pswdnotMatch {
+        color: #b11010;
+        margin: 0 0 10px 0;
+        top: -8px;
+        content: '';
+        position: relative;
+
+        &::after {
+            content: 'do not match';
+        }
+    }
+
+    &__pswdMatch {
+        color: #5bec64;
+        margin: 0 0 10px 0;
+        top: -8px;
+        content: '';
+        position: relative;
+
+        &::after {
+            content: 'match';
         }
     }
 }
+<<<<<<< HEAD
 
 /* #message {
     position: absolute;
@@ -212,3 +248,5 @@
 }
 =======
 >>>>>>> c5f0511 (Correction responsive)
+=======
+>>>>>>> 315fc9a (JS correction)

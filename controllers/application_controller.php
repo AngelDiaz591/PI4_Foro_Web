@@ -12,9 +12,16 @@ define('PASS_DB', 'contraseña');
 define('USER_DB', 'root');
 =======
 define('USER_DB', 'mariana');
+<<<<<<< HEAD
 >>>>>>> 7ebd08c (Correction responsive)
 define('PASS_DB', '');
+<<<<<<< HEAD
 >>>>>>> c5f0511 (Correction responsive)
+=======
+=======
+define('PASS_DB', 'contraseña');
+>>>>>>> aadafb0 (JS correction)
+>>>>>>> 315fc9a (JS correction)
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================

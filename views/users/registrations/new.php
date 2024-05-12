@@ -67,22 +67,32 @@
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <i class="bi bi-lock icon default-icon"></i>
             <p id="password_message" class="password-strength">Password is </p>
 =======
             <i class="bi bi-lock icon"></i>
             <p id="message" class="password-strength">Password is <span id="strenght"></span></p>
 >>>>>>> c5f0511 (Correction responsive)
+=======
+            <i class="bi bi-lock icon default-icon"></i>
+            <i class="bi bi-eye-slash toggle-password"></i>
+            <p id="password_message" class="password-strength">Password is </p>
+>>>>>>> 315fc9a (JS correction)
           </div>
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
             <label class="form_label">Confirm password</label>
             <i class="bi bi-key icon"></i>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <p id="confirm_message" class="password-strength">Password </p>
 =======
             <p id="nomessage">Password <span id="constrength"></span></p>
 >>>>>>> 3a25165 (user form design)
+=======
+            <p id="confirm_message" class="password-strength">Password </p>
+>>>>>>> 315fc9a (JS correction)
           </div>
           <div class="option2">
             <div class="btn-create">
