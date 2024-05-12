@@ -39,7 +39,7 @@ $errors = isset($errors) ? $errors : array();
           <input type="submit" name="send" value="Continue" class="confirmEmail">
           <div class="formOption">
             <p>Already have account?</p>
-            <a href="/sessions/new" class="optionUser">Sign In</a>
+            <a href="/sessions/new" class="optionUser">SignIn</a>
           </div>
         </form>
       </div>

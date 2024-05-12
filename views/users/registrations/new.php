@@ -51,7 +51,6 @@
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
             <i class="bi bi-lock icon default-icon"></i>
-            <i class="bi bi-eye-slash toggle-password"></i>
             <p id="password_message" class="password-strength">Password is </p>
           </div>
           <div class="user-input">

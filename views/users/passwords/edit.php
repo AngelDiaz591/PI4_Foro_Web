@@ -41,7 +41,7 @@ if (isset($_SESSION['error'])) {
             <i class="bi bi-key icon"></i>
           </div>
           <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
-          <div class="formOption2">
+          <div class="formOption">
             <p>Didn't recieve the code?</p>
             <a href="/passwords/new" class="optionResend">Resend</a>
           </div>
