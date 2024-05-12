@@ -44,6 +44,22 @@
     font-size: 17px;
     font-weight: 600;
     font-family: $font_family_inputs;
+
+    &__pswdWeak {
+        background-color: rgba(211, 12, 12, 0.486);
+    }
+    &__pswdMedium {
+        background-color: rgba(236, 240, 22, 0.486);
+    }
+    &__pswdStrong {
+        background-color: rgba(81, 182, 14, 0.651);
+    }
+    &__pswdnotMatch {
+        background-color: rgba(211, 12, 12, 0.486);
+    }
+    &__pswdMatch { 
+        background-color: rgba(81, 182, 14, 0.651);
+    }
 }
 
 //verify

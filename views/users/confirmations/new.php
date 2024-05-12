@@ -38,14 +38,6 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
   <p class="warning">The code will only be valid for 10 minutes</p>
 </section>
 <script src="/resources/js/veri_code.js"></script>
-<script>
-  setTimeout(function(){
-    var errorAlert = document.getElementById("error-alert");
-    if (errorAlert) {
-      errorAlert.style.display = "none";
-    }
-  }, 3000);
-</script>
 <?php if (isset($_SESSION['error_message'])): ?>
   <script>
     var errorMessage = "<?php echo $_SESSION['error_message']; ?>";
