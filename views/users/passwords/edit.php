@@ -82,7 +82,7 @@ if (isset($_SESSION['error'])) {
 >>>>>>> 3a25165 (user form design)
 =======
           <input type="submit" name="confirm" value="Reset Password" class="confirmEmail">
-          <div class="formOption2">
+          <div class="formOption">
             <p>Didn't recieve the code?</p>
             <a href="/passwords/new" class="optionResend">Resend</a>
 >>>>>>> 421e406 (structuring and interface design)

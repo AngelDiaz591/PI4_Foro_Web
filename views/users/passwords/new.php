@@ -82,8 +82,12 @@ $errors = isset($errors) ? $errors : array();
           <input type="submit" name="send" value="Continue" class="confirmEmail">
           <div class="formOption">
             <p>Already have account?</p>
+<<<<<<< HEAD
             <a href="/sessions/new" class="optionUser">Sign In</a>
 >>>>>>> 421e406 (structuring and interface design)
+=======
+            <a href="/sessions/new" class="optionUser">SignIn</a>
+>>>>>>> efbdd54 (Parameter correction for responsive)
           </div>
         </form>
       </div>

@@ -600,6 +600,7 @@ h1, h2, h3, h4, h5, h6 {
 .formUser {
   height: 65%;
   width: 65%;
+<<<<<<< HEAD
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   overflow: hidden;
@@ -853,6 +854,8 @@ h1, h2, h3, h4, h5, h6 {
 .formUser {
   height: 50em;
   width: 100em;
+=======
+>>>>>>> efbdd54 (Parameter correction for responsive)
   display: flex;
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   overflow: hidden;
@@ -952,7 +955,7 @@ h1, h2, h3, h4, h5, h6 {
 .formOption {
   gap: 10px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 1.3em;
   margin-top: 30px;
   display: flex;
   justify-content: center;
@@ -988,17 +991,6 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
   font-weight: 600;
   color: #c8ff00;
-}
-
-.formOption2 {
-  gap: 10px;
-  color: white;
-  font-size: 1rem;
-  margin-top: 30px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 400;
 }
 
 .returnForm {
@@ -1047,9 +1039,6 @@ h1, h2, h3, h4, h5, h6 {
   .leftImg {
     display: none;
   }
-  .rightForm {
-    width: 100%;
-  }
   .primaryForm {
     text-align: center;
   }
@@ -1061,8 +1050,20 @@ h1, h2, h3, h4, h5, h6 {
   .imgPass {
     width: 480px;
   }
+  .imgNewPass {
+    width: 400px;
+  }
   .formOption {
     font-size: 1rem;
+  }
+  .formUser {
+    width: 76%;
+  }
+  .leftImg {
+    width: 40%;
+  }
+  .rightForm {
+    width: 100%;
   }
 }
 .first-main {

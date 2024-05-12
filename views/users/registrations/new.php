@@ -76,7 +76,6 @@
 >>>>>>> c5f0511 (Correction responsive)
 =======
             <i class="bi bi-lock icon default-icon"></i>
-            <i class="bi bi-eye-slash toggle-password"></i>
             <p id="password_message" class="password-strength">Password is </p>
 >>>>>>> 315fc9a (JS correction)
           </div>
