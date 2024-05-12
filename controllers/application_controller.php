@@ -5,9 +5,12 @@ define('RESOURCES', ROOT_DIR . 'public/resources/');
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
 <<<<<<< HEAD
+<<<<<<< HEAD
 define('USER_DB', 'mariana');
 define('PASS_DB', 'contraseña');
 =======
+=======
+>>>>>>> a37a157 (Update controllers/application_controller.php)
 <<<<<<< HEAD
 define('USER_DB', 'root');
 =======
@@ -21,7 +24,14 @@ define('PASS_DB', '');
 =======
 define('PASS_DB', 'contraseña');
 >>>>>>> aadafb0 (JS correction)
+<<<<<<< HEAD
 >>>>>>> 315fc9a (JS correction)
+=======
+=======
+define('USER_DB', 'root');
+define('PASS_DB', '');
+>>>>>>> 5c97b47 (Update controllers/application_controller.php)
+>>>>>>> a37a157 (Update controllers/application_controller.php)
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================
