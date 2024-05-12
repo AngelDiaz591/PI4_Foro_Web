@@ -65,6 +65,7 @@ confirm_pswd.addEventListener('input',() =>{
         confirm_pswd.classList.remove("input__pswdMatch");
         signup.disabled = true;
     }
+<<<<<<< HEAD
 });
 =======
 =======
@@ -164,3 +165,6 @@ function validateEmail() {
 });
 >>>>>>> aadafb0 (JS correction)
 >>>>>>> 315fc9a (JS correction)
+=======
+});
+>>>>>>> 1485ea5 (Conflict merge)

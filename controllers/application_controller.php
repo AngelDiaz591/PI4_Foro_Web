@@ -1,9 +1,11 @@
 <?php 
 define('ROOT_DIR', __DIR__ . '/../');
-define('RESOURCES', ROOT_DIR . 'public/resources/');
+define('IMAGES', ROOT_DIR . 'assets/imgs/');
+define('RESOURCES', ROOT_DIR . 'resources/');
 // ======= CONSTANTS CONFIGURABLES =======
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 define('USER_DB', 'mariana');
@@ -32,6 +34,10 @@ define('USER_DB', 'root');
 define('PASS_DB', '');
 >>>>>>> 5c97b47 (Update controllers/application_controller.php)
 >>>>>>> a37a157 (Update controllers/application_controller.php)
+=======
+define('USER_DB', 'mariana');
+define('PASS_DB', 'contraseña');
+>>>>>>> 1485ea5 (Conflict merge)
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================
