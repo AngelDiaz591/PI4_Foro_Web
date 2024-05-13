@@ -48,9 +48,13 @@ $prin_color: rgb(18, 18, 18);
 
 //box
 $box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+$shadowVeri: 0 0 10px rgba(0,0,0,0.2);
 
 //input
 $backinput: #dddddd4b;
+$inputRegis: rgba(255,255,255,0.2);
+$inputveri: #0000001e;
+$veriHover: rgba(0, 0, 0, 0.226);
 
 //pallette_1
 $brow0: rgba(245, 236, 183, 0.96);
@@ -63,7 +67,8 @@ $brow5: #673b1c;
 //pallete_code_veri
 $green1: #0cb16134;
 $green2: #0cb162;
-$green3: #076336;
+$green3: #5bec64;
+$green4: rgba(91, 236, 101, 0.479);
 $border1: #d2d2d2;
 $input_back: #00000013;
 $placeholder_1: rgba(0, 0, 0, 0.156);
@@ -72,15 +77,12 @@ $placeholder_1: rgba(0, 0, 0, 0.156);
 $col_red: #2c0202;
 $col_red2: rgb(139, 0, 0);
 
-//alert_sucess
-
-
-
 //whites
 $font_w: white;
 $font_w1: #ccc;
 $font_w2:rgb(177, 165, 165);
 $font_w3: #d8dfd9;
+$font_w4: #cccccc;
 
 //blacks:
 $font_b: black;
@@ -126,5 +128,10 @@ $font_light8: #363949;
 $font_light9: rgba(132,139,200, 0.18); 
 $font_light10: #111e88;
 $font_light11: #f6f6f9;
+
+//theme for user-forms
+$tone_wl: rgba(255,255,255,0.3);
+$tone_gH: #263238;
+$tone_gre: #c8ff00;
 
 $font_family_inputs: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
