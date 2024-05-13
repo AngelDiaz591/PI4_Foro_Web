@@ -26,7 +26,7 @@ const app = {
       return uri;
     }
     
-    uri = uri.ltrim('/').rtrim('/').split('/').slice(2);
+    uri = uri.ltrim('/').rtrim('/').split('/', 2).join('/');
 
     if (uri.length === 0) {
       return uri;
@@ -35,8 +35,18 @@ const app = {
     uri = uri.map(item => item.split(':'))
 
     return Object.fromEntries(uri);
+  },
+
+  checkSession: function() {
+    if (!app.user || !app.user.id) {
+      while (true) {
+        if (confirm("You need to log in to perform this action.")) {
+          break; 
+        }
+      }
+    }
   }
-}
+};
 
 String.prototype.rtrim = function(char) {
   return this.replace(new RegExp(char + '+$'), '');

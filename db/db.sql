@@ -75,15 +75,18 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
 );
 
-CREATE TABLE likes (
-  user_id INT(20),
-  post_id INT(20),
-  key `user_id` (`user_id`),
-  key `post_id` (`post_id`),
-  CONSTRAINT `fk_likes_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_likes_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  PRIMARY KEY (user_id, post_id)
+DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS post_reactions;
+
+CREATE TABLE post_reactions (
+  id SERIAL PRIMARY KEY,
+  user_id int NOT NULL,
+  post_id int NOT NULL,
+  reaction_type ENUM('thumb', 'love', 'haha', 'wow', 'sad', 'angry') NOT NULL,
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
+  CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES posts(id)
 );
+
 
 CREATE TABLE comments (
   id INT(20) AUTO_INCREMENT,

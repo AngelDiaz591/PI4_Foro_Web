@@ -45,38 +45,50 @@ END $$
 DELIMITER ;
 
 -- call as: CALL delete_post(1);
+
 DROP PROCEDURE IF EXISTS get_all_posts;
 DELIMITER $$
+
 CREATE PROCEDURE get_all_posts()
 BEGIN
   SELECT 
     posts.*,
-    users.username AS username,
-    users.email AS email
+    users.username,
+    users.email,
+    COALESCE(COUNT(pr.post_id), 0) AS total_reactions
   FROM posts
-  INNER JOIN users ON posts.user_id = users.id;
+  INNER JOIN users ON posts.user_id = users.id
+  LEFT JOIN post_reactions pr ON posts.id = pr.post_id
+  GROUP BY posts.id;
 END
 $$
+
 DELIMITER ;
 
 -- call as: CALL get_all_posts();
 
 DROP PROCEDURE IF EXISTS get_post_by_id;
 DELIMITER $$
+
 CREATE PROCEDURE get_post_by_id(
-  p_id INT
+  IN p_id INT
 )
 BEGIN
   SELECT 
     posts.*,
     users.username AS username,
-    users.email AS email
+    users.email AS email,
+    COALESCE(COUNT(pr.post_id), 0) AS total_reactions
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
-  WHERE posts.id = p_id;
+  LEFT JOIN post_reactions pr ON posts.id = pr.post_id
+  WHERE posts.id = p_id
+  GROUP BY posts.id;
 END
 $$
+
 DELIMITER ;
+
 
 -- call as: CALL get_post_by_id(1);
 

@@ -17,6 +17,7 @@ class PostsController extends Post {
     }
 
     public function index() {
+        
         try {
             $response = $this->all();
 
@@ -96,7 +97,6 @@ class PostsController extends Post {
         }
     }
 
-
     public function purge_image() {
         try {
             $response = $this->delete_image($this->params);
@@ -110,7 +110,6 @@ class PostsController extends Post {
             header('Location: /posts/edit/id:' . $this->params['post_id']);
         }
     }
-
 
     public function create_comment_father() {
         try{
@@ -139,33 +138,33 @@ class PostsController extends Post {
             exit;
         }
 
-  }
-
-/**
- * Delete a post and redirect to the index view
- * 
- * @param void
- * @throws Exception if it fails to delete the post redirect to error 404
- * @return void
- */
-  public function drop() {
-    try {
-      $response = $this->destroy($this->params['id']);
-
-      if ($response["status"]) {
-        header('Location: /');
-      } else {
-        throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
-      }
-    } catch (Exception $e) {
-      return $this->error('404');
     }
-  }
+
+    /**
+     * Delete a post and redirect to the index view
+     * 
+     * @param void
+     * @throws Exception if it fails to delete the post redirect to error 404
+     * @return void
+     */
+    public function drop() {
+        try {
+            $response = $this->destroy($this->params['id']);
+
+            if ($response["status"]) {
+                header('Location: /');
+            } else {
+                throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
+            }
+        } catch (Exception $e) {
+            return $this->error('404');
+        }
+    }
 
     public function delete_comments() {
         try {
-          $this->delete_comment($this->params);
-          exit;          
+            $this->delete_comment($this->params);
+            exit;          
         } catch (Exception $e) {
             http_response_code(500);
             echo json_encode(['error' => 'Internal server error']);
@@ -206,6 +205,29 @@ class PostsController extends Post {
             }
         } catch (Exception $e) {
             http_response_code(500);
+            echo json_encode(['error' => 'Internal server error']);
+            exit;
+        }
+    }
+
+    public function insert_reactions(){
+        try {
+            $response = $this->reactions_insert($this->params);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        } catch (Exception $e) {
+            return $this->error('500');
+        }
+    }
+    
+
+    public function delete_reactions(){
+        try{
+            $response = $this->reactions_delete($this->params);
+            header('Content-Type: application/json');
+            echo json_encode($response);
+        }catch (Exception $e) {
+            header('Content-Type: application/json');
             echo json_encode(['error' => 'Internal server error']);
             exit;
         }
