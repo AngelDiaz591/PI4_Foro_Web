@@ -46,23 +46,22 @@
             <input class="input" type="email" name="email" placeholder=" " id="email" required>
             <label class="form_label">Email</label>
             <i class="bi bi-envelope icon"></i>
-            <p id="emailmsg"><span id="emailstrenght"></span></p>
           </div>
           <div class="user-input">
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
-            <i class="bi bi-lock icon"></i>
-            <p id="message">Password is <span id="strenght"></span></p>
+            <i class="bi bi-lock icon default-icon"></i>
+            <p id="password_message" class="password-strength">Password is </p>
           </div>
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
             <label class="form_label">Confirm password</label>
             <i class="bi bi-key icon"></i>
-            <p id="nomessage">Password <span id="constrength"></span></p>
+            <p id="confirm_message" class="password-strength">Password </p>
           </div>
           <div class="option2">
             <div class="btn-create">
-              <input class="signup" type="submit" name="signup" value="Create New Account" onclick="showWarningMessage()">
+              <input class="signup" type="submit" name="signup" value="Create New Account" onclick="showWarningMessage()" id="signup" disabled>
             </div>
           </div>
         </form>
@@ -70,6 +69,7 @@
     </div>
   </div>
 </div>
+<script src="/resources/js/form.js"></script>
 <script>
   setTimeout(function(){
     var errorAlert = document.getElementById("error-alert");

@@ -35,26 +35,40 @@
     padding: 0 15px;
     margin: 20px 0;
     color: $font_w;
-    background: rgba(255,255,255,0.2);
+    background: $inputRegis;
     border: none;
     border-radius: 10px;
     outline: none;
     backdrop-filter: blur(20px);
-    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    box-shadow: $shadowVeri;
     font-size: 17px;
     font-weight: 600;
     font-family: $font_family_inputs;
+
+    &__pswdWeak {
+        background-color: rgba(211, 12, 12, 0.486);
+    }
+    &__pswdMedium {
+        background-color: rgba(236, 240, 22, 0.486);
+    }
+    &__pswdStrong {
+        background-color: rgba(81, 182, 14, 0.651);
+    }
+    &__pswdnotMatch {
+        background-color: rgba(211, 12, 12, 0.486);
+    }
+    &__pswdMatch { 
+        background-color: rgba(81, 182, 14, 0.651);
+    }
 }
 
 //verify
 .inputs {
     width: 12.8%;
     height: 56px;
-    /* width: 56px;
-    height: 56px; */
     text-align: center;
     border: none;
-    background: #0000001e;
+    background: $inputveri;
     margin: 0 0.35rem 1.5rem 0;
     border-radius: 0.3rem;
     font-size: 1.8em;
@@ -67,6 +81,6 @@
     }
 
     &::placeholder {
-        color: rgba(0, 0, 0, 0.226);
+        color: $veriHover;
     }
 }

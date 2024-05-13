@@ -1959,12 +1959,25 @@ form .images > p.extra-files {
   font-weight: 600;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
+.input__pswdWeak {
+  background-color: rgba(211, 12, 12, 0.486);
+}
+.input__pswdMedium {
+  background-color: rgba(236, 240, 22, 0.486);
+}
+.input__pswdStrong {
+  background-color: rgba(81, 182, 14, 0.651);
+}
+.input__pswdnotMatch {
+  background-color: rgba(211, 12, 12, 0.486);
+}
+.input__pswdMatch {
+  background-color: rgba(81, 182, 14, 0.651);
+}
 
 .inputs {
   width: 12.8%;
   height: 56px;
-  /* width: 56px;
-  height: 56px; */
   text-align: center;
   border: none;
   background: rgba(0, 0, 0, 0.1176470588);
