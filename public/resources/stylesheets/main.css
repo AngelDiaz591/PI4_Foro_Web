@@ -2049,6 +2049,8 @@ form .images > p.extra-files {
   border-radius: 20px;
   display: none;
   top: 0;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .reaction {

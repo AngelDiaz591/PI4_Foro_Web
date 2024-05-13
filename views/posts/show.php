@@ -50,7 +50,7 @@
         </div>
         <br>
         <i class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $data['id'] ?>">
-          <img src="/resources/img/like.png" alt="like"> reactions: <?= $data['total_reactions'] ?? 0 ?>
+          reactions: <?= $data['total_reactions'] ?? 0 ?>
         </i>
         <i class='bx bx-show'></i>
         <p>244k</p>
