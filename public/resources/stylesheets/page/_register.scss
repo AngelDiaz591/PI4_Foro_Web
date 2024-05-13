@@ -87,7 +87,7 @@
     display: none;
 
     &__pswdWeak {
-        color: $col_red3;
+        color: #b11010;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';
@@ -98,7 +98,7 @@
         }
     }
     &__pswdMedium {
-        color: $col_yel;
+        color: #f3eb51;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';
@@ -109,7 +109,7 @@
         }
     }
     &__pswdStrong {
-        color: $green3;
+        color: #5bec64;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';
@@ -121,7 +121,7 @@
     }
 
     &__pswdnotMatch {
-        color: $col_red3;
+        color: #b11010;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';
@@ -133,7 +133,7 @@
     }
 
     &__pswdMatch {
-        color: $green3;
+        color: #5bec64;
         margin: 0 0 10px 0;
         top: -8px;
         content: '';

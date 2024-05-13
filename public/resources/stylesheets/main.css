@@ -482,6 +482,34 @@ h1, h2, h3, h4, h5, h6 {
   color: #0b145b;
 }
 
+.error-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.error-page h1 {
+  font-size: 3em;
+  padding: 1rem;
+}
+.error-page h2 {
+  font-size: 2em;
+  padding: 1rem;
+}
+.error-page p {
+  font-size: 1.5em;
+  padding: 1rem;
+}
+.error-page a {
+  font-size: 1em;
+  color: #111e88;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.error-page a:hover {
+  color: #0b145b;
+}
+
 .formUser {
   height: 65%;
   width: 65%;
@@ -1981,7 +2009,6 @@ form .images > p.extra-files {
   margin: 0 0.35rem 1.5rem 0;
   border-radius: 0.3rem;
   font-size: 1.8em;
-  color: white;
 }
 .inputs:focus {
   background-color: rgba(12, 177, 97, 0.2039215686);

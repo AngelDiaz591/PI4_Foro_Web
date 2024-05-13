@@ -5,9 +5,6 @@
 </script>
 <div class="user-view-container">
   <div class="left">
-    <div class="returnForm">
-      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-    </div>
       <div class="principal2">
         <img src="/resources/img/login.gif" alt="login" class="img">
       </div>
@@ -16,9 +13,6 @@
       </p>
   </div>
   <div class="right">
-    <div class="returnForm not">
-      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-    </div>
     <div class="datasign">
       <p>Have an account?</p>
       <a href="/sessions/new" class="new">Log in</a>
@@ -50,7 +44,7 @@
           <div class="user-input">
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
-            <i class="bi bi-lock icon default-icon"></i>
+            <i class="bi bi-lock icon"></i>
             <p id="password_message" class="password-strength">Password is </p>
           </div>
           <div class="user-input">
