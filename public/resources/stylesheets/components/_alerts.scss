@@ -32,13 +32,13 @@
     border-left: 0.5rem solid $col_red2;
     border: 0.1rem solid $col_red;
     color: $font_w;
-    background-color: rgba(211, 12, 12, 0.486);
+    background-color: $red_transp;
     border-radius: 1rem;
-    /* margin: -2.5rem 0 0 0; */
     padding: 0 0 0 1rem;
     font-weight: 700;
     font-size: 1.1em;
     width: 100%;
+    margin: 0 0 15px 0;
 }
 
 .icon-alert2 {

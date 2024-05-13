@@ -685,9 +685,6 @@ h1, h2, h3, h4, h5, h6 {
   .formOption {
     font-size: 1rem;
   }
-  .formUser {
-    width: 76%;
-  }
   .leftImg {
     width: 40%;
   }
@@ -2057,11 +2054,11 @@ form .images > p.extra-files {
   color: white;
   background-color: rgba(211, 12, 12, 0.486);
   border-radius: 1rem;
-  /* margin: -2.5rem 0 0 0; */
   padding: 0 0 0 1rem;
   font-weight: 700;
   font-size: 1.1em;
   width: 100%;
+  margin: 0 0 15px 0;
 }
 
 .icon-alert2 {

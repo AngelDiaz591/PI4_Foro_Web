@@ -46,19 +46,19 @@
     font-family: $font_family_inputs;
 
     &__pswdWeak {
-        background-color: rgba(211, 12, 12, 0.486);
+        background-color: $red_transp;
     }
     &__pswdMedium {
-        background-color: rgba(236, 240, 22, 0.486);
+        background-color: $yel_transp;
     }
     &__pswdStrong {
-        background-color: rgba(81, 182, 14, 0.651);
+        background-color: $grn_transp;
     }
     &__pswdnotMatch {
-        background-color: rgba(211, 12, 12, 0.486);
+        background-color: $red_transp;
     }
     &__pswdMatch { 
-        background-color: rgba(81, 182, 14, 0.651);
+        background-color: $grn_transp;
     }
 }
 
