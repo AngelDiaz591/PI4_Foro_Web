@@ -5,15 +5,7 @@
 </script>
 <div class="user-view-container">
   <div class="left">
-<<<<<<< HEAD
-<<<<<<< HEAD
     <div class="returnForm">
-=======
-    <div class="return2">
->>>>>>> 3a25165 (user form design)
-=======
-    <div class="returnForm">
->>>>>>> 421e406 (structuring and interface design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
       <div class="principal2">
@@ -24,15 +16,7 @@
       </p>
   </div>
   <div class="right">
-<<<<<<< HEAD
-<<<<<<< HEAD
     <div class="returnForm not">
-=======
-    <div class="return2 not">
->>>>>>> 3a25165 (user form design)
-=======
-    <div class="returnForm not">
->>>>>>> 421e406 (structuring and interface design)
       <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
     </div>
     <div class="datasign">
@@ -62,40 +46,23 @@
             <input class="input" type="email" name="email" placeholder=" " id="email" required>
             <label class="form_label">Email</label>
             <i class="bi bi-envelope icon"></i>
+            <p id="emailmsg"><span id="emailstrenght"></span></p>
           </div>
           <div class="user-input">
             <input type="password" class="input" name="password" placeholder=" " id="password" required>
             <label class="form_label">Password</label>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <i class="bi bi-lock icon default-icon"></i>
-            <p id="password_message" class="password-strength">Password is </p>
-=======
             <i class="bi bi-lock icon"></i>
-            <p id="message" class="password-strength">Password is <span id="strenght"></span></p>
->>>>>>> c5f0511 (Correction responsive)
-=======
-            <i class="bi bi-lock icon default-icon"></i>
-            <p id="password_message" class="password-strength">Password is </p>
->>>>>>> 315fc9a (JS correction)
+            <p id="message">Password is <span id="strenght"></span></p>
           </div>
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
             <label class="form_label">Confirm password</label>
             <i class="bi bi-key icon"></i>
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <p id="confirm_message" class="password-strength">Password </p>
-=======
             <p id="nomessage">Password <span id="constrength"></span></p>
->>>>>>> 3a25165 (user form design)
-=======
-            <p id="confirm_message" class="password-strength">Password </p>
->>>>>>> 315fc9a (JS correction)
           </div>
           <div class="option2">
             <div class="btn-create">
-              <input class="signup" type="submit" name="signup" value="Create New Account" onclick="showWarningMessage()" id="signup" disabled>
+              <input class="signup" type="submit" name="signup" value="Create New Account" onclick="showWarningMessage()">
             </div>
           </div>
         </form>
@@ -103,7 +70,6 @@
     </div>
   </div>
 </div>
-<script src="/resources/js/form.js"></script>
 <script>
   setTimeout(function(){
     var errorAlert = document.getElementById("error-alert");

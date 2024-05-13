@@ -6,15 +6,7 @@
     border-radius: 0.9rem;
     padding: 0.8rem 2rem;
     box-shadow: $box-shadow;
-<<<<<<< HEAD
-<<<<<<< HEAD
     border: 3px solid $tone_wl;
-=======
-    border: 3px solid rgba(255,255,255,0.3);
->>>>>>> 3a25165 (user form design)
-=======
-    border: 3px solid $tone_wl;
->>>>>>> 421e406 (structuring and interface design)
     border-radius: 30px;
     backdrop-filter: blur(20px);
 }
@@ -25,15 +17,7 @@
     padding: 0.8rem 0.5rem;
     border-radius: 8px;
     border: none;
-<<<<<<< HEAD
-<<<<<<< HEAD
     background-color: $green4;
-=======
-    background-color: rgba(91, 236, 101, 0.479);
->>>>>>> 3a25165 (user form design)
-=======
-    background-color: $green4;
->>>>>>> 421e406 (structuring and interface design)
     color: $font_w3;
     cursor: pointer;
     font-weight: 600;
@@ -48,29 +32,13 @@
 .title {
     font-size: 2em;
     font-weight: 700;
-<<<<<<< HEAD
-<<<<<<< HEAD
     color: $green3;
-=======
-    color: #5bec64;
->>>>>>> 3a25165 (user form design)
-=======
-    color: $green3;
->>>>>>> 421e406 (structuring and interface design)
     margin: 1rem 0 0.8rem 0;
 }
 
 .resend_code {
     @include flex-center;
-<<<<<<< HEAD
-<<<<<<< HEAD
     color: $font_w4;
-=======
-    color: #cccccc;
->>>>>>> 3a25165 (user form design)
-=======
-    color: $font_w4;
->>>>>>> 421e406 (structuring and interface design)
     font-size: 1rem;
     margin: 0.5rem 0 0.8rem 0;
 }
@@ -82,15 +50,7 @@
 
 .resend {
     text-decoration: none;
-<<<<<<< HEAD
-<<<<<<< HEAD
     color: $green3;
-=======
-    color: #5bec64;
->>>>>>> 3a25165 (user form design)
-=======
-    color: $green3;
->>>>>>> 421e406 (structuring and interface design)
     font-weight: 900;
     background-color: transparent;
     border: none;
@@ -100,38 +60,14 @@
     font-size: 1.2rem;
 
     &:hover {
-<<<<<<< HEAD
-<<<<<<< HEAD
         color: $green4;
-=======
-        color: rgba(91, 236, 101, 0.479);
->>>>>>> 3a25165 (user form design)
-=======
-        color: $green4;
->>>>>>> 421e406 (structuring and interface design)
     }
 }
 
 .warning {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    color: $font_w4;
-}
-=======
-    color: #cccccc;
-}
-
-/* .confirm {
-    margin: 0.5rem 0 0 0;
-    @include flex-center;
-} */
->>>>>>> 3a25165 (user form design)
-
-=======
     color: $font_w4;
 }
 
->>>>>>> 421e406 (structuring and interface design)
 .codever {
     height: 10rem;
 }

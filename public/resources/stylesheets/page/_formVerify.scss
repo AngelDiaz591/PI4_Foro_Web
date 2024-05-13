@@ -1,16 +1,6 @@
 .formUser {
-<<<<<<< HEAD
-<<<<<<< HEAD
     height: 65%;
     width: 65%;
-=======
-    height: 50em;
-    width: 100em;
->>>>>>> 421e406 (structuring and interface design)
-=======
-    height: 65%;
-    width: 65%;
->>>>>>> efbdd54 (Parameter correction for responsive)
     display: flex; 
     box-shadow: $box-shadow;
     overflow: hidden;
@@ -107,15 +97,7 @@
 .formOption {
     gap: 10px;
     color: $font_w;
-<<<<<<< HEAD
-<<<<<<< HEAD
     font-size: 1.3em;
-=======
-    font-size: 1.1rem;
->>>>>>> 421e406 (structuring and interface design)
-=======
-    font-size: 1.3em;
->>>>>>> efbdd54 (Parameter correction for responsive)
     margin-top: 30px;
     @include flex-center;
     font-weight: 600;
@@ -155,20 +137,6 @@
     }
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-.formOption2 {
-    gap: 10px;
-    color: $font_w;
-    font-size: 1rem;
-    margin-top: 30px;
-    @include flex-center;
-    font-weight: 400;
-}
->>>>>>> 421e406 (structuring and interface design)
-=======
->>>>>>> efbdd54 (Parameter correction for responsive)
 
 .returnForm {
     position: absolute;
@@ -221,16 +189,6 @@
         display: none;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    .rightForm {
-        width: 100%;
-    }
-
->>>>>>> 421e406 (structuring and interface design)
-=======
->>>>>>> efbdd54 (Parameter correction for responsive)
     .primaryForm {
         text-align: center;
     }
@@ -245,10 +203,6 @@
         width: 480px;
     }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> efbdd54 (Parameter correction for responsive)
     .imgNewPass {
         width: 400px;
     }
@@ -268,12 +222,4 @@
     .rightForm {
         width: 100%;
     }
-<<<<<<< HEAD
-=======
-    .formOption {
-        font-size: 1rem;
-    }
->>>>>>> 421e406 (structuring and interface design)
-=======
->>>>>>> efbdd54 (Parameter correction for responsive)
 }

@@ -79,22 +79,9 @@
     position: absolute;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-.password-strength {
-=======
-.passwd-strenght {
->>>>>>> c5f0511 (Correction responsive)
-    position: absolute;
-    bottom: -5px;
-<<<<<<< HEAD
-=======
-    color: $font_w;
-=======
 .password-strength {
     position: absolute;
     bottom: -5px;
->>>>>>> 315fc9a (JS correction)
     font-size: 15px;
     font-weight: 800;
     display: none;
@@ -157,96 +144,3 @@
         }
     }
 }
-<<<<<<< HEAD
-
-/* #message {
-    position: absolute;
-    bottom: -5px;
-    color: $font_w;
-    font-size: 15px;
-    display: none;
-    font-weight: 800;
-} */
-
-#nomessage {
-    position: absolute;
-    bottom: -5px;
-    color: $font_w;
->>>>>>> 3a25165 (user form design)
-    font-size: 15px;
-    font-weight: 800;
-    display: none;
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-    &__pswdWeak {
-        color: #b11010;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'weak';
-        }
-    }
-    &__pswdMedium {
-        color: #f3eb51;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'medium';
-        }
-    }
-    &__pswdStrong {
-        color: #5bec64;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'strong';
-        }
-    }
-
-    &__pswdnotMatch {
-        color: #b11010;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'do not match';
-        }
-    }
-
-    &__pswdMatch {
-        color: #5bec64;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'match';
-        }
-    }
-=======
-#emailmsg {
-    position: absolute;
-    bottom: -5px;
-    color: $font_w;
-    font-size: 15px;
-    font-weight: 800;
-    display: none;
->>>>>>> 3a25165 (user form design)
-}
-=======
->>>>>>> c5f0511 (Correction responsive)
-=======
->>>>>>> 315fc9a (JS correction)
