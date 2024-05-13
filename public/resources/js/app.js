@@ -14,7 +14,7 @@ const app = {
       return '/';
     }
 
-    uri = uri.trim().replace(/^\/+|\/+$/g, '').split('/', 2).join('/');
+    uri = uri.ltrim('/').rtrim('/').split('/', 2).join('/');
 
     return `/${uri}/`;
   },
@@ -26,7 +26,7 @@ const app = {
       return uri;
     }
     
-    uri = uri.trim().replace(/^\/+|\/+$/g, '').split('/').slice(2);
+    uri = uri.ltrim('/').rtrim('/').split('/', 2).join('/');
 
     if (uri.length === 0) {
       return uri;
