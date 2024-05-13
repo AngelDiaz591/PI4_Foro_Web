@@ -14,7 +14,7 @@
 .slogan-reg {
     font-size: 33px;
     color: $brow1;
-    margin: 20px 0 20px 0;
+    margin: 20px 0 60px 0;
     font-weight: 600;
     color: $font_w;
 }
@@ -66,81 +66,35 @@
         color: $font_w;
         background-color: $brow4;
     }
-
-    &:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-        background-color: #aaa;
-    }
 }
 
 .btn-create {
     @include flex-center;
-    position: absolute;
 }
 
-.password-strength {
+#message {
     position: absolute;
-    bottom: -5px;
+    bottom: -20px;
+    color: $font_w;
+    font-size: 15px;
+    display: none;
+    font-weight: 800;
+}
+
+#nomessage {
+    position: absolute;
+    bottom: -20px;
+    color: $font_w;
     font-size: 15px;
     font-weight: 800;
     display: none;
+}
 
-    &__pswdWeak {
-        color: #b11010;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'weak';
-        }
-    }
-    &__pswdMedium {
-        color: #f3eb51;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'medium';
-        }
-    }
-    &__pswdStrong {
-        color: #5bec64;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'strong';
-        }
-    }
-
-    &__pswdnotMatch {
-        color: #b11010;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'do not match';
-        }
-    }
-
-    &__pswdMatch {
-        color: #5bec64;
-        margin: 0 0 10px 0;
-        top: -8px;
-        content: '';
-        position: relative;
-
-        &::after {
-            content: 'match';
-        }
-    }
+#emailmsg {
+    position: absolute;
+    bottom: -20px;
+    color: $font_w;
+    font-size: 15px;
+    font-weight: 800;
+    display: none;
 }

@@ -5,9 +5,6 @@
 </script>
 <div class="user-view-container">
   <div class="left">
-    <div class="returnForm">
-      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-    </div>
       <div class="principal2">
         <img src="/resources/img/login.gif" alt="login" class="img">
       </div>
@@ -16,9 +13,6 @@
       </p>
   </div>
   <div class="right">
-    <div class="returnForm not">
-      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-    </div>
     <div class="datasign">
       <p>Have an account?</p>
       <a href="/sessions/new" class="new">Log in</a>
@@ -57,7 +51,7 @@
           <div class="user-input">
             <input type="password" class="input" name="cpassword" placeholder=" " id="cpassword" required>
             <label class="form_label">Confirm password</label>
-            <i class="bi bi-key icon"></i>
+            <i class="bi bi-lock icon"></i>
             <p id="nomessage">Password <span id="constrength"></span></p>
           </div>
           <div class="option2">
@@ -70,6 +64,7 @@
     </div>
   </div>
 </div>
+<script src="/resources/js/form.js"></script>
 <script>
   setTimeout(function(){
     var errorAlert = document.getElementById("error-alert");
