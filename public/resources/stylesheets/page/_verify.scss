@@ -1,23 +1,24 @@
 .code_verify {
+    display: flex;
+    align-items: center;
     flex-direction: column;
-    @include flex-center;
-    width: 490px;
-    height: 540px;
+    justify-content: space-around;
+    width: 35%;
+    height: 50%;
+    background-color: $brow0;
+    border: 0.2rem solid $font_w3;
     border-radius: 0.9rem;
-    padding: 0.8rem 2rem;
+    padding: 0.8rem;
     box-shadow: $box-shadow;
-    border: 3px solid $tone_wl;
-    border-radius: 30px;
-    backdrop-filter: blur(20px);
 }
 .verify {
-    width: 100%;
+    width: 16rem;
     letter-spacing: 0.1rem;
     margin: 0.3rem 0 1rem;
     padding: 0.8rem 0.5rem;
     border-radius: 8px;
     border: none;
-    background-color: $green4;
+    background-color: $green2;
     color: $font_w3;
     cursor: pointer;
     font-weight: 600;
@@ -32,54 +33,40 @@
 .title {
     font-size: 2em;
     font-weight: 700;
-    color: $green3;
-    margin: 1rem 0 0.8rem 0;
 }
 
 .resend_code {
     @include flex-center;
-    color: $font_w4;
+    color: $gray_1;
     font-size: 1rem;
-    margin: 0.5rem 0 0.8rem 0;
-}
-
-.group-inputs {
-    margin: 1rem 0 0 0;
-    text-align: center;
+    margin: 0.1rem 0;
 }
 
 .resend {
     text-decoration: none;
-    color: $green3;
+    color: $green2;
     font-weight: 900;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-family: monospace;
-    padding-left: 0.7rem;
-    font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: monospace;
+  padding-left: 0.2rem;
+  font-size: 1.2rem;
 
     &:hover {
-        color: $green4;
+        color: $green3;
     }
 }
 
 .warning {
-    color: $font_w4;
+    color: $gray_1;
+}
+
+.confirm {
+    margin: 0.5rem 0 0 0;
+    @include flex-center;
 }
 
 .codever {
-    height: 10rem;
-}
-
-@include mobile {
-    .code_verify {
-        width: 100%;
-    }
-}
-
-@include tablet {
-    .code_verify {
-        width: 500px;
-    }
+    height: 6rem;
 }

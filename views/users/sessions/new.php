@@ -1,8 +1,5 @@
 <div class="user-view-container">
   <div class="left">
-  <div class="returnForm">
-    <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-  </div>
     <div class="principal2">
         <img src="/resources/img/login4.gif" alt="login" class="img">
     </div>
@@ -11,9 +8,6 @@
     </p>
   </div>
   <div class="right">
-    <div class="returnForm not">
-      <a href="/"><i class='bx bx-arrow-back comeback'></i></a>
-    </div>
     <div class="register2">
       <p>Create an account</p>
       <a href="/registrations/new" class="new">Joined</a>
@@ -23,7 +17,7 @@
         <span>WELCOME BACK!</span>
       </div>
       <div class="form-inputs">
-        <form action="/sessions/create/" method="POST" autocomplete="">
+        <form action="/sessions/create" method="POST" autocomplete="">
           <?php
           if (isset($_SESSION['error'])):
               $error_message = $_SESSION['error'];
