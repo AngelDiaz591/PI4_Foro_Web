@@ -1,6 +1,3 @@
-
-
-
 <div class="main">
     <?php 
     array_multisort(array_column($data, 'created_at'), SORT_DESC, $data);
@@ -63,10 +60,10 @@
                         <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
                             <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction">
                         <?php else: ?>
-                            <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
+                            <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
                         <?php endif; ?>
                     <?php else: ?>
-                        <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
+                        <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
                     <?php endif; ?>
                     </div>
                     <a href="/posts/show/id:<?= $d["id"]; ?>">
@@ -93,7 +90,5 @@
 <div class="not-found" style="display: none;">
     <p>No se encontraron resultados.</p>
 </div>
-<script>
-    var postId = <?= $d["id"] ?>;
-</script>
+
 <script src="/resources/js/reaction.js"></script>

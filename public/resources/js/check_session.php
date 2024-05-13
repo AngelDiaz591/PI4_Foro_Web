@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 function checkSession() {
     <?php if(!isset($_SESSION['user']['id'])): ?>
     while (true) {
@@ -8,4 +8,4 @@ function checkSession() {
     }
     <?php endif; ?>
 }
-</script>
+</script> -->

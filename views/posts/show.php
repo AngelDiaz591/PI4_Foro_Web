@@ -42,10 +42,10 @@
             <?php if (isset($_SESSION['user']['id']) && !empty($data['user_reactions'])): ?>
               <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction">
             <?php else: ?>
-              <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
+              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
             <?php endif; ?>
           <?php else: ?>
-                <p><i class='bx bxs-like' onclick='checkSession()'></i></p>
+              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
           <?php endif; ?>
         </div>
         <br>
