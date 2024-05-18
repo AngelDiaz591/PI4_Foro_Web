@@ -1,6 +1,7 @@
 <?php 
 require_once "base.php";
 require_once "email.php";
+require_once "notification.php";
 
 class User extends Base {
   public function __construct() {
@@ -8,7 +9,9 @@ class User extends Base {
       $this->conn = $this->db_connection();
       $this->check_connection();
     } catch (Exception $e) {
-      throw new Exception("Failed to connect to the database: " . $e->getMessage());
+      // throw new Exception("Failed to connect to the database: " . $e->getMessage());
+      echo $this->error('500');
+      exit;
     }
   }
 
@@ -17,7 +20,8 @@ class User extends Base {
       $this->t = 'users';
 
       $result1 = $this->select([
-        'id', 'username', 'email'
+        'id', 'username', 'email',
+        'DATE_FORMAT(created_at, "%e %M %Y") as created_at',
       ])->where([['id', '=', $id]])
       ->first();
 
@@ -26,7 +30,7 @@ class User extends Base {
       }
 
       $result2 = $this->select([
-        'COUNT(DISTINCT b.user_id) as posts',
+        'COUNT(*) as posts',
         'COUNT(DISTINCT c.follower_id) as followers',
         'COUNT(DISTINCT d.user_id) as following'
       ])->left_join('posts as b', 'b.user_id = a.id')

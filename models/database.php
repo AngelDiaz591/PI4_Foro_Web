@@ -80,6 +80,38 @@ class Database {
     return $this;
   }
 
+  public function whereComplex($andConditions = [], $orConditions = []) {
+    $this->w = '';
+    $andConditionString = '';
+    $orConditionString = '';
+
+    if (count($andConditions) > 0) {
+      foreach ($andConditions as $where) {
+        $andConditionString .= "$where[0] $where[1] '$where[2]' AND ";
+      }
+      $andConditionString = '(' . rtrim($andConditionString, 'AND ') . ')';
+    }
+
+    if (count($orConditions) > 0) {
+      foreach ($orConditions as $where) {
+        $orConditionString .= "$where[0] $where[1] '$where[2]' OR ";
+      }
+      $orConditionString = '(' . rtrim($orConditionString, 'OR ') . ')';
+    }
+
+    if (!empty($andConditionString) && !empty($orConditionString)) {
+      $this->w = "$andConditionString OR $orConditionString";
+    } elseif (!empty($andConditionString)) {
+      $this->w = $andConditionString;
+    } elseif (!empty($orConditionString)) {
+      $this->w = $orConditionString;
+    } else {
+      $this->w = ' 1 ';
+    }
+
+    return $this;
+  }
+
   public function group_by($gg = '') {
     $this->g = '';
 
@@ -148,16 +180,32 @@ class Database {
   public function insert($values = [], $returnId = true) {
     $attributes = implode(", ", $this->pp);
     $values = $this->sortValuesWithPp($values);
-    $values = $this->AssocToArr($values);
     $valuesBinded = trim(str_replace('&', '?, ', str_pad("", count($values), "&")), ', ');
 
     $sql = "INSERT INTO $this->t ($attributes) VALUES ($valuesBinded)";
     $stmt = $this->conn->prepare($sql);
-    $stmt->execute($values);
+    $stmt->execute(array_values($values));
     
     if ($returnId) {
       return $this->conn->lastInsertId();
     }
+
+    return $stmt->rowCount();
+  }
+
+  public function update($values = []) {
+    $attributes = '';
+    $values = $this->sortValuesWithPp($values);
+
+    foreach ($this->pp as $key) {
+      $attributes .= "$key = ?, ";
+    }
+
+    $attributes = rtrim($attributes, ', ');
+
+    $sql = "UPDATE $this->t SET $attributes WHERE $this->w";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(array_values($values));
 
     return $stmt->rowCount();
   }
@@ -178,16 +226,6 @@ class Database {
     }
 
     return $sorted;
-  }
-
-  private function AssocToArr($data) {
-    $arr = [];
-
-    foreach ($data as $key => $value) {
-      $arr[] = $value;
-    }
-
-    return $arr;
   }
 }
 ?>

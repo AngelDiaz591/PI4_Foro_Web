@@ -1,6 +1,7 @@
 -- TABLES IN MYSQL
 -- USE foroweb;
 
+DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS followers;
 DROP TABLE IF EXISTS user_data;
 DROP TABLE IF EXISTS likes;
@@ -12,7 +13,7 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS unesco;
 
 CREATE TABLE users (
-	id INT(20) AUTO_INCREMENT,
+	id INT AUTO_INCREMENT,
 	username VARCHAR(255) NOT NULL UNIQUE,
 	email VARCHAR(255) NOT NULL UNIQUE,
 	password VARCHAR(255) NOT NULL,
@@ -28,8 +29,8 @@ CREATE TABLE users (
 );
 
 CREATE TABLE followers (
-	user_id INT(20),
-	follower_id INT(20),
+	user_id INT,
+	follower_id INT,
   key `user_id` (`user_id`),
   key `follower_id` (`follower_id`),
   CONSTRAINT `fk_followers_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
@@ -38,8 +39,8 @@ CREATE TABLE followers (
 );
 
 CREATE TABLE user_data (
-	id INT(20) AUTO_INCREMENT,
-	user_id INT(20),
+	id INT AUTO_INCREMENT,
+	user_id INT,
 	profile_picture VARCHAR(255),
   gender VARCHAR(255),
   birthdate DATE,
@@ -51,7 +52,7 @@ CREATE TABLE user_data (
 );
 
 CREATE TABLE unesco (
-  id INT(20) AUTO_INCREMENT,
+  id INT AUTO_INCREMENT,
   theme VARCHAR(255),
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
@@ -59,13 +60,13 @@ CREATE TABLE unesco (
 );
 
 CREATE TABLE posts (
-  id INT(20) AUTO_INCREMENT,
-  user_id INT(20),
+  id INT AUTO_INCREMENT,
+  user_id INT,
   title VARCHAR(255),
   description TEXT,
-  theme INT(20),
-  eliminated TINYINT(1) DEFAULT 0,
-  permission TINYINT(1) DEFAULT 0,
+  theme INT,
+  eliminated TINYINT DEFAULT 0,
+  permission TINYINT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   PRIMARY KEY (id),
@@ -87,12 +88,11 @@ CREATE TABLE post_reactions (
   CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES posts(id)
 );
 
-
 CREATE TABLE comments (
-  id INT(20) AUTO_INCREMENT,
-  user_id INT(20),
-  post_id INT(20),
-  parent_comment_id INT(20),
+  id INT AUTO_INCREMENT,
+  user_id INT,
+  post_id INT,
+  parent_comment_id INT,
   comment TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
@@ -106,9 +106,9 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE dms (
-  id INT(20) AUTO_INCREMENT,
-  user_id INT(20),
-  receiver_id INT(20),
+  id INT AUTO_INCREMENT,
+  user_id INT,
+  receiver_id INT,
   message TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
@@ -120,10 +120,10 @@ CREATE TABLE dms (
 );
 
 CREATE TABLE images (
-  id INT(20) AUTO_INCREMENT,
-  post_id INT(20),
-  comment_id INT(20),
-  dms_id INT(20),
+  id INT AUTO_INCREMENT,
+  post_id INT,
+  comment_id INT,
+  dms_id INT,
   image VARCHAR(255),
   PRIMARY KEY (id),
   key `post_id` (`post_id`),
@@ -134,10 +134,26 @@ CREATE TABLE images (
   CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`) ON DELETE CASCADE
 );
 
+CREATE TABLE notifications (
+  id INT AUTO_INCREMENT,
+  user_id INT,
+  type ENUM('post', 'follow', 'like', 'comment', 'post_rejected', 'reply') NOT NULL,
+  type_id INT,
+  causer_id INT,
+  seen TINYINT DEFAULT 0,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (id),
+  key `user_id` (`user_id`),
+  key `causer_id` (`causer_id`),
+  CONSTRAINT `fk_notifications_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_notifications_causer_id` FOREIGN KEY (`causer_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
 INSERT INTO unesco (theme) VALUES
-  ('End of Poverty'),
-  ('Zero Hunger'),
-  ('Health and Wellness'),
-  ('Quality Education'),
-  ('Gender Equality')
+  ('End_of_Poverty'),
+  ('Zero_Hunger'),
+  ('Health_and_Wellness'),
+  ('Quality_Education'),
+  ('Gender_Equality')
 ;
