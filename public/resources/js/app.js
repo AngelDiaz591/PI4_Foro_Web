@@ -26,7 +26,7 @@ const app = {
       return uri;
     }
     
-    uri = uri.ltrim('/').rtrim('/').split('/', 2).join('/');
+    uri = uri.ltrim('/').rtrim('/').split('/').slice(2);
 
     if (uri.length === 0) {
       return uri;
