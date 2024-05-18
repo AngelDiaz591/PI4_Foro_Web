@@ -29,8 +29,8 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
       <input type="submit" class="verify" name="check" value="Verify Code">
   </form>
   <div class="resend_code">
-    <p>Haven't received it?</p>
-    <form action="/confirmations/update" method="POST" autocomplete="off">
+    <p>Didn't receive code?</p>
+    <form action="/confirmations/patch" method="POST" autocomplete="off">
       <input type="hidden" id="token" name="token" value="<?= $data['confirm_token']; ?>">
       <input type="submit" class="resend" name="resend" value="Resend code">
     </form>

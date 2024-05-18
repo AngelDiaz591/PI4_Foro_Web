@@ -28,7 +28,7 @@ if (isset($_SESSION['error'])) {
         Enter your <span>new</span> password and <span>confirm</span> password
       </p>
       <div class="form-inputs">
-        <form action="/passwords/update" method="POST">
+        <form action="/passwords/patch" method="POST">
           <input type="hidden" id="token" name="token" value="<?= $data['reset_password_token']; ?>">
           <div class="user-input">
             <input type="password" class="input" name="newpassword" placeholder=" " id="newpassword" required>

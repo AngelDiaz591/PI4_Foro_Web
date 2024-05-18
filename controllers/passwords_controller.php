@@ -36,7 +36,7 @@ class PasswordsController extends User {
     return $this->render('edit', $this->params);
   }
 
-  public function update() {
+  public function patch() {
     try {
       $response = $this->authenticate();
 

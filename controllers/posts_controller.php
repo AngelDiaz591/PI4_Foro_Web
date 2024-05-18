@@ -62,6 +62,7 @@ class PostsController extends Post {
                 throw new Exception("Failed to create the post: " . $response["message"]);
             }
         } catch (Exception $e) {
+            error_log($e->getMessage());
             header('Location: /posts/new');
         }
     }
@@ -85,7 +86,7 @@ class PostsController extends Post {
             $images = $this->check_images($this->files['images']);
 
             $this->params = array_merge($this->params, [ "images" => $images["data"] ]);
-            $response = $this->update($this->params);
+            $response = $this->update_post($this->params);
 
             if ($response["status"]) {
                 header('Location: /posts/show/id:' . $this->params['id']);

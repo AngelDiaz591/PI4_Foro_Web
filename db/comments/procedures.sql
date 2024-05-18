@@ -10,9 +10,10 @@ BEGIN
   INSERT INTO comments (comment, post_id, user_id)
   VALUES (p_comment, p_post_id, p_user_id );
 END $$
-DELIMITER $$
+DELIMITER ;
  -- call as: CALL create_comment('comment');
 
+DROP PROCEDURE IF EXISTS get_comments_by_post_id;
 DELIMITER $$
 CREATE PROCEDURE get_comments_by_post_id(
     p_id INT

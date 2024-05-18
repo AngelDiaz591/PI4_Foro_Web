@@ -64,16 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 });
 
-
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    document.getElementById("btn-user").addEventListener("click", function() {
-        var menu = document.getElementById("menu-user");
-        menu.classList.toggle("show-user");
-    });
-});
-
 class CommentsHandler {
     constructor() {
         this.init();

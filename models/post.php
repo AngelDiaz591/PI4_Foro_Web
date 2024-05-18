@@ -173,7 +173,7 @@ class Post extends Base {
      * @throws Exception if it fails to update the post, it fails to upload the image or it fails to save the image
      * @return array
      */
-    public function update($data) {
+    public function update_post($data) {
         try {
 
             $uploadedImages = [];
