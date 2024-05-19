@@ -9,7 +9,6 @@ class User extends Base {
       $this->conn = $this->db_connection();
       $this->check_connection();
     } catch (Exception $e) {
-      // throw new Exception("Failed to connect to the database: " . $e->getMessage());
       echo $this->error('500');
       exit;
     }
