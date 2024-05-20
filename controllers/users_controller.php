@@ -1,6 +1,7 @@
 <?php
 ob_start();
 get_model('user');
+get_model('notification');
 
 class UsersController extends User {
   private $params;
@@ -116,6 +117,74 @@ class UsersController extends User {
       }
     } catch (Exception $e) {
       return false;
+    }
+  }
+
+  public function notifications_count() {
+    try {
+      $notifications = new Notification();
+
+      $response = $notifications->get_unseen_notifications_count($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function notifications() {
+    try {
+      $notifications = new Notification();
+
+      $response = $notifications->get_unseen_notifications($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function all_notifications() {
+    try {
+      $notifications = new Notification();
+
+      $response = $notifications->get_notifications($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function mark_notifications_as_read() {
+    try {
+      $notifications = new Notification();
+
+      $response = $notifications->mark_as_read($this->params['ids']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
     }
   }
 

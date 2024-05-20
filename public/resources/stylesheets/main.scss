@@ -13,6 +13,8 @@
   'page/register',
   'page/verify',
   'page/error',
+  'page/error',
+  'page/formVerify',
   'page/profile';
 
 @import
@@ -27,4 +29,5 @@
   'components/form_posts',
   'components/input',
   'components/spinner',
+  'components/reactions',
   'components/alerts';

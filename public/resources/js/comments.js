@@ -1,24 +1,29 @@
 $(document).ready(function() {
-    fetchComments(postId, userId);
+    const $commentsContainer = $('#comments');
     let currentEditingCommentId = null;
 
-    $(document).on('click', '.comments-delete', function(e) {
-        e.preventDefault(); 
-        if(confirm('Are you sure you want to delete the comment?')) {
-            const id = $(this).data('comment-id'); 
-            $.post('/posts/delete_comments', { id: id }, (response) => {
-                fetchComments(postId, userId);
-            });
+    // Función de inicialización
+    function initComments() {
+        $('.comments-view-less').hide();
+        $('.child-comments').hide();
+    }
+
+    initComments();
+
+    $commentsContainer.on('click', '.comments-delete', function(e) {
+        e.preventDefault();
+        const id = $(this).data('comment-id');
+        if (confirm('Are you sure you want to delete the comment?')) {
+            $.post('/posts/delete_comments', { id: id }, () => fetchComments(postId, userId));
         }
     });
 
-    $(document).on('click', '.comments-edit', function(e) {
+    $commentsContainer.on('click', '.comments-edit', function(e) {
         e.preventDefault();
         const id = $(this).data('comment-id');
 
         if (currentEditingCommentId !== null) {
-            const previousEditContainer = $(`.comment-edit-container[data-comment-id="${currentEditingCommentId}"]`);
-            previousEditContainer.empty();
+            $(`.comment-edit-container[data-comment-id="${currentEditingCommentId}"]`).empty();
         }
 
         const commentContent = $(this).closest('.parent-comment').find(`.comment-content[data-comment-id="${id}"] p`).text();
@@ -31,91 +36,26 @@ $(document).ready(function() {
         currentEditingCommentId = id;
     });
 
-    $(document).on('click', '.comments-cancel', function(e) {
+    $commentsContainer.on('click', '.comments-cancel', function(e) {
         e.preventDefault();
         const commentId = $(this).closest('.comment-edit-container').data('comment-id');
         $(`.comment-edit-container[data-comment-id="${commentId}"]`).empty();
         currentEditingCommentId = null;
     });
 
-    $(document).on('click', '.comments-update', function(e) {
+    $commentsContainer.on('click', '.comments-update', function(e) {
         e.preventDefault();
         const id = $(this).data('comment-id');
         const updatedComment = $(this).closest('.comment').find('.comment-edit-textarea').val();
-        $.post('/posts/edit_comments', { id: id, comment: updatedComment }, (response) => {
-            fetchComments(postId, userId);
-            edit = false;
-        });
+        $.post('/posts/edit_comments', { id: id, comment: updatedComment }, () => fetchComments(postId, userId));
     });
 
-    function fetchComments(postId) {
-        $.ajax({
-            url: '/posts/show_comments',
-            type: 'POST',
-            data: { postId: postId }, 
-            success: function(response) {
-                const comments = JSON.parse(response);
-                let template = `<div class="comment-section" id="comments-container">`;
-                comments.forEach(comment => {
-                    if (comment.parent_comment_id === null) {
-                        template += generateCommentHTML(comment, userId, comments);
-                    }
-                });
-                template += `</div>`;
-                $('#comments').html(template);
-            }
-        });
-    }
-    
-    function generateCommentHTML(comment, userId, allComments, level = 0) {
-        let margin = level * 5;
-        let template = `<div class="comment" style="margin-left: ${margin}px;">`;
-        template += `<div class="parent-comment">`;
-        template += `<div class="user-info">`;
-        template += `<i class='bx bxs-user-voice'></i>`;
-        template += `<p>${comment.username}</p>`;
-        template += `</div>`;
-        template += `<div class="comment-content" data-comment-id="${comment.id}">`;
-        template += `<p>${comment.comment}</p>`;
-        template += `</div>`;
-        template += `<div class="comment-edit-container" data-comment-id="${comment.id}"></div>`;
-        template += `<p>${comment.created_at}</p>`;
-        template += `<div class="comment-actions">`;
-
-        const userIdInt = parseInt(userId);
-        const commentUserIdInt = parseInt(comment.user_id);
-
-        if (userIdInt === commentUserIdInt) {
-            template += `<button class="comments-edit" data-comment-id="${comment.id}">Edit</button>`;
-            template += `<button class="comments-delete" data-comment-id="${comment.id}">Delete</button>`;
-        }
-
-        if (userId !== null) {
-            template += `<button class="comments-reply" data-comment-id="${comment.id}">Reply</button>`;
-        }
-        template += `</div>`;
-        template += `</div>`;
-
-        const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
-        if (childComments.length > 0) {
-            level++; 
-            childComments.forEach(childComment => {
-                template += generateCommentHTML(childComment, userId, allComments, level);
-            });
-        }
-
-        template += `</div>`; 
-
-        return template;
-    }
-
-    $(document).on('click', '.comments-reply', function(e) {
+    $commentsContainer.on('click', '.comments-reply', function(e) {
         e.preventDefault();
         const id = $(this).data('comment-id');
 
         if (currentEditingCommentId !== null) {
-            const previousEditContainer = $(`.comment-edit-container[data-comment-id="${currentEditingCommentId}"]`);
-            previousEditContainer.empty();
+            $(`.comment-edit-container[data-comment-id="${currentEditingCommentId}"]`).empty();
         }
 
         const replyTemplate = `
@@ -124,12 +64,11 @@ $(document).ready(function() {
             <button class="comments-cancel">Cancel</button>
         `;
 
-        const parentComment = $(this).closest('.parent-comment');
-        parentComment.find(`.comment-edit-container[data-comment-id="${id}"]`).html(replyTemplate);
+        $(this).closest('.parent-comment').find(`.comment-edit-container[data-comment-id="${id}"]`).html(replyTemplate);
         currentEditingCommentId = id;
     });
 
-    $(document).on('click', '.comments-create', function(e) {
+    $commentsContainer.on('click', '.comments-create', function(e) {
         e.preventDefault();
         const parentCommentId = $(this).data('parent-id');
         const newComment = $(this).closest('.parent-comment').find('.comment-create-textarea').val();
@@ -138,10 +77,88 @@ $(document).ready(function() {
                 parentCommentId: parentCommentId,
                 comment: newComment,
                 postId: postId,
-                userId: userId
-            }, (response) => {
-                fetchComments(postId, userId);
-            });
+                userId: app.user.id
+            }, () => fetchComments(postId, userId));
         }
     });
+
+    function fetchComments(postId) {
+        $.ajax({
+            url: '/posts/show_comments',
+            type: 'POST',
+            data: { postId: postId },
+            success: function(response) {
+                const comments = JSON.parse(response);
+                $commentsContainer.html(generateCommentsHTML(comments));
+                initComments(); // Reiniciar la visibilidad de los botones y comentarios anidados
+            }
+        });
+    }
+
+    function generateCommentsHTML(comments) {
+        let html = '';
+        const parentComments = comments.filter(comment => comment.parent_comment_id === null);
+        parentComments.forEach(parentComment => {
+            html += generateCommentHTML(parentComment, comments);
+        });
+        return html;
+    }
+
+    function generateCommentHTML(comment, allComments, level = 0) {
+        let html = `
+            <div class="comment">
+                <div class="parent-comment">
+                    <div class="user-info">
+                        <i class='bx bxs-user-voice'></i>
+                        <p>${comment.username}</p>
+                    </div>
+                    <div class="comment-content" data-comment-id="${comment.id}">
+                        <p>${comment.comment}</p>
+                    </div>
+                    <div class="comment-edit-container" data-comment-id="${comment.id}"></div>
+                    <p>${comment.created_at}</p>
+                    <div class="comment-actions">`;
+        if (userId === comment.user_id) {
+            html += `<button class="comments-edit" data-comment-id="${comment.id}">Edit</button>`;
+            html += `<button class="comments-delete" data-comment-id="${comment.id}">Delete</button>`;
+        }
+
+        if (userId !== null) {
+            html += `<button class="comments-reply" data-comment-id="${comment.id}">Reply</button>`;
+        }
+
+        html += `</div></div>`;
+
+        const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
+        if (childComments.length > 0) {
+            html += `<button class="comments-view-more" data-comment-id="${comment.id}">View more</button>`;
+            html += `<button class="comments-view-less" data-comment-id="${comment.id}">View less</button>`;
+            html += `<div class="child-comments" data-comment-id="${comment.id}">`;
+            childComments.forEach(childComment => {
+                html += generateCommentHTML(childComment, allComments, level + 1);
+            });
+            html += `</div>`;
+        }
+
+        html += `</div>`;
+        return html;
+    }
+
+    $commentsContainer.on('click', '.comments-view-more', function(e) {
+        e.preventDefault();
+        const id = $(this).data('comment-id');
+        $(`.child-comments[data-comment-id="${id}"]`).show();
+        $(this).hide();
+        $(`.comments-view-less[data-comment-id="${id}"]`).show();
+    });
+
+    $commentsContainer.on('click', '.comments-view-less', function(e) {
+        e.preventDefault();
+        const id = $(this).data('comment-id');
+        $(`.child-comments[data-comment-id="${id}"]`).hide();
+        $(this).hide();
+        $(`.comments-view-more[data-comment-id="${id}"]`).show();
+    });
+
+    fetchComments(postId);
 });

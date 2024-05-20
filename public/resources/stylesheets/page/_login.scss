@@ -18,7 +18,7 @@
   display: flex; 
   box-shadow: $box-shadow;
   overflow: hidden;
-  border: 3px solid rgba(255,255,255,0.3);
+  border: 3px solid $tone_wl;
   border-radius: 30px;
   backdrop-filter: blur(20px);
 	animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -29,7 +29,7 @@
   @include flex-center;
   flex-direction: column;
   width: 55%;
-  background: rgba(255,255,255,0.3);
+  background: $tone_wl;
   backdrop-filter: blur(30px);
   border-radius: 0 30% 20% 0;
   transition: border-radius .3s;
@@ -40,12 +40,10 @@
   color:$font_w;
   width: 480px;
   font-size: 22px;
-}
 
-.featured-words {
-    span {
-      font-weight: 800;
-    }
+  span {
+    font-weight: 800;
+  }
 }
 
 .right {
@@ -113,7 +111,7 @@
 }
 
 .principal {
-  padding: 0 5vw; 
+  padding: 1vw 4vw; 
   border-radius: 2rem;
   position: absolute;
   left: 50%;
@@ -128,7 +126,7 @@
 .slogan {
   font-size: 33px;
   color: $brow1;
-  margin: 40px 0 50px 0;
+  margin: 40px 0 20px 0;
   font-weight: 600;
   color: $font_w;
 }

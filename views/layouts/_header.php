@@ -9,10 +9,15 @@
     <input class="cont" placeholder="Search" type="search">
   </div>
   
-  <div class="register">
+  <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
-      <i class='notifications bx bx-bell'></i>
-      <button id="btn-user" class="user-menu">
+      <button class="btn-notifications" onclick="app.userNotificationsOpen()">
+        <i class='notifications-icon bx bx-bell'></i>
+        <span class="notifications-count">
+          <span class="spinner spinner-red"></span>
+        </span>
+      </button>
+      <button class="btn-userMenu" onclick="app.userMenuOpen()">
         <img src="/resources/img/user.png" alt="user">
       </button>
     <?php else: ?>
@@ -20,32 +25,5 @@
         <a href="/sessions/new">Sign up</a>
       </div>
     <?php endif; ?>
-
   </div>
 </header>
-<?php if(isset($_SESSION['user'])): ?>
-  <div id="menu-user" class="menu-user">
-    <ul class="list-user">
-      <div class="profile-menu">
-        <img src="/resources/img/user.png" alt="user" class="user-img">
-        <div class="user-information">
-          <?php
-         echo $_SESSION['user']['username']. "<br>";
-         echo $_SESSION['user']['email'];?>         
-        </div>
-      </div>
-      <div class="line"></div>
-      <a href="/users/show/id:<?= $_SESSION['user']['id']; ?>">
-        <li>view Profile</li>
-      </a>
-      <a href="#"><li>Settings</li></a>
-      <a href="#"><li>Languaje</li> </a>
-      <a href="#"><li>Help</li></a>
-      <li>
-        <form action="/sessions/destroy" method="post">
-          <input type="submit" name="logout" value="Log out">
-        </form>
-      </li>
-    </ul>
-  </div>
-<?php endif; ?>

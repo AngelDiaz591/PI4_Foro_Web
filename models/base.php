@@ -8,8 +8,7 @@ require_once "database.php";
  * This model contains the base methods to be used in the other models
  */
 Class Base extends Database {
-  private $imagesPath = __DIR__ . "/../assets/imgs/";
-
+  private $imagesPath = __DIR__ . "/../public/assets/imgs/";
 /**
  * Check if the connection is null, meaning that it failed to connect to the database
  * 
@@ -18,8 +17,16 @@ Class Base extends Database {
  * @return void
  */
   public function check_connection() {
-    if ($this->conn === null) {
-      throw new Exception("Failed to connect to the database.");
+    try {
+      $result = $this->conn->query("SELECT 1");
+
+      if (!$result) {
+        throw new Exception("Failed to connect to the database.");
+      }
+
+      return;
+    } catch (PDOException | Exception $e) {
+      throw new Exception($e->getMessage());
     }
   }
 

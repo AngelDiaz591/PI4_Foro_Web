@@ -34,7 +34,7 @@ class ConfirmationsController extends User {
     }
   }
 
-  public function update() {
+  public function patch() {
     try {
       $response = $this->resend_code($this->params);
 
