@@ -25,8 +25,13 @@ const user = {
         Swal.fire({
           icon: 'success',
           title: 'Success',
-          text: result.message
-        })
+          text: result.message,
+          onClose: () => window.location.reload()
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
       } else {
         Swal.fire({
           icon: 'error',
@@ -53,8 +58,13 @@ const user = {
         Swal.fire({
           icon: 'success',
           title: 'Success',
-          text: result.message
-        })
+          text: result.message,
+          onClose: () => window.location.reload(),
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.reload();
+          }
+        });
       } else {
         Swal.fire({
           icon: 'error',
@@ -79,7 +89,7 @@ const user = {
     }).then(response => response.json())
     .then(result => {
       if (result.status) {
-        container.html(this.setList(result.data));
+        container.html(this.setFollowsList(result.data));
       } else {
         Swal.fire({
           icon: 'error',
@@ -104,7 +114,7 @@ const user = {
     }).then(response => response.json())
     .then(result => {
       if (result.status) {
-        container.html(this.setList(result.data));
+        container.html(this.setFollowsList(result.data));
       } else {
         Swal.fire({
           icon: 'error',
@@ -115,7 +125,7 @@ const user = {
     }).catch(err => console.error(err));
   },
 
-  setList: function (users) {
+  setFollowsList: function (users) {
     let list = `
       <div>
         <h1>Users</h1>
@@ -145,9 +155,5 @@ const user = {
     `;
 
     return list;
-  },
-
-  setFollowForm: function () {
-
   }
 }

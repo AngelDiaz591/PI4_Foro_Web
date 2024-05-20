@@ -896,10 +896,6 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0 3rem 0 0;
 }
 
-.active {
-  border-bottom: 2px solid blue; /* Estilo activo */
-}
-
 header {
   height: 75px;
   background-color: #FCF6F4;
@@ -1011,13 +1007,86 @@ header .seeker .search {
   color: white;
 }
 
-.notifications {
-  font-size: 40px;
-  color: #262525;
-  cursor: pointer;
+.text-start {
+  text-align: start;
+}
+.text-center {
+  text-align: center;
+}
+.text-end {
+  text-align: end;
+}
+.text-justify {
+  text-align: justify;
 }
 
-.user-menu {
+.btn-notifications {
+  background-color: #FCF6F4;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  font-size: 2.5rem;
+}
+.btn-notifications .notifications-count {
+  align-items: center;
+  background-color: #ff9999;
+  border-radius: 25px;
+  color: rgb(139, 0, 0);
+  display: flex;
+  font-size: 1rem;
+  font-weight: bold;
+  height: 20px;
+  justify-content: center;
+  position: absolute;
+  transform: translate(20px, 0);
+  width: 20px;
+}
+
+.notification {
+  display: flex;
+}
+.notification:not(:last-child) {
+  border-bottom: 1px solid #bfbfbf;
+}
+.notification-causer {
+  align-items: end;
+  display: flex;
+  gap: 5px;
+}
+.notification-causer img {
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+}
+.notification-causer-info {
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.notification-causer-info h5 {
+  font-size: 1.5rem;
+}
+.notification-causer-info p {
+  font-size: 1rem;
+}
+.notification-event {
+  align-items: center;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+.notification-event-see {
+  font-size: 2.5rem;
+}
+.notification-event p {
+  font-size: 1.2rem;
+}
+.notification-date {
+  font-size: 0.8rem;
+}
+
+.btn-userMenu {
   border-radius: 50%;
   background-color: #FCF6F4;
   margin: 10px 30px;
@@ -1025,68 +1094,101 @@ header .seeker .search {
   cursor: pointer;
 }
 
-.menu-user {
-  margin: 75px 0px 10px 80%;
-  font-size: 20px;
-  position: absolute;
+.userMenu {
+  background: transparent !important;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 1fr 1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+}
+.userMenu-modal {
   background-color: #FCF6F4;
-  border: 0.5px solid #ccc;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 3;
-  display: none;
-  border-radius: 5px;
+  border: 1px solid #ccc;
+  grid-column: 2 !important;
+  grid-row: 1 !important;
+  margin-top: 75px;
+  place-self: start end !important;
 }
-
-.list-user {
-  list-style-type: none;
-  padding: 0;
-  padding: 15px;
-}
-.list-user .profile-menu {
+.userMenu-header {
+  align-items: center;
   display: flex;
+  padding: 10px 0;
 }
-.list-user .profile-menu .user-information {
-  padding: 0px 15px;
-  display: block;
-}
-.list-user .profile-menu .user-img {
-  width: 40px;
-  height: 40px;
+.userMenu-header img {
   border-radius: 50%;
+  height: 50px;
+  width: 50px;
 }
-.list-user a {
-  padding: 4px;
+.userMenu-header h4 {
+  font-size: 2rem;
+  text-align: left;
+}
+.userMenu-header p {
+  font-size: 1.5rem;
+  text-align: left;
+}
+.userMenu-list {
+  display: grid;
+  gap: 1rem;
+  list-style: none;
+  max-height: 18.75rem;
+  overflow: auto;
+}
+.userMenu-list-item {
   cursor: pointer;
 }
-.list-user a li {
-  padding: 5px;
-}
-.list-user a :hover {
+.userMenu-list-item:hover {
   background-color: #BEF4FE;
   border-radius: 5px;
 }
-.list-user li {
-  pad: 5px;
+.userMenu-list-item.spinner-container {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
 }
-.list-user li :hover {
-  background-color: #BEF4FE;
-  border-radius: 5px;
+.userMenu-list-item.spinner-container .spinner {
+  height: 4rem;
+  width: 4rem;
 }
-.list-user input[type=submit] {
-  border: none;
+.userMenu-list-item a {
   font-size: 20px;
-  background-color: transparent;
+  padding: 4px 0;
+}
+.userMenu-tabs {
+  border-bottom: 1px solid #bfbfbf;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  list-style: none;
+  margin-bottom: 1.25em;
+}
+.userMenu-tabs-item {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px solid transparent;
   cursor: pointer;
+  padding: 4px 0;
 }
-.list-user input[type=submit] :hover {
-  background-color: #BEF4FE;
-  border-radius: 5px;
+.userMenu-tabs-item:hover:not(.active) {
+  background-color: #faefec;
+}
+.userMenu-tabs-item.active {
+  border-color: #bfbfbf #bfbfbf #FCF6F4;
+  margin-bottom: -1px;
 }
 
-.show-user {
-  display: block;
+@media only screen and (max-width: 800px) {
+  .userMenu {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    grid-template-rows: 1fr 1fr !important;
+  }
+  .userMenu-modal {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    place-self: start center !important;
+    width: initial !important;
+  }
 }
-
 @media only screen and (max-width: 800px) {
   .main-container {
     margin-left: 0;
@@ -2024,11 +2126,16 @@ form .images > p.extra-files {
 
 .spinner {
   animation: spin 1s ease infinite;
-  border-left-color: #0cb162;
   border-radius: 50%;
-  border: 4px solid rgba(0, 0, 0, 0.1);
+  border: 4px solid rgba(255, 255, 255, 0.1);
   height: 100%;
   width: 100%;
+}
+.spinner-green {
+  border-left-color: #0cb162;
+}
+.spinner-red {
+  border-left-color: red;
 }
 
 @keyframes spin {
