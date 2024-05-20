@@ -9,7 +9,7 @@ CREATE PROCEDURE create_comment(
 BEGIN
   INSERT INTO comments (comment, post_id, user_id)
   VALUES (p_comment, p_post_id, p_user_id );
-END $$
+END $$ 
 DELIMITER $$
  --call as: CALL create_comment('comment');
 
