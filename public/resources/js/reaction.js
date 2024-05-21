@@ -1,3 +1,6 @@
+var postId = app.params.id;
+var userId = app.user.id ?? null;
+
 $(document).ready(function() {
     $(".all-reaction").hide();
     $(document).mouseup(function(e) {
