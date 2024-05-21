@@ -19,13 +19,21 @@ CREATE PROCEDURE get_comments_by_post_id(
     p_id INT
 )
 BEGIN
+    DECLARE comment_count INT;
+
+    SELECT COUNT(*)
+    INTO comment_count
+    FROM comments
+    WHERE post_id = p_id;
+
     SELECT 
         u.username,
         c.comment,
         c.id,
         c.user_id,
         c.created_at,
-        c.parent_comment_id
+        c.parent_comment_id,
+        comment_count AS total_comments
     FROM comments AS c
     INNER JOIN users AS u ON c.user_id = u.id
     WHERE c.post_id = p_id
@@ -34,21 +42,33 @@ END $$
 DELIMITER ;
 
 
+
 -- call as: CALL get_comments_by_post_id;
 DROP PROCEDURE IF EXISTS delete_comment_by_id;
 DELIMITER $$
 CREATE PROCEDURE delete_comment_by_id(IN commentId INT)
 BEGIN
     DECLARE childCommentId INT;
-    DELETE FROM comments WHERE parent_comment_id = commentId;
-    SELECT id INTO childCommentId FROM comments WHERE parent_comment_id = commentId;
-    WHILE childCommentId IS NOT NULL DO
+    DECLARE done INT DEFAULT FALSE;
+    DECLARE comment_cursor CURSOR FOR SELECT id FROM comments WHERE parent_comment_id = commentId;
+    DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
+
+    SET MAX_SP_RECURSION_DEPTH = 255;
+
+    OPEN comment_cursor;
+
+    delete_loop: LOOP
+        FETCH comment_cursor INTO childCommentId;
+        IF done THEN
+            LEAVE delete_loop;
+        END IF;
         CALL delete_comment_by_id(childCommentId);
-        SELECT id INTO childCommentId FROM comments WHERE parent_comment_id = commentId;
-    END WHILE;
+    END LOOP delete_loop;
+
+    CLOSE comment_cursor;
+
     DELETE FROM comments WHERE id = commentId;
 END$$
-
 DELIMITER ;
 
 DROP PROCEDURE IF EXISTS update_comment_by_id;

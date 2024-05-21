@@ -130,16 +130,21 @@ class PostsController extends Post {
                 exit;
             } else {
                 http_response_code(404);
-                echo json_encode(['error' => 'No comments found']);
-                exit;
+                $message = 'No comments found';
             }
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(['error' => 'Internal server error']);
-            exit;
+            $message = 'Internal server error';
         }
-
+    
+        if (isset($message) && $message === 'No comments found') {
+            $message = 'No comments available';
+        }
+    
+        echo json_encode(['error' => $message]);
+        exit;
     }
+    
 
     /**
      * Delete a post and redirect to the index view
