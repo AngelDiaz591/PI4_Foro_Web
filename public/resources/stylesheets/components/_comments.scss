@@ -140,15 +140,15 @@ text-align: left;
   .comment-user {
     margin: 20px 0 0;
     padding: 10px 20px 5px 20px;
-    width: 92%;
+    width: 97%;
     border-radius: 10px;
-    background-color: $font_w3;   
+    background-color: $font_w3; 
+
     textarea {
       resize: none;
       width: 100%;
       font-size: px(3);
       border: none;
-      border-radius: 10px;
       outline: none;
       background-color: $font_w3;   
     }

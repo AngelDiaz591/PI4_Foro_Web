@@ -140,3 +140,41 @@ function toggleModal() {
     var modal = document.getElementById("myModal");
     modal.style.display = modal.style.display === "block" ? "none" : "block";
 }
+
+function openModal(postId) {
+    const modal = document.getElementById(`myModal-${postId}`);
+    modal.style.display = "block";
+    currentSlide(1, postId);
+}
+
+function closeModal(postId) {
+    const modal = document.getElementById(`myModal-${postId}`);
+    modal.style.display = "none";
+}
+
+let slideIndex = {};
+
+function currentSlide(n, postId) {
+    showSlides(slideIndex[postId] = n, postId);
+}
+
+function changeSlide(n, postId) {
+    showSlides(slideIndex[postId] += n, postId);
+}
+
+function showSlides(n, postId) {
+    let i;
+    let slides = document.querySelectorAll(`#carouselContainer-${postId} .carousel-slide`);
+    if (n > slides.length) { slideIndex[postId] = 1 }
+    if (n < 1) { slideIndex[postId] = slides.length }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    slides[slideIndex[postId] - 1].style.display = "block";
+}
+
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = "none";
+    }
+}

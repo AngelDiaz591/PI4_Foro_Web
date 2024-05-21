@@ -80,6 +80,29 @@ a {
   }
   
 }
+
+.image-preview {
+  position: relative;
+}
+
+.image-preview img {
+  max-width: 90%;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 2px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .image img {
   max-width: 90%; 
   height: 350px;

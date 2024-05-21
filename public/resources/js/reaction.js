@@ -35,7 +35,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                var reactImg = "<img src='/resources/img/" + reactType + ".png' class='reaction' >";
+                var reactImg = "<img src='/resources/img/" + reactType + ".png' class='reaction-selected' >";
                 $("#" + postId).html(reactImg);
                 setReactionBackground(reactType, postId);
             }
@@ -53,7 +53,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                $("#" + postId).html("<p><i class='bx bxs-like' onclick='checkSession()'></i></p>");
+                $("#" + postId).html("<p class='like-action'><i class='bx bxs-like' onclick='checkSession()'></i></p>");
                 $("#" + postId).css("background", "");
             }
         });
