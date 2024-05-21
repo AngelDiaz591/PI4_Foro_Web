@@ -63,15 +63,19 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     <?= render_layout('header'); ?>
 
     <div class="main-container">
-      <nav id="main-nav">
-        <?= render_layout('sidebar_main'); ?>
-      </nav>
+      <?php if ($controller !== 'users'): ?>
+        <nav id="main-nav">
+          <?= render_layout('sidebar_main'); ?>
+        </nav>
+      <?php endif; ?>
 
       <main>
         <?= $router->dispatch() ?>
       </main>
       
-      <?= render_layout('sidebar_chats'); ?>
+      <?php if ($controller == 'posts'): ?>
+        <?= render_layout('sidebar_chats'); ?>
+      <?php endif; ?>
     </div>
   </body>
 <?php endif; ?>
