@@ -1509,6 +1509,28 @@ a {
     display: none;
   }
 }
+.image-preview {
+  position: relative;
+}
+
+.image-preview img {
+  max-width: 90%;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 2px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .image img {
   max-width: 90%;
   height: 350px;
@@ -1835,7 +1857,7 @@ a {
 .all_comments .comment-user {
   margin: 20px 0 0;
   padding: 10px 20px 5px 20px;
-  width: 92%;
+  width: 97%;
   border-radius: 10px;
   background-color: #d8dfd9;
 }
@@ -1844,7 +1866,6 @@ a {
   width: 100%;
   font-size: 15px;
   border: none;
-  border-radius: 10px;
   outline: none;
   background-color: #d8dfd9;
 }
@@ -2164,22 +2185,52 @@ form .images > p.extra-files {
   width: 50px;
   height: 50px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .react-con {
-  color: #969595;
+  color: #aca9a9;
+  padding-top: 5px;
   cursor: pointer;
   transition: 0.3s;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 1px 2px rgba(4, 4, 4, 0.3);
   background: #fff;
   width: 55px;
   display: inline-block;
-  margin-top: 10px;
+}
+.react-con .like-action {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.react-con .like-action i {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.actions-show > .react-con {
+  color: #aca9a9;
+  padding-top: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 5px;
+  box-shadow: 0 1px 2px rgba(4, 4, 4, 0.3);
+  background: #fff;
+  width: 55px;
+  display: inline-block;
+  margin: 20px 0px 0px 20px;
+}
+.actions-show > .react-con .like-action {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.actions-show > .react-con .like-action i {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .react-con:hover {
-  color: #84b4ce !important;
+  color: #1185c4 !important;
   transition: 0.3s;
   box-shadow: 0 1px 2px rgba(7, 7, 7, 0.6);
 }
@@ -2188,6 +2239,13 @@ form .images > p.extra-files {
   width: 60px;
   height: 60px;
   transition: 0.3s;
+}
+
+.reaction-selected {
+  width: 25px;
+  height: 25px;
+  transition: 0.3s;
+  cursor: pointer;
 }
 
 .content {
@@ -2250,6 +2308,12 @@ form .images > p.extra-files {
 
 .child-comments {
   display: none;
+}
+
+.likes > img {
+  width: 20px;
+  height: 20px;
+  padding-right: 5px;
 }
 
 .alert {
@@ -2349,4 +2413,87 @@ form .images > p.extra-files {
   cursor: pointer;
   font-size: 20px;
   color: font_b; /* o tu color deseado */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 3 !important;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+  position: relative;
+  margin: auto;
+  padding: 0;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  color: #fff;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.carousel-container {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  transition: 0.5s ease;
+}
+
+.carousel-image {
+  width: 100%;
+  height: 600px;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+.prev {
+  left: 0;
+  border-radius: 0 3px 3px 0;
 }/*# sourceMappingURL=main.css.map */

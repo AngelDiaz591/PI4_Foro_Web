@@ -16,7 +16,7 @@
 
             <div class="vi">
                 <a href="/posts/show/id:<?= $d["id"]; ?>"> 
-                <div class="box" id="results-list-<?= $d["id"]; ?>">
+                <div class="" id="results-list-<?= $d["id"]; ?>">
                     <div class="text">
                         <h2><?= $d["title"] ?></h2>
                         <p class="text-description"><?= $d["description"] ?></p>
@@ -24,12 +24,19 @@
                 </a>
                 </div>
 
-        <div class="image">
-          <?php foreach ($d["images"] as $image): ?>
-            <img src="/assets/imgs/<?= $image["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="main.verFotos('/assets/imgs/<?= $image['image'] ?>')">
-          <?php endforeach; ?>
-        </div> 
-      </div>
+                <div class="image-preview">
+                    <?php if (count($d["images"]) > 0): ?>
+                        <div class="image">
+                            <img src="/assets/imgs/<?= $d["images"][0]["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="openModal(<?= $d['id'] ?>)">
+                        </div>
+                        <?php if (count($d["images"]) > 1): ?>
+                            <div class="image-overlay" onclick="openModal(<?= $d['id'] ?>)">
+                                +<?= count($d["images"]) - 1 ?>
+                            </div>
+                        <?php endif; ?>
+                    <?php endif; ?>
+                </div> 
+            </div>
 
             <div>
                 <div class="actions">
@@ -58,7 +65,7 @@
                     <div class="react-con" align="center" id="<?php echo $d["id"];?>">
                     <?php if ($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
                         <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
-                            <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction">
+                            <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction-selected">
                         <?php else: ?>
                             <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
                         <?php endif; ?>
@@ -76,6 +83,27 @@
             </div>
         </div>
     </div>
+
+    <div id="myModal-<?= $d["id"] ?>" class="modal">
+      <span class="close" onclick="closeModal(<?= $d["id"] ?>)">&times;</span>
+      <div class="modal-content">
+        <h1 style="color: white;"><?= $d["title"] ?></h1>
+        <p style="color: white;" class=""><?= $d["description"] ?></p>
+        <br>
+        <div class="carousel-container" id="carouselContainer-<?= $d["id"] ?>">
+          <?php foreach ($d["images"] as $image): ?>
+            <div class="carousel-slide">
+            <img src="/assets/imgs/<?= $image["image"] ?>" class="carousel-image" alt='Image from "<?= $d["title"] ?>"'>
+            </div>
+          <?php endforeach; ?>
+        </div>
+        <?php if (count($d["images"]) > 1): ?>
+            <a class="prev" onclick="changeSlide(-1, <?= $d["id"] ?>)">&#10094;</a>
+            <a class="next" onclick="changeSlide(1, <?= $d["id"] ?>)">&#10095;</a>
+        <?php endif; ?>
+      </div>
+    </div>
+
     <?php endforeach; ?>
 </div>
 
