@@ -38,8 +38,8 @@
                     </p>
 
                     <div class="info">
-                        <p>243K Visualization</p>
-                        <p>243k comments</p>
+                        <p> Visualization</p>
+                        <p><?= $d['total_comments'] ?? 0 ?> comments</p>
                     </div>
                 </div>
 

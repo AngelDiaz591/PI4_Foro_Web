@@ -2,7 +2,6 @@ $(document).ready(function() {
     const $commentsContainer = $('#comments');
     let currentEditingCommentId = null;
 
-    // Función de inicialización
     function initComments() {
         $('.comments-view-less').hide();
         $('.child-comments').hide();
@@ -89,8 +88,14 @@ $(document).ready(function() {
             data: { postId: postId },
             success: function(response) {
                 const comments = JSON.parse(response);
-                $commentsContainer.html(generateCommentsHTML(comments));
-                initComments(); // Reiniciar la visibilidad de los botones y comentarios anidados
+                const commentsHTML = generateCommentsHTML(comments);
+                $commentsContainer.html(commentsHTML);
+                initComments();
+                const totalComments = comments.length;
+                $('.count_comments p').text(totalComments + ' Comments');
+            },
+            error: function() {
+                $commentsContainer.html('<p> Be the first to comment on this post! </p>');
             }
         });
     }
