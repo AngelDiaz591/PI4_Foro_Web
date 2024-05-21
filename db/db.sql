@@ -157,3 +157,5 @@ INSERT INTO unesco (theme) VALUES
   ('Quality_Education'),
   ('Gender_Equality')
 ;
+
+ALTER TABLE `users` ADD `usertype` INT(11) NOT NULL DEFAULT '1' AFTER `username`;

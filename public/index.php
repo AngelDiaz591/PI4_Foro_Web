@@ -9,7 +9,7 @@ $router = new Router();
 $controller = $router->controller;
 $action = $router->action;
 
-$special_controllers_body = ['sessions', 'confirmations', 'registrations', 'passwords'];
+$special_controllers_body = ['sessions', 'confirmations', 'registrations', 'passwords', 'administrators'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
     var pass = document.getElementById("password");
     var msg = document.getElementById("message");
     var str = document.getElementById("strenght");
@@ -75,7 +74,7 @@
     
     
     
-=======
+
 var icon = document.getElementsByClassName("icon");
 
 var pass = document.getElementById("password");
@@ -142,4 +141,3 @@ confirm_pswd.addEventListener('input',() =>{
         signup.disabled = true;
     }
 });
->>>>>>> main
