@@ -1,3 +1,6 @@
+var postId = app.params.id;
+var userId = app.user.id ?? null;
+
 $(document).ready(function() {
     const $commentsContainer = $('#comments');
     let currentEditingCommentId = null;

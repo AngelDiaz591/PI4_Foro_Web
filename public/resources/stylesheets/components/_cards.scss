@@ -34,17 +34,26 @@ a {
   }
 
   .profile-card {
+    text-align: start;
     cursor: pointer;
     &:hover {
       color: $theme_bl;
     }
   }
+
+  &-info {
+    display: flex;
+  }
+
+  &-post_theme {
+    margin-left: auto;
+  }
 }
 
 .date {
-  font-size: px(3);
-  margin-left: px(2);
   color: $font_b;
+  font-size: px(3);
+  text-align: start;
 }
 
 .line {
@@ -181,6 +190,10 @@ a {
     width: 90%;
     height: 350px;
     border-radius: px(2);
+  }
+
+  h1, p {
+    color: $font_w;
   }
 }
  

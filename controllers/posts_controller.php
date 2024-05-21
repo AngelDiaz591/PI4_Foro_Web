@@ -46,6 +46,10 @@ class PostsController extends Post {
     }
 
     public function new() {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /sessions/new');
+        }
+
         return $this->render('new', $this->params);
     }
 

@@ -22,6 +22,11 @@
             placeholder="Your thoughts go here..."></textarea>
         </div>
         <div class="field">
+          <select name="unesco_theme_id" id="unesco_theme_id" required>
+            <option value="" disabled selected>Select a theme</option>
+          </select>
+        </div>
+        <div class="field">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">
         </div>
       </div>

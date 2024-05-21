@@ -1258,37 +1258,37 @@ nav .line {
   padding: 10px;
   border-top: 1px solid black;
 }
-nav .icons {
+nav .main-nav {
   display: flex;
   flex-direction: column;
   padding: 0;
   margin: 0;
 }
-nav .icons a {
+nav .main-nav li {
   color: #696564;
   text-decoration: none;
   display: flex;
 }
-nav .icons a .cubo {
+nav .main-nav li .selector {
   width: 5%;
   height: auto;
   background-color: #09c3c3;
   display: none;
 }
-nav .icons a > .category {
+nav .main-nav li > .category {
   display: flex;
   align-items: center;
   cursor: pointer;
   margin: 13px;
 }
-nav .icons a > .category i {
+nav .main-nav li > .category i {
   margin-right: 10px;
 }
-nav .icons a > .category p {
+nav .main-nav li h3 {
   margin: 0;
   color: #696564;
 }
-nav .icons .categories {
+nav .main-nav .categories {
   color: #696564;
   display: flex;
   align-items: center;
@@ -1297,13 +1297,18 @@ nav .icons .categories {
   padding: 0;
   margin: 10px;
 }
-nav .icons .categories p {
+nav .main-nav .categories p {
   margin: 0;
 }
 @media only screen and (max-width: 800px) {
-  nav .icons .categories p {
+  nav .main-nav .categories p {
     font-size: 20px;
   }
+}
+nav .main-nav .spinner {
+  height: 2rem;
+  margin: 8px auto;
+  width: 2rem;
 }
 
 .list:hover {
@@ -1314,7 +1319,7 @@ nav .icons .categories p {
 .list:hover li.category p {
   color: #005242;
 }
-.list:hover .cubo {
+.list:hover .selector {
   display: block;
   transition: background-color 0.5s ease;
 }
@@ -1432,6 +1437,10 @@ nav .icons .categories p {
   padding: 0;
 }
 
+.list a {
+  width: 100%;
+}
+
 a {
   text-decoration: none;
   color: #0c0a0a;
@@ -1466,16 +1475,23 @@ a {
   border-radius: 50%;
 }
 .user_card .profile-card {
+  text-align: start;
   cursor: pointer;
 }
 .user_card .profile-card:hover {
   color: #7380ec;
 }
+.user_card-info {
+  display: flex;
+}
+.user_card-post_theme {
+  margin-left: auto;
+}
 
 .date {
-  font-size: 15px;
-  margin-left: 10px;
   color: black;
+  font-size: 15px;
+  text-align: start;
 }
 
 .line {
@@ -1603,6 +1619,9 @@ a {
   width: 90%;
   height: 350px;
   border-radius: 10px;
+}
+.modal-content h1, .modal-content p {
+  color: white;
 }
 
 .close {
@@ -1768,17 +1787,6 @@ a {
 }
 .show h2 {
   color: #0c0a0a;
-}
-.show .user_card p {
-  margin: 5px;
-  font-size: 15px;
-  padding-left: 10px;
-}
-.show .user_card .data {
-  cursor: pointer;
-}
-.show .user_card .data:hover {
-  color: #7380ec;
 }
 .show .user_card button {
   cursor: pointer;
@@ -1978,7 +1986,7 @@ form .box {
 .text .field .attach-file:hover {
   color: #797979;
 }
-.text .field input, .text .field textarea {
+.text .field input, .text .field textarea, .text .field select {
   background: rgba(221, 221, 221, 0.2941176471);
   border-radius: 5px;
   border: none;
@@ -1988,6 +1996,10 @@ form .box {
   margin: 0 0 1rem;
   padding: 1rem;
   width: 100%;
+}
+.text .field input option, .text .field textarea option, .text .field select option {
+  background: rgba(221, 221, 221, 0.2941176471);
+  color: #0c0a0a;
 }
 
 form .images {

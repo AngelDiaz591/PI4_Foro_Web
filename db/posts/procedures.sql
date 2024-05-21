@@ -5,11 +5,12 @@ CREATE PROCEDURE save_post(
   p_user_id INT,
   p_title TEXT,
   p_description TEXT,
+  p_theme_id INT,
   OUT inserted_id INT
 )
 BEGIN
-  INSERT INTO posts (title, description, user_id)
-  VALUES (p_title, p_description, p_user_id);
+  INSERT INTO posts (title, description, user_id, theme)
+  VALUES (p_title, p_description, p_user_id, p_theme_id);
   SET inserted_id = LAST_INSERT_ID();
 END $$
 DELIMITER ;
