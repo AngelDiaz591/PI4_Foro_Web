@@ -55,15 +55,17 @@ BEGIN
     posts.*,
     users.username,
     users.email,
-    COALESCE(COUNT(pr.post_id), 0) AS total_reactions
+    COALESCE(COUNT(DISTINCT pr.post_id), 0) AS total_reactions,
+    COALESCE(COUNT(DISTINCT c.id), 0) AS total_comments
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
   LEFT JOIN post_reactions pr ON posts.id = pr.post_id
-  GROUP BY posts.id;
+  LEFT JOIN comments c ON posts.id = c.post_id
+  GROUP BY posts.id, users.username, users.email;
 END
 $$
-
 DELIMITER ;
+
 
 -- call as: CALL get_all_posts();
 
@@ -78,17 +80,18 @@ BEGIN
     posts.*,
     users.username AS username,
     users.email AS email,
-    COALESCE(COUNT(pr.post_id), 0) AS total_reactions
+    COALESCE(COUNT(DISTINCT pr.post_id), 0) AS total_reactions,
+    COALESCE(COUNT(DISTINCT c.id), 0) AS total_comments
   FROM posts
   INNER JOIN users ON posts.user_id = users.id
   LEFT JOIN post_reactions pr ON posts.id = pr.post_id
+  LEFT JOIN comments c ON posts.id = c.post_id
   WHERE posts.id = p_id
-  GROUP BY posts.id;
+  GROUP BY posts.id, users.username, users.email;
 END
 $$
 
 DELIMITER ;
-
 
 -- call as: CALL get_post_by_id(1);
 

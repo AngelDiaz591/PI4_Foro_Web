@@ -60,7 +60,7 @@
 <div class="main_comments">
   <div class="count_comments">
     <i class='bx bxs-chat'></i>
-    <p>243k Comments</p>
+    <p> <?= $data['total_comments'] ?? 0 ?>  Comments</p>
     <button><i class='bx bx-dots-horizontal-rounded'></i></button>
   </div>
   <div class="line"></div>
