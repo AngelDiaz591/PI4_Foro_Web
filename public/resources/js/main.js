@@ -178,4 +178,3 @@ window.onclick = function(event) {
         event.target.style.display = "none";
     }
 }
-
