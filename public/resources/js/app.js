@@ -303,6 +303,61 @@ const app = {
         notificationCount.css('display', 'none');
       }
     }).catch(err => console.error(err));
+  },
+
+  loadUnescoThemes: function(limit = 3) {
+    let themesContainer = $('#unesco-themes');
+    let html = `
+      <li class="list">
+        <div class="selector"></div>
+        <a class="category">
+          <p>Error 
+        </a>
+      </li>
+    `;
+
+    let params = new URLSearchParams();
+    params.append('limit', limit);
+
+    fetch('/unesco/get_themes', {
+      method: 'POST',
+      body: params,
+    }).then(response => response.json())
+    .then(result => {
+      if (result.status) {
+        html = '';
+
+        for (let item of result.data) {
+          html += `
+            <li class="list">
+              <div class="selector"></div>
+              <a class="category">
+                <i class="${item.icon}"></i>
+                <p>${item.theme}</p>
+              </a>
+            </li>
+          `;
+        }
+
+        if (limit === 3) {
+          html += `
+            <li class="list">
+              <div class="selector"></div>
+              <a class="category" onclick="app.loadAllUnescoThemes()">
+                <i class="bi bi-three-dots"></i>
+                <p>More</p>
+              </a>
+            </li>
+          `;
+        }
+      }
+      
+      themesContainer.html(html);
+    }).catch(err => console.error(err));
+  },
+
+  loadAllUnescoThemes: function() {
+    this.loadUnescoThemes(20);
   }
 };
 
@@ -321,4 +376,6 @@ $(function() {
   if (app.user.id) {
     app.unseenNotificationsCount();
   }
+
+  app.loadUnescoThemes();
 })

@@ -4,16 +4,21 @@
 
 <div class="showpost">
   <div class="show">
-    <a href="/users/show/id:<?= $data["user_id"]; ?>">
-      <div class="user_card">
-        <i class='bx bxs-user-voice'></i>
-        <div class="data">
-          <p class="#"><?= $data["username"] ?></p>
-          <p><?= $data["email"] ?></p>
+    <div class="user_card">
+      <a href="/users/show/id:<?= $data["user_id"]; ?>" class="user_card-info">
+        <img src="/resources/img/user.png" alt="user" class="user-card-img">
+        <div>
+          <p class="profile-card"><?= substr($data["username"], 0, 10) ?></p>
+          <p class="date"><?= $data["created_at"] ?></p>
         </div>
-        <button><i class='bx bx-dots-horizontal-rounded'></i></button>
-      </div>
-    </a>
+      </a>
+      <p class="user_card-post_theme">
+        <a href="#">
+          <i class="<?= $data["theme_icon"] ?>"></i>
+          <?= $data["theme"] ?>
+        </a>
+      </p>
+    </div>
     <div class="line"></div>
     <div>
       <h2><?= $data["title"] ?></h2>
@@ -27,6 +32,32 @@
             <?php endif; ?>
           </div>
         <?php endif; ?>
+      </div>
+      <?php if(isset($_SESSION['user']['id'])): ?>
+        <div class="all-reaction" id="react_<?php echo $data["id"]?>">
+          <img src="/resources/img/thumb.gif" class="reaction" id="thumb_<?php echo $data["id"]?>"> 
+          <img src="/resources/img/haha.gif" class="reaction" id="haha_<?php echo $data["id"]?>">
+          <img src="/resources/img/love.gif" class="reaction" id="love_<?php echo $data["id"]?>">
+          <img src="/resources/img/wow.gif" class="reaction" id="wow_<?php echo $data["id"]?>">
+          <img src="/resources/img/sad.gif" class="reaction" id="sad_<?php echo $data["id"]?>">
+          <img src="/resources/img/angry.gif" class="reaction" id="angry_<?php echo $data["id"]?>">
+        </div>
+      <?php endif; ?>
+      <div class="actions-show">
+        <div class="react-con" align="center" id="<?php echo $data["id"];?>">
+          <?php if ($data['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
+            <?php if (isset($_SESSION['user']['id']) && !empty($data['user_reactions'])): ?>
+              <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction">
+            <?php else: ?>
+              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+            <?php endif; ?>
+          <?php else: ?>
+              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+          <?php endif; ?>
+        </div>
+        <i class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $data['id'] ?>">
+          reactions: <?= $data['total_reactions'] ?? 0 ?>
+        </i>
       </div>
     </div>
   </div>
@@ -51,7 +82,6 @@
     <?php endif; ?>
   </div>
 </div>
-
 <!-- Comments Section -->
 <div class="main_comments">
   <div class="count_comments">
@@ -81,17 +111,13 @@
     <?php else: ?>
       <p>Please log in to leave a comment</p>
     <?php endif; ?>
-    <script>
-      var postId = <?= $data["id"] ?>;
-      var userId = <?= isset($_SESSION['user']['id']) ? $_SESSION['user']['id'] : 'null' ?>;
-    </script>
-    <script src="/resources/js/comments.js"></script>
-    <script src="/resources/js/reaction.js"></script>
-    <script src="/resources/js/carousel.js"></script>
   </div>
-  <br>
   <div class="all_comments">
     <p id="comments"></p>
   </div>
-  <br>
 </div>
+
+
+<script src="/resources/js/comments.js"></script>
+<script src="/resources/js/reaction.js"></script>
+<script src="/resources/js/carousel.js"></script>

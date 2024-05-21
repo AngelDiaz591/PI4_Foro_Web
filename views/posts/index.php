@@ -1,105 +1,102 @@
 <div class="main">
-    <?php 
-    array_multisort(array_column($data, 'created_at'), SORT_DESC, $data);
-    foreach (array_slice($data, 0, 5) as $d): ?>
+  <?php foreach ($data as $d): ?>
     <div class="hoverbox">
-        <div class="box" id="results-list">
-            <a href="/users/show/id:<?= $d["user_id"]; ?>">
-                <div class="user_card">
-                    <img src="/resources/img/user.png" alt="user" class="user-card-img">
-                    <p class="profile-card"><p><?= $d["username"] ?></p> .</p>
-                    <p class="date"><?= date('Y/m/d', strtotime($d["created_at"])) ?></p>
-                </div>
-            </a>
-
-            <div class="line"></div>
-
-            <div class="vi">
-                <a href="/posts/show/id:<?= $d["id"]; ?>"> 
-                <div class="" id="results-list-<?= $d["id"]; ?>">
-                    <div class="text">
-                        <h2><?= $d["title"] ?></h2>
-                        <p class="text-description"><?= $d["description"] ?></p>
-                    </div>
-                </a>
-                </div>
-
-                <div class="image-preview">
-                    <?php if (count($d["images"]) > 0): ?>
-                        <div class="image">
-                            <img src="/assets/imgs/<?= $d["images"][0]["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="openModal(<?= $d['id'] ?>)">
-                        </div>
-                        <?php if (count($d["images"]) > 1): ?>
-                            <div class="image-overlay" onclick="openModal(<?= $d['id'] ?>)">
-                                +<?= count($d["images"]) - 1 ?>
-                            </div>
-                        <?php endif; ?>
-                    <?php endif; ?>
-                </div> 
-            </div>
-
+      <div class="box" id="results-list">
+        <div class="user_card">
+          <a href="/users/show/id:<?= $d["user_id"]; ?>" class="user_card-info">
+            <img src="/resources/img/user.png" alt="user" class="user-card-img">
             <div>
-                <div class="actions">
-                    <p class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $d['id'] ?>">
-                        <img src="/resources/img/like.png" alt="like"> reactions: <?= $d['total_reactions'] ?? 0 ?>
-                    </p>
-
-                    <div class="info">
-                        <p> Visualization</p>
-                        <p><?= $d['total_comments'] ?? 0 ?> comments</p>
-                    </div>
-                </div>
-
-                <?php if(isset($_SESSION['user']['id'])): ?>
-                <div class="all-reaction" id="react_<?php echo $d["id"]?>">
-                    <img src="resources/img/thumb.gif" class="reaction" id="thumb_<?php echo $d["id"]?>"> 
-                    <img src="resources/img/haha.gif" class="reaction" id="haha_<?php echo $d["id"]?>">
-                    <img src="resources/img/love.gif" class="reaction" id="love_<?php echo $d["id"]?>">
-                    <img src="resources/img/wow.gif" class="reaction" id="wow_<?php echo $d["id"]?>">
-                    <img src="resources/img/sad.gif" class="reaction" id="sad_<?php echo $d["id"]?>">
-                    <img src="resources/img/angry.gif" class="reaction" id="angry_<?php echo $d["id"]?>">
-                </div>
-                <?php endif; ?>
-                <div class="line"></div>
-                <div class="actions">
-                    <div class="react-con" align="center" id="<?php echo $d["id"];?>">
-                    <?php if ($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
-                        <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
-                            <img src="resources/img/<?php echo $d['user_reactions'];?>.png" class="reaction-selected">
-                        <?php else: ?>
-                            <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
-                        <?php endif; ?>
-                    <?php else: ?>
-                        <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
-                    <?php endif; ?>
-                    </div>
-                    <a href="/posts/show/id:<?= $d["id"]; ?>">
-                        <p id="imagenDinamica" ><i class='bx bx-show-alt'></i> Vision</p>
-                    </a>
-                    <a href="/posts/show/id:<?= $d["id"]; ?>">
-                        <p><i class='bx bxs-chat'></i> Comment</p>
-                    </a>
-                </div>
+              <p class="profile-card"><?= substr($d["username"], 0, 10) ?></p>
+              <p class="date"><?= $d["created_at"] ?></p>
             </div>
+          </a>
+          <p class="user_card-post_theme">
+            <a href="#">
+              <i class="<?= $d["theme_icon"] ?>"></i>
+              <?= $d["theme"] ?>
+            </a>
+          </p>
         </div>
+        <div class="line"></div>
+        <div class="vi">
+          <a href="/posts/show/id:<?= $d["id"]; ?>"> 
+            <div id="results-list-<?= $d["id"]; ?>">
+              <div class="text">
+                <h2><?= $d["title"] ?></h2>
+                <p class="text-description"><?= $d["description"] ?></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="image-preview">
+          <?php if (count($d["images"]) > 0): ?>
+            <div class="image">
+              <img src="/assets/imgs/<?= $d["images"][0]["image"] ?>" alt='Image from "<?= $d["title"] ?>"' onclick="openModal(<?= $d['id'] ?>)">
+            </div>
+            <?php if (count($d["images"]) > 1): ?>
+              <div class="image-overlay" onclick="openModal(<?= $d['id'] ?>)">
+                +<?= count($d["images"]) - 1 ?>
+              </div>
+            <?php endif; ?>
+          <?php endif; ?>
+        </div> 
+        <div>
+          <div class="actions">
+            <div class="info">
+              <p class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $d['id'] ?>">
+                <img src="/resources/img/like.png" alt="like"> <?= $d['total_reactions'] ?> reactions 
+              </p>
+            </div>
+            <div class="info">
+              <p><?= $d['total_comments'] ?? 0 ?> comments</p>
+            </div>
+          </div>
+        </div>
+        <?php if(isset($_SESSION['user']['id'])): ?>
+          <div class="all-reaction" id="react_<?php echo $d["id"]?>">
+            <img src="resources/img/thumb.gif" class="reaction" id="thumb_<?php echo $d["id"]?>"> 
+            <img src="resources/img/haha.gif" class="reaction" id="haha_<?php echo $d["id"]?>">
+            <img src="resources/img/love.gif" class="reaction" id="love_<?php echo $d["id"]?>">
+            <img src="resources/img/wow.gif" class="reaction" id="wow_<?php echo $d["id"]?>">
+            <img src="resources/img/sad.gif" class="reaction" id="sad_<?php echo $d["id"]?>">
+            <img src="resources/img/angry.gif" class="reaction" id="angry_<?php echo $d["id"]?>">
+          </div>
+        <?php endif; ?>
+        <div class="line"></div>
+        <div class="actions">
+          <div class="react-con" align="center" id="<?php echo $d["id"];?>">
+            <?php if ($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
+              <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
+                <img src="resources/img/<?= $d['user_reactions'];?>.png" class="reaction">
+              <?php else: ?>
+                <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+              <?php endif; ?>
+            <?php else: ?>
+              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+            <?php endif; ?>
+          </div>
+          <a href="/posts/show/id:<?= $d["id"]; ?>">
+            <p><i class='bx bxs-chat'></i> Comment</p>
+          </a>
+        </div>
+      </div>
     </div>
 
     <div id="myModal-<?= $d["id"] ?>" class="modal">
-      <span class="close" onclick="closeModal(<?= $d["id"] ?>)">&times;</span>
+      <span class="close" onclick="closeModal(<?= $d['id'] ?>)">&times;</span>
       <div class="modal-content">
-        <h1 style="color: white;"><?= $d["title"] ?></h1>
-        <p style="color: white;" class=""><?= $d["description"] ?></p>
-        <br>
-        <div class="carousel-container" id="carouselContainer-<?= $d["id"] ?>">
+        <h1><?= $d["title"] ?></h1>
+        <p><?= $d["description"] ?></p>
+        <div class="carousel-container" id="carouselContainer-<?= $d['id'] ?>">
           <?php foreach ($d["images"] as $image): ?>
             <div class="carousel-slide">
-            <img src="/assets/imgs/<?= $image["image"] ?>" class="carousel-image" alt='Image from "<?= $d["title"] ?>"'>
+              <img src="/assets/imgs/<?= $image["image"] ?>" class="carousel-image" alt='Image from "<?= $d['title'] ?>"'>
             </div>
           <?php endforeach; ?>
         </div>
         <?php if (count($d["images"]) > 1): ?>
-            <a class="prev" onclick="changeSlide(-1, <?= $d["id"] ?>)">&#10094;</a>
-            <a class="next" onclick="changeSlide(1, <?= $d["id"] ?>)">&#10095;</a>
+          <a class="prev" onclick="changeSlide(-1, <?= $d['id'] ?>)">&#10094;</a>
+          <a class="next" onclick="changeSlide(1, <?= $d['id'] ?>)">&#10095;</a>
         <?php endif; ?>
       </div>
     </div>

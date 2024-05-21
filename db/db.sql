@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS followers;
 DROP TABLE IF EXISTS user_data;
 DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS post_reactions;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS dms;
 DROP TABLE IF EXISTS comments;
@@ -54,6 +55,7 @@ CREATE TABLE user_data (
 CREATE TABLE unesco (
   id INT AUTO_INCREMENT,
   theme VARCHAR(255),
+  icon VARCHAR(255), 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   PRIMARY KEY (id)
@@ -75,9 +77,6 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
 );
-
-DROP TABLE IF EXISTS likes;
-DROP TABLE IF EXISTS post_reactions;
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
@@ -150,10 +149,22 @@ CREATE TABLE notifications (
   CONSTRAINT `fk_notifications_causer_id` FOREIGN KEY (`causer_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 );
 
-INSERT INTO unesco (theme) VALUES
-  ('End_of_Poverty'),
-  ('Zero_Hunger'),
-  ('Health_and_Wellness'),
-  ('Quality_Education'),
-  ('Gender_Equality')
+INSERT INTO unesco (theme, icon) VALUES
+  ('End of Poverty', 'bx bx-male-female'),
+  ('Zero Hunger', 'bx bxs-bowl-hot'),
+  ('Health and Wellness', 'bx bxs-donate-heart'),
+  ('Quality Education', 'bx bxs-book-bookmark'),
+  ('Gender Equality', 'bx bx-street-view'),
+  ('Clean Water and Sanitation', 'bx bxs-donate-blood'),
+  ('Affordable and Clean Energy', 'bx bxs-sun'),
+  ('Decent Work and Economic Growth', 'bx bx-bar-chart'),
+  ('Industry, Innovation and Infrastructure', 'bx bxs-cube-alt'),
+  ('Reduced Inequality', 'bx bx-collapse-alt'),
+  ('Sustainable Cities and Communities', 'bx bxs-buildings'),
+  ('Responsible Consumption and Production', 'bx bx-loader-alt'),
+  ('Climate Action', 'bx bx-world'),
+  ('Life Below Water', 'bx bx-water'),
+  ('Life on Land', 'bx bxs-tree'),
+  ('Peace, Justice and Strong Institutions', 'bx bxs-spa'),
+  ('Partnerships for the Goals', 'bx bx-color');
 ;

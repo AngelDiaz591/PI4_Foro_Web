@@ -45,20 +45,6 @@ text-align: left;
     color: $font_b4;
   }
 
-  .user_card {
-    p {
-        margin: 5px;
-        font-size: px(3);
-        padding-left: 10px;
-    }
-    .data {
-      cursor: pointer;
-      &:hover {
-          color: $theme_bl; 
-      }
-    }
-  }
-
   .user_card button {
     cursor: pointer;
     background-color: $section-font;
