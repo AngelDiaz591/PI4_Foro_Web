@@ -47,12 +47,12 @@
         <div class="react-con" align="center" id="<?php echo $data["id"];?>">
           <?php if ($data['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
             <?php if (isset($_SESSION['user']['id']) && !empty($data['user_reactions'])): ?>
-              <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction">
+              <img src="/resources/img/<?php echo $data['user_reactions'];?>.png" class="reaction-selected">
             <?php else: ?>
-              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+              <p class="like-action"><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
             <?php endif; ?>
           <?php else: ?>
-              <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
+              <p class="like-action"><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
           <?php endif; ?>
         </div>
         <i class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $data['id'] ?>">
@@ -112,9 +112,9 @@
       <p>Please log in to leave a comment</p>
     <?php endif; ?>
   </div>
-  <div class="all_comments">
-    <p id="comments"></p>
-  </div>
+  <br>
+  <p id="comments"></p>
+  <br>
 </div>
 
 
