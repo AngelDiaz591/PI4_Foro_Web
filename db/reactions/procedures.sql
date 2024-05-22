@@ -17,7 +17,7 @@ BEGIN
 
 END $$
 
-DELIMITER $$
+DELIMITER ;
 
 -- call as: CALL InsertUserReaction( );
 
@@ -40,7 +40,7 @@ BEGIN
 
 END $$
 
-DELIMITER $$
+DELIMITER ;
 
 -- call as: CALL DeleteReaction( );
 
@@ -60,7 +60,7 @@ BEGIN
         AND ur.post_id = post_id;
 END $$
 
-DELIMITER $$
+DELIMITER ;
 
 -- call as: CALL getReactionForUser( );
 
@@ -84,6 +84,6 @@ BEGIN
         ur.user_id = user_id;
 END$$
 
-DELIMITER $$
+DELIMITER ;
 
 -- call as: CALL GetUserReactions( );
