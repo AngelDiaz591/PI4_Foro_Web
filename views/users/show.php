@@ -1,27 +1,27 @@
 
 <div class="header__wrapper">
-      <header></header>
-      <div class="cols__container">
-        <div class="left__col">
-          <div class="img__container">
-            <img src="/resources/img/user.jpeg" alt="Anna Smith" />
-          </div>
-          <p class="username"><?= $data->username ?></p>
-          <p>Joined <?= $data->created_at ?></p>
-          <p>anna@example.com</p>
-          <div class="edit-btn">
-            <a id="openModal1" class="btn-conf">
-              <i class="bi bi-gear-fill sh-icon"></i> Edit Profile
-            </a>
-          </div>
-          <ul class="about">
-            <li><span><?= $data->followers ?></span>Followers</li>
-            <li><span><?= $data->following ?></span>Following</li>
-            <li><span><?= $data->posts ?></span>Post</li>
-          </ul>
-          <div class="contents">
-            <p></p>
-          </div>
+  <header></header>
+  <div class="cols__container">
+    <div class="left__col">
+      <div class="img__container">
+        <img src="/resources/img/user.jpeg" alt="Anna Smith" />
+      </div>
+        <p class="username"><?= $data->username ?></p>
+        <p>Joined <?= $data->created_at ?></p>
+        <p>anna@example.com</p>
+        <div class="edit-btn">
+          <a id="openModal1" class="btn-conf">
+            <i class="bi bi-gear-fill sh-icon"></i> Edit Profile
+          </a>
+        </div>
+        <ul class="about">
+          <li><span><?= $data->followers ?></span>Followers</li>
+          <li><span><?= $data->following ?></span>Following</li>
+          <li><span><?= $data->posts ?></span>Post</li>
+        </ul>
+        <div class="contents">
+          <p></p>
+        </div>
         </div>
         <div class="right__col">
           <div class="menu-user">
@@ -80,49 +80,38 @@
     
     <div id="modal1" class="modals">
       <div class="modal-contents">
-      <span class="closes">&times;</span>
-      <p>Edit profile</p>
-      <p class="instruction-modal">Photo portail</p>
-        <div class="photo_portail">
-          <img src="/resources/img/bg.jpeg" id="portailImage"/>
-          <div class="change-images">
-            <button id="changeImagePortail">
-              <i class="bi bi-camera-fill"></i> Change image
-            </button>
-            <input type="file" id="filePortail" accept="image/*">
-          </div>
-        </div>
-      <div class="principal-form">
-      <p class="instruction-modal">Photo profile</p>
-        <div class="left-form">
-          <form id="form1">
+        <span class="closes">&times;</span>
+        <p>Edit profile</p>
+        <p class="instruction-modal">Photo profile</p>
+        <div class="principal-form">
+          <div class="left-form">
             <div class="photo_profile">
               <img src="/resources/img/user.jpeg" id="profileImage"/>
               <div class="change-images">
-              <button id="changeImageProfile">
-              <i class="bi bi-camera-fill"></i>
-              </button>
-              <input type="file" id="fileProfile" accept="image/*">
+                <button id="changeImageProfile">
+                  <i class="bi bi-camera-fill"></i>
+                </button>
+                <input type="file" id="fileProfile" accept="image/*">
+              </div>
             </div>
           </div>
-      </div>
-      <div class="right-form">
-        <p class="instruction-modal">Basic Information</p>
-        <div class="user-input">
-          <label for="name1">Username</label>
-          <input class="profile_input "type="text" id="" name="">
+          <div class="right-form">
+            <p class="instruction-modal">Basic Information</p>
+            <div class="user-input">
+              <label for="name1">Username</label>
+              <input class="profile_input "type="text" id="" name="">
+            </div>
+            <div class="user-input">
+              <label for="email1">About you</label>
+              <textarea name="" id="" cols="30" rows="5" class="description_user"></textarea>
+            </div>
+          </div>
         </div>
-        <div class="user-input">
-          <label for="email1">About you</label>
-          <textarea name="" id="" cols="30" rows="5" class="description_user"></textarea>
+        <div class="action-forms">
+          <button class="cancel-btn" type="button" id="">Cancel changes</button>
+          <button class="save-btn" type="button" id="">Save changes</button>
         </div>
       </form>
-      </div>
-      </div>
-      <div class="action-forms">
-        <button class="cancel-btn" type="button" id="">Cancel changes</button>
-        <button class="save-btn" type="button" id="">Save changes</button>
-      </div>
     </div>
   </div>
 <script src="/resources/js/user.js"></script>
