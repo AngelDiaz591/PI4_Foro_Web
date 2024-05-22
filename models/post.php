@@ -387,12 +387,12 @@ class Post extends Base {
     public function searchPosts($query) {
         try {
             $sql = "SELECT posts.id, posts.user_id, posts.title, posts.description, posts.created_at, users.username, unesco.theme AS theme, unesco.icon AS theme_icon
-        FROM posts
-        JOIN users ON posts.user_id = users.id
-        JOIN unesco ON posts.theme = unesco.id
-        WHERE posts.title LIKE :query
-            OR posts.description LIKE :query
-            OR unesco.theme LIKE :query";
+             FROM posts
+             JOIN users ON posts.user_id = users.id
+             JOIN unesco ON posts.theme = unesco.id
+                WHERE posts.title LIKE :query
+                OR posts.description LIKE :query
+                OR unesco.theme LIKE :query";
             $stmt = $this->conn->prepare($sql);
             $stmt->execute([':query' => '%' . $query . '%']);
             $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
