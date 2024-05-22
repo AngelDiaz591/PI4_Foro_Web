@@ -33,7 +33,7 @@ document.getElementById('search-input').addEventListener('input', debounce(funct
             data.forEach(d => {
                 if (d.title.toLowerCase().includes(query) || 
                     d.description.toLowerCase().includes(query) || 
-                    d.theme.toLowerCase().includes(query)) { // Añade esta condición para incluir el tema en la búsqueda
+                    d.theme.toLowerCase().includes(query)) { 
                     const postHtml = `
                         <div class="hoverbox">
                             <div class="box" id="results-list">
