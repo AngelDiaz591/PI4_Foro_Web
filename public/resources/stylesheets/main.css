@@ -58,6 +58,7 @@ body {
   background-color: #F3F3F3;
   background-attachment: fixed;
   animation: moveBackground 50s infinite linear;
+  overflow-y: auto;
 }
 
 .main-container {
@@ -1946,6 +1947,113 @@ a {
   text-align: left;
 }
 
+.img-user-comment {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: solid 2px;
+}
+
+._comment {
+  margin-left: 4%;
+  text-align: left;
+  background-color: #FCF6F4;
+  box-shadow: 0 0 5px rgb(177, 165, 165);
+  border-radius: 10px;
+  padding: 20px;
+  width: auto;
+}
+
+.actions-comments {
+  margin-left: auto;
+  padding-right: 1%;
+}
+.actions-comments button {
+  cursor: pointer;
+  padding: 3px;
+  border: none;
+  border-radius: 5px;
+  background-color: #FCF6F4;
+  font-size: 20px;
+  text-align: center;
+}
+.actions-comments button i {
+  margin: 0;
+}
+
+.comment-comment {
+  font-size: 20px;
+}
+
+.date-comment {
+  font-size: 15px;
+  color: rgb(177, 165, 165);
+}
+
+.reply-comment {
+  display: flex;
+}
+.reply-comment .comment-actions {
+  margin-left: auto;
+}
+.reply-comment .comment-actions button {
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+  background-color: #FCF6F4;
+}
+
+.comments-view-more {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: #FCF6F4;
+}
+
+.comments-view-less {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: #FCF6F4;
+}
+
+.comment-user {
+  margin: 20px 0 0;
+  padding: 10px 20px 5px 20px;
+  width: 97%;
+  border-radius: 10px;
+  background-color: #d8dfd9;
+}
+.comment-user textarea {
+  resize: none;
+  width: 100%;
+  font-size: 15px;
+  border: none;
+  outline: none;
+  background-color: #d8dfd9;
+}
+.comment-user button {
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+  border-radius: 40%;
+  background-color: #d8dfd9;
+  align-items: end;
+  margin-left: 98%;
+}
+@media only screen and (max-width: 800px) {
+  .comment-user {
+    margin-top: 20px;
+  }
+}
+
+.comments-cancel {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: #FCF6F4;
+}
+
 form .box {
   margin: 1rem 0;
   max-width: none;
@@ -2303,7 +2411,6 @@ form .images > p.extra-files {
 .child-comments {
   margin-top: 10px;
   padding-left: 20px;
-  border-left: 1px solid #ccc;
 }
 
 .comments-view-more,

@@ -12,6 +12,7 @@
     background-color: $body-font;
     background-attachment: fixed;
     animation: moveBackground 50s infinite linear;
+    overflow-y: auto;
   }
   
   .main-container {
