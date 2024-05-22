@@ -95,9 +95,11 @@
     background-color: rgba(114, 114, 114, 0.144);
     border-radius: 8px;
     outline: none;
-    font-size: 17px;
-    font-weight: 600;
-    font-family: $font_family_inputs;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: normal;
+    color: #414141;
 
     &:active, &:focus {
         border: 2px solid blue;
@@ -106,14 +108,15 @@
 
 .description_user {
     width: 100%;
-    padding: 5px;
+    padding: 10px;
     margin: 10px 0;
     font-size: 15px;
     border: none;
     background-color: rgba(114, 114, 114, 0.144);
     border-radius: 8px;
+    font-weight: 500;
+    color: #414141;
 
-    /* &:active, &:focus {
-        border: 3px solid blue;
-    } */
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: normal;
 }

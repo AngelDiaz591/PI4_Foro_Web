@@ -1,164 +1,3 @@
-/* .first-main{
-    margin-left: 17rem;
-}
-.state {
-    display: grid;
-    height: auto; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
-
-    .cover-profile {
-        display: flex;
-        width: 80rem;
-        height: 20rem;
-        background: $cover_profile;
-        background-size: cover;
-        border-radius: 1rem;
-    }
-
-}
-.state2 {
-    display: grid;
-    height: auto; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
-    top: -4rem;
-    position: relative;
-
-    .info-user{
-        display: grid;
-        height: 12.5rem;
-        width: 70rem;
-        position: relative;
-        background-color: white;
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-        padding: 1.5rem 1.5rem 0.2rem 1.5rem;
-        border-radius: 2rem;
-    }
-
-    .photo{
-        border-radius: 50%;
-        width: 10rem;
-    }
-
-    .data-user{
-        color: black;
-        display: grid;
-        margin: 0 0 0 1rem;
-        text-align: left;
-    }
-
-    .count{
-        display: flex;
-        justify-content: space-around;
-        margin: 2rem 0 0 0;
-        text-align: center;
-    }
-
-    .submenu{
-        display: flex;
-        justify-content: center;
-
-        .option{
-            padding: 0.2rem 1rem;
-            margin: 0 1rem 0 0;
-            
-            &:hover{
-                cursor: pointer;
-                font-weight: 600;
-            }
-
-            &:active{
-                border: none;
-                border-bottom: 0.2rem solid $font_b;
-                color: $font_b;
-            }
-        }
-    }
-
-    .position{
-        display: flex;
-        padding: 0 0 1rem 0;
-        align-items: center;
-        
-        .edit-btn{
-            justify-content: right;
-            display:flex;
-            width: 100%;
-        }
-    }
-}
-
-.state2 {
-    display: grid;
-    /* grid-template-rows: auto auto; /* Esto dividirá el contenedor en dos filas de tamaño automático * */
-    /* gap: -5rem; /* Espacio entre las filas * *
-    height: 10rem; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
-}
-
-.profile{
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Esto dividirá el contenedor en dos columnas de tamaño automático *
-    gap: 2rem; /* Espacio entre las columnas *
-    width: 60rem; /* Anchura del contenedor *
-    margin: 2rem 0 0 0;
-    height: auto;
-    justify-content: center;
-
-
-    .hobbies{
-        height: auto;
-
-
-        .info{
-            background-color: white;
-            box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-            border-radius: 0.5rem;
-            padding: 1.5rem 2rem;
-            text-align: left;
-
-            .datas{
-                margin: 1.5rem 0 0 0;
-                color: rgb(150, 150, 150);
-                display: grid;
-
-                .sh{
-                    margin: 0 0 1rem 0;
-
-                    .sh-icon{
-                        margin: 0 0.5rem 0 0;
-                    }
-                }
-            }
-        }
-    }
-}
-
-.post-container {
-    display: none;
-}
-
-.nopost-container{
-    background-color: white;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    border-left: 0.5rem solid $brow3
-    ;
-    height: 10rem;
-    padding: 2rem;
-}
-
-.add-photo{
-    width: 7rem;
-    margin: 0 0 0.5rem 0;
-}
-
-.enun{
-    color: $font_w2;
-}
-*/
-
 .link{
     padding: 0.5rem;
     color: rgb(150, 150, 150);
@@ -178,18 +17,6 @@
   flex-direction: column;
   gap: 0.5px;
 }
-
-/*
-.ig{
-    color: rgb(150, 150, 150);
-}
-user-data
-
-
-
-/* .header_wrapper {
-    width: 100vw;
-} */
 
 .edit-btn {
   margin: 1.2rem 0 0 0;
@@ -217,21 +44,21 @@ user-data
   display: none;
   position: fixed;
   z-index: 3 !important;
+  /* padding-top: 15rem; */
   padding-top: 60px;
   left: 0;
   top: 0;
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(68, 68, 68, 0.384);
-  
+  background-color: rgba(68, 68, 68, 0.671);
 }
 
 .modal-contents {
   background-color: #fefefe;
   margin: auto;
   padding: 20px 25px;
-  width: 45%;
+  width: 650px;
   height: auto;
   border-radius: 25px;
   animation: scale-in-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -241,13 +68,17 @@ user-data
 
 .modal-contents p {
   font-size: 25px;
-  font-weight: 600;
+  font-weight: 800;
   padding: 0 0 15px 0;
+  text-align: center;
 }
 
 .modal-contents .instruction-modal {
-  font-size: 15px;
-  color: #969696;
+  font-size: 17px;
+  color: #7e7e7e;
+  text-align: center;
+  padding: 0;
+  font-weight: 600;
 }
 
 .modal-contents label {
@@ -258,8 +89,9 @@ user-data
 .closes {
   color: #e91818;
   float: right;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: bold;
+  margin: -7px 0 0 0;
   
 }
 
@@ -270,6 +102,155 @@ user-data
   cursor: pointer;
 }
 
+.principal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.photo_profile {
+  position: relative;
+  margin: 12px 0;
+
+  img {
+  width: 180px;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .change-images {
+    position: relative;
+    justify-content: end;
+    display: flex;
+    margin: -40px 15px auto auto;
+  }
+
+  button {
+    padding: 10px;
+    background: rgb(0, 0, 0);
+    color: white;
+    border-radius: 50%;
+    border: none;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #4e4e4e;
+      cursor: pointer;
+    }
+  }
+
+  i {
+    font-size: 17px;
+  }
+}
+
+.photo_profile input[type="file"] {
+  display: none;
+}
+
+/* .photo_profile button {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+} */
+
+.photo_portail input[type="file"] {
+  display: none;
+}
+
+.photo_portail {
+  position: relative;
+  margin: 12px 0 20px 0;
+
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  .change-images {
+    position: relative;
+    justify-content: end;
+    display: flex;
+    margin: -38px 15px auto auto;
+  }
+
+  button {
+    padding: 5px 10px;
+    background: rgb(0, 0, 0);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+
+    &:hover {
+      background-color: #4e4e4e;
+      cursor: pointer;
+    }
+  }
+}
+
+.left-form {
+  display: flex;
+  justify-content: center;
+}
+
+.right-form {
+  width: 100%;
+}
+
+.action-forms {
+  justify-content: space-between;
+  display: flex;
+
+    .save-btn {
+      padding: 8px 10px;
+      background-color: #54c081;
+      border-radius: 15px;
+      color: $font_w;
+      font-weight: 600;
+      border: none;
+      font-size: 15px;
+
+      &:hover {
+        background-color: rgb(11, 75, 39);
+        color: $font_w;
+        cursor: pointer;
+      }
+    }
+
+    .cancel-btn {
+      padding: 8px 10px;
+      background-color: #940d0d;
+      border-radius: 15px;
+      color: $font_w;
+      font-weight: 600;
+      border: none;
+      font-size: 15px;
+
+    &:hover {
+      background-color: #4d0707;
+      color: $font_w;
+      cursor: pointer;
+    }
+  }
+}
+
 .header_wrapper{
   display: flex;
   width: 100vw;
@@ -277,7 +258,7 @@ user-data
 /*   overflow: hidden; */
 }
 
- ul {
+ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -320,7 +301,7 @@ a {
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
 }
 
-.header__wrapper .cols__container .left__col h2 {
+.header__wrapper .cols__container .left__col .username {
   margin-top: 80px;
   font-weight: 600;
   font-size: 30px;
@@ -356,7 +337,7 @@ a {
   width: 100%;
 }
 .header__wrapper .cols__container .contents p {
-  font-size: 1rem;
+  font-size: 1.1rem;
   color: #1d1d1d;
   line-height: 1.8em;
 }
@@ -400,6 +381,7 @@ a {
   border-radius: 4px;
   cursor: pointer;
   margin-top: 20px;
+  font-size: 16px;
 }
 .header__wrapper .cols__container .right__col .menu-user button:hover {
   opacity: 0.8;
@@ -416,9 +398,24 @@ a {
   object-fit: cover;
 }
 
+.no-content-message {
+/*   background-color: #f8d7da;
+  border: 1px solid #f5c6cb; */
+  border-radius: 4px;
+  padding: 20px;
+  font-weight: bold;
+  text-align: center;
+  opacity: 0.5;
+}
+
+.img_noContent {
+  width: 80px;
+}
+
 /* Responsiveness */
 
 @media (min-width: 868px) {
+
   .header__wrapper .cols__container {
     max-width: 100%;
     margin: 0 auto;
@@ -428,13 +425,16 @@ a {
     grid-template-columns: 1fr 2fr;
     gap: 50px;
   }
+
   .header__wrapper .cols__container .left__col {
     padding: 25px 0px;
   }
+
   .header__wrapper .cols__container .right__col .menu-user ul {
     flex-direction: row;
     gap: 30px;
   }
+
   .header__wrapper .cols__container .right__col .photos {
     /* height: 365px; */
     overflow: auto;
@@ -443,15 +443,55 @@ a {
 }
 
 @media (min-width: 1017px) {
+
   .header__wrapper .cols__container .left__col {
     margin: 0;
     margin-right: auto;
   }
+
   .header__wrapper .cols__container .right__col .menu-user {
     flex-direction: row;
     justify-content: space-between;
   }
+
   .header__wrapper .cols__container .right__col .menu-user button {
     margin-top: 25px;
+  }
+}
+
+/* Media queries para hacer el modal responsivo */
+@media (max-width: 768px) {
+  .modal-contents {
+    width: 80%; /* Aumenta el ancho del modal en pantallas más pequeñas */
+  }
+
+  .modal-contents p {
+    font-size: 20px; /* Reduce el tamaño de la fuente */
+  }
+
+  .modal-contents .instruction-modal {
+    font-size: 15px; /* Reduce el tamaño de la fuente */
+  }
+
+  .modal-contents label {
+    font-size: 15px; /* Reduce el tamaño de la fuente */
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-contents {
+    width: 90%; /* Aumenta más el ancho del modal en pantallas muy pequeñas */
+  }
+
+  .modal-contents p {
+    font-size: 18px; /* Reduce más el tamaño de la fuente */
+  }
+
+  .modal-contents .instruction-modal {
+    font-size: 13px; /* Reduce más el tamaño de la fuente */
+  }
+
+  .modal-contents label {
+    font-size: 13px; /* Reduce más el tamaño de la fuente */
   }
 }
