@@ -362,7 +362,7 @@ class Post extends Base {
             $total_reactions = $stmt->fetch(PDO::FETCH_ASSOC)['@total_reactions'];
             return ['total_reactions' => $total_reactions];
         } catch (PDOException | Exception $e) {
-            throw new Exception("Error al obtener las reacciones: " . $e->getMessage());
+            throw new Exception("Error to get reactions: " . $e->getMessage());
         }
     }
 
@@ -375,12 +375,35 @@ class Post extends Base {
             $stmt = $this->conn->query("SELECT @total_reactions");
             $total_reactions = $stmt->fetch(PDO::FETCH_ASSOC)['@total_reactions'];
             if ($total_reactions == -1) {
-                throw new Exception("Error: el conteo de reacciones no se actualizó correctamente después de eliminar la reacción.");
+                throw new Exception("Error, the count of reactions no updated correctly.");
             }
             return ['total_reactions' => $total_reactions];
         } catch (PDOException | Exception $e) {
-            throw new Exception("Error al eliminar reacciones: " . $e->getMessage());
+            throw new Exception("Error to delete reaction: " . $e->getMessage());
         }
     }
+
+
+    public function searchPosts($query) {
+        try {
+            
+            $this->t = 'posts';
+            $this->pp = ['id', 'user_id', 'title', 'description', 'created_at', 'username', 'theme', 'theme_icon'];
+
+            $result = $this
+                ->select(['a.id', 'a.user_id', 'a.title', 'a.description', 'a.created_at', 'users.username', 'unesco.theme AS theme', 'unesco.icon AS theme_icon'])
+                ->join('users', 'a.user_id = users.id')
+                ->join('unesco', 'a.theme = unesco.id')
+                ->whereComplex(
+                    [],
+                    [['unesco.theme', 'LIKE', '%' . $query . '%'],['a.title', 'LIKE', '%' . $query . '%'], ['a.description', 'LIKE', '%' . $query . '%']]
+                )
+                ->get();
+            return $result;
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Error searching posts: " . $e->getMessage());
+        }
+    }
+    
 }
 ?>

@@ -5,10 +5,9 @@
   <h2>CulturEdge</h2>
 
   <div class="seeker">
-    <button action=""><i class='bx bx-search-alt'></i></button>
-    <input class="cont" placeholder="Search" type="search">
-  </div>
-  
+    <input class="cont" placeholder="Search" type="search" id="search-input">
+    <button id="search-button"><i class='bx bx-search-alt'></i></button>
+</div>
   <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
       <button class="btn-notifications" onclick="app.userNotificationsOpen()">

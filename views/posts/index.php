@@ -1,4 +1,5 @@
 <div class="main">
+    <div id="search-results" class="main"></div>
   <?php foreach ($data as $d): ?>
     <div class="hoverbox">
       <div class="box" id="results-list">
@@ -117,3 +118,6 @@
 </div>
 
 <script src="/resources/js/reaction.js"></script>
+<script src="/resources/js/search.js"></script>
+
+

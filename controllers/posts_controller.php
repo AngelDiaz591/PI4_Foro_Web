@@ -243,6 +243,21 @@ class PostsController extends Post {
         }
     }
 
+    public function search()
+{
+    try {
+        $query = $this->params['query'] ?? '';
+        $posts = $this->searchPosts($query);
+        echo json_encode($posts);
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(["error" => $e->getMessage()]);
+    }
+}
+
+    
+
+
     protected function render($view, $data = []) {
         $params = $data;
         include ROOT_DIR . 'views/posts/' . $view . '.php';
