@@ -721,166 +721,39 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
-/* .first-main{
-    margin-left: 17rem;
-}
-.state {
-    display: grid;
-    height: auto; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
-
-    .cover-profile {
-        display: flex;
-        width: 80rem;
-        height: 20rem;
-        background: $cover_profile;
-        background-size: cover;
-        border-radius: 1rem;
-    }
-
-}
-.state2 {
-    display: grid;
-    height: auto; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
-    top: -4rem;
-    position: relative;
-
-    .info-user{
-        display: grid;
-        height: 12.5rem;
-        width: 70rem;
-        position: relative;
-        background-color: white;
-        box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-        padding: 1.5rem 1.5rem 0.2rem 1.5rem;
-        border-radius: 2rem;
-    }
-
-    .photo{
-        border-radius: 50%;
-        width: 10rem;
-    }
-
-    .data-user{
-        color: black;
-        display: grid;
-        margin: 0 0 0 1rem;
-        text-align: left;
-    }
-
-    .count{
-        display: flex;
-        justify-content: space-around;
-        margin: 2rem 0 0 0;
-        text-align: center;
-    }
-
-    .submenu{
-        display: flex;
-        justify-content: center;
-
-        .option{
-            padding: 0.2rem 1rem;
-            margin: 0 1rem 0 0;
-
-            &:hover{
-                cursor: pointer;
-                font-weight: 600;
-            }
-
-            &:active{
-                border: none;
-                border-bottom: 0.2rem solid $font_b;
-                color: $font_b;
-            }
-        }
-    }
-
-    .position{
-        display: flex;
-        padding: 0 0 1rem 0;
-        align-items: center;
-
-        .edit-btn{
-            justify-content: right;
-            display:flex;
-            width: 100%;
-        }
-    }
+.general-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10% 0 20%;
 }
 
-.state2 {
-    display: grid;
-    /* grid-template-rows: auto auto; /* Esto dividirá el contenedor en dos filas de tamaño automático * */
-/* gap: -5rem; /* Espacio entre las filas * *
-    height: 10rem; /* Altura del contenedor *
-    width: 100%;
-    justify-content: center;
+.boxed-data {
+  background-color: #333333;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 30%;
 }
 
-.profile{
-    display: grid;
-    grid-template-columns: 1fr 2fr; /* Esto dividirá el contenedor en dos columnas de tamaño automático *
-    gap: 2rem; /* Espacio entre las columnas *
-    width: 60rem; /* Anchura del contenedor *
-    margin: 2rem 0 0 0;
-    height: auto;
-    justify-content: center;
-
-
-    .hobbies{
-        height: auto;
-
-
-        .info{
-            background-color: white;
-            box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-            border-radius: 0.5rem;
-            padding: 1.5rem 2rem;
-            text-align: left;
-
-            .datas{
-                margin: 1.5rem 0 0 0;
-                color: rgb(150, 150, 150);
-                display: grid;
-
-                .sh{
-                    margin: 0 0 1rem 0;
-
-                    .sh-icon{
-                        margin: 0 0.5rem 0 0;
-                    }
-                }
-            }
-        }
-    }
+.boxed-data i {
+  font-size: 24px;
+  margin-right: 10px;
 }
 
-.post-container {
-    display: none;
+.boxed-data p {
+  margin: 0;
 }
 
-.nopost-container{
-    background-color: white;
-    box-shadow: rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
-    border-left: 0.5rem solid $brow3
-    ;
-    height: 10rem;
-    padding: 2rem;
+.chart-container {
+  background-color: rgba(245, 236, 183, 0.96);
+  padding: 20px;
+  margin: 0 10% 0 20%;
 }
 
-.add-photo{
-    width: 7rem;
-    margin: 0 0 0.5rem 0;
-}
-
-.enun{
-    color: $font_w2;
-}
-*/
 .link {
   padding: 0.5rem;
   color: rgb(150, 150, 150);
