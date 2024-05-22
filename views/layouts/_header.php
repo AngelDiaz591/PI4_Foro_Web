@@ -1,8 +1,12 @@
 <header>
-  <i class='bx bx-menu menu' id="menu-icon" ></i>
+  <?php if (!str_contains(filter_input_array(INPUT_GET)['uri'], 'users')): ?>
+    <i class='bx bx-menu menu' id="menu-icon" ></i>
+  <?php endif; ?>
 
-  <img src="/resources/img/logo.png" alt="logo">
-  <h2>CulturEdge</h2>
+  <a href="/" class="logo">
+    <img src="/resources/img/logo.png" alt="logo">
+    <h2>CulturEdge</h2>
+  </a>
 
   <div class="seeker">
     <input class="cont" placeholder="Search" type="search" id="search-input">
@@ -10,6 +14,11 @@
 </div>
   <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
+      <?php if($_SESSION['user']['rol'] === 0): ?>
+        <a href="/admins/console" class="btn-console">
+          <i class='bx bx-grid-alt'></i>
+        </a>
+      <?php endif; ?>
       <button class="btn-notifications" onclick="app.userNotificationsOpen()">
         <i class='notifications-icon bx bx-bell'></i>
         <span class="notifications-count">

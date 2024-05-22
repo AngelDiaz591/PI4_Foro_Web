@@ -721,6 +721,39 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
   }
 }
+.general-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10% 0 20%;
+}
+
+.boxed-data {
+  background-color: #333333;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 30%;
+}
+
+.boxed-data i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.boxed-data p {
+  margin: 0;
+}
+
+.chart-container {
+  background-color: rgba(245, 236, 183, 0.96);
+  padding: 20px;
+  margin: 0 10% 0 20%;
+}
+
 .first-main {
   margin-left: 17rem;
 }
@@ -912,6 +945,20 @@ header {
 header img {
   width: 50px;
   height: 50px;
+}
+header .logo {
+  align-items: center;
+  display: flex;
+  padding-left: 10px;
+}
+header .btn-console {
+  align-items: center;
+  cursor: pointer;
+  display: flex;
+  padding: 0 1.5rem;
+}
+header .btn-console i {
+  font-size: 2.5rem;
 }
 
 h2 {
@@ -1373,25 +1420,14 @@ nav .main-nav .spinner {
 .hide-nav {
   width: 80px;
 }
-.hide-nav .icons .list {
+.hide-nav .list {
   border-radius: 0;
 }
-.hide-nav .icons i {
+.hide-nav i {
   width: 100%;
   font-size: 40px;
 }
-.hide-nav .icons p, .hide-nav .icons .line {
-  display: none;
-}
-.hide-nav .categories {
-  border-radius: 0;
-  margin: 0;
-}
-.hide-nav .categories i {
-  width: 100%;
-  font-size: 40px;
-}
-.hide-nav .categories p {
+.hide-nav p, .hide-nav .line, .hide-nav h3 {
   display: none;
 }
 @media only screen and (max-width: 800px) {
