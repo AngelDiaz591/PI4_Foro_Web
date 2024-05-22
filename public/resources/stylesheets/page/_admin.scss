@@ -1,0 +1,32 @@
+.general-data {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 0 10% 0 20%;
+}
+
+.boxed-data {
+  background-color: #333333;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  width: 30%;
+}
+
+.boxed-data i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.boxed-data p {
+  margin: 0;
+}
+
+.chart-container {
+  background-color: rgba(245, 236, 183, 0.96);
+  padding: 20px;
+  margin: 0 10% 0 20%;
+}

@@ -146,34 +146,18 @@ nav {
 //works with the js nav
 .hide-nav {
   width: 80px;
-  .icons {
 
-    .list {
-      border-radius: 0;
-    }
-
-    i {
-      width: 100%;
-      font-size: 40px;
-    }
-
-    p, .line{
-      display: none;
-    }
+  .list {
+    border-radius: 0;
   }
 
-  .categories {
-    border-radius: 0;
-    margin: 0;
+  i {
+    width: 100%;
+    font-size: 40px;
+  }
 
-    i {
-      width: 100%;
-      font-size: 40px;
-    }
-
-    p {
-      display: none;
-    }
+  p, .line, h3 {
+    display: none;
   }
 
   @include mobile {

@@ -26,6 +26,7 @@ CREATE TABLE users (
   confirmed_at TIMESTAMP,
   reset_password_token VARCHAR(255),
   reset_password_sent_at TIMESTAMP,
+  rol TINYINT DEFAULT 1,
   PRIMARY KEY (id)
 );
 
