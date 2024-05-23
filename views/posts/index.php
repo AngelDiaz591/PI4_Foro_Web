@@ -44,12 +44,16 @@
         <div>
           <div class="actions">
             <div class="info">
-              <p class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $d['id'] ?>">
-                <img src="/resources/img/like.png" alt="like"> <?= $d['total_reactions'] ?> reactions 
-              </p>
+              <a href="/posts/show/id:<?= $d["id"]; ?>">
+                <p class="likes <?= isset($_SESSION['user']) ? '' : 'openModal' ?>" id="reactions-count-<?= $d['id'] ?>">
+                  <img src="/resources/img/like.png" alt="like"> <?= $d['total_reactions'] ?> reactions 
+                </p>
+              </a>
             </div>
             <div class="info">
-              <p><?= $d['total_comments'] ?? 0 ?> comments</p>
+              <a href="/posts/show/id:<?= $d["id"]; ?>">
+                <p><?= $d['total_comments'] ?? 0 ?> comments</p>
+              </a>
             </div>
           </div>
         </div>
