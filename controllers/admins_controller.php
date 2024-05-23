@@ -100,9 +100,14 @@ public function user_delete() {
       return $this->error('500');
   }
 }
-  protected function render($view, $data = []) {
+
+
+protected function render($view, $data = []) {
+
     $data = $this->to_obj($data);
+
     include ROOT_DIR . '/views/admins/' . $view . '.php';
+    
     return ob_get_clean();
   }
 }
