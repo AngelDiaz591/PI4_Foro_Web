@@ -11,7 +11,7 @@ document.getElementById('search-input').addEventListener('input', debounce(funct
     const resultsContainer = document.getElementById('search-results');
 
     if (query.length === 0) {
-        resultsContainer.innerHTML = ''; 
+        resultsContainer.innerHTML = '';
         return;
     }
 
@@ -33,7 +33,8 @@ document.getElementById('search-input').addEventListener('input', debounce(funct
             data.forEach(d => {
                 if (d.title.toLowerCase().includes(query) || 
                     d.description.toLowerCase().includes(query) || 
-                    d.theme.toLowerCase().includes(query)) { 
+                    d.theme.toLowerCase().includes(query) || 
+                    d.username.toLowerCase().includes(query)) {  
                     const postHtml = `
                         <div class="hoverbox">
                             <div class="box" id="results-list">
@@ -72,10 +73,9 @@ document.getElementById('search-input').addEventListener('input', debounce(funct
                     resultsContainer.innerHTML += postHtml;
                 }
             });
-            
         }
     })
     .catch(error => {
         console.error('Error fetching search results:', error);
     });
-}, 300)); 
+}, 300));
