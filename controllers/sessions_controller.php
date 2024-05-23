@@ -26,8 +26,13 @@ class SessionsController extends User  {
     try {
       $response = $this->verify_credentials($this->params);
       if ($response["status"]) {
+        
         $_SESSION["user"] = $response["data"];
-        header('Location: /');
+        if ($response["data"]["rol"] === 0)
+          header('Location: /admins/console');
+        else {
+          header('Location: /');
+        }
       } else {
         throw new Exception("Failed to login user: " . $response["message"]);
       }
