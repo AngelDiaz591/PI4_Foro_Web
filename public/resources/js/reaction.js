@@ -65,7 +65,7 @@ $(document).ready(function() {
     function updateReactionCount(postId, count) {
         var reactionCountElement = document.getElementById("reactions-count-" + postId);
         if (reactionCountElement) {
-            reactionCountElement.innerHTML = `reactions: ${count}`;
+            reactionCountElement.innerHTML = ` <img src="/resources/img/like.png" alt="like">  ${count} reactions`;
         }
     }
     

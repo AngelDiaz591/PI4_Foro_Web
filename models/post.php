@@ -48,7 +48,7 @@ class Post extends Base {
                 'b.email',
                 'c.icon as theme_icon',
                 'c.theme',
-                'COUNT(DISTINCT d.post_id) as total_reactions',
+                'COUNT(DISTINCT d.id) as total_reactions',
                 'COUNT(DISTINCT e.id) as total_comments'
             ])->join('users b', 'a.user_id = b.id')
             ->join('unesco c', 'a.theme = c.id')
@@ -109,7 +109,7 @@ class Post extends Base {
                 'b.email',
                 'c.icon as theme_icon',
                 'c.theme',
-                'COUNT(DISTINCT d.post_id) as total_reactions',
+                'COUNT(DISTINCT d.id) as total_reactions',
                 'COUNT(DISTINCT e.id) as total_comments'
             ])->join('users b', 'a.user_id = b.id')
             ->join('unesco c', 'a.theme = c.id')
