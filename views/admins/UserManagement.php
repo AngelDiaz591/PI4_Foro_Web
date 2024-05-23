@@ -1,6 +1,5 @@
 <div class="main">
     <table class="content-table">
-    <h2><?= $_SESSION['user']['id']; ?></h2>
         <thead>
             <tr>
                 <th>#</th>
