@@ -158,61 +158,132 @@ const user = {
   }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+  // Manejo de modales
+  const modals = document.querySelectorAll('.modals');
+  const openModal1Button = document.getElementById('openModal1');
+  const closeButtons = document.querySelectorAll('.closes');
+
+  const openModal = (modalId) => {
+    document.getElementById(modalId).style.display = 'block';
+  };
+
+  const closeModal = (modal) => {
+    modal.style.display = 'none';
+    modal.querySelector('form')?.reset();
+    modal.querySelectorAll('img[data-preview]').forEach(img => {
+      img.src = img.dataset.originalSrc || '';
+    });
+  };
+
+  openModal1Button.addEventListener('click', () => openModal('modal1'));
+  closeButtons.forEach(button => {
+    button.addEventListener('click', event => {
+      event.stopPropagation();
+      modals.forEach(closeModal);
+    });
+  });
+
+  // Envío de formularios
+  const handleSubmit = (form, modal) => {
+    // [...] (aquí iría la lógica de envío)
+    form.reset();
+    closeModal(modal);
+  };
+
+  document.getElementById('submit1')?.addEventListener('click', () =>
+    handleSubmit(document.getElementById('form1'), document.getElementById('modal1'))
+  );
+
+  // Contenido vacío
+  const contentsDiv = document.querySelector('.contents');
+  if (!contentsDiv.textContent.trim()) {
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('no-content-message');
+    messageElement.innerHTML = `
+      <img class="img_noContent" src="/resources/img/user.svg" alt="Anna Smith" />
+      <p>Share with the world, who you are!</p>
+    `;
+    contentsDiv.appendChild(messageElement);
+  }
+
+  // Manejo de secciones
+  const sections = {
+    postsSection: document.getElementById('postsSection'),
+    mediaSection: document.getElementById('mediaSection'),
+    commentsSection: document.getElementById('commentsSection'),
+  };
+
+  const sectionLinks = {
+    postsSec: document.querySelector('#section-post'),
+    mediaSec: document.querySelector('#section-media'),
+    commentsSec: document.querySelector('#section-comments'),
+  };
+
+  const removeActiveClass = () => {
+    Object.values(sectionLinks).forEach(link => link.classList.remove('active'));
+  };
+
+  const showSection = (section, menuItem) => {
+    section.style.display = 'block';
+    menuItem.classList.add('active');
+  };
+
+  const hideSection = (section, menuItem) => {
+    section.style.display = 'none';
+    menuItem.classList.remove('active');
+  };
+
+  const handleSectionClick = (showSection, hideSection1, hideSection2) => {
+    removeActiveClass();
+    showSection(sections[showSection], sectionLinks[showSection]);
+    hideSection(sections[hideSection1], sectionLinks[hideSection1]);
+    hideSection(sections[hideSection2], sectionLinks[hideSection2]);
+  };
+
+  showSection(sections.postsSection, sectionLinks.postsSec);
+  sectionLinks.postsSec.addEventListener('click', () =>
+    handleSectionClick('postsSection', 'mediaSection', 'commentsSection')
+  );
+  sectionLinks.mediaSec.addEventListener('click', () =>
+    handleSectionClick('mediaSection', 'postsSection', 'commentsSection')
+  );
+  sectionLinks.commentsSec.addEventListener('click', () =>
+    handleSectionClick('commentsSection', 'postsSection', 'mediaSection')
+  );
+});
+
+
 document.addEventListener('DOMContentLoaded', function() {
- // Obtener elementos del DOM
- const modals = document.getElementsByClassName('modals');
- const openModal1Button = document.getElementById('openModal1');
- const openModal2Button = document.getElementById('openModal2');
- const closeButtons = document.getElementsByClassName('closes');
+  const imageProfile = document.getElementById('changeImageProfile');
+  const imagePortail = document.getElementById('changeImagePortail');
 
- // Función para abrir un modal
- function openModal(modalId) {
-   const modal = document.getElementById(modalId);
-   modal.style.display = 'block';
- }
+  const fileProfile = document.getElementById('fileProfile');
+  const filePortail = document.getElementById('filePortail');
+  
+  const profileImage = document.getElementById('profileImage');
+  const portailImage = document.getElementById('portailImage');
 
- // Función para cerrar un modal
- function closeModal(modal) {
-   modal.style.display = 'none';
- }
+  const handleImageChange = (fileInput, imageElement) => {
+    const file = fileInput.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const originalSrc = imageElement.src;
+        imageElement.dataset.originalSrc = originalSrc;
+        imageElement.src = e.target.result;
+        imageElement.setAttribute('data-preview', '');
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
- // Agregar event listeners a los botones de apertura
- openModal1Button.addEventListener('click', () => openModal('modal1'));
- openModal2Button.addEventListener('click', () => openModal('modal2'));
-
- // Agregar event listeners a los botones de cierre
- for (let i = 0; i < closeButtons.length; i++) {
-   closeButtons[i].addEventListener('click', () => {
-     for (let j = 0; j < modals.length; j++) {
-       closeModal(modals[j]);
-     }
-   });
- }
-
- // Agregar event listener al envío de formularios
- const form1 = document.getElementById('form1');
- const form2 = document.getElementById('form2');
- const submitButton1 = document.getElementById('submit1');
- const submitButton2 = document.getElementById('submit2');
-
- submitButton1.addEventListener('click', () => {
-   // Aquí puedes agregar la lógica para enviar el formulario 1
-   form1.reset();
-   closeModal(document.getElementById('modal1'));
- });
-
- submitButton2.addEventListener('click', () => {
-   // Aquí puedes agregar la lógica para enviar el formulario 2
-   form2.reset();
-   closeModal(document.getElementById('modal2'));
- });
-
- // Cerrar modal al hacer clic fuera del contenido
- window.addEventListener('click', (event) => {
-   for (let i = 0; i < modals.length; i++) {
-     if (event.target == modals[i]) {
-       closeModal(modals[i]);
-     }
-   }
- });
+  imageProfile.addEventListener('click', () => fileProfile.click());
+  imagePortail.addEventListener('click', () => filePortail.click());
+  fileProfile.addEventListener('change', () =>
+    handleImageChange(fileProfile, profileImage)
+  );
+  filePortail.addEventListener('change', () =>
+    handleImageChange(filePortail, portailImage)
+  );
 });
