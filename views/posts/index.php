@@ -1,5 +1,5 @@
-<div id="search-results" class="hoverbox-result"></div>
 <div class="main">
+    <div id="search-results" class="main"></div>
   <?php foreach ($data as $d): ?>
     <div class="hoverbox">
       <div class="box" id="results-list">
