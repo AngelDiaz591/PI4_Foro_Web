@@ -90,8 +90,7 @@
     <div id="myModal-<?= $d["id"] ?>" class="modal">
       <span class="close" onclick="closeModal(<?= $d['id'] ?>)">&times;</span>
       <div class="modal-content">
-        <h1><?= $d["title"] ?></h1>
-        <p><?= $d["description"] ?></p>
+        <br><br><br><br>
         <div class="carousel-container" id="carouselContainer-<?= $d['id'] ?>">
           <?php foreach ($d["images"] as $image): ?>
             <div class="carousel-slide">

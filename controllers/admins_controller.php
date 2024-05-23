@@ -20,6 +20,9 @@ class AdminsController extends Admin {
   }
 
   public function console() {
+    if (!isset($_SESSION['user'])) {
+      header('Location: /');
+    }
     return $this->render('console', $this->params);
   }
 
@@ -67,7 +70,7 @@ class AdminsController extends Admin {
     }
   }
 
-  public function user_unban() {
+public function user_unban() {
   try {
 
       $userId = $_GET['id'];
@@ -101,9 +104,8 @@ public function user_delete() {
   }
 }
 
-
 protected function render($view, $data = []) {
-
+    
     $data = $this->to_obj($data);
 
     include ROOT_DIR . '/views/admins/' . $view . '.php';

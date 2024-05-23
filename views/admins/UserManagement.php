@@ -5,6 +5,7 @@
                 <th>#</th>
                 <th>Username</th>
                 <th>Status</th>
+                <th>Username</th>
                 <th>Options</th>
             </tr>
         </thead>

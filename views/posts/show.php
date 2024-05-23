@@ -65,10 +65,8 @@
 
 <div id="showModal-<?= $data["id"] ?>" class="show-modal">
   <span class="show-close" onclick="closeShowModal(<?= $data["id"] ?>)">&times;</span>
+  <br><br><br><br>
   <div class="show-modal-content">
-    <h1 style="color: white;"><?= $data["title"] ?></h1>
-    <p style="color: white;"><?= $data["description"] ?></p>
-    <br>
     <div class="show-carousel-container" id="showCarouselContainer-<?= $data["id"] ?>">
       <?php foreach ($data["images"] as $image): ?>
         <div class="show-carousel-slide">
