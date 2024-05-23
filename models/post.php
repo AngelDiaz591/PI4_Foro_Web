@@ -386,24 +386,30 @@ class Post extends Base {
 
     public function searchPosts($query) {
         try {
-            
             $this->t = 'posts';
             $this->pp = ['id', 'user_id', 'title', 'description', 'created_at', 'username', 'theme', 'theme_icon'];
-
+    
             $result = $this
                 ->select(['a.id', 'a.user_id', 'a.title', 'a.description', 'a.created_at', 'users.username', 'unesco.theme AS theme', 'unesco.icon AS theme_icon'])
                 ->join('users', 'a.user_id = users.id')
                 ->join('unesco', 'a.theme = unesco.id')
                 ->whereComplex(
                     [],
-                    [['unesco.theme', 'LIKE', '%' . $query . '%'],['a.title', 'LIKE', '%' . $query . '%'], ['a.description', 'LIKE', '%' . $query . '%']]
+                    [
+                        ['unesco.theme', 'LIKE', '%' . $query . '%'],
+                        ['a.title', 'LIKE', '%' . $query . '%'],
+                        ['a.description', 'LIKE', '%' . $query . '%'],
+                        ['users.username', 'LIKE', '%' . $query . '%']
+                    ]
                 )
                 ->get();
+    
             return $result;
         } catch (PDOException | Exception $e) {
             throw new Exception("Error searching posts: " . $e->getMessage());
         }
     }
+    
     
 }
 ?>
