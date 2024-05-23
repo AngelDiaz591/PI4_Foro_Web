@@ -20,7 +20,31 @@ class AdminsController extends Admin {
   }
 
   public function console() {
+    if (!isset($_SESSION['user'])) {
+      header('Location: /');
+    }
     return $this->render('console', $this->params);
+  }
+
+  public function reviews() {
+    if (!isset($_SESSION['user'])) {
+      header('Location: /');
+    }
+    return $this->render('reviews', $this->params);
+  }
+
+  public function topics() {
+    if (!isset($_SESSION['user'])) {
+      header('Location: /');
+    }
+    return $this->render('topics', $this->params);
+  }
+
+  public function UserManagement() {
+    if (!isset($_SESSION['user'])) {
+      header('Location: /');
+    }
+    return $this->render('UserManagement', $this->params);
   }
 
   protected function render($view, $data = []) {
