@@ -48,16 +48,6 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
       <?= $router->dispatch() ?>
     </div>
   </body>
-<?php elseif ($controller === 'users'): ?>
-  <body>
-    <?= render_layout('header'); ?>
-
-    <div class="main-container">
-      <div class="header_wrapper">
-        <?= $router->dispatch() ?>
-      </div>
-    </div>
-  </body>
 <?php else: ?>
   <body>
     <?= render_layout('header'); ?>
@@ -73,7 +63,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
         <?= $router->dispatch() ?>
       </main>
       
-      <?php if ($controller == 'posts'): ?>
+      <?php if ($controller !== 'users'): ?>
         <?= render_layout('sidebar_chats'); ?>
       <?php endif; ?>
     </div>
