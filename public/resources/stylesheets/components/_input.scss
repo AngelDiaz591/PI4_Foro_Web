@@ -83,3 +83,40 @@
         color: $veriHover;
     }
 }
+
+.profile_input {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    margin: 10px 0;
+    color: $font_b3;
+    border: none;
+    /* border: 1px solid rgba(114, 114, 114, 0.39); */
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: normal;
+    color: #414141;
+
+    &:active, &:focus {
+        border: 2px solid blue;
+    }
+}
+
+.description_user {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: none;
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+    font-weight: 500;
+    color: #414141;
+
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: normal;
+}
