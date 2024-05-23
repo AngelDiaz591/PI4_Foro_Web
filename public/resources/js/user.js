@@ -158,46 +158,60 @@ const user = {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Manejo de modales
+document.addEventListener('DOMContentLoaded', function() {
+
   const modals = document.querySelectorAll('.modals');
   const openModal1Button = document.getElementById('openModal1');
   const closeButtons = document.querySelectorAll('.closes');
 
   const openModal = (modalId) => {
-    document.getElementById(modalId).style.display = 'block';
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
   };
 
   const closeModal = (modal) => {
     modal.style.display = 'none';
-    modal.querySelector('form')?.reset();
-    modal.querySelectorAll('img[data-preview]').forEach(img => {
+
+    const form = modal.querySelector('form');
+    if (form) {
+      form.reset();
+    }
+
+    const imageElements = modal.querySelectorAll('img[data-preview]');
+    imageElements.forEach((img) => {
       img.src = img.dataset.originalSrc || '';
     });
   };
 
   openModal1Button.addEventListener('click', () => openModal('modal1'));
-  closeButtons.forEach(button => {
-    button.addEventListener('click', event => {
+
+  closeButtons.forEach((button) => {
+    button.addEventListener('click', (event) => {
       event.stopPropagation();
-      modals.forEach(closeModal);
+      modals.forEach((modal) => closeModal(modal));
     });
   });
 
-  // Envío de formularios
+  const form1 = document.getElementById('form1');
+  const submitButton1 = document.getElementById('submit1');
+
+
   const handleSubmit = (form, modal) => {
-    // [...] (aquí iría la lógica de envío)
+    // [...]
     form.reset();
     closeModal(modal);
   };
 
-  document.getElementById('submit1')?.addEventListener('click', () =>
-    handleSubmit(document.getElementById('form1'), document.getElementById('modal1'))
+  submitButton1.addEventListener('click', () =>
+    handleSubmit(form1, document.getElementById('modal1'))
   );
+});
 
-  // Contenido vacío
+document.addEventListener('DOMContentLoaded', function() {
   const contentsDiv = document.querySelector('.contents');
-  if (!contentsDiv.textContent.trim()) {
+  const contentText = contentsDiv.textContent.trim();
+
+  if (contentText === '') {
     const messageElement = document.createElement('div');
     messageElement.classList.add('no-content-message');
     messageElement.innerHTML = `
@@ -207,83 +221,62 @@ document.addEventListener('DOMContentLoaded', () => {
     contentsDiv.appendChild(messageElement);
   }
 
-  // Manejo de secciones
-  const sections = {
-    postsSection: document.getElementById('postsSection'),
-    mediaSection: document.getElementById('mediaSection'),
-    commentsSection: document.getElementById('commentsSection'),
-  };
+  const postsSectionEl = document.getElementById('postsSection');
+  const mediaSectionEl = document.getElementById('mediaSection');
+  const commentsSectionEl = document.getElementById('commentsSection');
+  const postsSec = document.querySelector('#section-post');
+  const mediaSec = document.querySelector('#section-media');
+  const commentsSec = document.querySelector('#section-comments');
 
-  const sectionLinks = {
-    postsSec: document.querySelector('#section-post'),
-    mediaSec: document.querySelector('#section-media'),
-    commentsSec: document.querySelector('#section-comments'),
-  };
-
-  const removeActiveClass = () => {
-    Object.values(sectionLinks).forEach(link => link.classList.remove('active'));
-  };
-
-  const showSection = (section, menuItem) => {
-    section.style.display = 'block';
-    menuItem.classList.add('active');
-  };
-
-  const hideSection = (section, menuItem) => {
-    section.style.display = 'none';
-    menuItem.classList.remove('active');
-  };
-
-  const handleSectionClick = (showSection, hideSection1, hideSection2) => {
-    removeActiveClass();
-    showSection(sections[showSection], sectionLinks[showSection]);
-    hideSection(sections[hideSection1], sectionLinks[hideSection1]);
-    hideSection(sections[hideSection2], sectionLinks[hideSection2]);
-  };
-
-  showSection(sections.postsSection, sectionLinks.postsSec);
-  sectionLinks.postsSec.addEventListener('click', () =>
-    handleSectionClick('postsSection', 'mediaSection', 'commentsSection')
-  );
-  sectionLinks.mediaSec.addEventListener('click', () =>
-    handleSectionClick('mediaSection', 'postsSection', 'commentsSection')
-  );
-  sectionLinks.commentsSec.addEventListener('click', () =>
-    handleSectionClick('commentsSection', 'postsSection', 'mediaSection')
-  );
+document.addEventListener('DOMContentLoaded', function() {
+  showSection(postsSectionEl, postsSec);
 });
 
+postsSec.addEventListener('click', () => {
+  showSection(postsSectionEl, postsSec);
+  hideSection(mediaSectionEl, mediaSec);
+  hideSection(commentsSectionEl, commentsSec);
+});
+
+mediaSec.addEventListener('click', () => {
+  hideSection(postsSectionEl, postsSec);
+  showSection(mediaSectionEl, mediaSec);
+  hideSection(commentsSectionEl, commentsSec);
+});
+
+commentsSec.addEventListener('click', () => {
+  hideSection(postsSectionEl, postsSec);
+  hideSection(mediaSectionEl, mediaSec);
+  showSection(commentsSectionEl, commentsSec);
+});
+
+function showSection(section) {
+  section.style.display = 'block';
+}
+
+function hideSection(section) {
+  section.style.display = 'none';
+}
+});
 
 document.addEventListener('DOMContentLoaded', function() {
   const imageProfile = document.getElementById('changeImageProfile');
-  const imagePortail = document.getElementById('changeImagePortail');
-
   const fileProfile = document.getElementById('fileProfile');
-  const filePortail = document.getElementById('filePortail');
-  
   const profileImage = document.getElementById('profileImage');
-  const portailImage = document.getElementById('portailImage');
 
   const handleImageChange = (fileInput, imageElement) => {
     const file = fileInput.files[0];
     if (file) {
       const reader = new FileReader();
       reader.onload = (e) => {
-        const originalSrc = imageElement.src;
-        imageElement.dataset.originalSrc = originalSrc;
         imageElement.src = e.target.result;
-        imageElement.setAttribute('data-preview', '');
       };
       reader.readAsDataURL(file);
     }
   };
 
   imageProfile.addEventListener('click', () => fileProfile.click());
-  imagePortail.addEventListener('click', () => filePortail.click());
   fileProfile.addEventListener('change', () =>
     handleImageChange(fileProfile, profileImage)
-  );
-  filePortail.addEventListener('change', () =>
-    handleImageChange(filePortail, portailImage)
   );
 });
