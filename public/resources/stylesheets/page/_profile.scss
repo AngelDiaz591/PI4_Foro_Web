@@ -38,8 +38,6 @@
   }
 }
 
-
-
 .modals {
   display: none;
   position: fixed;
@@ -244,7 +242,7 @@
 /*   overflow: hidden; */
 }
 
-ul {
+.list {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -327,16 +325,16 @@ a {
   color: #1d1d1d;
   line-height: 1.8em;
 }
-.header__wrapper .cols__container .contents ul {
+.header__wrapper .cols__container .contents .list {
   gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
-.header__wrapper .cols__container .contents ul li {
+.header__wrapper .cols__container .contents .list li {
   display: flex;
 }
-.header__wrapper .cols__container .contents ul i {
+.header__wrapper .cols__container .contents .list i {
   font-size: 1.3rem;
 }
 .header__wrapper .cols__container .right__col .menu-user {
