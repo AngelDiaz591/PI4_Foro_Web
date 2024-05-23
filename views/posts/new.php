@@ -5,7 +5,7 @@
       <div class="user">
         <div class="user__avatar">
           <i class="bi bi-person-circle"></i>
-          <h2>Majorixch</h2>
+          <h2><?= $_SESSION['user']['username']; ?></h2>
         </div>
         <div class="user__date">
           <p class="date"><?= date('Y/m/d') ?></p>

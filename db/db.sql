@@ -30,6 +30,11 @@ CREATE TABLE users (
   PRIMARY KEY (id)
 );
 
+-- ADD COLUMN BAN
+ALTER TABLE users
+ADD COLUMN ban ENUM('0', '1') NOT NULL DEFAULT '0';
+
+
 CREATE TABLE followers (
 	user_id INT,
 	follower_id INT,

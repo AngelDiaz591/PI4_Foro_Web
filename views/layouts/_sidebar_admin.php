@@ -25,6 +25,7 @@
             <div class="selector"></div>
             <a href="/admins/UserManagement" class="category">
                 <i class='bx bxs-group' ></i>
+                
                 <p>Users</p>
             </a>
         </li>

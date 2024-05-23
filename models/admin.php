@@ -1,22 +1,8 @@
 <?php 
 require_once "base.php";
 
-/*
- * This class inherits from the base class and contains the calls to the posts procedures
- * 
- * The model do not have to be called in other file than the posts_controller
- * Info: The model file name must be in singular and be in snake case, the class name must be
- *       in camel case with the first letter in uppercase and inherits the base class
- */
 class Admin extends Base {
 
-    /**
-     * The constructor is used to connect to the database
-     * 
-     * @param void
-     * @throws Exception if it fails to connect to the database
-     * @return void
-     */
     public function __construct() {
         try {
             $this->conn = $this->db_connection();
@@ -26,7 +12,64 @@ class Admin extends Base {
         }
     }
 
+    public function all_users() {
+        try {
+            $this->t = 'users';
     
+            $result = $this->select([
+                'id',
+                'username',
+                'ban'
+            ])->group_by('id, username', 'ban')
+            ->order_by([
+                ['created_at', 'DESC']
+            ])->get();
+            return $this->response(status: true, data: $result, message: "Users retrieved successfully.");
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get all users: " . $e->getMessage());
+        }
+    }
+
+    
+    public function ban($userId) {
+        try {
+            $stmt = $this->conn->prepare("CALL BanUser(:id)");
+            $stmt->bindparam(":id", $userId, PDO::PARAM_INT);  
+            $stmt->execute();
+
+            return ["status" => true, "message" => "User banned successfully"];
+        } catch (PDOException | Exception $e) {
+
+            throw new Exception("Failed to ban the user: " . $e->getMessage());
+        }
+    }
+    
+    public function unban($userId) {
+        try {
+            $stmt = $this->conn->prepare("CALL UnbanUser(:id)");
+            $stmt->bindparam(":id", $userId, PDO::PARAM_INT);  
+            $stmt->execute();
+
+            return ["status" => true, "message" => "User banned successfully"];
+        } catch (PDOException | Exception $e) {
+
+            throw new Exception("Failed to ban the user: " . $e->getMessage());
+        }
+    }
+
+   public function user_info_delete($userId) {
+        try {
+            $stmt = $this->conn->prepare("CALL DeleteUser(:id)");
+            $stmt->bindparam(":id", $userId, PDO::PARAM_INT);  
+            $stmt->execute();
+
+            return ["status" => true, "message" => "User banned successfully"];
+        } catch (PDOException | Exception $e) {
+
+            throw new Exception("Failed to ban the user: " . $e->getMessage());
+        }
+    }
+
     
     
 }

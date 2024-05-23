@@ -70,7 +70,6 @@ $(document).ready(function() {
             </div>
             <br>
             <button class="comments-cancel"><i class='bx bxs-message-x'></i>Cancel...</button>
-
         `;
 
         $(this).closest('.parent-comment').find(`.comment-edit-container[data-comment-id="${id}"]`).html(replyTemplate);
@@ -101,10 +100,12 @@ $(document).ready(function() {
                 const commentsHTML = generateCommentsHTML(comments);
                 $commentsContainer.html(commentsHTML);
                 initComments();
-                const totalComments = comments.length;
+                const totalComments = comments.total_comments !== undefined ? comments.total_comments : comments.length;
                 $('.count_comments p').text(totalComments + ' Comments');
             },
             error: function() {
+                initComments();
+                $('.count_comments p').text('0 Comments');
                 $commentsContainer.html('<p> Be the first to comment on this post! </p>');
             }
         });

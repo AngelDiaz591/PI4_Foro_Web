@@ -41,17 +41,75 @@ class AdminsController extends Admin {
   }
 
   public function UserManagement() {
-    if (!isset($_SESSION['user'])) {
-      header('Location: /');
+    try {
+        $response = $this->all_users();
+        if ($response["status"]) {
+            return $this->render('UserManagement', ['data' => $response["data"]]);
+        } else {
+            throw new Exception("Failed to get all users: " . $response["message"]);
+        }
+    } catch (Exception $e) {
+        return $this->error('500');
     }
-    return $this->render('UserManagement', $this->params);
   }
 
-  protected function render($view, $data = []) {
+  public function user_ban() {
+    try {
+
+        $userId = $_GET['id'];
+
+        $response = $this->ban($userId);
+        
+        if ($response["status"]) {
+            return header('Location: /admins/UserManagement');
+        } else {
+            throw new Exception("Failed to ban user: " . $response["message"]);
+        }
+    } catch (Exception $e) {
+        return $this->error('500');
+    }
+  }
+
+public function user_unban() {
+  try {
+
+      $userId = $_GET['id'];
+
+      $response = $this->unban($userId);
+      
+      if ($response["status"]) {
+          return header('Location: /admins/UserManagement');
+      } else {
+          throw new Exception("Failed to ban user: " . $response["message"]);
+      }
+  } catch (Exception $e) {
+      return $this->error('500');
+  }
+}
+
+public function user_delete() {
+  try {
+
+      $userId = $_GET['id'];
+
+      $response = $this->user_info_delete($userId);
+      
+      if ($response["status"]) {
+          return header('Location: /admins/UserManagement');
+      } else {
+          throw new Exception("Failed to ban user: " . $response["message"]);
+      }
+  } catch (Exception $e) {
+      return $this->error('500');
+  }
+}
+
+protected function render($view, $data = []) {
+    
     $data = $this->to_obj($data);
 
     include ROOT_DIR . '/views/admins/' . $view . '.php';
-
+    
     return ob_get_clean();
   }
 }
