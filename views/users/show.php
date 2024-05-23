@@ -14,7 +14,7 @@
             <i class="bi bi-gear-fill sh-icon"></i> Edit Profile
           </a>
         </div>
-        <ul class="about list">
+        <ul class="about lists">
           <li><span><?= $data->followers ?></span>Followers</li>
           <li><span><?= $data->following ?></span>Following</li>
           <li><span><?= $data->posts ?></span>Post</li>
@@ -38,7 +38,7 @@
                   <button type="submit">Follow</button>
                 </form>
               <?php endif; ?>
-            <ul class="list">
+            <ul class="lists">
               <li><a class="option" id="section-post">POSTS</a></li>
               <li><a class="option" id="section-media">MEDIA</a></li>
               <li><a class="option" id="section-comments">COMMENTS</a></li>

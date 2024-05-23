@@ -982,7 +982,7 @@ h1, h2, h3, h4, h5, h6 {
   /*   overflow: hidden; */
 }
 
-.list {
+.lists {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -1074,18 +1074,18 @@ a {
   line-height: 1.8em;
 }
 
-.header__wrapper .cols__container .contents .list {
+.header__wrapper .cols__container .contents .lists {
   gap: 30px;
   justify-content: center;
   align-items: center;
   margin-top: 25px;
 }
 
-.header__wrapper .cols__container .contents .list li {
+.header__wrapper .cols__container .contents .lists li {
   display: flex;
 }
 
-.header__wrapper .cols__container .contents .list i {
+.header__wrapper .cols__container .contents .lists i {
   font-size: 1.3rem;
 }
 
@@ -1096,19 +1096,19 @@ a {
   flex-direction: column;
 }
 
-.header__wrapper .cols__container .right__col .menu-user ul {
+.header__wrapper .cols__container .right__col .menu-user .lists {
   display: flex;
   gap: 50px;
   flex-direction: row;
   padding: 30px 0 0 0;
 }
 
-.header__wrapper .cols__container .right__col .menu-user ul li a {
+.header__wrapper .cols__container .right__col .menu-user .lists li a {
   text-transform: uppercase;
   color: #818181;
 }
 
-.header__wrapper .cols__container .right__col .menu-user ul li:nth-child(1) a {
+.header__wrapper .cols__container .right__col .menu-user .lists li:nth-child(1) a {
   color: #1d1d1d;
   font-weight: 600;
 }
@@ -1168,7 +1168,7 @@ a {
   .header__wrapper .cols__container .left__col {
     padding: 25px 0px;
   }
-  .header__wrapper .cols__container .right__col .menu-user ul {
+  .header__wrapper .cols__container .right__col .menu-user .lists {
     flex-direction: row;
     gap: 30px;
   }
