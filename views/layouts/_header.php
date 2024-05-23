@@ -9,8 +9,8 @@
   </a>
 
   <div class="seeker">
-    <input class="cont" placeholder="Search" type="search" id="search-input">
     <button id="search-button"><i class='bx bx-search-alt'></i></button>
+    <input class="cont" placeholder="Search" type="search" id="search-input">
 </div>
   <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
