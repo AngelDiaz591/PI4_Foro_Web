@@ -1,6 +1,6 @@
 <?php
 ob_start();
-get_model('user');
+get_model('admin');
 
 class AdminsController extends User {
   private $params;
