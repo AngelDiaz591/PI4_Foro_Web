@@ -1288,7 +1288,6 @@ h2 {
   flex: 1;
   position: relative;
   outline: none;
-  border-radius: 25px;
   color: #262525;
   background-color: #FCF6F4;
   border: 1px solid #FCF6F4;
@@ -2030,6 +2029,30 @@ a {
   font-size: 15px;
   padding: 10px;
   outline: none;
+}
+
+.hoverbox-result {
+  margin-left: 20%;
+  padding: 0;
+  width: 35%;
+  position: fixed;
+  z-index: 5;
+}
+
+.box-result {
+  border: solid 1px rgb(177, 165, 165);
+  padding: 20px;
+  max-width: 80%;
+  color: #0c0a0a;
+  background-color: #FCF6F4;
+  text-align: center;
+}
+.box-result h2 {
+  color: black;
+}
+.box-result a {
+  text-decoration: none;
+  color: black;
 }
 
 .chat {
