@@ -1,8 +1,8 @@
 <?php
 ob_start();
-get_model('user');
+get_model('admin');
 
-class AdminsController extends User {
+class AdminsController extends Admin {
   private $params;
 
   public function __construct($params) {
