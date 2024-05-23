@@ -83,3 +83,37 @@
         color: $veriHover;
     }
 }
+
+.profile_input {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    margin: 10px 0;
+    color: $font_b3;
+    border: none;
+    /* border: 1px solid rgba(114, 114, 114, 0.39); */
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+    outline: none;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: $font_family_inputs;
+
+    &:active, &:focus {
+        border: 2px solid blue;
+    }
+}
+
+.description_user {
+    width: 100%;
+    padding: 5px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: none;
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+
+    /* &:active, &:focus {
+        border: 3px solid blue;
+    } */
+}

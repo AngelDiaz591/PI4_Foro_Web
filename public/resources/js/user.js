@@ -157,3 +157,62 @@ const user = {
     return list;
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+ // Obtener elementos del DOM
+ const modals = document.getElementsByClassName('modals');
+ const openModal1Button = document.getElementById('openModal1');
+ const openModal2Button = document.getElementById('openModal2');
+ const closeButtons = document.getElementsByClassName('closes');
+
+ // Función para abrir un modal
+ function openModal(modalId) {
+   const modal = document.getElementById(modalId);
+   modal.style.display = 'block';
+ }
+
+ // Función para cerrar un modal
+ function closeModal(modal) {
+   modal.style.display = 'none';
+ }
+
+ // Agregar event listeners a los botones de apertura
+ openModal1Button.addEventListener('click', () => openModal('modal1'));
+ openModal2Button.addEventListener('click', () => openModal('modal2'));
+
+ // Agregar event listeners a los botones de cierre
+ for (let i = 0; i < closeButtons.length; i++) {
+   closeButtons[i].addEventListener('click', () => {
+     for (let j = 0; j < modals.length; j++) {
+       closeModal(modals[j]);
+     }
+   });
+ }
+
+ // Agregar event listener al envío de formularios
+ const form1 = document.getElementById('form1');
+ const form2 = document.getElementById('form2');
+ const submitButton1 = document.getElementById('submit1');
+ const submitButton2 = document.getElementById('submit2');
+
+ submitButton1.addEventListener('click', () => {
+   // Aquí puedes agregar la lógica para enviar el formulario 1
+   form1.reset();
+   closeModal(document.getElementById('modal1'));
+ });
+
+ submitButton2.addEventListener('click', () => {
+   // Aquí puedes agregar la lógica para enviar el formulario 2
+   form2.reset();
+   closeModal(document.getElementById('modal2'));
+ });
+
+ // Cerrar modal al hacer clic fuera del contenido
+ window.addEventListener('click', (event) => {
+   for (let i = 0; i < modals.length; i++) {
+     if (event.target == modals[i]) {
+       closeModal(modals[i]);
+     }
+   }
+ });
+});
