@@ -19,8 +19,9 @@ class Admin extends Base {
             $result = $this->select([
                 'id',
                 'username',
-                'ban'
-            ])->group_by('id, username', 'ban')
+                'ban',
+                'rol'
+            ])->group_by('id, username', 'ban', 'rol')
             ->order_by([
                 ['created_at', 'DESC']
             ])->get();
