@@ -56,12 +56,12 @@ class AdminsController extends Admin {
   public function user_ban() {
     try {
 
-        $userId = $_GET['id'];
+        $userId = $this->params['id'];
 
         $response = $this->ban($userId);
         
         if ($response["status"]) {
-            return header('Location: /admins/UserManagement');
+            header('Location: /admins/UserManagement');
         } else {
             throw new Exception("Failed to ban user: " . $response["message"]);
         }
@@ -70,32 +70,32 @@ class AdminsController extends Admin {
     }
   }
 
-public function user_unban() {
-  try {
-
-      $userId = $_GET['id'];
-
-      $response = $this->unban($userId);
-      
-      if ($response["status"]) {
-          return header('Location: /admins/UserManagement');
-      } else {
-          throw new Exception("Failed to ban user: " . $response["message"]);
-      }
-  } catch (Exception $e) {
-      return $this->error('500');
+  public function user_unban() {
+    try {
+  
+        $userId = $this->params['id'];
+  
+        $response = $this->unban($userId);
+        
+        if ($response["status"]) {
+            header('Location: /admins/UserManagement');
+        } else {
+            throw new Exception("Failed to ban user: " . $response["message"]);
+        }
+    } catch (Exception $e) {
+        return $this->error('500');
+    }
   }
-}
 
 public function user_delete() {
   try {
 
-      $userId = $_GET['id'];
+      $userId = $this->params['id'];
 
       $response = $this->user_info_delete($userId);
       
       if ($response["status"]) {
-          return header('Location: /admins/UserManagement');
+          header('Location: /admins/UserManagement');
       } else {
           throw new Exception("Failed to ban user: " . $response["message"]);
       }

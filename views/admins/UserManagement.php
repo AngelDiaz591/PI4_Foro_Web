@@ -12,7 +12,7 @@
         </thead>
         <tbody>
             <?php foreach ($data->data as $row): ?>
-                <?php if ($row->rol == 0): // Admins ?>
+                <?php if ($row->rol == 0 && $row->id != $_SESSION['user']['id']):?>
                     <tr>
                         <td><?= $row->id; ?></td>
                         <td><?= $row->username; ?></td>
@@ -21,19 +21,24 @@
                         </td>
                         <td>admin</td>
                         <td>
-                            <button class="buttonGreen" type="button" onclick="showDeleteConfirmation(<?= $row->id; ?>)">
-                                <span class="text"><i class="bi bi-archive-fill"></i>Delete</span>
-                            </button>
-                            <button class="buttonRed" type="button">
-                                <a href="/admins/user_ban/?id=<?= $row->id; ?>"> 
+                            <form method="POST" action="/admins/user_delete" onsubmit="return confirmDelete();">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonGreen" type="submit">
+                                    <span class="text"><i class="bi bi-archive-fill"></i>Delete</span>
+                                </button>
+                            </form>    
+                            <form method="POST" action="/admins/user_ban">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonRed" type="submit">
                                     <span class="text"><i class="bi bi-star-fill"></i>ban</span>
-                                </a>
-                            </button>
-                            <button class="buttonBlue" type="button">
-                                <a href="/admins/user_unban/?id=<?= $row->id; ?>"> 
+                                </button>
+                            </form>
+                            <form method="POST" action="/admins/user_unban">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonBlue" type="submit">
                                     <span class="text"><i class="bi bi-star-fill"></i>unban</span>
-                                </a>
-                            </button>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endif; ?>
@@ -54,7 +59,7 @@
         </thead>
         <tbody>
             <?php foreach ($data->data as $row): ?>
-                <?php if ($row->rol == 1): // Users ?>
+                <?php if ($row->rol == 1 && $row->id != $_SESSION['user']['id']): // Users excluding current user ?>
                     <tr>
                         <td><?= $row->id; ?></td>
                         <td><?= $row->username; ?></td>
@@ -63,25 +68,29 @@
                         </td>
                         <td>user</td>
                         <td>
-                            <button class="buttonGreen" type="button" onclick="showDeleteConfirmation(<?= $row->id; ?>)">
-                                <span class="text"><i class="bi bi-archive-fill"></i>Delete</span>
-                            </button>
-                            <button class="buttonRed" type="button">
-                                <a href="/admins/user_ban/?id=<?= $row->id; ?>"> 
+                            <form method="POST" action="/admins/user_delete" onsubmit="return confirmDelete();">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonGreen" type="submit">
+                                    <span class="text"><i class="bi bi-archive-fill"></i>Delete</span>
+                                </button>
+                            </form> 
+                            <form method="POST" action="/admins/user_ban">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonRed" type="submit">
                                     <span class="text"><i class="bi bi-star-fill"></i>ban</span>
-                                </a>
-                            </button>
-                            <button class="buttonBlue" type="button">
-                                <a href="/admins/user_unban/?id=<?= $row->id; ?>"> 
+                                </button>
+                            </form>
+                            <form method="POST" action="/admins/user_unban">
+                                <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
+                                <button class="buttonBlue" type="submit">
                                     <span class="text"><i class="bi bi-star-fill"></i>unban</span>
-                                </a>
-                            </button>
+                                </button>
+                            </form>
                         </td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach; ?> 
         </tbody>
     </table>
-
     <script src="/resources/js/useradmin.js"></script>
 </div>

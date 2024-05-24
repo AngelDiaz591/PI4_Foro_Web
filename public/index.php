@@ -10,13 +10,6 @@ $controller = $router->controller;
 $action = $router->action;
 
 $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'passwords'];
-
-$role_layouts = [
-    0 => 'sidebar_admin',
-    1 => 'sidebar_main',  
-];
-
-$default_layout = 'sidebar_main';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,14 +19,14 @@ $default_layout = 'sidebar_main';
   <title>CulturEdge</title>
   <!-- Favicon -->
   <link rel="icon" href="/resources/img/favicon.ico" type="image/x-icon">
-  <!-- FOUNTS -->
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Almarai&family=Inter&family=Lato&family=Roboto+Slab&family=Rubik&family=Poppins&display=swap">
-  <!-- ICONOS -->
+  <!-- ICONS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
   <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
-  <!-- ESTYLES -->
+  <!-- STYLESHEETS -->
   <link rel="stylesheet" href="/resources/stylesheets/main.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap-grid.min.css">
   <!-- JAVASCRIPT -->
@@ -70,18 +63,20 @@ $default_layout = 'sidebar_main';
     <?= render_layout('header'); ?>
 
     <div class="main-container">
-      <nav id="main-nav">
-        <?php 
-        $role = $_SESSION['user']['rol'] ?? null;
-        $layout = $role_layouts[$role] ?? $default_layout;
-        echo render_layout($layout);
-        ?>
-      </nav>
+      <?php if ($_SESSION['user']['rol'] === 0): ?>
+        <nav id="main-nav">
+          <?= render_layout('sidebar_admin'); ?>
+        </nav>
+      <?php else: ?>
+        <nav id="main-nav">
+          <?= render_layout('sidebar_main'); ?>
+        </nav>
+      <?php endif; ?>
 
       <main>
         <?= $router->dispatch() ?>
       </main>
-
+      
       <?php if ($controller == 'posts'): ?>
         <?= render_layout('sidebar_chats'); ?>
       <?php endif; ?>
