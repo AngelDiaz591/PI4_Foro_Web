@@ -239,28 +239,33 @@ class User extends Base {
 
   public function verify_credentials($data) {
     try {
-      $stmt = $this->conn->prepare("CALL get_user_by_email(:email)");
-      $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
-      $stmt->execute();
-      $user = $stmt->fetch(PDO::FETCH_ASSOC);
-      
-      if (empty($user)) {
-        throw new Exception("Incorrect credentials");
-      }
-      
-      if (!password_verify($data["password"], $user["password"])) {
-        throw new Exception("Incorrect credentials");
-      }
+        $stmt = $this->conn->prepare("CALL get_user_by_email(:email)");
+        $stmt->bindParam(":email", $data["email"], PDO::PARAM_STR);
+        $stmt->execute();
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if (empty($user)) {
+            throw new Exception("Incorrect credentials");
+        }
+        
+        if (!password_verify($data["password"], $user["password"])) {
+            throw new Exception("Incorrect credentials");
+        }
 
-      if (empty($user['confirmed_at'])) {
-        throw new Exception("Verify your email to proceed.");
-      }
+        if (empty($user['confirmed_at'])) {
+            throw new Exception("Verify your email to proceed.");
+        }
 
-      return $this->response(status: true, data: $user, message: "User logged in successfully.");
+        if ($user['ban'] == 1) {
+            throw new Exception("Your account is banned.");
+        }
+
+        return $this->response(status: true, data: $user, message: "User logged in successfully.");
     } catch (Exception $e) {
-      throw new Exception("Failed to login: " . $e->getMessage());
+        throw new Exception("Failed to login: " . $e->getMessage());
     }
-  }
+}
+
 
   public function create_follow($data) {
     try {
