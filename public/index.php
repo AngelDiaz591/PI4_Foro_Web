@@ -63,24 +63,28 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     <?= render_layout('header'); ?>
 
     <div class="main-container">
-      <?php if ($_SESSION['user']['rol'] === 0): ?>
-        <nav id="main-nav">
-          <?= render_layout('sidebar_admin'); ?>
-        </nav>
-      <?php else: ?>
-        <nav id="main-nav">
-          <?= render_layout('sidebar_main'); ?>
-        </nav>
-      <?php endif; ?>
+    <nav id="main-nav">
+        <?php 
+        switch ($_SESSION['user']['rol']) {
+            case 0:
+                echo render_layout('sidebar_admin');
+                break;
+            default:
+                echo render_layout('sidebar_main');
+                break;
+        }
+        ?>
+    </nav>
 
-      <main>
+    <main>
         <?= $router->dispatch() ?>
-      </main>
-      
-      <?php if ($controller == 'posts'): ?>
+    </main>
+
+    <?php if ($controller == 'posts'): ?>
         <?= render_layout('sidebar_chats'); ?>
-      <?php endif; ?>
-    </div>
+    <?php endif; ?>
+</div>
+
   </body>
 <?php endif; ?>
 </html>
