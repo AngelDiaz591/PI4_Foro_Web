@@ -26,12 +26,12 @@
                             <span class="text"><i class="bi bi-archive-fill"></i>Delete</span>
                             </button>
                         <button class="buttonRed" type="button">
-                            <a href="/admins/user_ban?id=<?= $row->id; ?>"> 
+                            <a href="/admins/user_ban/?id=<?= $row->id; ?>"> 
                             <span class="text"><i class="bi bi-star-fill"></i>ban</span>
                              </a>
                         </button>
                         <button class="buttonBlue" type="button">
-                            <a href="/admins/user_unban?id=<?= $row->id; ?>"> 
+                            <a href="/admins/user_unban/?id=<?= $row->id; ?>"> 
                             <span class="text"><i class="bi bi-star-fill"></i>unban</span>
                         </button>
                     </td>
