@@ -255,7 +255,19 @@ class PostsController extends Post {
     }
 }
 
-    
+    public function show_json() {
+        try {
+            $response = $this->find_by_id($this->params['id']);
+
+            if ($response["status"]) {
+                echo json_encode($response["data"]);
+            } else {
+                throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(["message" => "Post not found"]);
+        }
+    }
 
 
     protected function render($view, $data = []) {

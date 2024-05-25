@@ -63,7 +63,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     <?= render_layout('header'); ?>
 
     <div class="main-container">
-      <?php if ($_SESSION['user']['rol'] === 0): ?>
+      <?php if ($controller == 'admins'): ?>
         <nav id="main-nav">
           <?= render_layout('sidebar_admin'); ?>
         </nav>

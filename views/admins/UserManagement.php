@@ -1,4 +1,7 @@
-<div class="main">
+<div class="body_wrapper">
+    <br>
+    <h1>USERS MANAGEMENT</h1>
+    <br>
     <h2>Admins</h2>
     <table class="content-table">
         <thead>

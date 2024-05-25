@@ -47,6 +47,153 @@ const app = {
     }
   },
   
+  reviewPosts: function( id ) {
+    let params = new URLSearchParams();
+    params.append('id', id);
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+        fetch('/posts/show_json/', {
+          method: 'POST',
+          body: params,
+        }).then(response => response.json())
+        .then(data => {
+          console.log(data)
+          Swal.hideLoading();
+          Swal.update({
+            html: `
+            <h1>REVIEW POST</h1>
+            <div class="adminMenu-header">
+              <div class="adminMenu-showpost">
+                <div class="adminMenu-show">
+                  <div class="user_card">
+                      <img src="/resources/img/user.png" alt="user" class="user-card-img">
+                      <div>
+                        <p class="profile-card">${data.username}</p>
+                        <p class="date">${data.created_at}</p>
+                      </div>
+                    <p class="user_card-post_theme">
+                        <i class="${data.theme_icon}"></i>
+                        ${data.theme}">
+                    </p>
+                  </div>
+                  <div class="line"></div>
+                  <div>
+                    <h2>${data.title}</h2>
+                    <p>${data.description}</p>
+                    <div class="images">
+                    `+ (data.images && data.images.length > 0 ?`
+                      <div class="image">
+                        <img src="/assets/imgs/${data.images[0].image}" alt='Image from "${data.title}"' onclick="openModal(${data.id})">
+                          `+ (data.images.length > 1 ? `
+                            <div class="image-overlay" onclick="openModal(${data.id})">+${data.images.length - 1}</div>
+                          `: '') + `
+                      </div>
+                    `: '') + `
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="">
+              <button class="buttonGreen">
+                  <span class="text"><i class="bi bi-archive-fill"></i>Acept</span>
+              </button>
+              <button class="buttonRed" onclick="app.cancelPost(${data.id})">
+                  <span class="text"><i class="bi bi-star-fill"></i>Decline</span>
+              </button>
+            </div>
+            <div id="myModal-${data.id}" class="modal">
+              <span class="close" onclick="closeModal(${data.id})">&times;</span>
+              <div class="modal-content">
+                <br><br><br><br>
+                <div class="carousel-container" id="carouselContainer-${data.id}">
+                  `+ data.images.map(imageObj => `
+                    <div class="carousel-slide">
+                      <img src="/assets/imgs/${imageObj.image}" class="carousel-image" alt='Image from "${data.title}"'>
+                    </div>
+                  ` ).join('') + + `
+                </div>
+                `+ (data.images.length > 1 ? `
+                  <a class="prev" onclick="changeSlide(-1, ${data.id})">&#10094;</a>
+                  <a class="next" onclick="changeSlide(1, ${data.id})">&#10095;</a>
+                  `: '') +`
+              </div>
+            </div>
+            `,
+            showConfirmButton: false,
+            customClass: {
+              container: 'adminMenu',
+              popup: 'adminMenu-modal',
+            },
+          });
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.update({
+            icon: 'error',
+            title: 'An error occurred',
+            text: `Error : ${error}`,
+          });
+        });
+      }
+    });
+  },
+  
+  cancelPost: function(id) {
+    let params = new URLSearchParams();
+    params.append('id', id);
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+        fetch('/posts/show_json/', {
+          method: 'POST',
+          body: params,
+        }).then(response => response.json())
+        .then(data => {
+          console.log(data);
+          Swal.hideLoading();
+          Swal.update({
+            html: `
+              <div class="userMenu-header">
+                <div>
+                  <h4>Decline publication</h4>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div>
+                <p>Why is the publication being rejected?</p>
+                <textarea rows="1"></textarea>
+              </div>
+              <div class="line"></div>
+              <div>
+                <button class="buttonRed" onclick="app.reviewPosts(${id})">
+                  <span class="text"><i class="bi bi-star-fill"></i>Cancel</span>
+                </button>
+                <button class="buttonGreen">
+                  <span class="text"><i class="bi bi-star-fill"></i>Send</span>
+                </button>
+              </div>
+            `,
+            showConfirmButton: false,
+            customClass: {
+              container: 'adminMenu',
+              popup: 'adminMenu-modal',
+            },
+          });
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.update({
+            icon: 'error',
+            title: 'An error occurred',
+            text: `Error : ${error}`,
+          });
+        });
+      }
+    });
+  },
+
+
   userMenuOpen: function() {
     Swal.fire({
       html: `
