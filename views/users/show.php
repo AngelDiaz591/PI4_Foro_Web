@@ -1,6 +1,7 @@
 
+</div>
 <div class="header__wrapper">
-  <header></header>
+  <header><div id="search-results" class="hoverbox-result"></div></header>
   <div class="cols__container">
     <div class="left__col">
       <div class="img__container">
@@ -115,3 +116,5 @@
     </div>
   </div>
 <script src="/resources/js/user.js"></script>
+<script src="/resources/js/search.js"></script>
+
