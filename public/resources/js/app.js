@@ -47,7 +47,7 @@ const app = {
     }
   },
   
-  reviewPosts: function( id ) {
+  reviewPosts: function(id) {
     let params = new URLSearchParams();
     params.append('id', id);
     Swal.fire({
@@ -58,10 +58,9 @@ const app = {
           body: params,
         }).then(response => response.json())
         .then(data => {
-          console.log(data)
+          console.log(data);
           Swal.hideLoading();
-          Swal.update({
-            html: `
+          let html = `
             <h1>REVIEW POST</h1>
             <div class="adminMenu-header">
               <div class="adminMenu-showpost">
@@ -74,22 +73,26 @@ const app = {
                       </div>
                     <p class="user_card-post_theme">
                         <i class="${data.theme_icon}"></i>
-                        ${data.theme}">
+                        ${data.theme}
                     </p>
                   </div>
                   <div class="line"></div>
                   <div>
                     <h2>${data.title}</h2>
                     <p>${data.description}</p>
-                    <div class="images">
-                    `+ (data.images && data.images.length > 0 ?`
-                      <div class="image">
-                        <img src="/assets/imgs/${data.images[0].image}" alt='Image from "${data.title}"' onclick="openModal(${data.id})">
-                          `+ (data.images.length > 1 ? `
-                            <div class="image-overlay" onclick="openModal(${data.id})">+${data.images.length - 1}</div>
-                          `: '') + `
-                      </div>
-                    `: '') + `
+                    <div class="images">`; 
+                      if (data.images.length > 0) { 
+                        html += `
+                        <div class="image">
+                          <img src="/assets/imgs/${data.images[0].image}" alt='Image from "${data.title}"' onclick="openModal(${data.id})">`;
+                            if (data.images.length > 1) {
+                              html += `
+                              <div class="image-overlay" onclick="openModal(${data.id})">+${data.images.length - 1}</div>`;
+                            }
+                        html+= `
+                        </div>`;
+                      }
+                      html += `
                     </div>
                   </div>
                 </div>
@@ -108,20 +111,25 @@ const app = {
               <span class="close" onclick="closeModal(${data.id})">&times;</span>
               <div class="modal-content">
                 <br><br><br><br>
-                <div class="carousel-container" id="carouselContainer-${data.id}">
-                  `+ data.images.map(imageObj => `
+                <div class="carousel-container" id="carouselContainer-${data.id}">`;
+                  for (let imageObj of data.images) {
+                    html += `
                     <div class="carousel-slide">
                       <img src="/assets/imgs/${imageObj.image}" class="carousel-image" alt='Image from "${data.title}"'>
-                    </div>
-                  ` ).join('') + + `
-                </div>
-                `+ (data.images.length > 1 ? `
+                    </div>`;
+                  }
+                `</div>`;
+                if (data.images.length > 1) {
+                  html += `
                   <a class="prev" onclick="changeSlide(-1, ${data.id})">&#10094;</a>
-                  <a class="next" onclick="changeSlide(1, ${data.id})">&#10095;</a>
-                  `: '') +`
+                  <a class="next" onclick="changeSlide(1, ${data.id})">&#10095;</a>`
+                }
+                html += `
               </div>
             </div>
-            `,
+          `;
+          Swal.update({
+            html: html,
             showConfirmButton: false,
             customClass: {
               container: 'adminMenu',
@@ -133,7 +141,7 @@ const app = {
           Swal.update({
             icon: 'error',
             title: 'An error occurred',
-            text: `Error : ${error}`,
+            text: `Error: ${error}`,
           });
         });
       }
