@@ -79,6 +79,7 @@
   font-weight: 600;
   background-image: linear-gradient(180deg, #33862f 0%, #33862f 100%);
 }
+
 .buttonRed {
   padding: 1rem 1.4rem;
   border: 0;
@@ -89,6 +90,7 @@
   font-weight: 600;
   background-image: linear-gradient(180deg, #af323e 0%, #af323e 100%);
 }
+
 .buttonBlue {
   padding: 1rem 1.4rem;
   border: 0;
@@ -99,6 +101,7 @@
   font-weight: 600;
   background-image: linear-gradient(180deg, #0f40c8 0%, #0d4cb1 100%);
 }
+
 .buttonGreen:hover , .buttonRed:hover , .buttonBlue:hover {
   filter: brightness(0.8);
   transform: scale(.95);
