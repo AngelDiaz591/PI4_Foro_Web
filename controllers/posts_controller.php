@@ -260,12 +260,6 @@ class PostsController extends Post {
     }
 }
 
-
-    
-
-    
-
-
     protected function render($view, $data = []) {
         $params = $data;
         include ROOT_DIR . 'views/posts/' . $view . '.php';
