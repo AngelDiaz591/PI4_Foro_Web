@@ -71,6 +71,24 @@ class Admin extends Base {
         }
     }
 
+    public function all_topics() {
+        try {
+            $this->t = 'unesco';
+    
+            $result = $this->select([
+                'id',
+                'theme',
+                'icon',
+                'created_at'
+            ])->group_by('id, theme', 'created_at', 'icon')
+            ->order_by([
+                ['created_at', 'DESC']
+            ])->get();
+            return $this->response(status: true, data: $result, message: "Themes retrieved successfully.");
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get all themes: " . $e->getMessage());
+        }
+    }
     
     
 }

@@ -43,8 +43,9 @@ class AdminsController extends Admin {
 
   public function topics() {
     try {
-      $post = new Post;
-      $response = $post->all();
+
+      $response = $this->all_topics();
+      
       if ($response["status"]) {
           return $this->render('topics', ['data' => $response["data"]]);
       } else {
@@ -118,6 +119,7 @@ public function user_delete() {
       return $this->error('500');
   }
 }
+
 
 protected function render($view, $data = []) {
     
