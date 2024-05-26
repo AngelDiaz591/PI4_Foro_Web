@@ -30,7 +30,7 @@ class AdminsController extends Admin {
   public function reviews() {
     try {
       $post = new Post;
-      $response = $post->all();
+      $response = $post->all_posts();
       if ($response["status"]) {
           return $this->render('reviews', ['data' => $response["data"]]);
       } else {
@@ -43,8 +43,9 @@ class AdminsController extends Admin {
 
   public function topics() {
     try {
-      $post = new Post;
-      $response = $post->all();
+
+      $response = $this->all_topics();
+
       if ($response["status"]) {
           return $this->render('topics', ['data' => $response["data"]]);
       } else {
@@ -115,9 +116,48 @@ public function user_delete() {
           throw new Exception("Failed to ban user: " . $response["message"]);
       }
   } catch (Exception $e) {
-      return $this->error('500');
+        return $this->error('500');
+    }
+}
+
+public function accepted() {
+  try {
+    
+      $id = $_POST['id'];
+
+      $response = $this->accepted_post($id);
+
+      if ($response) {
+          header('Content-Type: application/json');
+          echo json_encode(['status' => 'success', 'message' => 'Publication accepted successfully']);
+      } else {
+          throw new Exception("Error accepting the publication.");
+      }
+  } catch (Exception $e) {
+      header('Content-Type: application/json');
+      echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
   }
 }
+
+public function rejected() {
+  try {
+      $id = $_POST['id'];
+      $reason = $_POST['reason'];
+      
+      $response = $this->rejected_post($id, $reason);
+
+      if ($response) {
+          header('Content-Type: application/json');
+          echo json_encode(['status' => 'success', 'message' => 'Publication rejected successfully']);
+      } else {
+          throw new Exception("Error rejecting the publication.");
+      }
+  } catch (Exception $e) {
+      header('Content-Type: application/json');
+      echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+  }
+}
+
 
 protected function render($view, $data = []) {
     

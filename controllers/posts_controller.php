@@ -273,7 +273,22 @@ class PostsController extends Post {
             echo json_encode(["message" => "Post not found"]);
         }
     }
-  
+    
+    public function edit_table() {
+        try {
+          $post = new Post;
+          $response = $post->all_posts();
+
+          if ($response["status"]) {
+              return $this->render('edit_table', ['data' => $response["data"]]);
+          } else {
+              throw new Exception("Failed to get all posts: " . $response["message"]);
+          }
+        } catch (Exception $e) {
+            return $this->error('500');
+        }
+      }
+      
     protected function render($view, $data = []) {
         $params = $data;
         include ROOT_DIR . 'views/posts/' . $view . '.php';

@@ -25,10 +25,11 @@ CREATE PROCEDURE update_post(
 )
 BEGIN
   UPDATE posts
-  SET title = p_title, description = p_description
+  SET title = p_title, description = p_description, permission = 1
   WHERE posts.id = p_id;
 END $$
 DELIMITER ;
+
 -- call as: CALL update_post(1, 'title', 'description');
 
 DROP PROCEDURE IF EXISTS delete_post;
