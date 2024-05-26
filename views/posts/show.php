@@ -1,8 +1,8 @@
 <div class="return">
   <a href="/"><i class='bx bx-arrow-back'></i></a>
 </div>
-
 <div class="showpost">
+<div id="search-results" class="hoverbox-result"></div>
   <div class="show">
     <div class="user_card">
       <a href="/users/show/id:<?= $data["user_id"]; ?>" class="user_card-info">

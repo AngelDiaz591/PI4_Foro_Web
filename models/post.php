@@ -408,6 +408,25 @@ class Post extends Base {
             throw new Exception("Error searching posts: " . $e->getMessage());
         }
     }
+
+    public function searchUsers($query) {
+        try {
+            $this->t = 'users';
+            $this->pp = ['id', 'username'];
+    
+            $result = $this
+                ->select(['id', 'username'])
+                ->where([['username', 'LIKE', '%' . $query . '%']])
+                ->get();
+            return $result;
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Error searching users: " . $e->getMessage());
+        }
+    }
+    
+    
+    
+    
     
 }
 ?>
