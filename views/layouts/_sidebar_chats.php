@@ -1,4 +1,4 @@
-<div class="postbox">
+<!-- <div class="postbox">
   <div class="chats">
     <div class="box">
       <h2>POPULAR CHAT</h2>
@@ -39,3 +39,4 @@
   </div>
   
 </div>
+ -->

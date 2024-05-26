@@ -188,6 +188,7 @@ class UsersController extends User {
     }
   }
 
+  
   protected function render($view, $data = []) {
     $data = $this->to_obj($data);
 

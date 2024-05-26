@@ -26,7 +26,7 @@
     <?php if (isset($_SESSION['user'])): ?>
       <li class="list">
         <div class="selector"></div>
-        <a class="category" href="">
+        <a class="category" href="/posts/edit_table">
           <i class='bx bx-pencil'></i>
           <p>Edit post</p>
         </a>

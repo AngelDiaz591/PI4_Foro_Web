@@ -90,6 +90,43 @@ class Admin extends Base {
         }
     }
     
+    public function rejected_post($id, $reason) {
+        try {
+            $this->t = 'posts';
+            $this->pp = ['reason', 'permission'];
+            $whereConditions = [
+                ['id', '=', $id]
+            ];
+            $values = [
+                'reason' => $reason,
+                'permission' => 1
+            ];
+            $result = $this->where($whereConditions)->update($values);
+            return $result;
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to update reason: " . $e->getMessage());
+        }
+    }
+    
+    public function accepted_post($id) {
+        try {
+            $this->t = 'posts';
+            $this->pp = ['permission'];
+            $whereConditions = [
+                ['id', '=', $id]
+            ];
+            $values = [
+                'permission' => 2
+            ];
+            $result = $this->where($whereConditions)->update($values);
+            return $result;
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to update reason: " . $e->getMessage());
+        }
+    }
+    
+    
+      
     
 }
 ?>
