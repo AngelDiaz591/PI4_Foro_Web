@@ -57,7 +57,8 @@ CREATE TABLE posts (
   description TEXT,
   theme INT,
   eliminated TINYINT DEFAULT 0,
-  permission TINYINT DEFAULT 0,
+  permission INT DEFAULT 1,
+  reason TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   PRIMARY KEY (id),
@@ -66,9 +67,6 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
 );
-
-ALTER TABLE posts
-MODIFY COLUMN permission INT DEFAULT 1 CHECK (permission IN (1, 2));
 
 
 CREATE TABLE post_reactions (

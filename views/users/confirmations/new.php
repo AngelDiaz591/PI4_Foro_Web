@@ -12,7 +12,7 @@ $errors = isset($_SESSION['code_verification_errors']) ? $_SESSION['code_verific
     unset($_SESSION['error']); ?>
     <div id="error-alert" class="alert2">
         <i class="bi bi-info-circle icon-alert"></i>
-        <p>Error: <?php echo $error_message; ?></p>
+        <p><?php echo $error_message; ?></p>
     </div>
   <?php endif; ?>
   <form action="/confirmations/create" method="POST" autocomplete="off">
