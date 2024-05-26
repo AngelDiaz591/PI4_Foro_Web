@@ -247,16 +247,18 @@ class PostsController extends Post {
 {
     try {
         $query = $this->params['query'] ?? '';
-        $posts = $this->searchPosts($query);
-        echo json_encode($posts);
+        if (strpos($query, '@') === 0) {
+            $users = $this->searchUsers(substr($query, 1)); 
+            echo json_encode($users);
+        } else {
+            $posts = $this->searchPosts($query);
+            echo json_encode($posts);
+        }
     } catch (Exception $e) {
         http_response_code(500);
         echo json_encode(["error" => $e->getMessage()]);
     }
 }
-
-    
-
 
     protected function render($view, $data = []) {
         $params = $data;
