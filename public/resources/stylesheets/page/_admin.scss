@@ -45,12 +45,12 @@
   min-width: 100%;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+  box-shadow: $shadowTable;
 }
 
 .content-table thead tr {
-  background-color: #00ab88;
-  color: #000000;
+  background-color: $font_light12;
+  color: $font_b;
   text-align: center;
   font-weight: bold;
 }
@@ -62,11 +62,11 @@
 }
 
 .content-table tbody tr {
-  border-bottom: 1px solid #dddddd;
+  border-bottom: 1px solid $font_w4;
 }
 
 .content-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+  background-color: $font_w5;
 }
 
 .buttonGreen {
@@ -74,10 +74,9 @@
   border: 0;
   transition: all 150ms ease-in-out;
   border-radius: 14px;
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.07) 0 1px 1px, rgba(0, 0, 0, 0.07) 0 2px 2px, rgba(0, 0, 0, 0.07) 0 4px 4px;
-  color: #000000;
+  box-shadow: $shadowButton;
+  color: $font_b;
   font-weight: 600;
-  background-image: linear-gradient(180deg, #33862f 0%, #33862f 100%);
 }
 
 .buttonRed {
@@ -85,10 +84,9 @@
   border: 0;
   transition: all 150ms ease-in-out;
   border-radius: 14px;
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.07) 0 1px 1px, rgba(0, 0, 0, 0.07) 0 2px 2px, rgba(0, 0, 0, 0.07) 0 4px 4px;
-  color: #000000;
+  box-shadow: $shadowButton;
+  color: $font_b;
   font-weight: 600;
-  background-image: linear-gradient(180deg, #af323e 0%, #af323e 100%);
 }
 
 .buttonBlue {
@@ -96,10 +94,9 @@
   border: 0;
   transition: all 150ms ease-in-out;
   border-radius: 14px;
-  box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.07) 0 1px 1px, rgba(0, 0, 0, 0.07) 0 2px 2px, rgba(0, 0, 0, 0.07) 0 4px 4px;
-  color: #000000;
+  box-shadow: $shadowButton;
+  color: $font_b;
   font-weight: 600;
-  background-image: linear-gradient(180deg, #0f40c8 0%, #0d4cb1 100%);
 }
 
 .buttonGreen:hover , .buttonRed:hover , .buttonBlue:hover {
