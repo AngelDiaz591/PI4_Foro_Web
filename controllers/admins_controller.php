@@ -1,6 +1,7 @@
 <?php
 ob_start();
 get_model('admin');
+get_model('post');
 
 class AdminsController extends Admin {
   private $params;
@@ -27,17 +28,31 @@ class AdminsController extends Admin {
   }
 
   public function reviews() {
-    if (!isset($_SESSION['user'])) {
-      header('Location: /');
+    try {
+      $post = new Post;
+      $response = $post->all();
+      if ($response["status"]) {
+          return $this->render('reviews', ['data' => $response["data"]]);
+      } else {
+          throw new Exception("Failed to get all posts: " . $response["message"]);
+      }
+    } catch (Exception $e) {
+        return $this->error('500');
     }
-    return $this->render('reviews', $this->params);
   }
 
   public function topics() {
-    if (!isset($_SESSION['user'])) {
-      header('Location: /');
+    try {
+      $post = new Post;
+      $response = $post->all();
+      if ($response["status"]) {
+          return $this->render('topics', ['data' => $response["data"]]);
+      } else {
+          throw new Exception("Failed to get all posts: " . $response["message"]);
+      }
+    } catch (Exception $e) {
+        return $this->error('500');
     }
-    return $this->render('topics', $this->params);
   }
 
   public function UserManagement() {

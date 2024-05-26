@@ -1,4 +1,6 @@
-<div class="main">
+<div class="body_wrapper">
+    <br>
+    <h1>REVIEW of PUBLICATIONS</h1>
     <table class="content-table">
         <thead>
             <tr>
@@ -6,35 +8,23 @@
                 <th>Date</th>
                 <th>Username</th>
                 <th>Title</th>
-                <th>Options</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-            <p class="profile-card"><p><?= $d["username"] ?></p> .</p>
-            </tr>
-            <?php
-                array_multisort(array_column($data, 'created_at'), SORT_ASC, $data);
-                foreach (array_slice($data, 0, 5) as $d): ?>
+            <?php foreach ($data->data as $row): ?>
                 <tr>
-                    <td><?= $d["user_id"]; ?></td>
-                    <td><?= date('d/m/Y', strtotime($d["created_at"])) ?></td>
-                    <td><?= $d["username"] ?></td>
-                    <td><?= $d["title"] ?></td>
+                    <td><?= $row->id; ?></td>
+                    <td><?= $row->created_at; ?></td>
+                    <td><?= $row->username; ?></td>
+                    <td><?= $row->title; ?></td>
                     <td>
-                        <button class="buttonGreen" type="button">
+                        <button class="buttonGreen" onclick="app.reviewPosts(<?= $row->id ?>)">
                             <span class="text"><i class="bi bi-archive-fill"></i></span>
-                        </button>
-                        <button class="buttonRed" type="button">
-                            <span class="text"><i class="bi bi-star-fill"></i></span>
-                        </button>
-                        <button class="buttonBlue" type="button">
-                            <span class="text"><i class="bi bi-star-fill"></i></span>
                         </button>
                     </td>
                 </tr>
             <?php endforeach; ?> 
         </tbody>
     </table>
-    
 </div>
