@@ -163,7 +163,7 @@ CREATE TABLE notifications (
   causer_id INT,
   seen TINYINT DEFAULT 0,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   key `causer_id` (`causer_id`),
