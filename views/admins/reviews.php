@@ -1,6 +1,6 @@
 <div class="body_wrapper">
     <br>
-    <h1>REVIEW of PUBLICATIONS</h1>
+    <h1>REVIEW OF PUBLICATIONS</h1>
     <table class="content-table">
         <thead>
             <tr>
@@ -13,17 +13,19 @@
         </thead>
         <tbody>
             <?php foreach ($data->data as $row): ?>
-                <tr>
-                    <td><?= $row->id; ?></td>
-                    <td><?= $row->created_at; ?></td>
-                    <td><?= $row->username; ?></td>
-                    <td><?= $row->title; ?></td>
-                    <td>
-                        <button class="buttonGreen" onclick="app.reviewPosts(<?= $row->id ?>)">
-                            <span class="text"><i class="bi bi-archive-fill"></i></span>
-                        </button>
-                    </td>
-                </tr>
+                <?php if ($row->permission == 1): ?> 
+                    <tr>
+                        <td><?= $row->id; ?></td>
+                        <td><?= $row->created_at; ?></td>
+                        <td><?= $row->username; ?></td>
+                        <td><?= $row->title; ?></td>
+                        <td>
+                            <button class="buttonGreen" onclick="app.reviewPosts(<?= $row->id ?>)">
+                                <span class="text"><i class="bi bi-archive-fill"></i></span>
+                            </button>
+                        </td>
+                    </tr>
+                <?php endif; ?> 
             <?php endforeach; ?> 
         </tbody>
     </table>

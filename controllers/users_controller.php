@@ -190,7 +190,7 @@ class UsersController extends User {
       echo $e->getMessage();
     }
   }
-
+  
   public function posts() {
     try {
       $posts = new Post();

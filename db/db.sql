@@ -67,6 +67,10 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
 );
 
+ALTER TABLE posts
+MODIFY COLUMN permission INT DEFAULT 1 CHECK (permission IN (1, 2));
+
+
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
   user_id int NOT NULL,
