@@ -1,19 +1,21 @@
 a {
   text-decoration: none ;
-  color: $font_b4;
+  /* color: #fff; */
+  color: #000;
 }
 .box {
   padding: px(4);
   border-radius: px(2); 
   max-width: 80%;
   box-shadow: 0 0 5px $font_w2; 
-  color: $font_b4;
-  background-color: $section-font;
+  /* box-shadow: rgba(0, 0, 0, 0.48) 6px 2px 16px 0px, rgba(24, 22, 22, 0.8) -6px -2px 16px 0px; */
+  color: #000;
+  background-color: hsla(0, 0%, 100%, .04);
   text-align: center;
   margin: 20px auto;
   
   h2 {
-    color: $font_b;
+    color: #000;
   }
 
   a {

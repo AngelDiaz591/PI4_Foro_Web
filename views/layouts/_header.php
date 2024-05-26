@@ -30,7 +30,7 @@
       </button>
     <?php else: ?>
       <div class="login">
-        <a href="/sessions/new">Sign up</a>
+        <a class="login_btn" href="/sessions/new">Sign up</a>
       </div>
     <?php endif; ?>
   </div>

@@ -6,10 +6,13 @@ nav {
   height: 93%;
   overflow-y: auto; 
   font-size: 25px; 
-  box-shadow: 0 0 5px $font_w2; 
-  background-color: $section-font;
+  box-shadow: 0 0 8px $font_w2;
+  /* background-color: hsla(0, 0%, 100%, .04); */
+  
   transition: width 0.3s ease;
   font-family: "Poppins", sans-serif;
+  /* box-shadow: rgba(0, 0, 0, 0.48) 6px 2px 16px 0px, rgba(36, 34, 34, 0.8) -6px -2px 16px 0px; */
+  /* border: none; */
 
   .line {
     @include line($border);
@@ -22,7 +25,8 @@ nav {
     margin: 0;
 
     li {
-      color: $font-text;
+      /* color: $font-text; */
+      color: #000;
       text-decoration: none;
       display: flex;
       

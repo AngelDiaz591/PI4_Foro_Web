@@ -18,6 +18,7 @@
 
   .info {
     padding: px(2.4) px(1) 0 px(1) ;
+
     >p {
       margin: px(1.4) 0 0 0;
     }
@@ -28,8 +29,10 @@
     border-radius: px(3);
     font-size: px(4);
     margin: auto;
-    padding: 0 10% 0 10%;
+    padding: 2% 10% 2% 10%;
     font-weight: bold;
+    background-color: #22C55E;
+    border: none;
 
     >p {
       margin: 0;

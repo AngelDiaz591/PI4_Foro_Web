@@ -55,7 +55,8 @@ body {
   height: 100vh;
   font-family: "Almarai", sans-serif;
   background-size: cover;
-  background-color: #F3F3F3;
+  /* background-color: $body-font; */
+  background: rgba(65, 203, 191, 0.15);
   background-attachment: fixed;
   animation: moveBackground 50s infinite linear;
   overflow-y: auto;
@@ -64,7 +65,8 @@ body {
 .main-container {
   height: 100%;
   display: flex;
-  color: #0c0a0a;
+  color: #000;
+  /* color: $font_w; */
   overflow-y: scroll; /* Esto agrega una barra de desplazamiento vertical */
 }
 
@@ -1222,15 +1224,19 @@ a {
 }
 header {
   height: 75px;
-  background-color: #FCF6F4;
+  /* background-color: #22C55E; */
+  background-color: rgb(65, 203, 191);
   color: #696564;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  /* box-shadow:  $bor_fond; */
   z-index: 2;
   position: fixed;
   width: 100%;
   transition: top 0.3s;
   display: flex;
   align-items: center;
+  /*   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+   */
+  border: none;
 }
 header img {
   width: 50px;
@@ -1252,7 +1258,8 @@ header .btn-console i {
 }
 
 h2 {
-  color: #696564;
+  color: #0F172A;
+  font-weight: 700;
 }
 
 .menu {
@@ -1271,6 +1278,7 @@ h2 {
   background-color: #FCF6F4;
   margin: auto auto auto 15%;
   width: 30%;
+  border: 2px solid #fff;
 }
 .seeker > button {
   background-color: #FCF6F4;
@@ -1324,6 +1332,12 @@ header .seeker .search {
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  background-color: #0F172A;
+  border: 2px solid #0F172A;
+}
+.login .login_btn {
+  color: #e4e4e4;
+  font-weight: 600;
 }
 .login a, .login input {
   color: #696564;
@@ -1338,7 +1352,8 @@ header .seeker .search {
   background-color: transparent;
 }
 .login:hover {
-  background-color: black;
+  background-color: #1a2541;
+  border: 2px solid rgba(15, 185, 131, 0.822);
   animation: shake 0.5s ease-in-out infinite;
 }
 .login:hover > a, .login:hover input {
@@ -1585,10 +1600,12 @@ nav {
   height: 93%;
   overflow-y: auto;
   font-size: 25px;
-  box-shadow: 0 0 5px rgb(177, 165, 165);
-  background-color: #FCF6F4;
+  box-shadow: 0 0 8px rgb(177, 165, 165);
+  /* background-color: hsla(0, 0%, 100%, .04); */
   transition: width 0.3s ease;
   font-family: "Poppins", sans-serif;
+  /* box-shadow: rgba(0, 0, 0, 0.48) 6px 2px 16px 0px, rgba(36, 34, 34, 0.8) -6px -2px 16px 0px; */
+  /* border: none; */
 }
 nav .line {
   display: flex;
@@ -1603,7 +1620,8 @@ nav .main-nav {
   margin: 0;
 }
 nav .main-nav li {
-  color: #696564;
+  /* color: $font-text; */
+  color: #000;
   text-decoration: none;
   display: flex;
 }
@@ -1770,7 +1788,8 @@ nav .main-nav .spinner {
 
 a {
   text-decoration: none;
-  color: #0c0a0a;
+  /* color: #fff; */
+  color: #000;
 }
 
 .box {
@@ -1778,13 +1797,14 @@ a {
   border-radius: 10px;
   max-width: 80%;
   box-shadow: 0 0 5px rgb(177, 165, 165);
-  color: #0c0a0a;
-  background-color: #FCF6F4;
+  /* box-shadow: rgba(0, 0, 0, 0.48) 6px 2px 16px 0px, rgba(24, 22, 22, 0.8) -6px -2px 16px 0px; */
+  color: #000;
+  background-color: hsla(0, 0%, 100%, 0.04);
   text-align: center;
   margin: 20px auto;
 }
 .box h2 {
-  color: black;
+  color: #000;
 }
 .box a {
   text-decoration: none;
@@ -2063,8 +2083,10 @@ a {
   border-radius: 15px;
   font-size: 20px;
   margin: auto;
-  padding: 0 10% 0 10%;
+  padding: 2% 10% 2% 10%;
   font-weight: bold;
+  background-color: #22C55E;
+  border: none;
 }
 .chat .action > p {
   margin: 0;

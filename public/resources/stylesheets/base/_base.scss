@@ -9,7 +9,8 @@
     height: 100vh;
     font-family: 'Almarai', sans-serif;
     background-size: cover;
-    background-color: $body-font;
+    /* background-color: $body-font; */
+    background: rgba(65, 203, 191, 0.15);
     background-attachment: fixed;
     animation: moveBackground 50s infinite linear;
     overflow-y: auto;
@@ -18,7 +19,8 @@
   .main-container {
     height: 100%;
     display: flex;
-    color: $font_b4;
+    color: #000;
+    /* color: $font_w; */
     overflow-y: scroll; /* Esto agrega una barra de desplazamiento vertical */
 
   }

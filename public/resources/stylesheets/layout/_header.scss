@@ -1,14 +1,17 @@
 header {
   height: px(15);
-  background-color: $section-font;
+  /* background-color: #22C55E; */
+  background-color: rgb(65, 203, 191);
   color: $font-text;
-  box-shadow:  $bor_fond;
+  /* box-shadow:  $bor_fond; */
   z-index: 2;
   position: fixed; 
   width: 100%; 
   transition: top 0.3s; 
   display: flex;
   align-items: center;
+/*   box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+ */  border: none;
 
   img {
     width: px(10);
@@ -34,7 +37,8 @@ header {
 }
 
 h2 {
-  color: $font-text;
+  color: #0F172A;
+  font-weight: 700;
 }
 
 .menu {
@@ -47,10 +51,11 @@ h2 {
 .seeker {
   display: flex;
   align-items: center;
-  border-radius: px(5); 
+  border-radius: px(5);
   @include card ();
   margin: auto auto auto 15%;
   width: 30%;
+  border: 2px solid #fff;
 
   > button {
     background-color: $section-font;
@@ -112,6 +117,13 @@ header .seeker .search {
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  background-color: #0F172A;
+  border: 2px solid #0F172A;
+
+  .login_btn {
+    color: #e4e4e4;
+    font-weight: 600;
+  }
 
   a, input {
     color: $font-text;
@@ -128,7 +140,8 @@ header .seeker .search {
   }
 
   &:hover {
-    background-color: $font_b;
+    background-color: #1a2541;
+    border: 2px solid rgba(15, 185, 131, 0.822);
     animation: shake 0.5s ease-in-out infinite;
     
     & > a, input {
