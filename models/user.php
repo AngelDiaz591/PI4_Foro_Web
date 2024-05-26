@@ -168,8 +168,19 @@ class User extends Base {
 
   public function confirm_confirmation_token($data) {
     try {
-      $this->confirmation_token_expiration($data['token']);
+      $this->t = 'users';
 
+      $result = $this->where([
+        ['confirmation_code', '=', $data['code']],
+        ['confirmation_token', '=', $data['token']]
+      ])->first();
+        
+      if (empty($result)) {
+        throw new Exception("Invalid code or token");
+      }
+
+      $this->confirmation_token_expiration($data['token']);
+        
       $stmt = $this->conn->prepare("CALL confirm_user(:code, :token)");
       $stmt->bindParam(':code', $data['code'], PDO::PARAM_STR);
       $stmt->bindParam(':token', $data['token'], PDO::PARAM_STR);

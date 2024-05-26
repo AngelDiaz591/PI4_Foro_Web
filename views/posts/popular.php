@@ -1,3 +1,7 @@
+<h1>
+  <i class='bx bxs-star'></i>
+  Popular posts
+</h1>
 <div class="main">
   <?php foreach ($data as $d): ?>
     <div class="hoverbox">

@@ -243,22 +243,21 @@ class PostsController extends Post {
         }
     }
 
-    public function search()
-{
-    try {
-        $query = $this->params['query'] ?? '';
-        if (strpos($query, '@') === 0) {
-            $users = $this->searchUsers(substr($query, 1)); 
-            echo json_encode($users);
-        } else {
-            $posts = $this->searchPosts($query);
-            echo json_encode($posts);
+    public function search() {
+        try {
+            $query = $this->params['query'] ?? '';
+            if (strpos($query, '@') === 0) {
+                $users = $this->searchUsers(substr($query, 1)); 
+                echo json_encode($users);
+            } else {
+                $posts = $this->searchPosts($query);
+                echo json_encode($posts);
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["error" => $e->getMessage()]);
         }
-    } catch (Exception $e) {
-        http_response_code(500);
-        echo json_encode(["error" => $e->getMessage()]);
     }
-}
 
     public function show_json() {
         try {
@@ -274,20 +273,49 @@ class PostsController extends Post {
         }
     }
     
-    public function edit_table() {
+    public function my_posts() {
         try {
           $post = new Post;
           $response = $post->all_posts();
 
           if ($response["status"]) {
-              return $this->render('edit_table', ['data' => $response["data"]]);
+              return $this->render('my_posts', ['data' => $response["data"]]);
           } else {
               throw new Exception("Failed to get all posts: " . $response["message"]);
           }
         } catch (Exception $e) {
             return $this->error('500');
         }
-      }
+    }
+
+    public function populars_limit() {
+        try {
+            $response = $this->get_populars_limit($this->params['limit']);
+            $response = json_decode($response);
+
+            if ($response->status) {
+                echo json_encode($response);
+            } else {
+                throw new Exception(json_encode($response));
+            }
+        } catch (Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function populars() {
+        try {
+            $response = $this->get_populars();
+
+            if ($response["status"]) {
+                return $this->render('popular', $response["data"]);
+            } else {
+                throw new Exception("Failed to get all posts: " . $response["message"]);
+            }
+        } catch (Exception $e) {
+            return $this->error('500');
+        }
+    }
       
     protected function render($view, $data = []) {
         $params = $data;
