@@ -82,5 +82,6 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
       <?php endif; ?>
     </div>
   </body>
+  <script src="/resources/js/search.js"></script>
 <?php endif; ?>
 </html>

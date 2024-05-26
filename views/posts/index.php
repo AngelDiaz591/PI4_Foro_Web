@@ -1,7 +1,7 @@
 <div class="main">
-  <div id="search-results" class="hoverbox-result"></div>
   <?php foreach ($data as $d): ?>
     <div class="hoverbox">
+    <div id="search-results" class="hoverbox-result"></div>
       <div class="box" id="results-list">
         <div class="user_card">
           <a href="/users/show/id:<?= $d["user_id"]; ?>" class="user_card-info">
