@@ -155,6 +155,8 @@ Class Base extends Database {
 /**
  * Check the images and return an array with the images data such as name and tmp_name
  * 
+ * ? This work with inputs file that allow multiple images e.g. <input type="file" name="images[]">
+ * 
  * @param array $images, $_FILES['images']
  * @return array
  */
@@ -196,6 +198,51 @@ Class Base extends Database {
       throw new Exception("Failed to check the images: " . $e->getMessage());
     }
   }
+
+  /**
+   * Check the image and return an array with the image data such as name and tmp_name
+   * 
+   * ? This work with inputs file that allow only one image e.g. <input type="file" name="image">
+   * 
+   * @param array $image, $_FILES
+   * @return array
+   */
+    public function check_image($image) {
+      try {
+        $image_array = [];
+        
+        $image_error = $image["error"];
+
+        if ($image_error === 4) {
+          return [ "status" => false, "message" => "No image was uploaded." ];
+        }
+
+        $image_name = $this->rename_image($image["name"]);
+        $image_tmp_name = $image["tmp_name"];
+        $image_size = $image["size"];
+        $image_extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        $image_allowed_extensions = ["jpg", "jpeg", "png", "gif"];
+
+        if ($image_error !== 0) {
+          throw new Exception("The image " . $image_name . ", has an error. Error code: " . $image_error);
+        }
+
+        if ($image_size > 2000000) {
+          throw new Exception("The image " . $image_name . ", exceeds the maximum size allowed of 1MB.");
+        }
+
+        if (!in_array($image_extension, $image_allowed_extensions)) {
+          throw new Exception("The image " . $image_name . ", has an invalid extension, only jpg, jpeg, png and gif are allowed.");
+        }
+
+        $image_array = [ "name" => $image_name, "tmp_name" => $image_tmp_name];
+        
+        return [ "status" => true, "data" => $image_array ];
+      } catch (Exception $e) {
+        error_log($e->getMessage());
+        throw new Exception("Failed to check the images: " . $e->getMessage());
+      }
+    }
 
 /**
  * Rename the image
