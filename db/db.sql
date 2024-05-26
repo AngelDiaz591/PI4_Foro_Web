@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS notifications;
 DROP TABLE IF EXISTS followers;
 DROP TABLE IF EXISTS user_data;
 DROP TABLE IF EXISTS likes;
+DROP TABLE IF EXISTS post_reactions;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS dms;
 DROP TABLE IF EXISTS comments;
@@ -25,6 +26,8 @@ CREATE TABLE users (
   confirmed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   reset_password_token VARCHAR(255),
   reset_password_sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  rol TINYINT DEFAULT 1,
+  ban ENUM('0', '1') NOT NULL DEFAULT '0',
   PRIMARY KEY (id)
 );
 
@@ -54,6 +57,7 @@ CREATE TABLE user_data (
 CREATE TABLE unesco (
   id INT AUTO_INCREMENT,
   theme VARCHAR(255),
+  icon VARCHAR(255), 
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (id)
@@ -76,8 +80,9 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
 );
 
-DROP TABLE IF EXISTS likes;
-DROP TABLE IF EXISTS post_reactions;
+ALTER TABLE posts
+MODIFY COLUMN permission INT DEFAULT 1 CHECK (permission IN (1, 2));
+
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
@@ -123,15 +128,31 @@ CREATE TABLE images (
   id INT AUTO_INCREMENT,
   post_id INT,
   comment_id INT,
-  dms_id INT,
+  user_id INT,
   image VARCHAR(255),
   PRIMARY KEY (id),
   key `post_id` (`post_id`),
   key `comment_id` (`comment_id`),
-  key `dms_id` (`dms_id`),
+  key `user_id` (`user_id`),
   CONSTRAINT `fk_images_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_images_comment_id` FOREIGN KEY (`comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `fk_images_dms_id` FOREIGN KEY (`dms_id`) REFERENCES `dms` (`id`) ON DELETE CASCADE
+  CONSTRAINT `fk_images_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
+);
+
+CREATE TABLE user_data (
+	user_id INT NOT NULL,
+	pfp INT,
+  banner INT,
+  gender VARCHAR(255),
+  birthdate DATE,
+  updated_at TIMESTAMP,
+  PRIMARY KEY (user_id),
+  key `user_id` (`user_id`),
+  key `pfp` (`pfp`),
+  key `banner` (`banner`),
+  CONSTRAINT `fk_user-data_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_user-pfp` FOREIGN KEY (`pfp`) REFERENCES `images` (`id`),
+  CONSTRAINT `fk_user-data_banner` FOREIGN KEY (`banner`) REFERENCES `images` (`id`)
 );
 
 CREATE TABLE notifications (
@@ -157,5 +178,3 @@ INSERT INTO unesco (theme) VALUES
   ('Quality_Education'),
   ('Gender_Equality')
 ;
-
-ALTER TABLE `users` ADD `usertype` INT(11) NOT NULL DEFAULT '1' AFTER `username`;

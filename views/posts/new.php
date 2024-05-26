@@ -5,7 +5,7 @@
       <div class="user">
         <div class="user__avatar">
           <i class="bi bi-person-circle"></i>
-          <h2>Majorixch</h2>
+          <h2><?= $_SESSION['user']['username']; ?></h2>
         </div>
         <div class="user__date">
           <p class="date"><?= date('Y/m/d') ?></p>
@@ -20,6 +20,11 @@
           <i class="bi bi-paperclip attach-file"></i>
           <textarea name="description" id="description" cols="30" rows="10"
             placeholder="Your thoughts go here..."></textarea>
+        </div>
+        <div class="field">
+          <select name="unesco_theme_id" id="unesco_theme_id" required>
+            <option value="" disabled selected>Select a theme</option>
+          </select>
         </div>
         <div class="field">
           <input type="hidden" name="user_id" value="<?= $_SESSION['user']['id']; ?>">

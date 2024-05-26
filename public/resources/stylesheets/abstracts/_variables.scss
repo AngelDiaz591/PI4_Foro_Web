@@ -28,9 +28,6 @@ $font_w3: #fcf9ea;
 //grays
 $gray_1: #929292;
 
-//theme
-$theme_bl: #1f381c;
-
 //blacks:
 $font_b: black;
 $font_b1: #1B1717;
@@ -49,6 +46,8 @@ $prin_color: rgb(18, 18, 18);
 //box
 $box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 $shadowVeri: 0 0 10px rgba(0,0,0,0.2);
+$shadowTable: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+$shadowButton: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.07) 0 1px 1px, rgba(0, 0, 0, 0.07) 0 2px 2px, rgba(0, 0, 0, 0.07) 0 4px 4px;
 
 //input
 $backinput: #dddddd4b;
@@ -136,6 +135,7 @@ $font_light8: #363949;
 $font_light9: rgba(132,139,200, 0.18); 
 $font_light10: #111e88;
 $font_light11: #f6f6f9;
+$font_light12: #00ab88;
 
 //theme for user-forms
 $tone_wl: rgba(255,255,255,0.3);

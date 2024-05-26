@@ -5,6 +5,9 @@
 </script>
 <div class="user-view-container">
   <div class="left">
+    <div class="returnForm">
+      <a href="/sessions/new"><i class='bx bx-arrow-back comeback'></i></a>
+    </div>
       <div class="principal2">
         <img src="/resources/img/login.gif" alt="login" class="img">
       </div>

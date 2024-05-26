@@ -39,14 +39,258 @@ const app = {
 
   checkSession: function() {
     if (!app.user || !app.user.id) {
-      while (true) {
-        if (confirm("You need to log in to perform this action.")) {
-          break; 
-        }
-      }
+      Swal.fire({
+        icon: 'info',
+        title: 'You need to log in to perform this action.',
+        footer: `
+          <a href="/sessions/create" class="actions">
+            <p style="margin: auto;">Click here to log in</p>
+          </a>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+      });
     }
   },
   
+  reviewPosts: function(id) {
+    let params = new URLSearchParams();
+    params.append('id', id);
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+        fetch('/posts/show_json/', {
+          method: 'POST',
+          body: params,
+        }).then(response => response.json())
+        .then(data => {
+          Swal.hideLoading();
+          let html = `
+            <h1>REVIEW POST</h1>
+            <div class="adminMenu-header">
+              <div class="adminMenu-showpost">
+                <div class="adminMenu-show">
+                  <div class="user_card">
+                      <img src="/resources/img/user.png" alt="user" class="user-card-img">
+                      <div>
+                        <p class="profile-card">${data.username}</p>
+                        <p class="date">${data.created_at}</p>
+                      </div>
+                    <p class="user_card-post_theme">
+                        <i class="${data.theme_icon}"></i>
+                        ${data.theme}
+                    </p>
+                  </div>
+                  <div class="line"></div>
+                  <div>
+                    <h2>${data.title}</h2>
+                    <p>${data.description}</p>
+                    <div class="images">`; 
+                      if (data.images.length > 0) { 
+                        html += `
+                        <div class="image">
+                          <img src="/assets/imgs/${data.images[0].image}" alt='Image from "${data.title}"' onclick="openModal(${data.id})">`;
+                            if (data.images.length > 1) {
+                              html += `
+                              <div class="image-overlay" onclick="openModal(${data.id})">+${data.images.length - 1}</div>`;
+                            }
+                        html+= `
+                        </div>`;
+                      }
+                      html += `
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="">
+              <button id="acceptButton" class="buttonGreen" onclick="app.acceptPost(${data.id})">
+                <span class="text"><i class="bi bi-archive-fill"></i>Aceptar</span>
+              </button>
+              <button class="buttonRed" onclick="app.cancelPost(${data.id})">
+                  <span class="text"><i class="bi bi-star-fill"></i>Decline</span>
+              </button>
+            </div>
+            <div id="myModal-${data.id}" class="modal">
+              <span class="close" onclick="closeModal(${data.id})">&times;</span>
+              <div class="modal-content">
+                <br><br><br><br>
+                <div class="carousel-container" id="carouselContainer-${data.id}">`;
+                  for (let imageObj of data.images) {
+                    html += `
+                    <div class="carousel-slide">
+                      <img src="/assets/imgs/${imageObj.image}" class="carousel-image" alt='Image from "${data.title}"'>
+                    </div>`;
+                  }
+                `</div>`;
+                if (data.images.length > 1) {
+                  html += `
+                  <a class="prev" onclick="changeSlide(-1, ${data.id})">&#10094;</a>
+                  <a class="next" onclick="changeSlide(1, ${data.id})">&#10095;</a>`
+                }
+                html += `
+              </div>
+            </div>
+          `;
+          Swal.update({
+            html: html,
+            showConfirmButton: false,
+            customClass: {
+              container: 'adminMenu',
+              popup: 'adminMenu-modal',
+            },
+          });
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.update({
+            icon: 'error',
+            title: 'An error occurred',
+            text: `Error: ${error}`,
+          });
+        });
+      }
+    });
+  },
+  
+  acceptPost: function(id) {
+    let params = new URLSearchParams();
+    params.append('id', id);
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+        fetch('/admins/accepted/', {
+          method: 'POST',
+          body: params,
+        }).then(response => response.json())
+        .then(data => {
+          Swal.hideLoading();
+          if (data.status === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Post successfully accepted',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error accepting the post',
+              text: data.message
+            });
+          }
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Error: ${error}`
+          });
+        });
+      }
+    });
+  },
+  
+ cancelPost: function(id) {
+  let params = new URLSearchParams();
+  params.append('id', id);
+  Swal.fire({
+    didOpen: () => {
+      Swal.showLoading();
+      fetch('/posts/show_json/', {
+        method: 'POST',
+        body: params,
+      }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        Swal.hideLoading();
+        Swal.update({
+          html: `
+            <form id="rejectionForm">
+              <div class="userMenu-header">
+                <div>
+                  <h4>Decline publication</h4>
+                </div>
+              </div>
+              <div class="line"></div>
+              <div>
+                <p>Why is the publication being rejected?</p>
+                <textarea id="rejectionReason" rows="4"></textarea>
+              </div>
+              <div class="line"></div>
+              <div>
+                <button type="button" class="buttonRed" onclick="app.reviewPosts(${id})">
+                  <span class="text"><i class="bi bi-star-fill"></i>Cancel</span>
+                </button>
+                <button type="submit" class="buttonGreen">
+                  <span class="text"><i class="bi bi-star-fill"></i>Send</span>
+                </button>
+              </div>
+            </form>
+          `,
+          showConfirmButton: false,
+          customClass: {
+            container: 'adminMenu',
+            popup: 'adminMenu-modal',
+          },
+        });
+
+        document.getElementById('rejectionForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          app.sendRejection(id);
+        });
+      }).catch(error => {
+        Swal.hideLoading();
+        Swal.update({
+          icon: 'error',
+          title: 'An error occurred',
+          text: `Error : ${error}`,
+        });
+      });
+    }
+  });
+},
+
+sendRejection: function(id) {
+  const reason = document.getElementById('rejectionReason').value;
+  let params = new URLSearchParams();
+  params.append('id', id);
+  params.append('reason', reason);
+
+  Swal.showLoading();
+  fetch('/admins/rejected', {
+      method: 'POST',
+      body: params,
+  }).then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not successful');
+      }
+      return response.json();
+  }).then(data => {
+      Swal.hideLoading();
+      if (data.status === 'success') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Publication Rejected',
+              text: 'The publication has been rejected successfully.',
+          });
+      } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'An error occurred',
+              text: `Error: ${data.message}`,
+          });
+      }
+  }).catch(error => {
+      Swal.hideLoading();
+      Swal.fire({
+          icon: 'error',
+          title: 'An error occurred',
+          text: `Error: ${error.message}`,
+      });
+  });
+},
   userMenuOpen: function() {
     Swal.fire({
       html: `
@@ -267,11 +511,9 @@ const app = {
 
   markNotificationsAsRead: function(data) {
     let ids = data.map(item => item.notification_id);
-    console.log(ids);
     
     let params = new URLSearchParams();
     ids.forEach(id => params.append('ids[]', id));
-    console.log(params);
 
     fetch('/users/mark_notifications_as_read', {
       method: 'POST',
@@ -303,6 +545,61 @@ const app = {
         notificationCount.css('display', 'none');
       }
     }).catch(err => console.error(err));
+  },
+
+  loadUnescoThemes: function(limit = 3) {
+    let themesContainer = $('#unesco-themes');
+    let html = `
+      <li class="list">
+        <div class="selector"></div>
+        <a class="category">
+          <p>Error 
+        </a>
+      </li>
+    `;
+
+    let params = new URLSearchParams();
+    params.append('limit', limit);
+
+    fetch('/unesco/get_themes', {
+      method: 'POST',
+      body: params,
+    }).then(response => response.json())
+    .then(result => {
+      if (result.status) {
+        html = '';
+
+        for (let item of result.data) {
+          html += `
+            <li class="list">
+              <div class="selector"></div>
+              <a class="category">
+                <i class="${item.icon}"></i>
+                <p>${item.theme}</p>
+              </a>
+            </li>
+          `;
+        }
+
+        if (limit === 3) {
+          html += `
+            <li class="list">
+              <div class="selector"></div>
+              <a class="category" onclick="app.loadAllUnescoThemes()">
+                <i class="bi bi-three-dots"></i>
+                <p>More</p>
+              </a>
+            </li>
+          `;
+        }
+      }
+      
+      themesContainer.html(html);
+    }).catch(err => console.error(err));
+  },
+
+  loadAllUnescoThemes: function() {
+    this.loadUnescoThemes(20);
   }
 };
 
@@ -321,4 +618,6 @@ $(function() {
   if (app.user.id) {
     app.unseenNotificationsCount();
   }
+
+  app.loadUnescoThemes();
 })

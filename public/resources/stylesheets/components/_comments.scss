@@ -45,20 +45,6 @@ text-align: left;
     color: $font_b4;
   }
 
-  .user_card {
-    p {
-        margin: 5px;
-        font-size: px(3);
-        padding-left: 10px;
-    }
-    .data {
-      cursor: pointer;
-      &:hover {
-          color: $theme_bl; 
-      }
-    }
-  }
-
   .user_card button {
     cursor: pointer;
     background-color: $section-font;
@@ -140,15 +126,15 @@ text-align: left;
   .comment-user {
     margin: 20px 0 0;
     padding: 10px 20px 5px 20px;
-    width: 92%;
+    width: 97%;
     border-radius: 10px;
-    background-color: $font_w3;   
+    background-color: $font_w3; 
+
     textarea {
       resize: none;
       width: 100%;
       font-size: px(3);
       border: none;
-      border-radius: 10px;
       outline: none;
       background-color: $font_w3;   
     }
@@ -220,4 +206,115 @@ text-align: left;
 
 .showpost {
 text-align: left;
+}
+
+.img-user-comment {
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  border: solid 2px;
+}
+
+._comment {
+  margin-left: 4%;
+  text-align: left;
+  background-color: $section-font;
+  box-shadow: 0 0 5px $font_w2; 
+  border-radius: 10px;
+  padding: 20px ;
+  width: auto;
+}
+
+.actions-comments {
+  margin-left: auto;
+  padding-right: 1%;
+  
+  button {
+    cursor: pointer;
+    padding: 3px;
+    border: none;
+    border-radius: 5px;
+    background-color: $section-font;
+    font-size: 20px;
+    text-align: center;
+    
+    i {
+      margin: 0;
+    }
+  }
+}
+
+.comment-comment {
+  font-size: 20px;
+}
+
+.date-comment {
+  font-size: 15px;
+  color: $font_w2;
+}
+
+.reply-comment {
+  display: flex;
+
+  .comment-actions {
+    margin-left: auto;
+
+    button {
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      background-color: $section-font;
+    }
+  }
+}
+
+.comments-view-more {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: $section-font;
+}
+
+.comments-view-less {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: $section-font;
+}
+
+.comment-user {
+  margin: 20px 0 0;
+  padding: 10px 20px 5px 20px;
+  width: 97%;
+  border-radius: 10px;
+  background-color: $font_w3; 
+
+  textarea {
+    resize: none;
+    width: 100%;
+    font-size: px(3);
+    border: none;
+    outline: none;
+    background-color: $font_w3;   
+  }
+
+  button {
+    font-size: px(4);
+    cursor: pointer;
+    border: none;
+    border-radius: 40%;
+    background-color: $font_w3;
+    align-items: end;
+    margin-left: 98%;
+  }
+  @include mobile {
+      margin-top: 20px;
+  }
+}
+
+.comments-cancel {
+  cursor: pointer;
+  border: none;
+  font-size: 15px;
+  background-color: $section-font;
 }

@@ -126,3 +126,64 @@ END
 $$
 DELIMITER ;
 -- call as: CALL get_user_by_reset_password_token('A1B2C3');
+
+DROP PROCEDURE IF EXISTS BanUser;
+DELIMITER $$
+CREATE PROCEDURE BanUser(IN userId INT)
+BEGIN
+    UPDATE users
+    SET ban = '1'
+    WHERE id = userId;
+END 
+$$
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS UnbanUser;
+DELIMITER $$
+CREATE PROCEDURE UnbanUser(IN userId INT)
+BEGIN
+    UPDATE users
+    SET ban = '0'
+    WHERE id = userId;
+END 
+$$
+
+DELIMITER ;
+
+DROP PROCEDURE IF EXISTS DeleteUser;
+DELIMITER $$
+
+CREATE PROCEDURE DeleteUser(IN userId INT)
+BEGIN
+
+    SET FOREIGN_KEY_CHECKS = 0;
+
+    DELETE FROM notifications WHERE user_id = userId;
+    
+    DELETE images FROM images
+    LEFT JOIN posts ON images.post_id = posts.id
+    LEFT JOIN comments ON images.comment_id = comments.id
+    LEFT JOIN dms ON images.dms_id = dms.id
+    WHERE posts.user_id = userId OR comments.user_id = userId OR dms.user_id = userId;
+    
+    DELETE FROM post_reactions WHERE user_id = userId;
+    
+    DELETE FROM comments WHERE user_id = userId;
+    
+    DELETE FROM posts WHERE user_id = userId;
+    
+    DELETE FROM dms WHERE user_id = userId OR receiver_id = userId;
+    
+    DELETE FROM followers WHERE user_id = userId OR follower_id = userId;
+    
+    DELETE FROM user_data WHERE user_id = userId;
+    
+    DELETE FROM users WHERE id = userId;
+
+    SET FOREIGN_KEY_CHECKS = 1;
+    
+END 
+$$
+
+DELIMITER ;

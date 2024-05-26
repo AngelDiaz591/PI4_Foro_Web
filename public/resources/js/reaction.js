@@ -1,3 +1,6 @@
+var postId = app.params.id;
+var userId = app.user.id ?? null;
+
 $(document).ready(function() {
     $(".all-reaction").hide();
     $(document).mouseup(function(e) {
@@ -35,7 +38,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                var reactImg = "<img src='/resources/img/" + reactType + ".png' class='reaction' >";
+                var reactImg = "<img src='/resources/img/" + reactType + ".png' class='reaction-selected' >";
                 $("#" + postId).html(reactImg);
                 setReactionBackground(reactType, postId);
             }
@@ -53,7 +56,7 @@ $(document).ready(function() {
             },
             success: function(data) {
                 updateReactionCount(postId, data.total_reactions);
-                $("#" + postId).html("<p><i class='bx bxs-like' onclick='checkSession()'></i></p>");
+                $("#" + postId).html("<p class='like-action'><i class='bx bxs-like' onclick='checkSession()'></i></p>");
                 $("#" + postId).css("background", "");
             }
         });
@@ -62,7 +65,7 @@ $(document).ready(function() {
     function updateReactionCount(postId, count) {
         var reactionCountElement = document.getElementById("reactions-count-" + postId);
         if (reactionCountElement) {
-            reactionCountElement.innerHTML = `reactions: ${count}`;
+            reactionCountElement.innerHTML = ` <img src="/resources/img/like.png" alt="like">  ${count} reactions`;
         }
     }
     

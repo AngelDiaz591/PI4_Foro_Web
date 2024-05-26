@@ -63,3 +63,28 @@ imageInput.addEventListener('change', () => {
   filesArray = Array.from(imageInput.files);
   extraFiles_pElement.textContent = `${filesArray.length} files`;
 });
+
+// fetch all the unesco themes to show in the select input
+$(function () {
+  let unescoPicker = $('#unesco_theme_id');
+
+  let html = '<option value="" disabled selected>Select a theme</option>'
+
+  let params = new FormData();
+  params.append('limit', 20);
+
+  fetch('/unesco/get_themes', {
+    method: 'POST',
+    body: params,
+  }).then(response => response.json())
+  .then(result => {
+    if (result.status) {
+      for (let item of result.data) {
+        html += `<option value="${item.id}">${item.theme}</option>`;
+      }
+    }
+
+    unescoPicker.html(html);
+  }).catch(err => console.error(err));
+
+});

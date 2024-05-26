@@ -34,17 +34,26 @@ a {
   }
 
   .profile-card {
+    text-align: start;
     cursor: pointer;
     &:hover {
       color: $theme_bl;
     }
   }
+
+  &-info {
+    display: flex;
+  }
+
+  &-post_theme {
+    margin-left: auto;
+  }
 }
 
 .date {
-  font-size: px(3);
-  margin-left: px(2);
   color: $font_b;
+  font-size: px(3);
+  text-align: start;
 }
 
 .line {
@@ -80,6 +89,29 @@ a {
   }
   
 }
+
+.image-preview {
+  position: relative;
+}
+
+.image-preview img {
+  max-width: 90%;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  border-radius: 2px;
+  font-size: 25px;
+  cursor: pointer;
+}
+
 .image img {
   max-width: 90%; 
   height: 350px;
@@ -93,6 +125,7 @@ a {
 }
 
 .actions {
+  margin: 0 0 0 auto;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   display: flex;
   justify-content: space-between; 
@@ -159,6 +192,10 @@ a {
     height: 350px;
     border-radius: px(2);
   }
+
+  h1, p {
+    color: $font_w;
+  }
 }
  
 .close {
@@ -221,5 +258,31 @@ a {
     font-size: px(3);
     padding: 10px;
     outline: none;
+  }
+}
+
+.hoverbox-result {
+  margin-left: 20%;
+  padding: 0;
+  width: 35%;
+  position: fixed;
+  z-index: 5;
+}
+
+.box-result {
+  border: solid 1px $font_w2;
+  padding: px(4);
+  max-width: 80%;
+  color: $font_b4;
+  background-color: $section-font;
+  text-align: center;
+  
+  h2 {
+    color: $font_b;
+  }
+
+  a {
+    text-decoration: none ;
+    color: $font_b;
   }
 }

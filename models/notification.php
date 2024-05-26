@@ -133,7 +133,7 @@ class Notification extends Base {
         $where[] = ['id', '=', $id];
       }
       
-      $response = $this->whereComplex(
+      $response = $this->where_complex(
         orConditions: $where
       )->update([
         'seen' => 1,

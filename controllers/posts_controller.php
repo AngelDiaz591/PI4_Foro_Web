@@ -46,6 +46,10 @@ class PostsController extends Post {
     }
 
     public function new() {
+        if (!isset($_SESSION['user'])) {
+            header('Location: /sessions/new');
+        }
+
         return $this->render('new', $this->params);
     }
 
@@ -239,6 +243,52 @@ class PostsController extends Post {
         }
     }
 
+    public function search()
+{
+    try {
+        $query = $this->params['query'] ?? '';
+        if (strpos($query, '@') === 0) {
+            $users = $this->searchUsers(substr($query, 1)); 
+            echo json_encode($users);
+        } else {
+            $posts = $this->searchPosts($query);
+            echo json_encode($posts);
+        }
+    } catch (Exception $e) {
+        http_response_code(500);
+        echo json_encode(["error" => $e->getMessage()]);
+    }
+}
+
+    public function show_json() {
+        try {
+            $response = $this->find_by_id($this->params['id']);
+
+            if ($response["status"]) {
+                echo json_encode($response["data"]);
+            } else {
+                throw new Exception("Failed to get the post with id " . $this->params['id'] . ": " . $response["message"]);
+            }
+        } catch (Exception $e) {
+            echo json_encode(["message" => "Post not found"]);
+        }
+    }
+    
+    public function edit_table() {
+        try {
+          $post = new Post;
+          $response = $post->all_posts();
+
+          if ($response["status"]) {
+              return $this->render('edit_table', ['data' => $response["data"]]);
+          } else {
+              throw new Exception("Failed to get all posts: " . $response["message"]);
+          }
+        } catch (Exception $e) {
+            return $this->error('500');
+        }
+      }
+      
     protected function render($view, $data = []) {
         $params = $data;
         include ROOT_DIR . 'views/posts/' . $view . '.php';

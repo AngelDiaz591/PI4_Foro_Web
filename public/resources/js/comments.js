@@ -1,3 +1,6 @@
+var postId = app.params.id;
+var userId = app.user.id ?? null;
+
 $(document).ready(function() {
     const $commentsContainer = $('#comments');
     let currentEditingCommentId = null;
@@ -27,9 +30,12 @@ $(document).ready(function() {
 
         const commentContent = $(this).closest('.parent-comment').find(`.comment-content[data-comment-id="${id}"] p`).text();
         const editTemplate = `
-            <textarea class="comment-edit-textarea">${commentContent}</textarea>
-            <button class="comments-update" data-comment-id="${id}">Update</button>
-            <button class="comments-cancel">Cancel</button>
+            <div class="comment-user">
+                <textarea class="comment-edit-textarea" placeholder="Write Comment">${commentContent}</textarea>
+                <button class="comments-update" data-comment-id="${id}"><i class='bx bxs-paper-plane'></i></button>
+            </div>
+            <br>
+            <button class="comments-cancel"><i class='bx bx-x'></i>Cancel...</button>
         `;
         $(this).closest('.parent-comment').find(`.comment-edit-container[data-comment-id="${id}"]`).html(editTemplate);
         currentEditingCommentId = id;
@@ -58,9 +64,12 @@ $(document).ready(function() {
         }
 
         const replyTemplate = `
-            <textarea class="comment-create-textarea"></textarea>
-            <button class="comments-create" data-parent-id="${id}">Create</button>
-            <button class="comments-cancel">Cancel</button>
+            <div class="comment-user">
+                <textarea class="comment-create-textarea" placeholder="Write Answer"></textarea>
+                <button class="comments-create" data-parent-id="${id}"><i class='bx bxs-paper-plane'></i></button>
+            </div>
+            <br>
+            <button class="comments-cancel"><i class='bx bxs-message-x'></i>Cancel...</button>
         `;
 
         $(this).closest('.parent-comment').find(`.comment-edit-container[data-comment-id="${id}"]`).html(replyTemplate);
@@ -91,10 +100,12 @@ $(document).ready(function() {
                 const commentsHTML = generateCommentsHTML(comments);
                 $commentsContainer.html(commentsHTML);
                 initComments();
-                const totalComments = comments.length;
+                const totalComments = comments.total_comments !== undefined ? comments.total_comments : comments.length;
                 $('.count_comments p').text(totalComments + ' Comments');
             },
             error: function() {
+                initComments();
+                $('.count_comments p').text('0 Comments');
                 $commentsContainer.html('<p> Be the first to comment on this post! </p>');
             }
         });
@@ -111,39 +122,47 @@ $(document).ready(function() {
 
     function generateCommentHTML(comment, allComments, level = 0) {
         let html = `
-            <div class="comment">
+            <div class="comments-user">
                 <div class="parent-comment">
                     <div class="user-info">
-                        <i class='bx bxs-user-voice'></i>
-                        <p>${comment.username}</p>
+                        <img class="img-user-comment" src="" alt="">
+                        <p style="padding-left: 5px; ">${comment.username}</p>`;
+            if (userId === comment.user_id) {
+                html += ` <div class="actions-comments">  
+                            <button class="comments-edit" data-comment-id="${comment.id}"><i class='bx bxs-message-alt-edit' ></i></button>
+                            <button class="comments-delete" data-comment-id="${comment.id}"><i class='bx bxs-trash' ></i></button>
+                          </div>`;
+            }
+            html+=`
                     </div>
-                    <div class="comment-content" data-comment-id="${comment.id}">
-                        <p>${comment.comment}</p>
-                    </div>
-                    <div class="comment-edit-container" data-comment-id="${comment.id}"></div>
-                    <p>${comment.created_at}</p>
-                    <div class="comment-actions">`;
-        if (userId === comment.user_id) {
-            html += `<button class="comments-edit" data-comment-id="${comment.id}">Edit</button>`;
-            html += `<button class="comments-delete" data-comment-id="${comment.id}">Delete</button>`;
-        }
-
-        if (userId !== null) {
-            html += `<button class="comments-reply" data-comment-id="${comment.id}">Reply</button>`;
-        }
-
-        html += `</div></div>`;
-
-        const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
-        if (childComments.length > 0) {
-            html += `<button class="comments-view-more" data-comment-id="${comment.id}">View more</button>`;
-            html += `<button class="comments-view-less" data-comment-id="${comment.id}">View less</button>`;
-            html += `<div class="child-comments" data-comment-id="${comment.id}">`;
-            childComments.forEach(childComment => {
-                html += generateCommentHTML(childComment, allComments, level + 1);
-            });
-            html += `</div>`;
-        }
+                    <div class="_comment">
+                        <div class="comment-content" data-comment-id="${comment.id}">
+                            <p class="comment-comment">${comment.comment}</p>
+                        </div>
+                        <div class="reply-comment">
+                            <p class="date-comment">${comment.created_at}</p>
+                            <div class="comment-actions">`;
+                    if (userId !== null) {
+                        html += `<button class="comments-reply" data-comment-id="${comment.id}"><i class='bx bx-reply-all' ></i>Reply...</button>`;
+                    }
+        html += `           </div>
+                        </div>
+                        <div class="comment-edit-container" data-comment-id="${comment.id}"></div>
+                        <br>`;
+                        const childComments = allComments.filter(c => c.parent_comment_id === comment.id);
+                        if (childComments.length > 0) {
+                            html += `<button class="comments-view-more" data-comment-id="${comment.id}">View Answers...</button>`;
+                            html += `<button class="comments-view-less" data-comment-id="${comment.id}">View Less...</button>`;
+        html +=`
+                    </div>`;
+                            html += `<div class="child-comments" data-comment-id="${comment.id}">`;
+                            childComments.forEach(childComment => {
+                                html += generateCommentHTML(childComment, allComments, level + 1);
+                            });
+                            html += `</div>`;
+                        }
+        html +=`           
+                </div>`;
 
         html += `</div>`;
         return html;

@@ -1,15 +1,18 @@
 <?php
 ob_start();
 get_model('user');
+get_model('post');
 get_model('notification');
 
 class UsersController extends User {
   private $params;
+  private $files;
   
   public function __construct($params) {
     try {
       parent::__construct();
       $this->params = $params['method'];
+      $this->files = $params["files"] ?? [];
     } catch (Exception $e) {
       return $this->error('500');
     }
@@ -185,6 +188,162 @@ class UsersController extends User {
       }
     } catch (Exception $e) {
       echo $e->getMessage();
+    }
+  }
+  
+  public function posts() {
+    try {
+      $posts = new Post();
+      $response = $posts->find_by_author_id($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function media() {
+    try {
+      $posts = new Post();
+      $response = $posts->posts_media_by_author_id($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function comments() {
+    try {
+      $posts = new Post();
+      $response = $posts->posts_comments_by_author_id($this->params['id']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function get_data() {
+    try {
+      $response = $this->find_by_id($this->params['id']);
+
+      if ($response['status']) {
+        $dateObj = DateTime::createFromFormat('d M Y', $response['data']['birthdate']);
+        if ($dateObj) {
+          $response['data']['birthdate'] = $dateObj->format('Y-m-d');
+        }
+
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      $r = $this->response(status: false, message: $e->getMessage());
+
+      echo json_encode($r);
+    }
+  }
+
+  public function has_data() {
+    try {
+      $this->t = 'user_data';
+
+      $result = $this->where([['user_id', '=', $this->params['user_id']]])->first();
+
+      if (!empty($result)) {
+        echo json_encode($this->response(status: true, message: 'User has data', data: $result));
+      } else {
+        throw new Exception('User has no data');
+      }
+    } catch (Exception $e) {
+      echo json_encode($this->response(status: false, message: $e->getMessage(), data: $result));
+    }
+  }
+
+  public function save_user_data() {
+    try {
+      $resultData = $this->filtrate_user_data($this->params);
+      $resultImage = $this->user_data_images($this->files);
+      
+      $response = $this->create_data($resultData, $resultImage['data']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  public function update_user_data() {
+    try {
+      $resultData = $this->filtrate_user_data($this->params);
+      $resultImage = $this->user_data_images($this->files);
+
+      $response = $this->update_data($resultData, $resultImage['data']);
+      $response = json_decode($response);
+
+      if ($response->status) {
+        echo json_encode($response);
+      } else {
+        throw new Exception(json_encode($response));
+      }
+    } catch (Exception $e) {
+      echo $e->getMessage();
+    }
+  }
+
+  private function filtrate_user_data($data) {
+    foreach ($data as $key => $value) {
+      if (empty($value)) {
+        unset($data[$key]);
+      }
+    }
+
+    return $data;
+  }
+
+  private function user_data_images($images) {
+    try {
+      $imagesChecked = [];
+      $hasImage = false;
+
+      if (isset($images['banner'])) {
+        $hasImage = true;
+      }
+
+      if (isset($images['profile'])) {
+        $hasImage = true;
+      }
+
+      if ($hasImage) {
+        foreach ($images as $key => $image) {
+          $imagesChecked[$key] = $this->check_image($image)['data'];
+        }
+      }
+      
+      return $this->response(status: true, data: $imagesChecked, message: 'Images checked');
+    } catch (Exception $e) {
+      throw new Exception('There was an error checking for images. ' . $e->getMessage());
     }
   }
 

@@ -14,6 +14,23 @@ header {
     width: px(10);
     height:px(10);
   }
+
+  .logo {
+    align-items: center;
+    display: flex;
+    padding-left: 10px;
+  }
+
+  .btn-console {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    padding: 0 1.5rem;
+
+    i {
+      font-size: 2.5rem;
+    }
+  }
 }
 
 h2 {
@@ -54,7 +71,6 @@ h2 {
     flex: 1;
     position: relative;
     outline: none;
-    border-radius: px(5); 
     color: $font_b2;
     background-color: $section-font;
     border: 1px solid $section-font;

@@ -48,14 +48,30 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
       <?= $router->dispatch() ?>
     </div>
   </body>
+<?php elseif ($controller === 'users'): ?>
+  <body>
+    <?= render_layout('header'); ?>
+
+    <div class="main-container">
+      <div class="header_wrapper">
+        <?= $router->dispatch() ?>
+      </div>
+    </div>
+  </body>
 <?php else: ?>
   <body>
     <?= render_layout('header'); ?>
-    
+
     <div class="main-container">
-      <nav id="main-nav">
-        <?= render_layout('sidebar_main'); ?>
-      </nav>
+      <?php if ($controller == 'admins'): ?>
+        <nav id="main-nav">
+          <?= render_layout('sidebar_admin'); ?>
+        </nav>
+      <?php else: ?>
+        <nav id="main-nav">
+          <?= render_layout('sidebar_main'); ?>
+        </nav>
+      <?php endif; ?>
 
       <main>
         <?= $router->dispatch() ?>
@@ -66,5 +82,6 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
       <?php endif; ?>
     </div>
   </body>
+  <script src="/resources/js/search.js"></script>
 <?php endif; ?>
 </html>

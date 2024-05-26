@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 .user-input {
     position: relative;
 
@@ -69,7 +69,6 @@
         color: $placeholder_1;
     }
 }
-=======
 .user-input {
     position: relative;
 
@@ -155,4 +154,125 @@
         color: $veriHover;
     }
 }
->>>>>>> main
+.user-input {
+    position: relative;
+
+    .icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    color: $font_w;
+    }
+}
+
+.input:focus + .form_label,
+.input:not(:placeholder-shown) + .form_label {
+    transform: translateY(-35px) scale(1.1);
+    transform-origin: left top;
+    color: $font_w;
+    font-weight: 600;
+}
+
+.form_label {
+    color: $font_w;
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    left: 9px;
+    transform: translateY(10px);
+    transition: transform .5s, $font_w.3s;
+    font-size: 15px;
+}
+
+.input {
+    width: 100%;
+    height: 55px;
+    padding: 0 15px;
+    margin: 20px 0;
+    color: $font_w;
+    background: $inputRegis;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    backdrop-filter: blur(20px);
+    box-shadow: $shadowVeri;
+    font-size: 17px;
+    font-weight: 600;
+    font-family: $font_family_inputs;
+
+    &__pswdWeak {
+        background-color: $red_transp;
+    }
+    &__pswdMedium {
+        background-color: $yel_transp;
+    }
+    &__pswdStrong {
+        background-color: $grn_transp;
+    }
+    &__pswdnotMatch {
+        background-color: $red_transp;
+    }
+    &__pswdMatch { 
+        background-color: $grn_transp;
+    }
+}
+
+//verify
+.inputs {
+    width: 12.8%;
+    height: 56px;
+    text-align: center;
+    border: none;
+    background: $inputveri;
+    margin: 0 0.35rem 1.5rem 0;
+    border-radius: 0.3rem;
+    font-size: 1.8em;
+
+    &:focus {
+        background-color: $green1;
+        border: 0.1rem solid $green2;
+        outline: none;
+    }
+
+    &::placeholder {
+        color: $veriHover;
+    }
+}
+
+.profile_input {
+    width: 100%;
+    height: 45px;
+    padding: 0 15px;
+    margin: 10px 0;
+    color: $font_b3;
+    border: none;
+    /* border: 1px solid rgba(114, 114, 114, 0.39); */
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+    letter-spacing: normal;
+    color: #414141;
+
+    &:active, &:focus {
+        border: 2px solid blue;
+    }
+}
+
+.description_user {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 15px;
+    border: none;
+    background-color: rgba(114, 114, 114, 0.144);
+    border-radius: 8px;
+    font-weight: 500;
+    color: #414141;
+
+    font-family: Google Sans, -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: normal;
+}
