@@ -16,6 +16,7 @@ class Database {
   private $g = '';
   private $o = '';
   private $l = '';
+  private $trx = false;
   
   public $conn;
 
@@ -80,7 +81,7 @@ class Database {
     return $this;
   }
 
-  public function whereComplex($andConditions = [], $orConditions = []) {
+  public function where_complex($andConditions = [], $orConditions = []) {
     $this->w = '';
     $andConditionString = '';
     $orConditionString = '';
@@ -216,6 +217,35 @@ class Database {
     $stmt->execute();
 
     return $stmt->rowCount();
+  }
+
+  public function begin_transaction() {
+    try {
+      $this->trx = true;
+      $this->conn->beginTransaction();
+    } catch (PDOException $e) {
+      throw new Exception("Failed to begin transaction: " . $e->getMessage());
+    }
+  }
+
+  public function commit() {
+    try {
+      if ($this->trx) {
+        $this->conn->commit();
+      }
+    } catch (PDOException $e) {
+      throw new Exception("Failed to commit transaction: " . $e->getMessage());
+    }
+  }
+
+  public function roll_back() {
+    try {
+      if ($this->trx) {
+        $this->conn->rollback();
+      }
+    } catch (PDOException $e) {
+      throw new Exception("Failed to rollback transaction: " . $e->getMessage());
+    }
   }
 
   private function sortValuesWithPp($values = []) {

@@ -31,10 +31,17 @@ class User extends Base {
       $result2 = $this->select([
         'COUNT(*) as posts',
         'COUNT(DISTINCT c.follower_id) as followers',
-        'COUNT(DISTINCT d.user_id) as following'
+        'COUNT(DISTINCT d.user_id) as following',
+        'f.image as avatar',
+        'g.image as banner',
+        'e.gender',
+        'DATE_FORMAT(e.birthdate, "%e %M %Y") as birthdate',
       ])->left_join('posts as b', 'b.user_id = a.id')
       ->left_join('followers as c', 'a.id = c.user_id')
       ->left_join('followers as d', 'a.id = d.follower_id')
+      ->left_join('user_data as e', 'a.id = e.user_id')
+      ->left_join('images as f', 'e.pfp = f.id')
+      ->left_join('images as g', 'e.banner = g.id')
       ->where([['a.id', '=', $id]])
       ->first();
 
@@ -310,6 +317,192 @@ class User extends Base {
 
       throw new Exception(json_encode($r));
     }
+  }
+
+  public function create_data($data, $files = []) {
+    try {
+      // Upload images to the server
+      $uploadedImages = [];
+      foreach ($files as $key => $file) {
+        if (!empty($file)) {
+          $response = $this->upload_image($file);
+          $uploadedImages[$key] = $response['data'];
+        }
+      }
+      
+      $this->begin_transaction();
+      
+      // Insert images to the database and get the id of the images
+      foreach ($uploadedImages as $key => $image) {
+        $response = $this->insert_image(
+          ['user_id' => $data['user_id'], 'image' => $image]
+        );
+
+        $data[$key] = $response['data'];
+      }
+
+      $this->t = 'user_data';
+      $this->pp = ['user_id', 'pfp', 'banner', 'gender', 'birthdate'];
+
+      // Insert user pfp(id), banner(id), gender and birthdate
+      $result = $this->insert(values: $data, returnId: false);
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+
+      $this->commit();
+
+      $r = $this->response(status: true, data: $result, message: "User data saved successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $this->roll_back();
+      
+      // Delete uploaded images from the server
+      $response = '';
+      foreach ($uploadedImages as $key => $image) {
+        $response .= $this->rid_image($image)['message'] . "Image: $key. ";
+      }
+
+      $error = $e->getMessage() . ". $response";
+
+      $r = $this->response(status: false, message: $error);
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function update_data($data, $files = []) {
+    try {
+      // Get previous images, id and image
+      $previusImages = $this->get_data_images($data['user_id']);
+
+      // Upload new images to the server
+      $uploadedImages = [];
+      foreach ($files as $key => $file) {
+        if (!empty($file)) {
+          $response = $this->upload_image($file);
+          $uploadedImages[$key] = $response['data'];
+        }
+      }
+
+      $this->begin_transaction();
+
+      $this->t = 'user_data';
+      $this->pp = ['gender', 'birthdate'];
+
+      // Update user data, gender and birthdate
+      $result = $this->where([
+        ['user_id', '=', $data['user_id']]
+      ])->update([
+        'gender' => $data['gender'],
+        'birthdate' => $data['birthdate'],
+      ]);
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+      
+      // Update images to the database
+      foreach ($uploadedImages as $key => $image) {
+        $response = $this->update_image([
+          'id' => $previusImages[$key]['id'],
+          'image' => $image,
+        ]);
+      }
+
+      // Delete previous images from the server
+      foreach ($previusImages as $image) {
+        $response = $this->rid_image($image['image']);
+      }
+
+      $this->commit();
+
+      $r = $this->response(status: true, data: $result, message: "User data updated successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $this->roll_back();
+
+      // Delete uploaded images from the server
+      $response = '';
+      foreach ($uploadedImages as $key => $image) {
+        $response .= $this->rid_image($image)['message'] . "Image: $key. ";
+      }
+
+      $error = $e->getMessage() . ". $response";
+
+      $r = $this->response(status: false, message: $error);
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function insert_image($data) {
+    try {
+      $this->t = 'images';
+      $this->pp = ['user_id', 'image'];
+      
+      $result = $this->insert($data);
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+
+      return $this->response(status: true, data: $result, message: "Image saved successfully.");
+    } catch (PDOException | Exception $e) {
+      throw new Exception($e->getMessage());
+    }
+  }
+
+  public function update_image($data) {
+    try {
+      $this->t = 'images';
+      $this->pp = ['image'];
+
+      $result = $this->where([
+        ['id', '=', $data['id']]
+      ])->update([
+        'image' => $data['image'],
+      ]);
+
+      if (empty($result)) {
+        throw new Exception("Got an empty response");
+      }
+
+      return $this->response(status: true, data: $result, message: "Image updated successfully.");
+    } catch (PDOException | Exception $e) {
+      throw new Exception($e->getMessage());
+    }
+  }
+
+  public function get_data_images($user_id) {
+    $this->t = 'user_data';
+
+    $result = $this->select([
+      'a.pfp as pfp_id',
+      'a.banner as banner_id',
+      'b.image as pfp',
+      'c.image as banner',
+    ])->left_join('images b', 'a.pfp = b.id')
+    ->left_join('images c', 'a.banner = c.id')
+    ->where([
+      ['a.user_id', '=', $user_id]
+    ])->first();
+    
+    $result = [
+      'pfp' => [
+        'id' => $result['pfp_id'],
+        'image' => $result['pfp'],
+      ],
+      'banner' => [
+        'id' => $result['banner_id'],
+        'image' => $result['banner'],
+      ],
+    ];
+
+    return $result;
   }
 
   /**
