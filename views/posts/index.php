@@ -70,12 +70,8 @@
         <div class="line"></div>
         <div class="actions">
           <div class="react-con" align="center" id="<?php echo $d["id"];?>">
-            <?php if ($d['total_reactions'] > 0 || isset($_SESSION['user']['id'])): ?>
-              <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
+            <?php if (isset($_SESSION['user']['id']) && !empty($d['user_reactions'])): ?>
                 <img src="resources/img/<?= $d['user_reactions'];?>.png" class="reaction-selected">
-              <?php else: ?>
-                <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
-              <?php endif; ?>
             <?php else: ?>
               <p><i class='bx bxs-like' onclick='app.checkSession()'></i></p>
             <?php endif; ?>

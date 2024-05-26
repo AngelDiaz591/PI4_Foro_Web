@@ -14,7 +14,6 @@ class UsersController extends User {
       $this->params = $params['method'];
       $this->files = $params["files"] ?? [];
     } catch (Exception $e) {
-      echo $e->getMessage();
       return $this->error('500');
     }
   }
