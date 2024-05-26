@@ -70,8 +70,24 @@ class Admin extends Base {
             throw new Exception("Failed to ban the user: " . $e->getMessage());
         }
     }
-
     
+    public function top_themes_with_posts() {
+        try {
+            $stmt = $this->conn->prepare("
+                SELECT u.theme, COUNT(p.id) as post_count
+                FROM unesco u
+                LEFT JOIN posts p ON u.id = p.theme AND (p.eliminated = 0 OR p.eliminated IS NULL)
+                GROUP BY u.theme
+                ORDER BY post_count DESC
+                LIMIT 5
+            ");
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);  // Usar PDO::FETCH_OBJ para obtener objetos
+            return $result;
+        } catch (PDOException $e) {
+            throw new Exception("Failed to get top themes: " . $e->getMessage());
+        }
+    }
     
 }
 ?>

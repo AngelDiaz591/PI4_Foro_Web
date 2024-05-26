@@ -24,6 +24,16 @@ class AdminsController extends Admin {
     if (!isset($_SESSION['user'])) {
       header('Location: /');
     }
+    // Llamar al método top_themes_with_posts para obtener los datos
+    $topThemes = $this->top_themes_with_posts();
+
+    foreach ($topThemes as $elemento) {
+      echo "Theme: " . $elemento->theme . ", Post Count: " . $elemento->post_count . "<br>";
+  }
+    // Almacenar los datos en la variable privada params
+    $this->params['topThemes'] = $topThemes;
+
+    // Pasar los datos a la vista
     return $this->render('console', $this->params);
   }
 
