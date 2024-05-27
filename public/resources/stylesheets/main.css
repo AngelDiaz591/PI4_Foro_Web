@@ -830,6 +830,14 @@ canvas {
   margin: 0 0 10px 0;
 }
 
+.table-sector {
+  /* background-color: #fff;
+  padding: 30px; */
+}
+.table-sector h1 {
+  text-align: left;
+}
+
 .content-table {
   border-collapse: collapse;
   margin: 25px 0;
