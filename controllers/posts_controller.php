@@ -61,7 +61,7 @@ class PostsController extends Post {
             $response = $this->save($this->params);
 
             if ($response["status"]) {
-                header('Location: /posts/edit_table');
+                header('Location: /posts/my_posts');
             } else {
                 throw new Exception("Failed to create the post: " . $response["message"]);
             }
@@ -94,7 +94,7 @@ class PostsController extends Post {
             
 
             if ($response["status"]) {
-                header('Location: /posts/edit_table');
+                header('Location: /posts/my_posts');
             } else {
                 throw new Exception("Failed to update the post with id " . $this->params['id'] . ": " . $response["message"]);
             }
@@ -164,7 +164,7 @@ class PostsController extends Post {
             $response = $this->destroy($this->params['id']);
             
             if ($response["status"]) {
-                header('Location: /posts/edit_table');
+                header('Location: /posts/my_posts');
                 
             } else {
                 throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);

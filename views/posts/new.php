@@ -42,6 +42,6 @@
   </form>
 </div>
 <div class="back">
-  <a href="/"><i class='bx bx-arrow-back' ></i></a>
+  <a onclick="window.history.back();"><i class='bx bx-arrow-back' ></i></a>
 </div>
 <script src="/resources/js/post.js"></script>

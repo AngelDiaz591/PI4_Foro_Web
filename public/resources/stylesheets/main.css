@@ -1175,6 +1175,7 @@ a {
   border-radius: 50%;
   display: block;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+  background-color: #fff;
 }
 
 .header__wrapper .cols__container .left__col .username {
@@ -1257,6 +1258,10 @@ a {
 .header__wrapper .cols__container .right__col .menu-user .lists li a {
   text-transform: uppercase;
   color: #818181;
+}
+
+.header__wrapper .cols__container .right__col .menu-user .lists li a:hover {
+  cursor: pointer;
 }
 
 .header__wrapper .cols__container .right__col .menu-user .lists .active {

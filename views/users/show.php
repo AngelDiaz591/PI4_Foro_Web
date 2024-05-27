@@ -1,13 +1,13 @@
 <div class="header__wrapper">
   <?php $banner = empty($data->banner) ? '/resources/img/bg.jpeg' : "/assets/imgs/$data->banner"; ?>
-  <header style="background-image: url('<?= $banner ?>')"></header>
+  <header style="background-image: url('<?= $banner ?>')"><div id="search-results" class="hoverbox-result"></div></header>
   <div class="cols__container">
     <div class="left__col">
       <div class="img__container">
         <?php if ($data->avatar): ?>
           <img src="/assets/imgs/<?= $data->avatar ?>" alt="<?= $data->username ?>" />
         <?php else: ?>
-          <img src="/resources/img/user.jpeg" alt="Anna Smith" />
+          <img src="/resources/img/user.png" alt="Anna Smith"/>
         <?php endif; ?>
       </div>
       <p class="username"><?= $data->username ?></p>
@@ -61,6 +61,12 @@
         <?php endif; ?>
         <?php if (isset($_SESSION['user']) && $data->id === $_SESSION['user']['id']): ?>
           <form>
+            <button>
+              <a href="/posts/my_posts">
+                Review
+                <i class='bx bx-pencil'></i>
+              </a>
+            </button> 
             <button>
               <a href="/posts/new">
                 New Post
