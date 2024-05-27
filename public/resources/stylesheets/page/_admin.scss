@@ -32,10 +32,30 @@
 }
 
 .body_wrapper {
-  margin: 0 10%;
+  margin: 5% 10%;
   width: 70vw;
   height: auto;
   overflow: hidden;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    
+    h1 {
+      font-size: 2.5rem;
+      color: $font_b;
+    }
+  }
+}
+
+@include tablet {
+  .body_wrapper {
+    margin: 78px 2%;
+    width: 100vw;
+    overflow: auto;
+  }
 }
 
 .content-table {
@@ -46,6 +66,12 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: $shadowTable;
+
+  &-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
 }
 
 .content-table thead tr {
