@@ -39,11 +39,17 @@ const app = {
 
   checkSession: function() {
     if (!app.user || !app.user.id) {
-      while (true) {
-        if (confirm("You need to log in to perform this action.")) {
-          break; 
-        }
-      }
+      Swal.fire({
+        icon: 'info',
+        title: 'You need to log in to perform this action.',
+        footer: `
+          <a href="/sessions/create" class="actions">
+            <p style="margin: auto;">Click here to log in</p>
+          </a>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+      });
     }
   },
   
@@ -58,7 +64,6 @@ const app = {
           body: params,
         }).then(response => response.json())
         .then(data => {
-          console.log(data);
           Swal.hideLoading();
           let html = `
             <h1>REVIEW POST</h1>
@@ -509,11 +514,9 @@ sendRejection: function(id) {
 
   markNotificationsAsRead: function(data) {
     let ids = data.map(item => item.notification_id);
-    console.log(ids);
     
     let params = new URLSearchParams();
     ids.forEach(id => params.append('ids[]', id));
-    console.log(params);
 
     fetch('/users/mark_notifications_as_read', {
       method: 'POST',

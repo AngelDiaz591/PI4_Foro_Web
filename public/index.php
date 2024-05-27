@@ -77,7 +77,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
         <?= $router->dispatch() ?>
       </main>
       
-      <?php if ($controller == 'posts'): ?>
+      <?php if ($controller == 'posts' && $action == 'index'): ?>
         <?= render_layout('sidebar_chats'); ?>
       <?php endif; ?>
     </div>

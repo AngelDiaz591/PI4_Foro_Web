@@ -9,7 +9,7 @@
     </li>
     <li class="list">
       <div class="selector"></div>
-      <a class="category">
+      <a class="category" href="/posts/populars">
         <i class='bx bx-line-chart'></i>
         <p>Popular</p>
       </a>
@@ -26,7 +26,7 @@
     <?php if (isset($_SESSION['user'])): ?>
       <li class="list">
         <div class="selector"></div>
-        <a class="category" href="/posts/edit_table">
+        <a class="category" href="/posts/my_posts">
           <i class='bx bx-pencil'></i>
           <p>Edit post</p>
         </a>
