@@ -847,6 +847,11 @@ canvas {
   overflow: hidden;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
+.content-table-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
 
 .content-table thead tr {
   background-color: #00ab88;
@@ -1032,6 +1037,9 @@ canvas {
   height: 100%;
   overflow: auto;
   background-color: rgba(68, 68, 68, 0.671);
+}
+.modals-actions {
+  z-index: 0;
 }
 
 .modal-contents {
@@ -1349,7 +1357,7 @@ a {
   font-weight: 600;
 }
 
-.header__wrapper .cols__container .right__col .menu-user button {
+.menu-user button {
   background: #0091ff;
   color: #fff;
   border: none;
@@ -1423,6 +1431,11 @@ a {
 }
 
 /* Responsiveness */
+@media only screen and (max-width: 800px) {
+  .header__wrapper {
+    margin-top: 75px;
+  }
+}
 @media (min-width: 868px) {
   .header__wrapper .cols__container {
     max-width: 100%;
@@ -2830,12 +2843,88 @@ form .images > p.extra-files {
 .user-input {
   position: relative;
 }
-.user-input .icon {
+.user-input > .icon {
   position: absolute;
   top: 50%;
   right: 15px;
   transform: translateY(-50%);
   color: white;
+}
+.user-input-group {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+.user-input-group .icon {
+  color: #161414;
+  font-size: 2em;
+  padding: 5px 0;
+}
+
+.boxicon {
+  font-size: 24px;
+  text-align: center;
+}
+.boxicon:hover {
+  cursor: pointer;
+}
+.boxicon:hover i {
+  background-color: rgba(245, 236, 183, 0.96);
+  border-radius: 10px;
+}
+.boxicon i {
+  padding: 8px;
+}
+.boxicon i:first-child {
+  margin-top: 4px;
+}
+.boxicon i:last-child {
+  margin-bottom: 4px;
+}
+.boxicon-drawer {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(45px, auto));
+  max-height: 10em;
+  max-width: 100%;
+  overflow: auto;
+  position: absolute;
+  transition: display 0.2s;
+  width: 25em;
+  z-index: 100;
+}
+.boxicon-drawer.hidden {
+  display: none;
+}
+.boxicon-drawer-button {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+.boxicon-drawer-button p {
+  margin-left: auto;
+}
+.boxicon-drawer-button i {
+  font-size: 1.5em;
+}
+.boxicon-drawer-button i:not(.selector) {
+  margin-right: auto;
+  padding: 0 8px;
+}
+.boxicon-drawer-container.user-input {
+  position: initial;
+}
+.boxicon-drawer::webkit-scrollbar {
+  width: 5px;
+}
+.boxicon-drawer::webkit-scrollbar-thumb {
+  background-color: #161414;
+  border-radius: 10px;
+}
+.boxicon-drawer::webkit-scrollbar-track {
+  background-color: white;
 }
 
 .input:not(:-moz-placeholder-shown) + .form_label {

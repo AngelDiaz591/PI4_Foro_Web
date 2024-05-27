@@ -21,7 +21,7 @@
                     <td><?= date('d/m/Y', strtotime($d["created_at"])) ?></td>
                     <td><?= $d["username"] ?></td>
                     <td><?= $d["title"] ?></td>
-                    <td>
+                    <td class="content-table-actions">
                         <button class="buttonGreen" type="button">
                             <span class="text"><i class="bi bi-archive-fill"></i></span>
                         </button>

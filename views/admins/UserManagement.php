@@ -1,7 +1,5 @@
 <div class="body_wrapper">
-    <br>
     <h1>USERS MANAGEMENT</h1>
-    <br>
     <h2>Admins</h2>
     <table class="content-table">
         <thead>
@@ -23,7 +21,7 @@
                             <?= $row->ban == 0 ? 'unban' : 'ban'; ?>
                         </td>
                         <td>admin</td>
-                        <td>
+                        <td class="content-table-actions">
                             <form method="POST" action="/admins/user_delete" onsubmit="return confirmDelete();">
                                 <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
                                 <button class="buttonGreen" type="submit">
@@ -70,7 +68,7 @@
                             <?= $row->ban == 0 ? 'unban' : 'ban'; ?>
                         </td>
                         <td>user</td>
-                        <td>
+                        <td class="content-table-actions">
                             <form method="POST" action="/admins/user_delete" onsubmit="return confirmDelete();">
                                 <input type="hidden" value="<?= $row->id; ?>" name="id" id="id-<?= $row->id; ?>">
                                 <button class="buttonGreen" type="submit">

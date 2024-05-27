@@ -134,6 +134,12 @@ canvas {
   border-radius: 5px 5px 0 0;
   overflow: hidden;
   box-shadow: $shadowTable;
+
+  &-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+  }
 }
 
 .content-table thead tr {
