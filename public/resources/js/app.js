@@ -167,6 +167,7 @@ const app = {
               showConfirmButton: false,
               timer: 1500
             }).then(() => {
+              location.reload();
             });
           } else {
             Swal.fire({
@@ -269,6 +270,8 @@ sendRejection: function(id) {
               icon: 'success',
               title: 'Publication Rejected',
               text: 'The publication has been rejected successfully.',
+            }).then(() => {
+              window.location.reload();
           });
       } else {
           Swal.fire({

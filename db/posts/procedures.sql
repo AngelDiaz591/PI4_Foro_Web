@@ -21,11 +21,12 @@ DELIMITER $$
 CREATE PROCEDURE update_post(
   p_id INT,
   p_title TEXT,
-  p_description TEXT
+  p_description TEXT,
+  p_theme_id INT
 )
 BEGIN
   UPDATE posts
-  SET title = p_title, description = p_description, permission = 1
+  SET title = p_title, description = p_description, permission = "1", theme = p_theme_id
   WHERE posts.id = p_id;
 END $$
 DELIMITER ;
@@ -34,15 +35,21 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS delete_post;
 DELIMITER $$
+
 CREATE PROCEDURE delete_post(
   p_id INT
 )
 BEGIN
+  
+  SET FOREIGN_KEY_CHECKS = 0;
+  
   DELETE FROM comments
   WHERE post_id = p_id;
   
   DELETE FROM posts
   WHERE id = p_id;
+  
+  SET FOREIGN_KEY_CHECKS = 1;
 END $$
 DELIMITER ;
 

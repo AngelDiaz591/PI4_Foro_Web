@@ -57,7 +57,7 @@ class Post extends Base {
             ->left_join('comments e', 'a.id = e.post_id')
             ->group_by('a.id, b.username, b.email, c.theme')
             ->where([
-                ['a.permission', '=', 2]
+                ['a.permission', '=', "3"]
             ])
             ->order_by([
                 ['a.created_at', 'DESC']
@@ -219,7 +219,6 @@ class Post extends Base {
      */
     public function update_post($data) {
         try {
-
             $uploadedImages = [];
             foreach($data['images'] as $image) {
                 $response = $this->upload_image($image);
@@ -228,10 +227,11 @@ class Post extends Base {
 
             $this->conn->beginTransaction();
 
-            $stmt = $this->conn->prepare("CALL update_post(:id, :title, :description)");
+            $stmt = $this->conn->prepare("CALL update_post(:id, :title, :description, :theme_id)");
             $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
             $stmt->bindParam(":title", $data["title"], PDO::PARAM_STR);
             $stmt->bindParam(":description", $data["description"], PDO::PARAM_STR);
+            $stmt->bindparam(":theme_id", $data["unesco_theme_id"], PDO::PARAM_INT);
             $stmt->execute();
 
             foreach($uploadedImages as $image) {
@@ -279,7 +279,6 @@ class Post extends Base {
             $stmt = $this->conn->prepare("CALL delete_post(:id)");
             $stmt->bindParam(":id", $id, PDO::PARAM_INT);
             $stmt->execute();
-
 
             foreach($images as $image) {
                 $this->rid_image($image["image"]);
@@ -430,7 +429,7 @@ class Post extends Base {
         }
     }
     
-    public function all_posts() {
+    public function all_posts_users() {
         try {
 
             $userId = $_SESSION['user']['id'];
@@ -441,6 +440,7 @@ class Post extends Base {
                 'a.user_id',
                 'a.title',
                 'a.description',
+                'a.reason',
                 'a.permission',
                 'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
                 'b.username',
@@ -489,6 +489,62 @@ class Post extends Base {
         }
     }
     
+    public function all_posts() {
+        try {
+
+            $userId = $_SESSION['user']['id'];
+            $this->t = 'posts';
+
+            $result = $this->select([
+                'a.id',
+                'a.user_id',
+                'a.title',
+                'a.description',
+                'a.reason',
+                'a.permission',
+                'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
+                'b.username',
+                'b.email',
+                'c.icon as theme_icon',
+                'c.theme',
+                'COUNT(DISTINCT d.id) as total_reactions',
+                'COUNT(DISTINCT e.id) as total_comments'
+            ])->join('users b', 'a.user_id = b.id')
+            ->join('unesco c', 'a.theme = c.id')
+            ->left_join('post_reactions d', 'a.id = d.post_id')
+            ->left_join('comments e', 'a.id = e.post_id')
+            ->group_by('a.id, b.username, b.email, c.theme')
+            ->order_by([
+                ['a.created_at', 'DESC']
+            ])->get();
+
+            foreach($result as &$post) {
+                $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
+                $stmt->bindParam(":id", $post["id"], PDO::PARAM_INT);
+                $stmt->execute();
+                $post["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            $stmt = $this->conn->prepare("CALL GetUserReactions(:userId)");
+            $userId = $_SESSION['user']['id'];
+            $stmt->bindParam(":userId", $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            $userReactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($userReactions as $userReaction) {
+                foreach ($result as &$post) {
+                    if ($post['id'] == $userReaction['post_id']) {
+                        $post['user_reactions'] = $userReaction['reactType'];
+                        break;
+                    }
+                }
+            }
+
+            return $this->response(status: true, data: $result, message: "Posts retrieved successfully.");
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get all posts: " . $e->getMessage());
+        }
+    }
     
     
     

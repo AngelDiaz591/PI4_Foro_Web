@@ -61,7 +61,7 @@ class PostsController extends Post {
             $response = $this->save($this->params);
 
             if ($response["status"]) {
-                header('Location: /');
+                header('Location: /posts/edit_table');
             } else {
                 throw new Exception("Failed to create the post: " . $response["message"]);
             }
@@ -91,9 +91,10 @@ class PostsController extends Post {
 
             $this->params = array_merge($this->params, [ "images" => $images["data"] ]);
             $response = $this->update_post($this->params);
+            
 
             if ($response["status"]) {
-                header('Location: /posts/show/id:' . $this->params['id']);
+                header('Location: /posts/edit_table');
             } else {
                 throw new Exception("Failed to update the post with id " . $this->params['id'] . ": " . $response["message"]);
             }
@@ -159,10 +160,12 @@ class PostsController extends Post {
      */
     public function drop() {
         try {
+            
             $response = $this->destroy($this->params['id']);
-
+            
             if ($response["status"]) {
-                header('Location: /');
+                header('Location: /posts/edit_table');
+                
             } else {
                 throw new Exception("Failed to delete the post with id " . $this->params['id'] . ": " . $response["message"]);
             }
@@ -277,7 +280,7 @@ class PostsController extends Post {
     public function edit_table() {
         try {
           $post = new Post;
-          $response = $post->all_posts();
+          $response = $post->all_posts_users();
 
           if ($response["status"]) {
               return $this->render('edit_table', ['data' => $response["data"]]);

@@ -85,8 +85,10 @@ CREATE TABLE posts (
 );
 
 ALTER TABLE posts
-MODIFY COLUMN permission INT DEFAULT 1 CHECK (permission IN (1, 2));
+  ADD COLUMN reason TEXT AFTER description;
 
+ALTER TABLE posts
+MODIFY COLUMN permission ENUM('1', '2', '3') DEFAULT '1';
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,

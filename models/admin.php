@@ -99,7 +99,7 @@ class Admin extends Base {
             ];
             $values = [
                 'reason' => $reason,
-                'permission' => 1
+                'permission' => "2"
             ];
             $result = $this->where($whereConditions)->update($values);
             return $result;
@@ -116,7 +116,7 @@ class Admin extends Base {
                 ['id', '=', $id]
             ];
             $values = [
-                'permission' => 2
+                'permission' => "3"
             ];
             $result = $this->where($whereConditions)->update($values);
             return $result;
