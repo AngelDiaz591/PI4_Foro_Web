@@ -22,19 +22,23 @@ class Router extends Base {
     }
 
   public function dispatch() {
-    $controller = $this->controller;
-    $action = $this->action;
-    $data = [
-      'method' => $this->post_request() ? $this->post_request() : $this->params,
-      'files' => $_FILES
-    ];
+    try {
+      $controller = $this->controller;
+      $action = $this->action;
+      $data = [
+        'method' => $this->post_request() ? $this->post_request() : $this->params,
+        'files' => $_FILES
+      ];
 
-    ob_start();
-    get_controller("$controller");
-    $controller_name = ucfirst($controller) . 'Controller';
-    $controller = new $controller_name($data);
-    
-    return $controller->$action();
+      ob_start();
+      get_controller("$controller");
+      $controller_name = ucfirst($controller) . 'Controller';
+      $controller = new $controller_name($data);
+      
+      return $controller->$action();
+    } catch (Exception | Error $e) {
+      return $this->error('404');
+    }
   }
 
   private function filter_request() {

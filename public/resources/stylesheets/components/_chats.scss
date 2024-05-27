@@ -1,3 +1,13 @@
+.chats {
+  h4 {
+    padding-top: 10px;
+  }
+
+  h3 {
+    font-size: 1.2em;
+  }
+}
+
 .chat {
   display: flex;
   margin: 10px;
@@ -17,9 +27,26 @@
   }
 
   .info {
-    padding: px(2.4) px(1) 0 px(1) ;
-    >p {
-      margin: px(1.4) 0 0 0;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+
+    &-title {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    &-reactions {
+      color: $gray_1;
+      font-size: 0.8em;
+    }
+
+    &-date {
+      color: $gray_1;
+      font-size: 0.8em;
+      margin-top: auto;
     }
   }
 
@@ -33,6 +60,25 @@
 
     >p {
       margin: 0;
+    }
+  }
+
+  .loader {
+    display: flex;
+    margin: auto;
+
+    .spinner {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  .no-found {
+    display: flex;
+    margin: auto;
+
+    p {
+      margin: auto;
     }
   }
 }

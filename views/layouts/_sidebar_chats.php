@@ -1,41 +1,14 @@
 <div class="postbox">
   <div class="chats">
     <div class="box">
-      <h2>POPULAR CHAT</h2>
+      <h3>POPULAR POSTS</h3>
       <div class="line"></div>
-      <div class="chat">
-        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
-        <div class="info">
-          <p class="name">Gaelblack</p>
-          <p class="followers">255 followers</p>
-        </div>
-        <button action="submit" class="action">
-          <p>JOIN</p>
-        </button>
+      <div id="popular-posts">
       </div>
-      <div class="chat">
-        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
-        <div class="info">
-          <p class="name">Gaelblack</p>
-          <p class="followers">255 followers</p>
-        </div>
-        <button action="submit" class="action">
-          <p>JOIN</p>
-        </button>
-      </div>
-      <div class="chat">
-        <img src="/resources/img/logo.png" alt="perfil" class="perfil">
-        <div class="info">
-          <p class="name">Gaelblack</p>
-          <p class="followers">255 followers</p>
-        </div>
-        <button action="submit" class="action">
-          <p>JOIN</p>
-        </button>
-      </div>
-      <br>
-      <h4 class="action">VIEW MORE</h4>
+      <a href="posts/populars" class="view-more">
+        <h4 class="action">VIEW MORE</h4>
+      </a>
     </div>
   </div>
-  
 </div>
+<script src="/resources/js/popular.js"></script>

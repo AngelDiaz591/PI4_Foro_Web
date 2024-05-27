@@ -39,11 +39,17 @@ const app = {
 
   checkSession: function() {
     if (!app.user || !app.user.id) {
-      while (true) {
-        if (confirm("You need to log in to perform this action.")) {
-          break; 
-        }
-      }
+      Swal.fire({
+        icon: 'info',
+        title: 'You need to log in to perform this action.',
+        footer: `
+          <a href="/sessions/create" class="actions">
+            <p style="margin: auto;">Click here to log in</p>
+          </a>
+        `,
+        showConfirmButton: false,
+        showCloseButton: true,
+      });
     }
   },
   
@@ -58,7 +64,6 @@ const app = {
           body: params,
         }).then(response => response.json())
         .then(data => {
-          console.log(data);
           Swal.hideLoading();
           let html = `
             <h1>REVIEW POST</h1>
@@ -100,8 +105,8 @@ const app = {
             </div>
             <div class="line"></div>
             <div class="">
-              <button class="buttonGreen">
-                  <span class="text"><i class="bi bi-archive-fill"></i>Acept</span>
+              <button id="acceptButton" class="buttonGreen" onclick="app.acceptPost(${data.id})">
+                <span class="text"><i class="bi bi-archive-fill"></i>Aceptar</span>
               </button>
               <button class="buttonRed" onclick="app.cancelPost(${data.id})">
                   <span class="text"><i class="bi bi-star-fill"></i>Decline</span>
@@ -148,21 +153,61 @@ const app = {
     });
   },
   
-  cancelPost: function(id) {
+  acceptPost: function(id) {
     let params = new URLSearchParams();
     params.append('id', id);
     Swal.fire({
       didOpen: () => {
         Swal.showLoading();
-        fetch('/posts/show_json/', {
+        fetch('/admins/accepted/', {
           method: 'POST',
           body: params,
         }).then(response => response.json())
         .then(data => {
-          console.log(data);
           Swal.hideLoading();
-          Swal.update({
-            html: `
+          if (data.status === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Post successfully accepted',
+              showConfirmButton: false,
+              timer: 1500
+            }).then(() => {
+            });
+          } else {
+            Swal.fire({
+              icon: 'error',
+              title: 'Error accepting the post',
+              text: data.message
+            });
+          }
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: `Error: ${error}`
+          });
+        });
+      }
+    });
+  },
+  
+ cancelPost: function(id) {
+  let params = new URLSearchParams();
+  params.append('id', id);
+  Swal.fire({
+    didOpen: () => {
+      Swal.showLoading();
+      fetch('/posts/show_json/', {
+        method: 'POST',
+        body: params,
+      }).then(response => response.json())
+      .then(data => {
+        console.log(data);
+        Swal.hideLoading();
+        Swal.update({
+          html: `
+            <form id="rejectionForm">
               <div class="userMenu-header">
                 <div>
                   <h4>Decline publication</h4>
@@ -171,37 +216,81 @@ const app = {
               <div class="line"></div>
               <div>
                 <p>Why is the publication being rejected?</p>
-                <textarea rows="1"></textarea>
+                <textarea id="rejectionReason" rows="4"></textarea>
               </div>
               <div class="line"></div>
               <div>
-                <button class="buttonRed" onclick="app.reviewPosts(${id})">
+                <button type="button" class="buttonRed" onclick="app.reviewPosts(${id})">
                   <span class="text"><i class="bi bi-star-fill"></i>Cancel</span>
                 </button>
-                <button class="buttonGreen">
+                <button type="submit" class="buttonGreen">
                   <span class="text"><i class="bi bi-star-fill"></i>Send</span>
                 </button>
               </div>
-            `,
-            showConfirmButton: false,
-            customClass: {
-              container: 'adminMenu',
-              popup: 'adminMenu-modal',
-            },
-          });
-        }).catch(error => {
-          Swal.hideLoading();
-          Swal.update({
-            icon: 'error',
-            title: 'An error occurred',
-            text: `Error : ${error}`,
-          });
+            </form>
+          `,
+          showConfirmButton: false,
+          customClass: {
+            container: 'adminMenu',
+            popup: 'adminMenu-modal',
+          },
         });
+
+        document.getElementById('rejectionForm').addEventListener('submit', function(event) {
+          event.preventDefault();
+          app.sendRejection(id);
+        });
+      }).catch(error => {
+        Swal.hideLoading();
+        Swal.update({
+          icon: 'error',
+          title: 'An error occurred',
+          text: `Error : ${error}`,
+        });
+      });
+    }
+  });
+},
+
+sendRejection: function(id) {
+  const reason = document.getElementById('rejectionReason').value;
+  let params = new URLSearchParams();
+  params.append('id', id);
+  params.append('reason', reason);
+
+  Swal.showLoading();
+  fetch('/admins/rejected', {
+      method: 'POST',
+      body: params,
+  }).then(response => {
+      if (!response.ok) {
+          throw new Error('Network response was not successful');
       }
-    });
-  },
-
-
+      return response.json();
+  }).then(data => {
+      Swal.hideLoading();
+      if (data.status === 'success') {
+          Swal.fire({
+              icon: 'success',
+              title: 'Publication Rejected',
+              text: 'The publication has been rejected successfully.',
+          });
+      } else {
+          Swal.fire({
+              icon: 'error',
+              title: 'An error occurred',
+              text: `Error: ${data.message}`,
+          });
+      }
+  }).catch(error => {
+      Swal.hideLoading();
+      Swal.fire({
+          icon: 'error',
+          title: 'An error occurred',
+          text: `Error: ${error.message}`,
+      });
+  });
+},
   userMenuOpen: function() {
     Swal.fire({
       html: `
@@ -422,11 +511,9 @@ const app = {
 
   markNotificationsAsRead: function(data) {
     let ids = data.map(item => item.notification_id);
-    console.log(ids);
     
     let params = new URLSearchParams();
     ids.forEach(id => params.append('ids[]', id));
-    console.log(params);
 
     fetch('/users/mark_notifications_as_read', {
       method: 'POST',
