@@ -15,7 +15,7 @@
     if (!$is_admin_view): ?>
     <div class="seeker">
       <button id="search-button"><i class='bx bx-search-alt'></i></button>
-      <input class="cont" placeholder="Search" type="search" id="search-input">
+      <input class="cont" placeholder="Search" type="search" id="search-input" oninput="debounce(searchOnInput(), 300)">
     </div>
   <?php endif; ?>
 
