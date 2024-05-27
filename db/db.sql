@@ -68,6 +68,11 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`) ON DELETE CASCADE
 );
 
+ALTER TABLE posts
+  ADD COLUMN reason TEXT AFTER description;
+
+ALTER TABLE posts
+MODIFY COLUMN permission ENUM('1', '2', '3') DEFAULT '1';
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
