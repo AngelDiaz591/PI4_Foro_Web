@@ -37,7 +37,12 @@
       <?php endif; ?>
 
       <button class="btn-userMenu" onclick="app.userMenuOpen()">
-        <img src="/resources/img/user.png" alt="user">
+      <?php if ($_SESSION["user"]["avatar"]): ?>
+              <img src="/assets/imgs/<?= $_SESSION["user"]["avatar"];?>" alt="<?= $_SESSION["username"]; ?>" />
+            <?php else: ?>
+              <img src="/resources/img/user.png" alt="Anna Smith" />
+            <?php endif; ?>
+            </div>
       </button>
     <?php else: ?>
       <div class="login">

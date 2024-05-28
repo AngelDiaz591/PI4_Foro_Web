@@ -204,6 +204,12 @@ const user = {
 
   postsConstructor: function (posts) {
     let html = '';
+    let avatarHtml;
+      if (app.user.avatar) {
+        avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" class="user-card-img alt="${app.user.username}">`;
+      } else {
+        avatarHtml = `<img src="/resources/img/user.png" class="user-card-img alt="User">`;
+      }
 
     if (posts.length > 0) { 
       html += '<div>'
@@ -213,7 +219,7 @@ const user = {
           <div class="box" id="results-list">
             <div class="user_card">
               <p class="user_card-info">
-                <img src="/resources/img/user.png" alt="user" class="user-card-img">
+              ${avatarHtml}
                 <div>
                   <p class="profile-card">${post.username.substring(0, 10)}</p>
                   <p class="date">${post.created_at}</p>
