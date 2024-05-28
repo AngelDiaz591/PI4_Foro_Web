@@ -21,7 +21,7 @@
                         <td><?= $row->title; ?></td>
                         <td class="content-table-actions">
                             <button class="buttonGreen" onclick="app.reviewPosts(<?= $row->id ?>)">
-                                <span class="text"><i class="bi bi-archive-fill"></i></span>
+                                <span class="text"><i class="bi bi-eye-fill"></i></span>
                             </button>
                         </td>
                     </tr>

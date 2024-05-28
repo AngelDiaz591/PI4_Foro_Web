@@ -23,7 +23,7 @@ const topics = {
         <div class="principal-form">
           <div class="right-form">
             <div class="user-input">
-              <label for="theme">Theme</label>
+              <label for="theme">Topic</label>
               <input type="text" class="profile_input" id="theme" name="theme" value="${data.theme || ''}">
             </div>
             <div class="user-input" id="drawer-container">
@@ -150,7 +150,7 @@ const topics = {
     this.editConstructor({})
       .then(form => {
         Swal.fire({
-          title: 'New Theme',
+          title: 'New Topics',
           html: form,
           showCancelButton: true,
           confirmButtonText: 'Save',

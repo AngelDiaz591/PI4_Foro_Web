@@ -25,10 +25,21 @@ header {
     align-items: center;
     cursor: pointer;
     display: flex;
-    padding: 0 1.5rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #9bd979;
+    border-radius: 40px;
+    justify-content: center;
+    margin: 0 5px 0 0;
 
     i {
-      font-size: 2.5rem;
+      font-size: 30px;
+      padding: 2px 6px 0 0;
+    }
+
+    &:hover {
+      background-color: #59923a;
+      color: $font_w;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
     }
   }
 }
