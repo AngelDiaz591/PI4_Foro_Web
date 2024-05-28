@@ -1,33 +1,53 @@
 -- TRIGGERS FOR NOTIFICATIONS
 
-DROP TRIGGER IF EXISTS post_notification;
+DROP TRIGGER IF EXISTS post_notification_created;
 DELIMITER $$
-CREATE TRIGGER post_notification
+CREATE TRIGGER post_notification_created
 AFTER INSERT ON posts
 FOR EACH ROW
 BEGIN
-  DECLARE done BOOLEAN DEFAULT FALSE; 
-  DECLARE post_creator_follower INT;
+  INSERT INTO notifications (user_id, type)
+  VALUES (NEW.user_id, 'post_created');
+END $$
+DELIMITER ;
 
+DROP TRIGGER IF EXISTS post_notification_modded;
+DELIMITER $$
+CREATE TRIGGER post_notification_modded
+AFTER UPDATE ON posts
+FOR EACH ROW
+BEGIN
+  DECLARE done BOOLEAN DEFAULT FALSE;
+  DECLARE post_creator_follower INT;
   DECLARE followers_cursor CURSOR FOR
     SELECT follower_id FROM followers WHERE user_id = NEW.user_id;
-
   DECLARE CONTINUE HANDLER FOR NOT FOUND SET done = TRUE;
 
-  OPEN followers_cursor;
+  CASE
+    WHEN NEW.permission = '3' THEN
+      OPEN followers_cursor;
 
-  followers_cursor_loop: LOOP
-    FETCH followers_cursor INTO post_creator_follower;
-    
-    IF done THEN
-      LEAVE followers_cursor_loop;
-    END IF;
-    
-      INSERT INTO notifications (user_id, type, type_id, causer_id)
-      VALUES (post_creator_follower, 'post', NEW.id, NEW.user_id);
-  END LOOP followers_cursor_loop;
+      followers_cursor_loop: LOOP
+        FETCH followers_cursor INTO post_creator_follower;
+        
+        IF done THEN
+          LEAVE followers_cursor_loop;
+        END IF;
+        
+          INSERT INTO notifications (user_id, type, type_id, causer_id)
+          VALUES (post_creator_follower, 'post', NEW.id, NEW.user_id);
+      END LOOP followers_cursor_loop;
 
-  CLOSE followers_cursor;
+      CLOSE followers_cursor;
+
+      INSERT INTO notifications (user_id, type, type_id)
+      VALUES (NEW.user_id, 'post_approved', NEW.id);
+
+    WHEN NEW.permission = '2' THEN
+      INSERT INTO notifications (user_id, type)
+      VALUES (NEW.user_id, 'post_rejected');
+      
+  END CASE;
 END $$
 DELIMITER ;
 

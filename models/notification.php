@@ -71,7 +71,7 @@ class Notification extends Base {
         'a.causer_id',
         'a.seen',
         'b.username as username'
-      ])->join('users as b', 'a.causer_id = b.id')
+      ])->left_join('users as b', 'a.causer_id = b.id')
       ->where([
         ['user_id', '=', $user_id],
         ['seen', '=', 0],
@@ -103,7 +103,7 @@ class Notification extends Base {
         'a.causer_id',
         'a.seen',
         'b.username as username'
-      ])->join('users as b', 'a.causer_id = b.id')
+      ])->left_join('users as b', 'a.causer_id = b.id')
       ->where([
         ['user_id', '=', $user_id],
       ])->get();

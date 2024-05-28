@@ -1332,7 +1332,7 @@ a {
   background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100px + 25vw);
+  min-height: calc(100px + 20vw);
   position: static;
 }
 
@@ -1454,7 +1454,8 @@ a {
   font-weight: 600;
 }
 
-.menu-user button {
+.menu-user button,
+.menu-user .action {
   background: #0091ff;
   color: #fff;
   border: none;
@@ -2909,6 +2910,12 @@ form .box {
 .text .field .attach-file:hover {
   color: #797979;
 }
+.text .field input[type=button] {
+  font-weight: bold;
+}
+.text .field input[type=file] {
+  display: none;
+}
 .text .field input, .text .field textarea, .text .field select {
   background: rgba(221, 221, 221, 0.2941176471);
   border-radius: 5px;
@@ -2925,50 +2932,20 @@ form .box {
   color: #0c0a0a;
 }
 
-form .images {
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding-bottom: 1rem;
+.image-edit {
+  position: relative;
 }
-form .images input[type=file] {
-  display: none;
-}
-form .images .image {
-  display: flex;
-  margin: 0 4px 4px 0;
+.image-edit .remove-image {
+  color: red;
   cursor: pointer;
-}
-form .images .image img {
-  border-radius: 10px;
-  height: 5rem;
-  -o-object-fit: cover;
-     object-fit: cover;
+  font-size: 4rem;
+  position: absolute;
+  right: 2rem;
+  top: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  border: #929292 solid 2px;
-  width: 5rem;
-}
-form .images .image .remove-image {
-  color: red;
-  display: none;
-  font-size: 22px;
-  position: absolute;
-  transform: translateX(68px);
-}
-form .images .image:hover img {
-  border: red solid 2px;
-}
-form .images .image:hover .remove-image {
-  display: block;
-}
-form .images > p.extra-files {
-  color: #929292;
-  font-size: 1rem;
-  font-weight: 600;
-  margin: auto auto auto 8px;
+  z-index: 1;
 }
 
 .btn-container {
