@@ -2,13 +2,17 @@
   <h1>Edit Post</h1>
   <form action="/posts/patch" method="post" enctype="multipart/form-data">
     <div class="box">
-      <div class="user">
-        <div class="user__avatar">
-          <i class="bi bi-person-circle"></i>
-          <h2><?= $_SESSION['user']['username']; ?></h2>
-        </div>
-        <div class="user__date">
-          <p class="date"><?= date('Y/m/d', strtotime($params["created_at"])) ?></p>
+      <div class="user_card" >
+      <div class="user_card-info">
+           <?php if ($_SESSION["user"]["avatar"]): ?>
+              <img src="/assets/imgs/<?= $params["avatar"];?>" class="user-card-img" alt="<?= $_SESSION["username"]; ?>" />
+            <?php else: ?>
+              <img src="/resources/img/user.png" class="user-card-img"  alt="Anna Smith" />
+            <?php endif; ?>
+          <div>
+            <p class= "profile-card"><?= $_SESSION['user']['username']; ?></p>
+            <p class="date"><?= date('Y/m/d') ?></p>
+          </div>
         </div>
       </div>
       <div class="line"></div>

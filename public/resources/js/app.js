@@ -294,42 +294,49 @@ sendRejection: function(id) {
       });
   });
 },
-  userMenuOpen: function() {
-    Swal.fire({
-      html: `
-        <div class="userMenu-header">
-          <img src="/resources/img/user.png" alt="User">
-          <div>
-            <h4>${app.user.username}</h4>
-            <p>${app.user.email}</p>
-          </div>
-        </div>
-        <div class="line"></div>
-        <ul class="userMenu-list">
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="/users/show/id:${app.user.id}">Profile</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Settings</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Languaje</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Help</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="/sessions/destroy">Logout</a>
-          </li>
-        </ul>
-      `,
-      showConfirmButton: false,
-      customClass: {
-        container: 'userMenu',
-        popup: 'userMenu-modal',
-      },
-    });
-  },
+
+userMenuOpen: function() {
+  let avatarHtml;
+  if (app.user.avatar) {
+    avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" alt="${app.user.username}">`;
+  } else {
+    avatarHtml = `<img src="/resources/img/user.png" alt="User">`;
+  }
+
+  Swal.fire({
+    html: `
+      <div class="userMenu-header">
+        ${avatarHtml}
+        <h4>${app.user.username}</h4>
+        <p>${app.user.email}</p>
+      </div>
+      <div class="line"></div>
+      <ul class="userMenu-list">
+        <li class="userMenu-list-item d-grid">
+          <a class="text-start" href="/users/show/id:${app.user.id}">Profile</a>
+        </li>
+        <li class="userMenu-list-item d-grid">
+          <a class="text-start" href="#">Settings</a>
+        </li>
+        <li class="userMenu-list-item d-grid">
+          <a class="text-start" href="#">Language</a>
+        </li>
+        <li class="userMenu-list-item d-grid">
+          <a class="text-start" href="#">Help</a>
+        </li>
+        <li class="userMenu-list-item d-grid">
+          <a class="text-start" href="/sessions/destroy">Logout</a>
+        </li>
+      </ul>
+    `,
+    showConfirmButton: false,
+    customClass: {
+      container: 'userMenu',
+      popup: 'userMenu-modal',
+    },
+  });
+}
+,
 
   userNotificationsOpen: function() {
     Swal.fire({

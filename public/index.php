@@ -40,6 +40,7 @@ $special_controllers_body = ['sessions', 'confirmations', 'registrations', 'pass
     app.user.username = "<?= isset($_SESSION['user']) ? $_SESSION['user']['username'] : '' ?>";
     app.user.email = "<?= isset($_SESSION['user']) ? $_SESSION['user']['email'] : '' ?>";
     app.user.created_at = "<?= isset($_SESSION['user']) ? $_SESSION['user']['created_at'] : '' ?>";
+    app.user.avatar = "<?= isset($_SESSION['user']) ? $_SESSION['user']['avatar'] : '' ?>";
   </script>
 </head>
 <?php if (in_array($controller, $special_controllers_body)): ?>

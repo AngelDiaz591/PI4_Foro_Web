@@ -5,7 +5,11 @@
       <div class="box" id="results-list">
         <div class="user_card">
           <a href="/users/show/id:<?= $d["user_id"]; ?>" class="user_card-info">
-            <img src="/resources/img/user.png" alt="user" class="user-card-img">
+           <?php if ($d["avatar"]): ?>
+              <img src="/assets/imgs/<?= $d["avatar"];?>" class="user-card-img" alt="<?= $d["username"]; ?>" />
+            <?php else: ?>
+              <img src="/resources/img/user.png" class="user-card-img"  alt="Anna Smith" />
+            <?php endif; ?>
             <div>
               <p class="profile-card"><?= substr($d["username"], 0, 10) ?></p>
               <p class="date"><?= $d["created_at"] ?></p>

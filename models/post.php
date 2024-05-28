@@ -49,13 +49,16 @@ class Post extends Base {
                 'b.email',
                 'c.icon as theme_icon',
                 'c.theme',
+                'img.image as avatar',
                 'COUNT(DISTINCT d.id) as total_reactions',
                 'COUNT(DISTINCT e.id) as total_comments'
             ])->join('users b', 'a.user_id = b.id')
             ->join('unesco c', 'a.theme = c.id')
             ->left_join('post_reactions d', 'a.id = d.post_id')
             ->left_join('comments e', 'a.id = e.post_id')
-            ->group_by('a.id, b.username, b.email, c.theme')
+            ->left_join('user_data ud', 'b.id = ud.user_id')
+            ->left_join('images img', 'ud.pfp = img.id')
+            ->group_by('a.id, b.username, b.email, c.theme', 'img.image')
             ->where([
                 ['a.permission', '=', "3"]
             ])
@@ -115,15 +118,19 @@ class Post extends Base {
                 'b.email',
                 'c.icon as theme_icon',
                 'c.theme',
+                'img.image as avatar',
                 'COUNT(DISTINCT d.id) as total_reactions',
                 'COUNT(DISTINCT e.id) as total_comments'
             ])->join('users b', 'a.user_id = b.id')
             ->join('unesco c', 'a.theme = c.id')
             ->left_join('post_reactions d', 'a.id = d.post_id')
             ->left_join('comments e', 'a.id = e.post_id')
+            ->left_join('user_data ud', 'b.id = ud.user_id')
+            ->left_join('images img', 'ud.pfp = img.id')
+            
             ->where([
                 ['a.id', '=', $id]
-            ])->group_by('a.id, b.username, b.email, c.theme')
+            ])->group_by('a.id, b.username, b.email, c.theme, img.image')
             ->first();
     
             $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");

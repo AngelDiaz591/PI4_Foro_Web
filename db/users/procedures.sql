@@ -85,13 +85,25 @@ DELIMITER ;
 
 DROP PROCEDURE IF EXISTS get_user_by_email;
 DELIMITER $$
+
 CREATE PROCEDURE get_user_by_email(
     IN p_email VARCHAR(255)
 )
 BEGIN
-    SELECT * FROM users WHERE email = p_email;
+    SELECT 
+        u.*,  
+        i.image AS avatar  
+    FROM 
+        users u
+    LEFT JOIN 
+        user_data ud ON u.id = ud.user_id
+    LEFT JOIN 
+        images i ON ud.pfp = i.id
+    WHERE 
+        u.email = p_email;
 END
 $$
+
 DELIMITER ;
 -- call as: CALL get_user_by_email('juanito@gmail.com');
 
