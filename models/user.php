@@ -560,5 +560,27 @@ class User extends Base {
 
     return true;
   }
+
+  public function update_last_activity($user_id, $last_activity) {
+    try {
+        $this->t = 'users'; // Tabla de usuarios
+        $this->pp = ['last_activity']; // Campos que se van a actualizar
+
+        $result = $this->where([
+            ['id', '=', $user_id]
+        ])->update([
+            'last_activity' => $last_activity
+        ]);
+
+        if (empty($result)) {
+            throw new Exception("Got an empty response");
+        }
+
+        return $this->response(status: true, data: $result, message: "Last activity updated successfully.");
+    } catch (PDOException | Exception $e) {
+        throw new Exception($e->getMessage());
+    }
+}
+
 }
 ?>

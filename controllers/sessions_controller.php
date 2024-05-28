@@ -28,6 +28,12 @@ class SessionsController extends User  {
       if ($response["status"]) {
         
         $_SESSION["user"] = $response["data"];
+        // Actualizar last_activity después de autenticar al usuario
+        $_SESSION["user"]["last_activity"] = date("Y-m-d H:i:s");
+
+        $this->update_last_activity($_SESSION["user"]["id"], $_SESSION["user"]["last_activity"]);
+  
+        
         if ($response["data"]["rol"] === 0)
           header('Location: /admins/console');
         else {

@@ -24,6 +24,28 @@ class AdminsController extends Admin {
     if (!isset($_SESSION['user'])) {
       header('Location: /');
     }
+        // Llamar al método top_themes_with_posts para obtener los datos
+        $topThemes = $this->top_themes_with_posts();
+        $totalUsers = $this->getTotalUsers();
+        $totalComments = $this->getTotalComments();
+        $totalReactions = $this->getTotalReactions();
+        $activeUsers = $this->getActiveUsers();
+        $totalThemes = $this->countThemes();
+        $pendingPosts = $this->getPendingPosts();
+    
+        // Pasar los datos a la vista
+        $data = [
+            'topThemes' => $topThemes,
+            'totalComments' => $totalComments,
+            'totalReactions' => $totalReactions,
+            'totalUsers' => $totalUsers,
+            'activeUsers' => $activeUsers,
+            'totalThemes' => $totalThemes,
+            'userName' => $_SESSION['user']['username'],
+            'pendingPosts' => $pendingPosts,
+        ];
+    
+        $this->params = $data;
     return $this->render('console', $this->params);
   }
 
