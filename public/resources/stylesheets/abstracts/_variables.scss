@@ -20,6 +20,8 @@ $font_w3: #fcf9ea;
 
 //grays
 $gray_1: #929292;
+$gray_2: #858585;
+$gray_3: #979797;
 
 //theme
 $theme_bl: #1f381c;
@@ -48,6 +50,8 @@ $box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
 $shadowVeri: 0 0 10px rgba(0,0,0,0.2);
 $shadowTable: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 $shadowButton: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset, rgba(0, 0, 0, 0.07) 0 1px 1px, rgba(0, 0, 0, 0.07) 0 2px 2px, rgba(0, 0, 0, 0.07) 0 4px 4px;
+$shadowBox: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+$shadowTable2: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
 
 //input
 $backinput: #dddddd4b;
@@ -68,6 +72,7 @@ $green1: #0cb16134;
 $green2: #0cb162;
 $green3: #5bec64;
 $green4: rgba(91, 236, 101, 0.479);
+$green5: #269b49;
 $border1: #d2d2d2;
 $input_back: #00000013;
 $placeholder_1: rgba(0, 0, 0, 0.156);
@@ -90,6 +95,8 @@ $font_w1: #ccc;
 $font_w2:rgb(177, 165, 165);
 $font_w3: #d8dfd9;
 $font_w4: #cccccc;
+$font_w5: #e2e2e2;
+$font_6: rgb(242, 242, 242);
 
 //blacks:
 $font_b: black;
@@ -113,6 +120,7 @@ $tr:background-color 0.3s, color 0.3s;
 
 $font_w4: #ffffff;
 $font_w5: rgb(248, 248, 248);
+$font_w6: #dfdfdf;
 $font_bl1: #41e9bfd8;
 $font_bl2: #060c3d;
 
@@ -141,5 +149,16 @@ $font_light12: #00ab88;
 $tone_wl: rgba(255,255,255,0.3);
 $tone_gH: #263238;
 $tone_gre: #c8ff00;
+
+$data-color1: #FF6978;
+$data-color2: #FF8811;
+$data-color3: #5973E6;
+$data-color4: #15616D;
+$data-color5: #390040;
+$data-color6: #00ab88;
+$data-color7: #294ce7;
+
+$back_color1: rgb(53, 53, 53);
+
 
 $font_family_inputs: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;

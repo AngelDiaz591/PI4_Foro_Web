@@ -23,7 +23,7 @@ var ctx = document.getElementById('myChart').getContext('2d');
             },
             options: {
                 responsive: true, // Hacer la gráfica responsiva
-                /* maintainAspectRatio: false, // Permitir que la gráfica se ajuste a cualquier proporción */
+                maintainAspectRatio: false, // Permitir que la gráfica se ajuste a cualquier proporción
                 plugins: {
                     title: {
                         display: true,
@@ -53,3 +53,5 @@ var ctx = document.getElementById('myChart').getContext('2d');
         window.addEventListener('resize', function() {
             myChart.resize();
         });
+
+

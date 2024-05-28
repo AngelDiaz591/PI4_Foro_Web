@@ -23,7 +23,7 @@
     <?php if(isset($_SESSION['user'])): ?>
       <?php if($_SESSION['user']['rol'] === 0): ?>
         <a class="btn-console" href="<?= $is_admin_view ? '/' : '/admins/console' ?>">
-          <i class='bx bx-grid-alt'></i><?= $is_admin_view ? 'USER VIEW' : 'ADMINISTRATOR' ?>
+        <i class="bi bi-eye-fill"></i><?= $is_admin_view ? 'USER VIEW' : 'ADMINISTRATOR' ?>
         </a>
       <?php endif; ?>
 
