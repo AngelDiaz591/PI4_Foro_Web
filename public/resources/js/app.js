@@ -66,8 +66,8 @@ const app = {
         .then(data => {
           Swal.hideLoading();
           let html = `
-            <h1>REVIEW POST</h1>
             <div class="adminMenu-header">
+            <h1>REVIEW POST</h1>
               <div class="adminMenu-showpost">
                 <div class="adminMenu-show">
                   <div class="user_card">
@@ -217,7 +217,9 @@ const app = {
               <div class="line"></div>
               <div>
                 <p>Why is the publication being rejected?</p>
-                <textarea id="rejectionReason" rows="4"></textarea>
+                <div class="comment-user">
+                  <textarea id="rejectionReason" rows="4"></textarea>
+                </div>
               </div>
               <div class="line"></div>
               <div>
