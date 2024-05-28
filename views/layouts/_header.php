@@ -6,24 +6,27 @@
     </a>
   <?php endif; ?>
 
-  <a href="/" class="logo">
-    <img src="/resources/img/logo.png" alt="logo">
-    <h2>CulturEdge</h2>
-  </a>
-
   <?php $is_admin_view = str_contains($uri, 'admins');
     if (!$is_admin_view): ?>
+    <a href="/" class="logo">
+      <img src="/resources/img/logo.png" alt="logo">
+      <h2>CulturEdge</h2>
+    </a>
     <div class="seeker">
       <button id="search-button"><i class='bx bx-search-alt'></i></button>
-      <input class="cont" placeholder="Search" type="search" id="search-input">
+      <input class="cont" placeholder="Search" type="search" id="search-input" oninput="debounce(searchOnInput(), 300)">
     </div>
+    <?php else: ?>
+    <a href="/admins/console" class="logo">
+      <img src="/resources/img/logo.png" alt="logo">
+      <h2>CulturEdge</h2>
+    </a>
   <?php endif; ?>
-
   <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
       <?php if($_SESSION['user']['rol'] === 0): ?>
         <a class="btn-console" href="<?= $is_admin_view ? '/' : '/admins/console' ?>">
-          <i class='bx bx-grid-alt'></i><?= $is_admin_view ? 'USER VIEW' : 'ADMINISTRATOR' ?>
+        <i class="bi bi-eye-fill"></i><?= $is_admin_view ? 'USER VIEW' : 'ADMINISTRATOR' ?>
         </a>
       <?php endif; ?>
 

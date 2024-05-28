@@ -1,12 +1,106 @@
 .user-input {
     position: relative;
 
-    .icon {
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    color: $font_w;
+    & > .icon {
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        color: $font_w;
+    }
+
+    &-group {
+        align-items: center;
+        display: flex;
+        gap: 10px;
+    
+        .icon {
+            color: $font_b1;
+            font-size: 2em;
+            padding: 5px 0;
+        }
+    }
+}
+
+.boxicon {
+    font-size: 24px;
+    text-align: center;
+
+    &:hover {
+        cursor: pointer;
+
+        i {
+            background-color: $brow0;
+            border-radius: 10px;
+        }
+    }
+
+    i {
+        padding: 8px;
+
+        &:first-child {
+            margin-top: 4px;
+        }
+
+        &:last-child {
+            margin-bottom: 4px;
+        }
+    }
+
+    &-drawer {
+        background-color: $font_w;
+        border-radius: 15px;
+        box-shadow: $shadowVeri;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(45px, auto));
+        max-height: 10em;
+        max-width: 100%;
+        overflow: auto;
+        position: absolute;
+        transition: display 0.2s;
+        width: 25em;
+        z-index: 100;
+
+
+        &.hidden {
+            display: none;
+        }
+
+        &-button {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+
+            p {
+                margin-left: auto;
+            }
+
+            i {
+                font-size: 1.5em;
+
+                &:not(.selector) {
+                    margin-right: auto;
+                    padding: 0 8px;
+                }
+            }
+        }
+
+        &-container.user-input {
+            position: initial;
+        }
+
+        &::webkit-scrollbar {
+            width: 5px;
+
+            &-thumb {
+                background-color: $font_b1;
+                border-radius: 10px;
+            }
+
+            &-track {
+                background-color: $font_w;
+            }
+        }
     }
 }
 

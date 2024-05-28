@@ -212,8 +212,10 @@ const user = {
       }
 
     if (posts.length > 0) { 
+      console.log(posts)
       html += '<div>'
       for (let post of posts) {
+        if (post.permission == 3){
         html += `
         <div class="hoverbox">
           <div class="box" id="results-list">
@@ -353,6 +355,7 @@ const user = {
         `;
       }
       html += '</div>';
+      }
     } else { 
       html += `
         <div class="no-content-message">
@@ -632,9 +635,6 @@ const user = {
       showDenyButton: true,
       confirmButtonText: 'Save',
       denyButtonText: 'Cancel',
-      allowOutsideClick: false,
-      allowEscapeKey: false,
-      allowEnterKey: false
     }).then((result) => {
       if (result.isConfirmed) {
         $('#captureUserData').submit();

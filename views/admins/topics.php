@@ -1,36 +1,44 @@
 <div class="body_wrapper">
-    <br>
-    <h1>THEMES</h1>
+  <div class="table-sector">
+    <div class="header">
+      <h1>TOPICS</h1>
+      <div class="menu-user">
+        <button class="buttonGreen" type="button" onclick="topics.create(event)">
+          <i class="bi bi-plus-lg icon-button"></i> Add topics
+        </button>
+      </div>
+    </div>
     <table class="content-table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>Theme</th>
-                <th>icon</th>
-                <th>Date</th>
-                <th>Options</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($data->data as $row): ?>
-                <tr>
-                    <td><?= $row->id; ?></td>
-                    <td><?= $row->theme; ?></td>
-                    <td><i class="<?= $row->icon; ?>"></i></td>
-                    <td><?= $row->created_at; ?></td>
-                    <td>
-                        <button class="buttonGreen" type="button">
-                            <span class="text"><i class="bi bi-archive-fill"></i></span>
-                        </button>
-                        <button class="buttonRed" type="button">
-                            <span class="text"><i class="bi bi-star-fill"></i></span>
-                        </button>
-                        <button class="buttonBlue" type="button">
-                            <span class="text"><i class="bi bi-star-fill"></i></span>
-                        </button>
-                    </td>
-                </tr>
-            <?php endforeach; ?> 
-        </tbody>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Topics</th>
+          <th>Icon</th>
+          <th>Date</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php $index = 1 ?>
+        <?php foreach ($data->data as $row): ?>
+          <tr>
+            <td><?= $index++; ?></td>
+            <td><?= $row->theme; ?></td>
+            <td><i class="<?= $row->icon; ?>"></i></td>
+            <td><?= empty($row->updated_at) ? $row->created_at : "$row->updated_at edited" ?></td>
+            <td class="content-table-actions">
+              <button class="buttonBlue" type="button" onclick="topics.edit(event, <?= $row->id ?>)">
+                <i class='bx bxs-edit'></i>
+              </button>
+              <button class="buttonRed" type="button" onclick="topics.delete(event, <?= $row->id ?>)">
+                <i class='bx bxs-trash' ></i>
+              </button>
+            </td>
+          </tr>
+        <?php endforeach; ?> 
+      </tbody>
     </table>
+  </div>
 </div>
+
+<script src="/resources/js/topics.js"></script>

@@ -50,5 +50,75 @@ class Unesco extends Base {
       throw new Exception(json_encode($r));
     }
   }
+
+  public function insert_theme($data) {
+    try {
+      $this->t = 'unesco';
+      $this->pp = ['theme', 'icon'];
+
+      $response = $this->insert([
+        'theme' => $data['theme'],
+        'icon' => $data['icon']
+      ]);
+
+      if (empty($response)) {
+        throw new Exception("Failed to insert the UNESCO theme.");
+      }
+
+      $r = $this->response(status: true, message: "UNESCO theme inserted successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: "Failed to insert the UNESCO theme: " . $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function update_theme($data) {
+    try {
+      $this->t = 'unesco';
+      $this->pp = ['theme', 'icon', 'updated_at'];
+
+      $response = $this->where([
+        ['id', '=', $data['id']]
+      ])->update([
+        'theme' => $data['theme'],
+        'icon' => $data['icon'],
+        'updated_at' => date('Y-m-d H:i:s')
+      ]);
+
+      if (empty($response)) {
+        throw new Exception("UNESCO theme not found.");
+      }
+
+      $r = $this->response(status: true, message: "UNESCO theme updated successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: "Failed to update the UNESCO theme: " . $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
+
+  public function delete_theme($id) {
+    try {
+      $this->t = 'unesco';
+      $response = $this->where([['id', '=', $id]])->delete();
+
+      if (empty($response)) {
+        throw new Exception("UNESCO theme not found.");
+      }
+
+      $r = $this->response(status: true, message: "UNESCO theme deleted successfully.");
+
+      return json_encode($r);
+    } catch (PDOException | Exception $e) {
+      $r = $this->response(status: false, message: "Failed to delete the UNESCO theme: " . $e->getMessage());
+
+      throw new Exception(json_encode($r));
+    }
+  }
 }
 ?>

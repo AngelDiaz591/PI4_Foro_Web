@@ -165,6 +165,7 @@ class Post extends Base {
                 'a.user_id',
                 'a.title',
                 'a.description',
+                'a.permission',
                 'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
                 'b.username',
                 'b.email',

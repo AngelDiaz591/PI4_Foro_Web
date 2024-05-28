@@ -49,6 +49,10 @@
   height: 100%;
   overflow: auto;
   background-color: rgba(68, 68, 68, 0.671);
+
+  &-actions {
+    z-index: 0;
+  }
 }
 
 .modal-contents {
@@ -292,6 +296,7 @@ a {
   border-radius: 50%;
   display: block;
   box-shadow: 1px 3px 12px rgba(0, 0, 0, 0.18);
+  background-color: #fff;
 }
 
 .header__wrapper .cols__container .left__col .username {
@@ -363,11 +368,15 @@ a {
   text-transform: uppercase;
   color: #818181;
 }
+.header__wrapper .cols__container .right__col .menu-user .lists li a:hover{
+  cursor: pointer;
+}
 .header__wrapper .cols__container .right__col .menu-user .lists .active {
   color: #1d1d1d;
   font-weight: 600;
 }
-.header__wrapper .cols__container .right__col .menu-user button {
+
+.menu-user button {
   background: #0091ff;
   color: #fff;
   border: none;
@@ -377,6 +386,7 @@ a {
   margin-top: 20px;
   font-size: 16px;
 }
+
 .header__wrapper .cols__container .right__col .menu-user button:hover {
   opacity: 0.8;
 }
@@ -447,6 +457,11 @@ a {
 }
 
 /* Responsiveness */
+@include mobile {
+  .header__wrapper {
+    margin-top: 75px;
+  }
+}
 
 @media (min-width: 868px) {
 

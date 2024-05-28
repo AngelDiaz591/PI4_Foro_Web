@@ -36,8 +36,8 @@ CREATE TABLE followers (
 	follower_id INT,
   key `user_id` (`user_id`),
   key `follower_id` (`follower_id`),
-  CONSTRAINT `fk_followers_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_followers_follower_id` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`),
+  CONSTRAINT `fk_followers_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_followers_follower_id` FOREIGN KEY (`follower_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
 	PRIMARY KEY (user_id, follower_id)
 );
 
@@ -57,30 +57,24 @@ CREATE TABLE posts (
   description TEXT,
   theme INT,
   eliminated TINYINT DEFAULT 0,
-  permission INT DEFAULT 1,
+  permission ENUM('1', '2', '3') DEFAULT '1',
   reason TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
   PRIMARY KEY (id),
   key `user_id` (`user_id`),
   key `theme` (`theme`),
-  CONSTRAINT `fk_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`)
+  CONSTRAINT `fk_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`) ON DELETE CASCADE
 );
-
-ALTER TABLE posts
-  ADD COLUMN reason TEXT AFTER description;
-
-ALTER TABLE posts
-MODIFY COLUMN permission ENUM('1', '2', '3') DEFAULT '1';
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
   user_id int NOT NULL,
   post_id int NOT NULL,
   reaction_type ENUM('thumb', 'love', 'haha', 'wow', 'sad', 'angry') NOT NULL,
-  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id),
-  CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES posts(id)
+  CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+  CONSTRAINT fk_post FOREIGN KEY (post_id) REFERENCES posts(id) ON DELETE CASCADE
 );
 
 CREATE TABLE comments (
@@ -95,9 +89,9 @@ CREATE TABLE comments (
   key `user_id` (`user_id`),
   key `post_id` (`post_id`),
   key `parent_comment_id` (`parent_comment_id`),
-  CONSTRAINT `fk_comments_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_comments_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`),
-  CONSTRAINT `fk_comments_parent_comment_id` FOREIGN KEY (`parent_comment_id`) REFERENCES `comments` (`id`)
+  CONSTRAINT `fk_comments_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_comments_post_id` FOREIGN KEY (`post_id`) REFERENCES `posts` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_comments_parent_comment_id` FOREIGN KEY (`parent_comment_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE images (
@@ -126,9 +120,9 @@ CREATE TABLE user_data (
   key `user_id` (`user_id`),
   key `pfp` (`pfp`),
   key `banner` (`banner`),
-  CONSTRAINT `fk_user-data_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `fk_user-pfp` FOREIGN KEY (`pfp`) REFERENCES `images` (`id`),
-  CONSTRAINT `fk_user-data_banner` FOREIGN KEY (`banner`) REFERENCES `images` (`id`)
+  CONSTRAINT `fk_user-data_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_user-pfp` FOREIGN KEY (`pfp`) REFERENCES `images` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `fk_user-data_banner` FOREIGN KEY (`banner`) REFERENCES `images` (`id`) ON DELETE CASCADE
 );
 
 CREATE TABLE notifications (

@@ -4,8 +4,8 @@ define('RESOURCES', ROOT_DIR . 'public/resources/');
 // ======= CONSTANTS CONFIGURABLES =======
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
-define('USER_DB', 'isma');
-define('PASS_DB', '123');
+define('USER_DB', 'root');
+define('PASS_DB', '');
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================
@@ -44,7 +44,7 @@ function get_last_url() {
 function get_controller($controller_name) {
   $controller_path = ROOT_DIR . 'controllers/' . $controller_name . '_controller.php';
 
-  file_exists($controller_path) ? require_once $controller_path : die('Controller not found');
+  file_exists($controller_path) ? require_once $controller_path : throw new Exception('Controller not found');
 }
 
 /**
@@ -56,7 +56,7 @@ function get_controller($controller_name) {
 function get_model($model_name) {
   $model_path = ROOT_DIR . 'models/' . $model_name . '.php';
 
-  file_exists($model_path) ? require_once $model_path : die('Model not found');
+  file_exists($model_path) ? require_once $model_path : throw new Exception('Model not found');
 }
 
 /**

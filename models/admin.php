@@ -7,6 +7,11 @@ class Admin extends Base {
         try {
             $this->conn = $this->db_connection();
             $this->check_connection();
+
+            if (isset($_SESSION['user']) && $_SESSION['user']['rol'] !== 0) {
+                header("Location: /");
+                exit;
+            }
         } catch (PDOException | Exception $e) {
             throw new Exception("Failed to connect to the database: " . $e->getMessage());
         }
@@ -79,10 +84,10 @@ class Admin extends Base {
                 'id',
                 'theme',
                 'icon',
-                'created_at'
-            ])->group_by('id, theme', 'created_at', 'icon')
-            ->order_by([
-                ['created_at', 'DESC']
+                'DATE_FORMAT(created_at, "%d-%m-%Y") as created_at',
+                'DATE_FORMAT(updated_at, "%d-%m-%Y") as updated_at'
+            ])->order_by([
+                ['id', 'DESC'],
             ])->get();
             return $this->response(status: true, data: $result, message: "Themes retrieved successfully.");
         } catch (PDOException | Exception $e) {
@@ -124,9 +129,5 @@ class Admin extends Base {
             throw new Exception("Failed to update reason: " . $e->getMessage());
         }
     }
-    
-    
-      
-    
 }
 ?>
