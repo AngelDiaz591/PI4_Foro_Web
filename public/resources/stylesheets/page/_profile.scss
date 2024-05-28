@@ -266,11 +266,10 @@ a {
 
 .header__wrapper header {
   width: 100vw;
-  // background: url("/resources/img/bg.jpeg") no-repeat 50% 20% / cover;
   background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100px + 15vw);
+  min-height: calc(100px + 25vw);
   position: static;
 }
 

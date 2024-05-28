@@ -81,7 +81,7 @@ class Database {
     return $this;
   }
 
-  public function where_complex($andConditions = [], $orConditions = []) {
+  public function where_complex($andConditions = [], $logicGate = '', $orConditions = []) {
     $this->w = '';
     $andConditionString = '';
     $orConditionString = '';
@@ -101,7 +101,7 @@ class Database {
     }
 
     if (!empty($andConditionString) && !empty($orConditionString)) {
-      $this->w = "$andConditionString OR $orConditionString";
+      $this->w = "$andConditionString $logicGate $orConditionString";
     } elseif (!empty($andConditionString)) {
       $this->w = $andConditionString;
     } elseif (!empty($orConditionString)) {

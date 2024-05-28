@@ -319,6 +319,37 @@ class PostsController extends Post {
             return $this->error('500');
         }
     }
+
+    public function unesco() {
+        try {
+            $result = $this->check_topic($this->params['topic']);
+            $response = $this->get_by_topic($result);
+
+            if ($response["status"]) {
+                return $this->render('index', $response["data"]);
+            } else {
+                throw new Exception("Failed to get all posts: " . $response["message"]);
+            }
+        } catch (Exception $e) {
+            return $this->error('500');
+        }
+    }
+
+    private function check_topic($topic) {
+        $response = null;
+
+        if (is_numeric($topic)) {
+            $topicInt = (int) $topic;
+            $response = $topicInt;
+        }
+
+        if (is_string($topic)) {
+            $topicTheme = str_replace(' ', '_', $topic);
+            $response = $topicTheme;
+        }
+
+        return $response;
+    }
       
     protected function render($view, $data = []) {
         $params = $data;
