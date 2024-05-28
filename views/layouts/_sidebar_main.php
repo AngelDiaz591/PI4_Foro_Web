@@ -14,24 +14,6 @@
         <p>Popular</p>
       </a>
     </li>
-    <?php if (isset($_SESSION['user'])): ?>
-      <li class="list">
-        <div class="selector"></div>
-        <a class="category" href="/posts/new">
-          <i class='bx bx-news'></i>
-          <p>New post</p>
-        </a>
-      </li>
-    <?php endif; ?>
-    <?php if (isset($_SESSION['user'])): ?>
-      <li class="list">
-        <div class="selector"></div>
-        <a class="category" href="/posts/my_posts">
-          <i class='bx bx-pencil'></i>
-          <p>Edit post</p>
-        </a>
-      </li>
-    <?php endif; ?>
   </ul>
   <ul class="line"></ul>
   <h3>CATEGORIES</h3>

@@ -57,7 +57,7 @@ CREATE TABLE posts (
   description TEXT,
   theme INT,
   eliminated TINYINT DEFAULT 0,
-  permission INT DEFAULT 1,
+  permission ENUM('1', '2', '3') DEFAULT '1',
   reason TEXT,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP,
@@ -67,12 +67,6 @@ CREATE TABLE posts (
   CONSTRAINT `fk_posts_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_posts_theme` FOREIGN KEY (`theme`) REFERENCES `unesco` (`id`) ON DELETE CASCADE
 );
-
-ALTER TABLE posts
-  ADD COLUMN reason TEXT AFTER description;
-
-ALTER TABLE posts
-MODIFY COLUMN permission ENUM('1', '2', '3') DEFAULT '1';
 
 CREATE TABLE post_reactions (
   id SERIAL PRIMARY KEY,
