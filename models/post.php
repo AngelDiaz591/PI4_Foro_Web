@@ -464,16 +464,12 @@ class Post extends Base {
                 ->select(['a.id', 'a.user_id', 'a.title', 'a.description', 'a.created_at', 'users.username', 'unesco.theme AS theme', 'unesco.icon AS theme_icon'])
                 ->join('users', 'a.user_id = users.id')
                 ->join('unesco', 'a.theme = unesco.id')
-                ->where_complex(
-                    [],
-                    [
-                        ['unesco.theme', 'LIKE', '%' . $query . '%'],
-                        ['a.title', 'LIKE', '%' . $query . '%'],
-                        ['a.description', 'LIKE', '%' . $query . '%'],
-                        ['users.username', 'LIKE', '%' . $query . '%']
-                    ]
-                )
-                ->get();
+                ->where_complex(orConditions: [
+                    ['unesco.theme', 'LIKE', '%' . $query . '%'],
+                    ['a.title', 'LIKE', '%' . $query . '%'],
+                    ['a.description', 'LIKE', '%' . $query . '%'],
+                    ['users.username', 'LIKE', '%' . $query . '%']
+                ])->get();
             return $result;
         } catch (PDOException | Exception $e) {
             throw new Exception("Error searching posts: " . $e->getMessage());
@@ -739,6 +735,69 @@ class Post extends Base {
             ->order_by([
                 ['total_reactions', 'DESC']
             ])->get();
+
+            foreach($result as &$post) {
+                $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");
+                $stmt->bindParam(":id", $post["id"], PDO::PARAM_INT);
+                $stmt->execute();
+                $post["images"] = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            }
+
+            $stmt = $this->conn->prepare("CALL GetUserReactions(:userId)");
+            $userId = $_SESSION['user']['id'];
+            $stmt->bindParam(":userId", $userId, PDO::PARAM_INT);
+            $stmt->execute();
+            $userReactions = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($userReactions as $userReaction) {
+                foreach ($result as &$post) {
+                    if ($post['id'] == $userReaction['post_id']) {
+                        $post['user_reactions'] = $userReaction['reactType'];
+                        break;
+                    }
+                }
+            }
+
+            return $this->response(status: true, data: $result, message: "Posts retrieved successfully.");
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get all posts: " . $e->getMessage());
+        }
+    }
+
+    public function get_by_topic($topic) {
+        try {
+            $this->t = 'posts';
+
+            $result = $this->select([
+                'a.id',
+                'a.user_id',
+                'a.title',
+                'a.description',
+                'a.permission',
+                'DATE_FORMAT(a.created_at, "%e %M %Y") as created_at',
+                'b.username',
+                'b.email',
+                'c.icon as theme_icon',
+                'c.theme',
+                'COUNT(DISTINCT d.id) as total_reactions',
+                'COUNT(DISTINCT e.id) as total_comments'
+            ])->join('users b', 'a.user_id = b.id')
+            ->join('unesco c', 'a.theme = c.id')
+            ->left_join('post_reactions d', 'a.id = d.post_id')
+            ->left_join('comments e', 'a.id = e.post_id')
+            ->group_by('a.id, b.username, b.email, c.theme')
+            ->where_complex(
+                [
+                    ['a.permission', '=', "3"]
+                ],
+                'AND',
+                [
+                    ['c.theme', 'LIKE', $topic],
+                    ['c.id', 'LIKE', $topic]
+                ],
+            )->order_by([
+                ['a.created_at', 'DESC']
+            ])->get();            
 
             foreach($result as &$post) {
                 $stmt = $this->conn->prepare("CALL get_images_by_post_id(:id)");

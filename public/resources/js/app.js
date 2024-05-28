@@ -583,7 +583,7 @@ userMenuOpen: function() {
           html += `
             <li class="list">
               <div class="selector"></div>
-              <a class="category">
+              <a class="category" href="/posts/unesco/topic:${item.theme.split(' ').join('_')}">
                 <i class="${item.icon}"></i>
                 <p>${item.theme}</p>
               </a>

@@ -783,7 +783,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px;
   width: 50%;
   height: auto;
-  background-color: antiquewhite;
+  background-color: white;
   box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
   border-radius: 20px;
   margin: 0 0 2% 0;
@@ -1332,7 +1332,7 @@ a {
   background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100px + 15vw);
+  min-height: calc(100px + 25vw);
   position: static;
 }
 
