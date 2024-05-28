@@ -37,7 +37,14 @@
             </a> -->
           </div>
         <?php endforeach; ?>
+        
       </div>
+      <H1><?=$params["theme"];?></H1>
+      <div class="field">
+          <select name="unesco_theme_id" id="unesco_theme_id" required>
+            <option value="" disabled selected>Select a theme</option>
+          </select>
+        </div>
       <div class="line"></div>
     </div>
     <div class="btn-container">
