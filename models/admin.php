@@ -129,5 +129,111 @@ class Admin extends Base {
             throw new Exception("Failed to update reason: " . $e->getMessage());
         }
     }
+
+    public function top_themes_with_posts() {
+        try {
+            $this->reset();
+            $this->t = 'unesco';
+            $result = $this->select(['a.theme', 'COUNT(p.id) as post_count'])
+                ->left_join('posts p', 'a.id = p.theme AND (p.eliminated = 0 OR p.eliminated IS NULL)', 'p') 
+                ->group_by('a.theme')
+                ->order_by([['post_count', 'DESC']])
+                ->limit(5)
+                ->get();
+            return $result;
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get top themes with posts: " . $e->getMessage());
+        }
+    }
+    public function getTotalUsers() {
+        try {   
+          $this->reset();
+          $this->t = 'users';
+          $result = $this->select(["COUNT(*) as total_users"])
+                         ->get();
+    
+          return $result[0]['total_users'];
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get top themes with posts: " . $e->getMessage());
+        }
+      }
+      public function getTotalComments() {
+        try {
+            $this->reset();
+            $this->t = 'comments';
+            $result = $this->select(["COUNT(*) as total_comments"])
+                           ->get();
+            
+            return $result[0]['total_comments'];
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get total comments: " . $e->getMessage());
+        }
+    }
+
+    public function getTotalReactions() {
+        try {
+            $this->reset();
+            $this->t = 'post_reactions';
+            $result = $this->select(["COUNT(*) as total_reactions"])
+                           ->get();
+            
+            return $result[0]['total_reactions'];
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get total reactions: " . $e->getMessage());
+        }
+    }
+    
+
+    public function getActiveUsers() {
+        try {
+            $this->reset();
+            $this->t = 'users';
+            $result = $this->select(["COUNT(*) as active_users"])
+                           ->where([['last_activity', '>=', date('Y-m-d H:i:s', strtotime('-30 minutes'))]])
+                           ->get();
+            
+            return $result[0]['active_users'];
+        } catch (PDOException | Exception $e) {
+            throw new Exception("Failed to get active users: " . $e->getMessage());
+        }
+    }
+
+public function countThemes() {
+    try {
+        $this->reset();
+        $this->t = 'unesco';
+        $result = $this->select(["COUNT(*) as total"])
+                       ->get();
+        
+        return $result[0]['total'];
+    } catch (PDOException | Exception $e) {
+        throw new Exception("Failed to count themes: " . $e->getMessage());
+    }
+}
+
+public function getPendingPosts() {
+    try {
+        $this->reset();
+        $this->t = 'posts';
+        $result = $this->select([
+                            "a.id", 
+                            "a.created_at", 
+                            "u.username", 
+                            "a.title"
+                        ])
+                        ->join('users u', 'a.user_id = u.id')
+                        ->where([
+                            ['a.permission', '=', 1],
+                            ['a.eliminated', '=', 0]
+                        ])
+                        ->order_by([['a.created_at', 'DESC']])
+                        ->get();
+
+        return $result;
+    } catch (PDOException | Exception $e) {
+        throw new Exception("Failed to count themes: " . $e->getMessage());
+    }
+}
+
 }
 ?>

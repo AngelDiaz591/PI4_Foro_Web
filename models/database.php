@@ -37,6 +37,18 @@ class Database {
     return $this->conn;
   }
 
+  public function reset() {
+    $this->s = ' * ';
+    $this->j = '';
+    $this->lj = '';
+    $this->w = ' 1 ';
+    $this->g = '';
+    $this->o = '';
+    $this->l = '';
+    $this->t = null;
+    $this->pp = null;
+  }
+
   public function all(){
     return $this;
   }
