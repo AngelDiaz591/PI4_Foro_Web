@@ -315,7 +315,7 @@ class UsersController extends User {
   private function filtrate_user_data($data) {
     foreach ($data as $key => $value) {
       if (empty($value)) {
-        unset($data[$key]);
+        $data[$key] = NULL;
       }
     }
 

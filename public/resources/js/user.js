@@ -704,7 +704,7 @@ const user = {
             Swal.showLoading();
         }
     });
-
+    console.log('fetching has_data');
     await fetch('/users/has_data', {
       method: 'POST',
       body: data,
@@ -715,8 +715,21 @@ const user = {
       } else {
         requestURL = '/users/save_user_data';
       }
-    }).catch(err => console.error(err));
-    
+    }).catch(err => {
+      console.error(err);
+      Swal.hideLoading();
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err,
+        didClose: () => window.location.reload(),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
+    });
+    console.log('fetching update_user_data');
     fetch(requestURL, {
       method: 'POST',
       body: data,
@@ -748,7 +761,17 @@ const user = {
       }
     }).catch(err => {
       Swal.hideLoading();
-      console.error(err)
+      console.error(err);
+      Swal.fire({
+        icon: 'error',
+        title: 'Error',
+        text: err,
+        didClose: () => window.location.reload(),
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.reload();
+        }
+      });
     });
   }
 }

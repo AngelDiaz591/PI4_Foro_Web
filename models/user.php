@@ -388,7 +388,7 @@ class User extends Base {
     try {
       // Get previous images, id and image
       $previusImages = $this->get_data_images($data['user_id']);
-
+      
       // Upload new images to the server
       $uploadedImages = [];
       foreach ($files as $key => $file) {
@@ -401,19 +401,37 @@ class User extends Base {
       $this->begin_transaction();
 
       $this->t = 'user_data';
-      $this->pp = ['gender', 'birthdate'];
+      if (!empty($data['birthdate'])) {
+        $this->pp = ['birthdate'];
+  
+        // Update user data, gender and birthdate
+        $result = $this->where([
+          ['user_id', '=', $data['user_id']]
+        ])->update([
+          'birthdate' => $data['birthdate'],
+        ]);
 
-      // Update user data, gender and birthdate
-      $result = $this->where([
-        ['user_id', '=', $data['user_id']]
-      ])->update([
-        'gender' => $data['gender'],
-        'birthdate' => $data['birthdate'],
-      ]);
-
-      if (empty($result)) {
-        throw new Exception("Got an empty response");
+        if (empty($result)) {
+          throw new Exception("Got an empty response on birthdate");
+        }
       }
+
+
+      if (!empty($data['gender'])) {
+        $this->pp = ['gender'];
+
+        // Update user data, gender and birthdate
+        $result = $this->where([
+          ['user_id', '=', $data['user_id']]
+        ])->update([
+          'gender' => $data['gender'],
+        ]);
+        
+        if (empty($result)) {
+          throw new Exception("Got an empty response");
+        }
+      }
+
       
       // Update images to the database
       foreach ($uploadedImages as $key => $image) {
