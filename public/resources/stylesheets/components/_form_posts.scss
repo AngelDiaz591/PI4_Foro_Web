@@ -44,6 +44,14 @@ form .box {
     }
   }
 
+  input[type="button"] {
+    font-weight: bold;
+  }
+  
+  input[type="file"] {
+    display: none;
+  }
+
   input, textarea, select {
     background: $backinput;
     border-radius: 5px;
@@ -62,53 +70,18 @@ form .box {
   }
 }
 
-form .images {
-  display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  padding-bottom: 1rem;
-
-  input[type="file"] {
-    display: none;
-  }
-
-  .image {
-    display: flex;
-    margin: 0 4px 4px 0;
+.image-edit {
+  position: relative;
+  
+  .remove-image {
+    color: $col_red;
     cursor: pointer;
-
-    img {
-      border-radius: 10px;
-      height: 5rem;
-      object-fit: cover;
-      user-select: none;
-      border: $gray_1 solid 2px;
-      width: 5rem;
-    }
-    
-    .remove-image {
-      color: $col_red;
-      display: none;
-      font-size: 22px;
-      position: absolute;
-      transform: translateX(68px);
-    }
-
-    &:hover img{
-      border: $col_red solid 2px;
-    }
-
-    &:hover .remove-image {
-      display: block;
-    }
-  }
-
-  & > p.extra-files {
-    color: $gray_1;
-    font-size: 1rem;
-    font-weight: 600;
-    margin: auto auto auto 8px;
+    font-size: 4rem;
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    user-select: none;
+    z-index: 1;
   }
 }
 

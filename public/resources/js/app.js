@@ -193,152 +193,149 @@ const app = {
     });
   },
   
- cancelPost: function(id) {
-  let params = new URLSearchParams();
-  params.append('id', id);
-  Swal.fire({
-    didOpen: () => {
-      Swal.showLoading();
-      fetch('/posts/show_json/', {
-        method: 'POST',
-        body: params,
-      }).then(response => response.json())
-      .then(data => {
-        console.log(data);
-        Swal.hideLoading();
-        Swal.update({
-          html: `
-            <form id="rejectionForm">
-              <div class="userMenu-header">
-                <div>
-                  <h4>Decline publication</h4>
+  cancelPost: function(id) {
+    let params = new URLSearchParams();
+    params.append('id', id);
+    Swal.fire({
+      didOpen: () => {
+        Swal.showLoading();
+        fetch('/posts/show_json/', {
+          method: 'POST',
+          body: params,
+        }).then(response => response.json())
+        .then(data => {
+          console.log(data);
+          Swal.hideLoading();
+          Swal.update({
+            html: `
+              <form id="rejectionForm">
+                <div class="userMenu-header">
+                  <div>
+                    <h4>Decline publication</h4>
+                  </div>
                 </div>
-              </div>
-              <div class="line"></div>
-              <div>
-                <p>Why is the publication being rejected?</p>
-                <div class="comment-user">
+                <div class="line"></div>
+                <div>
+                  <p>Why is the publication being rejected?</p>
                   <textarea id="rejectionReason" rows="4"></textarea>
                 </div>
-              </div>
-              <div class="line"></div>
-              <div>
-                <button type="button" class="buttonRed" onclick="app.reviewPosts(${id})">
-                  <span class="text"><i class="bi bi-star-fill"></i>Cancel</span>
-                </button>
-                <button type="submit" class="buttonGreen">
-                  <span class="text"><i class="bi bi-star-fill"></i>Send</span>
-                </button>
-              </div>
-            </form>
-          `,
-          showConfirmButton: false,
-          customClass: {
-            container: 'adminMenu',
-            popup: 'adminMenu-modal',
-          },
-        });
+                <div class="line"></div>
+                <div>
+                  <button type="button" class="buttonRed" onclick="app.reviewPosts(${id})">
+                    <span class="text"><i class="bi bi-star-fill"></i>Cancel</span>
+                  </button>
+                  <button type="submit" class="buttonGreen">
+                    <span class="text"><i class="bi bi-star-fill"></i>Send</span>
+                  </button>
+                </div>
+              </form>
+            `,
+            showConfirmButton: false,
+            customClass: {
+              container: 'adminMenu',
+              popup: 'adminMenu-modal',
+            },
+          });
 
-        document.getElementById('rejectionForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-          app.sendRejection(id);
+          document.getElementById('rejectionForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            app.sendRejection(id);
+          });
+        }).catch(error => {
+          Swal.hideLoading();
+          Swal.update({
+            icon: 'error',
+            title: 'An error occurred',
+            text: `Error : ${error}`,
+          });
         });
-      }).catch(error => {
+      }
+    });
+  },
+
+  sendRejection: function(id) {
+    const reason = document.getElementById('rejectionReason').value;
+    let params = new URLSearchParams();
+    params.append('id', id);
+    params.append('reason', reason);
+
+    Swal.showLoading();
+    fetch('/admins/rejected', {
+        method: 'POST',
+        body: params,
+    }).then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not successful');
+        }
+        return response.json();
+    }).then(data => {
         Swal.hideLoading();
-        Swal.update({
-          icon: 'error',
-          title: 'An error occurred',
-          text: `Error : ${error}`,
+        if (data.status === 'success') {
+            Swal.fire({
+                icon: 'success',
+                title: 'Publication Rejected',
+                text: 'The publication has been rejected successfully.',
+              }).then(() => {
+                window.location.reload();
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'An error occurred',
+                text: `Error: ${data.message}`,
+            });
+        }
+    }).catch(error => {
+        Swal.hideLoading();
+        Swal.fire({
+            icon: 'error',
+            title: 'An error occurred',
+            text: `Error: ${error.message}`,
         });
-      });
+    });
+  },
+
+  userMenuOpen: function() {
+    let avatarHtml;
+    if (app.user.avatar) {
+      avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" alt="${app.user.username}">`;
+    } else {
+      avatarHtml = `<img src="/resources/img/user.png" alt="User">`;
     }
-  });
-},
 
-sendRejection: function(id) {
-  const reason = document.getElementById('rejectionReason').value;
-  let params = new URLSearchParams();
-  params.append('id', id);
-  params.append('reason', reason);
-
-  Swal.showLoading();
-  fetch('/admins/rejected', {
-      method: 'POST',
-      body: params,
-  }).then(response => {
-      if (!response.ok) {
-          throw new Error('Network response was not successful');
-      }
-      return response.json();
-  }).then(data => {
-      Swal.hideLoading();
-      if (data.status === 'success') {
-          Swal.fire({
-              icon: 'success',
-              title: 'Publication Rejected',
-              text: 'The publication has been rejected successfully.',
-            }).then(() => {
-              window.location.reload();
-          });
-      } else {
-          Swal.fire({
-              icon: 'error',
-              title: 'An error occurred',
-              text: `Error: ${data.message}`,
-          });
-      }
-  }).catch(error => {
-      Swal.hideLoading();
-      Swal.fire({
-          icon: 'error',
-          title: 'An error occurred',
-          text: `Error: ${error.message}`,
-      });
-  });
-},
-
-userMenuOpen: function() {
-  let avatarHtml;
-  if (app.user.avatar) {
-    avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" alt="${app.user.username}">`;
-  } else {
-    avatarHtml = `<img src="/resources/img/user.png" alt="User">`;
-  }
-
-  Swal.fire({
-    html: `
-      <div class="userMenu-header">
-        ${avatarHtml}
-        <h4>${app.user.username}</h4>
-        <p>${app.user.email}</p>
-      </div>
-      <div class="line"></div>
-      <ul class="userMenu-list">
-        <li class="userMenu-list-item d-grid">
-          <a class="text-start" href="/users/show/id:${app.user.id}">Profile</a>
-        </li>
-        <li class="userMenu-list-item d-grid">
-          <a class="text-start" href="#">Settings</a>
-        </li>
-        <li class="userMenu-list-item d-grid">
-          <a class="text-start" href="#">Language</a>
-        </li>
-        <li class="userMenu-list-item d-grid">
-          <a class="text-start" href="#">Help</a>
-        </li>
-        <li class="userMenu-list-item d-grid">
-          <a class="text-start" href="/sessions/destroy">Logout</a>
-        </li>
-      </ul>
-    `,
-    showConfirmButton: false,
-    customClass: {
-      container: 'userMenu',
-      popup: 'userMenu-modal',
-    },
-  });
-}
-,
+    Swal.fire({
+      html: `
+        <div class="userMenu-header">
+          ${avatarHtml}
+          <h4>${app.user.username}</h4>
+          <p>${app.user.email}</p>
+        </div>
+        <div class="line"></div>
+        <ul class="userMenu-list">
+          <li class="userMenu-list-item d-grid">
+            <a class="text-start" href="/users/show/id:${app.user.id}">Profile</a>
+          </li>
+          <li class="userMenu-list-item d-grid">
+            <a class="text-start" href="#">Settings</a>
+          </li>
+          <li class="userMenu-list-item d-grid">
+            <a class="text-start" href="#">Language</a>
+          </li>
+          <li class="userMenu-list-item d-grid">
+            <a class="text-start" href="#">Help</a>
+          </li>
+          <li class="userMenu-list-item d-grid">
+            <a class="text-start" href="/sessions/destroy">Logout</a>
+          </li>
+        </ul>
+      `,
+      showConfirmButton: false,
+      customClass: {
+        container: 'userMenu',
+        popup: 'userMenu-modal',
+      },
+    });
+  },
 
   userNotificationsOpen: function() {
     Swal.fire({
@@ -494,12 +491,38 @@ userMenuOpen: function() {
           <a href="/posts/show/id:${data.id}" class="col-2 notification-event">
         `;
         break;
+      case 'post_approved':
+        htmlLi = `
+          <li class="userMenu-list-item notification">
+              <a href="/posts/my_posts" class="notification-causer col-8">
+                <div class="notification-causer-info">
+                  <h5>Post approved</h5>
+                  <p>Your post has been approved and is now published</p>
+                </div>
+              </a>
+              <a href="/posts/show/id:${data.id}" class="col-2 notification-event">
+        `;
+        break;
       case 'post_rejected':
-        htmlLi += `
-              <p>has rejected your post</p>
-            </div>
-          </a>
-          <a href="/posts/show/id:${data.id}" class="col-2 notification-event">
+        htmlLi = `
+          <li class="userMenu-list-item notification">
+              <a href="/posts/my_posts" class="notification-causer col-8">
+                <div class="notification-causer-info">
+                  <h5>Post rejected</h5>
+                  <p>Go to the post to see the reason</p>
+                </div>
+              </a>
+        `;
+        break;
+      case 'post_created':
+        htmlLi = `
+          <li class="userMenu-list-item notification">
+              <a href="/posts/my_posts" class="notification-causer col-8">
+                <div class="notification-causer-info">
+                  <h5>Post created</h5>
+                  <p>After review, your post will be published</p>
+                </div>
+              </a>
         `;
         break;
       default:
@@ -507,16 +530,26 @@ userMenuOpen: function() {
         break;
     }
 
-    htmlLi += `
-            <p>Go</p>
-            <i class="bi ${data.seen ? 'bi-eye-slash-fill' : 'bi-eye-fill'}"></i>
-          </a>
-          <span class="col-2 notification-date">
-            ${data.created_at}
-          </span>
-        </div>
-      </li>
-    `;
+    if (data.type === 'post_rejected' || data.type === 'post_created') {
+      htmlLi += `
+            <span class="col-2 notification-date">
+              ${data.created_at}
+            </span>
+          </div>
+        </li>
+      `;
+    } else {
+      htmlLi += `
+              <p>Go</p>
+              <i class="bi ${data.seen ? 'bi-eye-slash-fill' : 'bi-eye-fill'}"></i>
+            </a>
+            <span class="col-2 notification-date">
+              ${data.created_at}
+            </span>
+          </div>
+        </li>
+      `;
+    }
 
     return htmlLi;
   },

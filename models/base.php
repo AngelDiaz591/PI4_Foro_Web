@@ -9,6 +9,7 @@ require_once "database.php";
  */
 Class Base extends Database {
   private $imagesPath = __DIR__ . "/../public/assets/imgs/";
+  private $limitImage = 3000000; // 5MB
 /**
  * Check if the connection is null, meaning that it failed to connect to the database
  * 
@@ -76,41 +77,45 @@ Class Base extends Database {
     }
   }
 
-/**
- * Delete an image from the database and get rid of the image from the server
- *  1. initiate a transaction
- *  2. delete the image from the database
- *  3. remove the image from the server
- *  4. if not fails commit the transaction
- *  5. if fails rollback the transaction
- * 
- * @param array $data
- * @throws PDOException if it fails to execute the query
- * @throws Exception if it fails to delete the image or it fails to get rid of the image
- * @return array
- */
-  public function delete_image($data) {
+  public function delete_image($id) {
     try {
+      $this->t = 'images';
 
-      $this->conn->beginTransaction();
+      $result = $this->where([
+        ["id", "=", $id],
+      ])->first();
+      
+      if (empty($result)) {
+        throw new Exception("The image does not exist.");
+      }
+      
+      $this->rid_image($result["image"]);
 
-      $stmt = $this->conn->prepare("CALL delete_image(:id)");
-      $stmt->bindParam(":id", $data["id"], PDO::PARAM_INT);
-      $stmt->execute();
-
-      $response = $this->rid_image($data["image"]);
-
-      if (!$response["status"]) {
-        throw new Exception($response["message"]);
+      $this->begin_transaction();
+      
+      $result2 = $this->where([
+        ["id", "=", $id],
+      ])->delete();
+      
+      if (empty($result2)) {
+        throw new Exception("Failed to delete the image.");
       }
 
-      $this->conn->commit();
+      $this->commit();
 
-      return $this->response(status: true, message: "Image deleted successfully.");
+      $r = $this->response(status: true, message: "Image deleted successfully.");
+
+      return json_encode($r);
     } catch (PDOException | Exception $e) {
-      $this->conn->rollBack();
+      $this->roll_back();
 
-      throw new Exception("Failed to delete the image: " . $e->getMessage());
+      if (!empty($result)) {
+        $this->upload_image($result["image"]);
+      }
+
+      $r = $this->response(status: false, message: $e->getMessage());
+      
+      throw new Exception(json_encode($r));
     }
   }
 
@@ -181,7 +186,7 @@ Class Base extends Database {
           throw new Exception("The image " . $image_name . ", has an error. Error code: " . $image_error);
         }
 
-        if ($image_size > 2000000) {
+        if ($image_size > $this->limitImage) {;
           throw new Exception("The image " . $image_name . ", exceeds the maximum size allowed of 1MB.");
         }
 
@@ -227,7 +232,7 @@ Class Base extends Database {
           throw new Exception("The image " . $image_name . ", has an error. Error code: " . $image_error);
         }
 
-        if ($image_size > 2000000) {
+        if ($image_size > $this->limitImage) {;
           throw new Exception("The image " . $image_name . ", exceeds the maximum size allowed of 1MB.");
         }
 

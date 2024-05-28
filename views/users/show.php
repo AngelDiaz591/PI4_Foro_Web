@@ -61,18 +61,14 @@
         <?php endif; ?>
         <?php if (isset($_SESSION['user']) && $data->id === $_SESSION['user']['id']): ?>
           <form>
-            <button>
-              <a href="/posts/my_posts">
-                Review
-                <i class='bx bx-pencil'></i>
-              </a>
-            </button> 
-            <button>
-              <a href="/posts/new">
-                New Post
-                <i class="bi bi-plus-circle"></i>
-              </a>
-            </button>
+            <a href="/posts/my_posts" class="action">
+              Review
+              <i class='bx bx-pencil'></i>
+            </a>
+            <a href="/posts/new" class="action">
+              New Post
+              <i class="bi bi-plus-circle"></i>
+            </a>
           </form>
         <?php endif; ?>
       </div>

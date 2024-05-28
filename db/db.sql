@@ -128,7 +128,7 @@ CREATE TABLE user_data (
 CREATE TABLE notifications (
   id INT AUTO_INCREMENT,
   user_id INT,
-  type ENUM('post', 'follow', 'like', 'comment', 'post_rejected', 'reply') NOT NULL,
+  type ENUM('post', 'follow', 'like', 'comment', 'post_rejected', 'post_approved', 'post_created', 'reply') NOT NULL,
   type_id INT,
   causer_id INT,
   seen TINYINT DEFAULT 0,

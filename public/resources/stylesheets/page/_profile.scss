@@ -269,7 +269,7 @@ a {
   background-position: 50% 20%;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: calc(100px + 25vw);
+  min-height: calc(100px + 20vw);
   position: static;
 }
 
@@ -375,7 +375,8 @@ a {
   font-weight: 600;
 }
 
-.menu-user button {
+.menu-user button, 
+.menu-user .action {
   background: #0091ff;
   color: #fff;
   border: none;

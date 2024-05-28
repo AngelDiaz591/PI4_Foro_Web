@@ -105,15 +105,16 @@ class PostsController extends Post {
 
     public function purge_image() {
         try {
-            $response = $this->delete_image($this->params);
-
-            if ($response["status"]) {
-                header('Location: /posts/edit/id:' . $this->params['post_id']);
+            $response = $this->delete_image($this->params['id']);
+            $response = json_decode($response);
+      
+            if ($response->status) {
+              echo json_encode($response);
             } else {
-                throw new Exception("Failed to delete the image from the post with id " . $this->params['post_id'] . ": " . $response["message"]);
+              throw new Exception(json_encode($response));
             }
         } catch (Exception $e) {
-            header('Location: /posts/edit/id:' . $this->params['post_id']);
+            echo $e->getMessage();
         }
     }
 

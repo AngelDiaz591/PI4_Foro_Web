@@ -22,6 +22,7 @@
       <h2>CulturEdge</h2>
     </a>
   <?php endif; ?>
+  
   <div class="actions">
     <?php if(isset($_SESSION['user'])): ?>
       <?php if($_SESSION['user']['rol'] === 0): ?>
@@ -40,12 +41,11 @@
       <?php endif; ?>
 
       <button class="btn-userMenu" onclick="app.userMenuOpen()">
-      <?php if ($_SESSION["user"]["avatar"]): ?>
-              <img src="/assets/imgs/<?= $_SESSION["user"]["avatar"];?>" alt="<?= $_SESSION["username"]; ?>" />
-            <?php else: ?>
-              <img src="/resources/img/user.png" alt="Anna Smith" />
-            <?php endif; ?>
-            </div>
+        <?php if (isset($_SESSION["user"]["avatar"]) && $_SESSION["user"]["avatar"]): ?>
+          <img src="/assets/imgs/<?= $_SESSION["user"]["avatar"];?>" alt="<?= $_SESSION["username"]; ?>" />
+        <?php else: ?>
+          <img src="/resources/img/user.png" alt="Anna Smith" />
+        <?php endif; ?>
       </button>
     <?php else: ?>
       <div class="login">
