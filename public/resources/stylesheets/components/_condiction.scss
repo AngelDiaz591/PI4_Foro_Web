@@ -1,0 +1,16 @@
+.termis {
+    margin-left: 10%;
+    padding: 0% 5% 5% 5%;
+    @media (max-width: 800px) {
+        display: block;
+        margin-top: 11%;
+        margin-left: 0;
+    }
+}
+
+.img-termis {
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('/resources/img/logo.png');
+    opacity: 0.4;
+}

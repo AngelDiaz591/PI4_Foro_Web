@@ -22,23 +22,23 @@
   </ul>
   <ul class="line"></ul>
   <ul>
-    <li href="#" class="list">
+    <li class="list">
       <div class="selector"></div>
-      <a class="category">
+      <a href="/extras/condiction" class="category">
         <i class='bx bxs-help-circle' ></i>
-        <p>Help</p>
+        <p>Terms and condictions</p>
       </a>
     </li>
-    <li href="#" class="list">
+    <li class="list">
       <div class="selector"></div>
-      <a class="category">
+      <a href="/extras/aboutus" class="category">
         <i class='bx bxs-user' ></i>
         <p>About us</p>
       </a>
     </li>
-    <li href="#" class="list">
+    <li class="list">
       <div class="selector"></div>
-      <a class="category">
+      <a href="/extras/questions" class="category">
         <i class='bx bx-question-mark' ></i>
         <p>Questions</p>
       </a>

@@ -5,7 +5,7 @@ define('RESOURCES', ROOT_DIR . 'public/resources/');
 define('HOST_DB', 'localhost');
 define('NAME_DB', 'foroweb');
 define('USER_DB', 'root');
-define('PASS_DB', '');
+define('PASS_DB', ' ');
 
 define('URL', 'https://localhost/foroweb/');
 // =======================================
