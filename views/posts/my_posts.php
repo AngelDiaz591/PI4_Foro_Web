@@ -18,5 +18,6 @@
     </div>
   </div>
 <script src="/resources/js/my_post.js"></script>
+<script src="/resources/js/useradmin.js"></script>
 <script src="/resources/js/search.js"></script>
 

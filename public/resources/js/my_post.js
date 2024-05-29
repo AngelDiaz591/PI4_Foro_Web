@@ -49,6 +49,12 @@ const myPost = {
     
     reviewConstructor: function (posts) {
     let html = '';
+    let avatarHtml;
+      if (app.user.avatar) {
+        avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" class="user-card-img alt="${app.user.username}">`;
+      } else {
+        avatarHtml = `<img src="/resources/img/user.png" class="user-card-img alt="User">`;
+      }
     if (posts.length > 0) { 
         console.log(posts)
         html += '<div>'
@@ -61,16 +67,16 @@ const myPost = {
                     <button class="buttonRed" onclick="window.location.href='/posts/edit/id:${post.id}'">
                         <span class="text"><i class="bi bi-pencil"></i></span>
                     </button>
-                    <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost();">
-                        <input type="hidden" value="<?= $row['id']; ?>" name="id" id="id-${post.id}">
-                        <button class="buttonBlue" type="submit">
-                            <span class="text"><i class="bi bi-trash"></i></span>
-                        </button>
-                    </form> 
+                    <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost(event);">
+                                <input type="hidden" value="${post.id}" name="id" id="id-${post.id}">
+                                <button class="buttonBlue" type="submit">
+                                <span class="text"><i class="bi bi-trash"></i></span>
+                                </button>
+                    </form>
                 </div>
             <div class="user_card">
                 <p class="user_card-info">
-                <img src="/resources/img/user.png" alt="user" class="user-card-img">
+                ${avatarHtml}
                 <div>
                     <p class="profile-card">${post.username.substring(0, 10)}</p>
                     <p class="date">${post.created_at}</p>
@@ -211,6 +217,12 @@ const myPost = {
 
     rejectedConstructor: function (posts) {
     let html = '';
+    let avatarHtml;
+      if (app.user.avatar) {
+        avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" class="user-card-img alt="${app.user.username}">`;
+      } else {
+        avatarHtml = `<img src="/resources/img/user.png" class="user-card-img alt="User">`;
+      }
     if (posts.length > 0) { 
         console.log(posts)
         html += '<div>'
@@ -221,7 +233,7 @@ const myPost = {
                 <div class="hoverbox">
                     <div class="box" id="results-list">
                     <div class="user_card">
-                        <h4>Comment:</h4>
+                        <h4>Review: </h4>
                         <p>${post.reason}</p>
                     </div>
                     <div class="user_card between">
@@ -229,16 +241,16 @@ const myPost = {
                         <button class="buttonRed" onclick="window.location.href='/posts/edit/id:${post.id}'">
                             <span class="text"><i class="bi bi-pencil"></i></span>
                         </button>
-                        <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost();">
-                            <input type="hidden" value="<?= $row['id']; ?>" name="id" id="id-${post.id}">
-                            <button class="buttonBlue" type="submit">
+                        <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost(event);">
+                                <input type="hidden" value="${post.id}" name="id" id="id-${post.id}">
+                                <button class="buttonBlue" type="submit">
                                 <span class="text"><i class="bi bi-trash"></i></span>
-                            </button>
-                        </form> 
+                                </button>
+                        </form>
                     </div>
                     <div class="user_card">
                         <p class="user_card-info">
-                        <img src="/resources/img/user.png" alt="user" class="user-card-img">
+                        ${avatarHtml}
                         <div>
                             <p class="profile-card">${post.username.substring(0, 10)}</p>
                             <p class="date">${post.created_at}</p>
@@ -379,6 +391,12 @@ const myPost = {
 
     acceptedConstructor: function (posts) {
         let html = '';
+        let avatarHtml;
+      if (app.user.avatar) {
+        avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" class="user-card-img alt="${app.user.username}">`;
+      } else {
+        avatarHtml = `<img src="/resources/img/user.png" class="user-card-img alt="User">`;
+      }
         if (posts.length > 0) { 
             console.log(posts)
             html += `<div>`;
@@ -391,16 +409,16 @@ const myPost = {
                             <button class="buttonRed" onclick="window.location.href='/posts/edit/id:${post.id}'">
                                 <span class="text"><i class="bi bi-pencil"></i></span>
                             </button>
-                            <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost();">
-                                <input type="hidden" value="<?= $row['id']; ?>" name="id" id="id-${post.id}">
+                            <form method="POST" action="/posts/drop" onsubmit="return confirmDeletePost(event);">
+                                <input type="hidden" value="${post.id}" name="id" id="id-${post.id}">
                                 <button class="buttonBlue" type="submit">
-                                    <span class="text"><i class="bi bi-trash"></i></span>
+                                <span class="text"><i class="bi bi-trash"></i></span>
                                 </button>
-                            </form> 
+                            </form>
                         </div>
                         <div class="user_card">
                             <p class="user_card-info">
-                            <img src="/resources/img/user.png" alt="user" class="user-card-img">
+                            ${avatarHtml}
                             <div>
                                 <p class="profile-card">${post.username.substring(0, 10)}</p>
                                 <p class="date">${post.created_at}</p>

@@ -217,7 +217,7 @@ const app = {
                 <div class="line"></div>
                 <div>
                   <p>Why is the publication being rejected?</p>
-                  <textarea id="rejectionReason" rows="4"></textarea>
+                  <textarea id="rejectionReason" rows="4" required></textarea>
                 </div>
                 <div class="line"></div>
                 <div>
@@ -314,15 +314,6 @@ const app = {
         <ul class="userMenu-list">
           <li class="userMenu-list-item d-grid">
             <a class="text-start" href="/users/show/id:${app.user.id}">Profile</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Settings</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Language</a>
-          </li>
-          <li class="userMenu-list-item d-grid">
-            <a class="text-start" href="#">Help</a>
           </li>
           <li class="userMenu-list-item d-grid">
             <a class="text-start" href="/sessions/destroy">Logout</a>

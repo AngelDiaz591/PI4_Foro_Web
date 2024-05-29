@@ -121,11 +121,17 @@ $(document).ready(function() {
     }
 
     function generateCommentHTML(comment, allComments, level = 0) {
+        let avatarHtml;
+        if (app.user.avatar) {
+          avatarHtml = `<img src="/assets/imgs/${app.user.avatar}" class="user-card-img alt="${app.user.username}" style="width:25px; height:25px">>`;
+        } else {
+          avatarHtml = `<img src="/resources/img/user.png" class="user-card-img alt="User" style="width:25px; height:25px">`;
+        }
         let html = `
             <div class="comments-user">
                 <div class="parent-comment">
                     <div class="user-info">
-                        <img class="img-user-comment" src="" alt="">
+                    ${avatarHtml}
                         <p style="padding-left: 5px; ">${comment.username}</p>`;
             if (userId === comment.user_id) {
                 html += ` <div class="actions-comments">  
