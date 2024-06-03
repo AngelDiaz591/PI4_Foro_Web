@@ -148,7 +148,7 @@ Class Base extends Database {
   public function rid_image($image) {
     try {
       if (!unlink($this->imagesPath . $image)) {
-        throw new Exception("Could not unlink the image from the server.");
+        return $this->response(status: false, message: "Failed to remove the image.");
       }
 
       return $this->response(status: true, message: "Image removed successfully.");

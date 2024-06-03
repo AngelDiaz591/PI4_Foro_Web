@@ -595,7 +595,7 @@ const user = {
         <div class="principal-form">
           <div class="left-form">
             <div class="photo_profile">
-              <img id="profileImage" src="${data.avatar ? '/assets/imgs/' + data.avatar : '/resources/img/user.jpeg'}"/>
+              <img id="profileImage" src="${data.avatar ? '/assets/imgs/' + data.avatar : '/resources/img/user.png'}"/>
               <div class="change-images">
                 <button id="changeImageProfile" onclick="user.changeAvatar(event)">
                   <i class="bi bi-camera-fill"></i>
@@ -661,7 +661,7 @@ const user = {
         };
         reader.readAsDataURL(file);
       } else {
-        profileImage.attr('src', '/resources/img/user.jpeg');
+        profileImage.attr('src', '/resources/img/user.png');
       }
     });
   },

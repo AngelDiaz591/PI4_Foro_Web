@@ -31,7 +31,7 @@
                     We are committed to building an inclusive digital space where every voice is heard and every idea has the opportunity to flourish. We strive to weave a network that connects people from all corners of the world, united in their commitment to a more just and sustainable future.                    </p>
                 <br>       
             </div>
-            <div class="right">
+            <div class="right-terms">
                 <img class="logo-about" src="/resources/img/web-img.svg">
             </div>
         </div>
